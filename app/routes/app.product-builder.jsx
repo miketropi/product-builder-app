@@ -68,7 +68,7 @@ export default function ProductBuilder() {
       <Modal
         open={active}
         onClose={handleChange}
-        title="Select a product for your design"
+        title="Search and select a product"
         primaryAction={{
           content: 'OK',
           onAction: handleChange,
