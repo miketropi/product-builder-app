@@ -1,0 +1,23 @@
+$color-checked: #4CAF50 !default;
+
+.checkbox-fake-ui {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__target {
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    background: #fbfbfb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid 1px #ddd;
+  }
+
+  svg {
+    fill: $color-checked;
+  }
+  
+}

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import {LegacyStack, Badge} from '@shopify/polaris';
+import { LegacyStack, Badge } from '@shopify/polaris';
+import CheckBox from './CheckBox.jsx';
 
 export default function ListProducts({ products, onSelect, value }) {
 
@@ -31,6 +32,9 @@ export default function ListProducts({ products, onSelect, value }) {
                 }
               </div>
             </div>
+          </div>
+          <div className="list-products__checkbox">
+            <CheckBox checked={ value == id ? true : false } />
           </div>
         </div>
       })

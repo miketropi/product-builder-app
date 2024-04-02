@@ -10,6 +10,8 @@
   border-radius: 3px;
   background-color: white;
   margin-bottom: 10px;
+  gap: 1em;
+  cursor: pointer;
 }
 .list-products__item:hover {
   background: #fafafa;
@@ -39,6 +41,25 @@
   font-size: 0.8em;
   border-radius: 3px;
   font-weight: bold;
+}
+
+.checkbox-fake-ui {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.checkbox-fake-ui__target {
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+  background: #fbfbfb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 1px #ddd;
+}
+.checkbox-fake-ui svg {
+  fill: #4CAF50;
 }
 
 /*# sourceMappingURL=app.css.map */
