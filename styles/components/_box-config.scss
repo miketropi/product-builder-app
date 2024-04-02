@@ -1,0 +1,36 @@
+.box-config {
+  padding: 2em;
+  background: #FAFAFA;
+  border: solid 1px #ddd;
+  margin-bottom: 2em;
+
+  &__field {
+    display: block;
+    width: 100%;
+  }
+
+  &__title {
+    display: block;
+    font-weight: bold;
+  }
+
+  input[type=text],
+  input[type=number],
+  input[type=tel],
+  input[type=password],
+  textarea,
+  select {
+    width: 100%;
+    padding: .5em .8em;
+    border-radius: 1px;
+    background: white;
+    color: black;
+    border: solid 1px #ddd;
+    margin: 4px 0 1em;
+
+    &:focus {
+      border-color: black;
+      outline: none !important;
+    }
+  }
+}

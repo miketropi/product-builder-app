@@ -4,7 +4,7 @@ import ApiForApp from "../libs/api";
 
 const ProductBuilderContext = createContext(null);
 
-const ProductBuilderContext_Provider = ({ children, actionData }) => {
+const ProductBuilderContext_Provider = ({ children, loadData, actionData }) => {
   const { APP_API_KEY, APP_API_ENDPOINT } = useOutletContext();
   const API_FA = useRef(null);
 
@@ -27,6 +27,7 @@ const ProductBuilderContext_Provider = ({ children, actionData }) => {
   const value = {
     version: '1.0.0',
     API_FA,
+    loadData, 
     actionData,
     productCurrentID, setProductCurrentID,
     productCurrentObject, setProductCurrentObject

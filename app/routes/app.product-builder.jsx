@@ -4,6 +4,8 @@ import ProductBuilderApp from "../components/ProductBuilderApp";
 import { useLoaderData, useActionData } from "@remix-run/react"; 
 import { getProductsByKeyworld, getProductByID } from "../libs/shopifyApi";
 import { authenticate } from "../shopify.server";
+import { redirect } from "@remix-run/node";
+
 
 import appStyles from "../styles/app.css?url";
 export const links = () => [
@@ -11,10 +13,22 @@ export const links = () => [
 ];
 
 export const loader = async ({ request }) => {
-  const { admin } = await authenticate.admin(request);
-  return {
-    _: ''
+  // console.log(request);
+  const url = new URL(request.url);
+  const productID = url.searchParams.get("__product");
+  const view = url.searchParams.get("__view");
+  
+  let returnData = {};
+  returnData = { ...returnData, view, productID };
+
+  if(view == 'product-builder' && productID) {
+    const { admin } = await authenticate.admin(request);
+    const res = await getProductByID(String(`gid://shopify/Product/${ productID }`), admin.graphql);
+    returnData = { ...returnData, productObject: res };
   }
+
+  const { admin } = await authenticate.admin(request);
+  return returnData
 
   // const response = await getProductsByKeyworld('blue', admin.graphql);
   // return { shopifyProducts: response, };
@@ -35,7 +49,8 @@ export const action = async ({ request }) => {
     case 'GET_PRODUCT_BY_ID':
       // console.log(String(formData.get("productID")))
       res = await getProductByID(String(formData.get("productID")), admin.graphql);
-      console.log(formData);
+      // console.log(formData);
+      redirect(`?__product=${ String(formData.get("productID")) }`);
       return { shopifyProduct: res, __action }
       break;
   }
@@ -45,15 +60,14 @@ export const action = async ({ request }) => {
 
 export default function ProductBuilder() {
   const [ _actionData, set_actionData ] = useState({});
-  const { _ }  = useLoaderData();
+  const loadData  = useLoaderData();
   const actionData = useActionData();
 
   useEffect(() => {
-    console.log(actionData);
     set_actionData(actionData);
   }, [actionData])
 
-  return (<ProductBuilderContext_Provider actionData={ actionData } >
+  return (<ProductBuilderContext_Provider loadData={ loadData } actionData={ actionData } >
     <ProductBuilderApp />
   </ProductBuilderContext_Provider>)
 }

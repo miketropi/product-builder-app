@@ -1,0 +1,51 @@
+.edit-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+
+  .variants-list {
+    width: 260px;
+
+    .variant-item {
+      border-bottom: solid 1px #ddd;
+      padding: 10px 0;
+      cursor: pointer;
+      opacity: .6;
+      transition: .3s ease;
+      -webkit-transition: .3s ease;
+
+      &.__selected {
+        opacity: 1;
+        padding-left: 18px;
+        
+        h4 {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  .config-container {
+    width: calc(100% - 290px);
+    padding: 2em;
+    background-color: white;
+  }
+}
+
+.pb-add-button {
+  width: 100%;
+  background: white;
+  border: solid 1px black;
+  color: black;
+  padding: .8em; 
+  border-radius: 1px;
+  cursor: pointer;
+  transition: .3s ease;
+  -webkit-transition: .3s ease;
+
+  &:hover { 
+    background: black;
+    color: white
+  }
+}

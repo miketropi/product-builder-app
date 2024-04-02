@@ -62,4 +62,88 @@
   fill: #4CAF50;
 }
 
+.edit-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+}
+.edit-container .variants-list {
+  width: 260px;
+}
+.edit-container .variants-list .variant-item {
+  border-bottom: solid 1px #ddd;
+  padding: 10px 0;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: 0.3s ease;
+  -webkit-transition: 0.3s ease;
+}
+.edit-container .variants-list .variant-item.__selected {
+  opacity: 1;
+  padding-left: 18px;
+}
+.edit-container .variants-list .variant-item.__selected h4 {
+  font-weight: bold;
+}
+.edit-container .config-container {
+  width: calc(100% - 290px);
+  padding: 2em;
+  background-color: white;
+}
+
+.pb-add-button {
+  width: 100%;
+  background: white;
+  border: solid 1px black;
+  color: black;
+  padding: 0.8em;
+  border-radius: 1px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  -webkit-transition: 0.3s ease;
+}
+.pb-add-button:hover {
+  background: black;
+  color: white;
+}
+
+.box-config {
+  padding: 2em;
+  background: #FAFAFA;
+  border: solid 1px #ddd;
+  margin-bottom: 2em;
+}
+.box-config__field {
+  display: block;
+  width: 100%;
+}
+.box-config__title {
+  display: block;
+  font-weight: bold;
+}
+.box-config input[type=text],
+.box-config input[type=number],
+.box-config input[type=tel],
+.box-config input[type=password],
+.box-config textarea,
+.box-config select {
+  width: 100%;
+  padding: 0.5em 0.8em;
+  border-radius: 1px;
+  background: white;
+  color: black;
+  border: solid 1px #ddd;
+  margin: 4px 0 1em;
+}
+.box-config input[type=text]:focus,
+.box-config input[type=number]:focus,
+.box-config input[type=tel]:focus,
+.box-config input[type=password]:focus,
+.box-config textarea:focus,
+.box-config select:focus {
+  border-color: black;
+  outline: none !important;
+}
+
 /*# sourceMappingURL=app.css.map */

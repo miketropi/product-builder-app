@@ -23,7 +23,10 @@ export default function SelectProductModal({ open, onClose, onHandle }) {
     title="Search & Select a Product for Builder"
     primaryAction={{ 
       content: 'Choose Product', 
-      onAction: e => { onHandle(productCurrentID) }, 
+      onAction: e => {
+        setSearchText('')
+        onHandle(productCurrentID)
+      }, 
       disabled: productCurrentID ? false : true }}
     secondaryActions={[
       { content: 'Cancel', onAction: onClose, },
