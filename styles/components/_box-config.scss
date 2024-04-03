@@ -1,8 +1,14 @@
 .box-config {
-  padding: 2em;
-  background: #FAFAFA;
-  border: solid 1px #ddd;
   margin-bottom: 2em;
+
+  > fieldset {
+    padding: 1.5em;
+
+    legend {
+      padding: 0 1em;
+      font-weight: bold;
+    }
+  }
 
   &__field {
     display: block;
@@ -31,6 +37,13 @@
     &:focus {
       border-color: black;
       outline: none !important;
+    }
+  }
+
+  &__repeater {
+
+    > fieldset {
+      padding: 1.5em;
     }
   }
 }

@@ -12,7 +12,7 @@ export default class ApiForApp {
 
   async __request(__url, data, method) {
     const self = this;
-    const response = await fetch(self.__APP_API_ENDPOINT + __url, {
+    const response = await fetch(`${ self.__APP_API_ENDPOINT }${ __url }`, {
       method,
       cache: "no-cache", 
       headers: {
@@ -21,12 +21,26 @@ export default class ApiForApp {
       },
       body: JSON.stringify(data), 
     });
-    console.log(response);
+
     return response.json();
   }
 
-  async getProductsBuilderData() {
-    const res = await this.__request('/content/items/product');
+  async getProductsBuilderData(limit = 20, paged = 0) {
+    const res = await this.__request(`/content/items/product?limit=${ limit }&skip=0`);
+    return res;
+  }
+
+  async getProductBuilderBySID(ShopifyProductID) {
+    if(!ShopifyProductID) return '';
+
+    const res = await this.__request(`/content/item/product?filter={"product_id": "${ ShopifyProductID }"}`);
+    return res;
+  }
+
+  async saveProducrBuilderData(data) {
+    const res = await this.__request('/content/item/product', {
+      data
+    }, 'POST');
     return res;
   }
 }

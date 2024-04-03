@@ -67,6 +67,10 @@
   flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.edit-container p, .edit-container h1, .edit-container h2, .edit-container h3, .edit-container h4, .edit-container h5, .edit-container h6, .edit-container input, .edit-container textarea, .edit-container select, .edit-container label, .edit-container button {
+  font-family: Arial, Helvetica, sans-serif;
 }
 .edit-container .variants-list {
   width: 260px;
@@ -109,10 +113,14 @@
 }
 
 .box-config {
-  padding: 2em;
-  background: #FAFAFA;
-  border: solid 1px #ddd;
   margin-bottom: 2em;
+}
+.box-config > fieldset {
+  padding: 1.5em;
+}
+.box-config > fieldset legend {
+  padding: 0 1em;
+  font-weight: bold;
 }
 .box-config__field {
   display: block;
@@ -144,6 +152,9 @@
 .box-config select:focus {
   border-color: black;
   outline: none !important;
+}
+.box-config__repeater > fieldset {
+  padding: 1.5em;
 }
 
 /*# sourceMappingURL=app.css.map */

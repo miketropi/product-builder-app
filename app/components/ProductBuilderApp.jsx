@@ -1,14 +1,19 @@
 import { useState, useEffect, Fragment } from 'react';
 import { useProductBuilderContext } from '../context/ProductBuilderContext';
 import SelectProductModal from './SelectProductModal';
-import {
-  Page, BlockStack, Layout
-} from "@shopify/polaris";
 import { useSubmit } from "@remix-run/react";
 import EditBuilder from './EditBuilder';
 
+import {
+  Page, 
+  BlockStack, 
+  Layout, 
+  Link,
+  LegacyCard, 
+  DataTable } from "@shopify/polaris";
+
 export default function ProductBuilderApp() {
-  const { version, loadData, actionData } = useProductBuilderContext();
+  const { version, loadData, actionData, productsBuilderList } = useProductBuilderContext();
   const [ modalAddProductDisplay, setModalAddProductDisplay ] = useState(false);
   const getProductSumit = useSubmit();
 
@@ -29,24 +34,46 @@ export default function ProductBuilderApp() {
           </ui-title-bar>
           <BlockStack gap="500">
             <Layout>
-              <SelectProductModal 
-                open={ modalAddProductDisplay } 
-                onClose={ e => setModalAddProductDisplay(false) } 
-                onHandle={ (pID) => {
-                  setModalAddProductDisplay(false);
-                  getProductSumit({}, { 
-                    action: `?__product=${ pID.replace('gid://shopify/Product/', '') }&__view=product-builder`,
-                    method: "post",
-                  });
-                } }
-              />
-              123
-              { JSON.stringify(loadData) }
-              { JSON.stringify(actionData) }
-              {
-                actionData?.shopifyProduct &&
-                JSON.stringify(actionData.shopifyProduct)
-              }
+              <Layout.Section>
+                <SelectProductModal 
+                  open={ modalAddProductDisplay } 
+                  onClose={ e => setModalAddProductDisplay(false) } 
+                  onHandle={ (pID) => {
+                    setModalAddProductDisplay(false);
+                    getProductSumit({}, { 
+                      action: `?__product=${ pID.replace('gid://shopify/Product/', '') }&__view=product-builder`,
+                      method: "post",
+                    });
+                  } }
+                />
+                {
+                  // JSON.stringify(productsBuilderList)
+                }
+                <LegacyCard>
+                  <DataTable 
+                    columnContentTypes={[
+                      'text',
+                      'text',
+                      'text',
+                    ]}
+                    headings={[
+                      'Store ID',
+                      'Product ID',
+                      'Status'
+                    ]}
+                    rows={ productsBuilderList.map((__p) => {
+                      const { store_id, product_id, status } = __p; 
+                      const RootDomain = `https://admin.shopify.com/store/devmegamenu/apps/product-builder-app-2/app/product-builder`;
+                      return [store_id, <Link
+                        removeUnderline
+                        url={ `?__product=${ product_id.replace('gid://shopify/Product/', '') }&__view=product-builder` }              
+                      >
+                        { product_id }
+                      </Link>, status ? 'Published' : ''];
+                    }) }
+                  />
+                </LegacyCard>
+              </Layout.Section>
             </Layout>
           </BlockStack>
         </Page>
