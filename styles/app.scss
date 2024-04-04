@@ -1,5 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&family=Outfit:wght@100..900&display=swap');
+
 @import './variables';
+@import './style';
 @import './components/list-products';
 @import './components/checkbox';
 @import './components/edit-builder';
-@import './components/box-config'
+@import './components/box-config';
+@import './components/pb-table';

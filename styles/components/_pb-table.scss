@@ -1,0 +1,19 @@
+.pbtable-container {
+
+  table.pbtable {
+    width: 100%;
+    border-collapse: collapse;
+
+    th {
+      text-align: left;
+      background: black !important;
+      color: white;
+    }
+
+    th, td {
+      padding: 1em;
+      border: none;
+      border-bottom: solid 1px #ddd;
+    }
+  }
+}

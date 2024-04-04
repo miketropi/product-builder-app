@@ -3,6 +3,7 @@ import { useProductBuilderContext } from '../context/ProductBuilderContext';
 import SelectProductModal from './SelectProductModal';
 import { useSubmit } from "@remix-run/react";
 import EditBuilder from './EditBuilder';
+import PbTable from './PbTable';
 
 import {
   Page, 
@@ -50,26 +51,24 @@ export default function ProductBuilderApp() {
                   // JSON.stringify(productsBuilderList)
                 }
                 <LegacyCard>
-                  <DataTable 
-                    columnContentTypes={[
-                      'text',
-                      'text',
-                      'text',
-                    ]}
+                  <PbTable 
                     headings={[
-                      'Store ID',
+                      '',
                       'Product ID',
-                      'Status'
+                      'Status',
+                      'Actions'
                     ]}
-                    rows={ productsBuilderList.map((__p) => {
+                    rows={ productsBuilderList.map((__p, __p_index) => {
                       const { store_id, product_id, status } = __p; 
-                      const RootDomain = `https://admin.shopify.com/store/devmegamenu/apps/product-builder-app-2/app/product-builder`;
-                      return [store_id, <Link
-                        removeUnderline
-                        url={ `?__product=${ product_id.replace('gid://shopify/Product/', '') }&__view=product-builder` }              
-                      >
-                        { product_id }
-                      </Link>, status ? 'Published' : ''];
+                      return [`#${ __p_index + 1 }`, <>
+                        { product_id } { ' ' }
+                        <Link
+                          removeUnderline
+                          url={ `?__product=${ product_id.replace('gid://shopify/Product/', '') }&__view=product-builder` }              
+                        >
+                          [Edit]
+                        </Link>
+                      </>, (status ? 'Published' : ''), '...'];
                     }) }
                   />
                 </LegacyCard>
@@ -85,7 +84,9 @@ export default function ProductBuilderApp() {
     {
       (() => {
         let __view = loadData?.view ? loadData.view : '';
-        return switchViews[__view]()
+        return <div id="PRODUCT_BUILDER_CONTAINER">
+          { switchViews[__view]() }
+        </div>
       })()
     }
   </Fragment>

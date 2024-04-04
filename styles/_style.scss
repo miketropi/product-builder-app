@@ -1,0 +1,31 @@
+#PRODUCT_BUILDER_CONTAINER {
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  padding: 4em 0; 
+  
+  p, h1, h2, h3, h4, h5, h6, input, textarea, select, label, button {
+    font-family: "Outfit", sans-serif;
+    font-size: 1.1em;
+  }
+}
+
+.pb-button  {
+  border-radius: $border-radius;
+  padding: 1em;
+  border: solid 2px black;
+  background: none;
+  cursor: pointer;
+  transition: .3s ease;
+  -webkit-transition: .3s ease;
+
+  &.__small {
+    font-size: .9em !important;
+    padding: 0.3em .5em;
+  }
+
+  &:hover {
+    background: black;
+    color: white;
+  }
+}

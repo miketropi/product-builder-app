@@ -1,8 +1,11 @@
 .box-config {
   margin-bottom: 2em;
 
-  > fieldset {
-    padding: 1.5em;
+  fieldset {
+    padding: 2em;
+    background: white;
+    border-radius: $border-radius;
+    border-color: black;
 
     legend {
       padding: 0 1em;
@@ -33,6 +36,7 @@
     color: black;
     border: solid 1px #ddd;
     margin: 4px 0 1em;
+    border-radius: $border-radius;
 
     &:focus {
       border-color: black;
@@ -42,8 +46,65 @@
 
   &__repeater {
 
-    > fieldset {
-      padding: 1.5em;
+    
+  }
+}
+
+.group-option {
+
+  &__item {
+    background: black;
+    border-radius: $border-radius;
+    border-width: 1px;
+    margin-bottom: 1em;
+    position: relative;
+
+    .__close {
+      position: absolute;
+      right: -10px;
+      top: -10px;
+      background: white;
+      color: black;
+      border-radius: 6px;
+      line-height: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+      width: 20px;
+      height: 20px;
+      font-weight: bold;
+      opacity: 0;
+    }
+
+    &:hover {
+
+      .__close {
+        opacity: 1;
+      }
+    }
+
+    label {
+      display: flex;
+      align-items: center;
+      border-bottom: solid 1px #4a4a4a;
+      padding: .5em;
+
+      > span {
+        width: 120px;
+        min-width: 120px;
+        color: white;
+        padding: 0 10px;
+      }
+
+      input {
+        margin: 0 !important;
+        border: none !important;
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
     }
   }
 }

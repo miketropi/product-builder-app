@@ -1,3 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito&family=Outfit:wght@100..900&display=swap");
+#PRODUCT_BUILDER_CONTAINER {
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  padding: 4em 0;
+}
+#PRODUCT_BUILDER_CONTAINER p, #PRODUCT_BUILDER_CONTAINER h1, #PRODUCT_BUILDER_CONTAINER h2, #PRODUCT_BUILDER_CONTAINER h3, #PRODUCT_BUILDER_CONTAINER h4, #PRODUCT_BUILDER_CONTAINER h5, #PRODUCT_BUILDER_CONTAINER h6, #PRODUCT_BUILDER_CONTAINER input, #PRODUCT_BUILDER_CONTAINER textarea, #PRODUCT_BUILDER_CONTAINER select, #PRODUCT_BUILDER_CONTAINER label, #PRODUCT_BUILDER_CONTAINER button {
+  font-family: "Outfit", sans-serif;
+  font-size: 1.1em;
+}
+
+.pb-button {
+  border-radius: 8px;
+  padding: 1em;
+  border: solid 2px black;
+  background: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+  -webkit-transition: 0.3s ease;
+}
+.pb-button.__small {
+  font-size: 0.9em !important;
+  padding: 0.3em 0.5em;
+}
+.pb-button:hover {
+  background: black;
+  color: white;
+}
+
 .list-products {
   margin: 2em 0;
 }
@@ -67,42 +97,41 @@
   flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
-  font-family: Arial, Helvetica, sans-serif;
-}
-.edit-container p, .edit-container h1, .edit-container h2, .edit-container h3, .edit-container h4, .edit-container h5, .edit-container h6, .edit-container input, .edit-container textarea, .edit-container select, .edit-container label, .edit-container button {
-  font-family: Arial, Helvetica, sans-serif;
 }
 .edit-container .variants-list {
   width: 260px;
 }
 .edit-container .variants-list .variant-item {
-  border-bottom: solid 1px #ddd;
-  padding: 10px 0;
+  padding: 1em;
   cursor: pointer;
+  margin-top: 10px;
   opacity: 0.6;
+  border: solid 2px transparent;
+  border-radius: 8px;
   transition: 0.3s ease;
   -webkit-transition: 0.3s ease;
 }
+.edit-container .variants-list .variant-item h4 {
+  font-weight: bold;
+}
 .edit-container .variants-list .variant-item.__selected {
   opacity: 1;
-  padding-left: 18px;
+  background: white;
+  border: solid 2px black;
 }
-.edit-container .variants-list .variant-item.__selected h4 {
-  font-weight: bold;
+.edit-container .variants-list .variant-item:hover {
+  border: solid 2px black;
 }
 .edit-container .config-container {
   width: calc(100% - 290px);
-  padding: 2em;
-  background-color: white;
 }
 
 .pb-add-button {
   width: 100%;
-  background: white;
-  border: solid 1px black;
+  border: solid 2px black;
   color: black;
   padding: 0.8em;
-  border-radius: 1px;
+  border-radius: 8px;
   cursor: pointer;
   transition: 0.3s ease;
   -webkit-transition: 0.3s ease;
@@ -115,10 +144,13 @@
 .box-config {
   margin-bottom: 2em;
 }
-.box-config > fieldset {
-  padding: 1.5em;
+.box-config fieldset {
+  padding: 2em;
+  background: white;
+  border-radius: 8px;
+  border-color: black;
 }
-.box-config > fieldset legend {
+.box-config fieldset legend {
   padding: 0 1em;
   font-weight: bold;
 }
@@ -143,6 +175,7 @@
   color: black;
   border: solid 1px #ddd;
   margin: 4px 0 1em;
+  border-radius: 8px;
 }
 .box-config input[type=text]:focus,
 .box-config input[type=number]:focus,
@@ -153,8 +186,66 @@
   border-color: black;
   outline: none !important;
 }
-.box-config__repeater > fieldset {
-  padding: 1.5em;
+.group-option__item {
+  background: black;
+  border-radius: 8px;
+  border-width: 1px;
+  margin-bottom: 1em;
+  position: relative;
+}
+.group-option__item .__close {
+  position: absolute;
+  right: -10px;
+  top: -10px;
+  background: white;
+  color: black;
+  border-radius: 6px;
+  line-height: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  font-weight: bold;
+  opacity: 0;
+}
+.group-option__item:hover .__close {
+  opacity: 1;
+}
+.group-option__item label {
+  display: flex;
+  align-items: center;
+  border-bottom: solid 1px #4a4a4a;
+  padding: 0.5em;
+}
+.group-option__item label > span {
+  width: 120px;
+  min-width: 120px;
+  color: white;
+  padding: 0 10px;
+}
+.group-option__item label input {
+  margin: 0 !important;
+  border: none !important;
+}
+.group-option__item label:last-child {
+  border-bottom: none;
+}
+
+.pbtable-container table.pbtable {
+  width: 100%;
+  border-collapse: collapse;
+}
+.pbtable-container table.pbtable th {
+  text-align: left;
+  background: black !important;
+  color: white;
+}
+.pbtable-container table.pbtable th, .pbtable-container table.pbtable td {
+  padding: 1em;
+  border: none;
+  border-bottom: solid 1px #ddd;
 }
 
 /*# sourceMappingURL=app.css.map */

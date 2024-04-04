@@ -86,3 +86,36 @@ export const getProductByID = async (productID, graphql) => {
     return data?.product
   });
 }
+
+export const getFiles = async (searchText = '', graphql) => {
+  const response = await graphql(`
+  #graphql
+  query getFiles($searchText: String) {
+    files(first:20, query: $searchText) {
+      pageInfo {
+        hasNextPage
+        hasPreviousPage
+      }
+      nodes {
+        __typename
+        alt
+        createdAt
+        id 
+        preview {
+          image {
+            url
+          }
+        }
+      } 	  
+    }
+  }
+  `, {
+    variables: { 
+      searchText
+    },
+  })
+
+  return await response.json().then(({ data }) => {
+    return data?.files
+  });
+}
