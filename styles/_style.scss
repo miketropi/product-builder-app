@@ -29,3 +29,10 @@
     color: white;
   }
 }
+
+.__hide-back-button {
+
+  .Polaris-FullscreenBar__BackAction {
+    display: none;
+  }
+}

@@ -2,10 +2,9 @@ import { useState, useEffect }  from 'react';
 import { ProductBuilderContext_Provider } from "../context/ProductBuilderContext";
 import ProductBuilderApp from "../components/ProductBuilderApp";
 import { useLoaderData, useActionData } from "@remix-run/react"; 
-import { getProductsByKeyworld, getProductByID } from "../libs/shopifyApi";
+import { getProductsByKeyworld, getProductByID, getStore } from "../libs/shopifyApi";
 import { authenticate } from "../shopify.server";
 import { redirect } from "@remix-run/node";
-
 
 import appStyles from "../styles/app.css?url";
 export const links = () => [
@@ -13,21 +12,22 @@ export const links = () => [
 ];
 
 export const loader = async ({ request }) => {
-  // console.log(request);
+  const { admin } = await authenticate.admin(request);
   const url = new URL(request.url);
   const productID = url.searchParams.get("__product");
   const view = url.searchParams.get("__view");
-  
-  let returnData = {};
+  const store = await getStore(admin.graphql);
+
+  let returnData = { store };
   returnData = { ...returnData, view, productID };
 
   if(view == 'product-builder' && productID) {
-    const { admin } = await authenticate.admin(request);
+    // const { admin } = await authenticate.admin(request);
     const res = await getProductByID(String(`gid://shopify/Product/${ productID }`), admin.graphql);
     returnData = { ...returnData, productObject: res };
   }
 
-  const { admin } = await authenticate.admin(request);
+  // const { admin } = await authenticate.admin(request);
   return returnData
 
   // const response = await getProductsByKeyworld('blue', admin.graphql);
@@ -67,7 +67,12 @@ export default function ProductBuilder() {
     set_actionData(actionData);
   }, [actionData])
 
-  return (<ProductBuilderContext_Provider loadData={ loadData } actionData={ actionData } >
-    <ProductBuilderApp />
-  </ProductBuilderContext_Provider>)
+  return (<>
+    {
+      loadData?.store && 
+      <ProductBuilderContext_Provider loadData={ loadData } actionData={ actionData } >
+        <ProductBuilderApp />
+      </ProductBuilderContext_Provider>
+    }
+  </>)
 }

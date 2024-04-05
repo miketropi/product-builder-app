@@ -1,9 +1,11 @@
 export default class ApiForApp {
 
+  __STORE_ID = ''
   __APP_API_KEY = '';
   __APP_API_ENDPOINT = '';
 
-  constructor(APP_API_KEY, APP_API_ENDPOINT) {
+  constructor(STORE_ID, APP_API_KEY, APP_API_ENDPOINT) {
+    this.__STORE_ID = STORE_ID;
     this.__APP_API_KEY = APP_API_KEY;
     this.__APP_API_ENDPOINT = APP_API_ENDPOINT;
 
@@ -26,18 +28,19 @@ export default class ApiForApp {
   }
 
   async getProductsBuilderData(limit = 20, paged = 0) {
-    const res = await this.__request(`/content/items/product?limit=${ limit }&skip=0`);
+    const res = await this.__request(`/content/items/product?limit=${ limit }&skip=0&filter={"store_id": "${ this.__STORE_ID }"}`);
     return res;
   }
 
   async getProductBuilderBySID(ShopifyProductID) {
     if(!ShopifyProductID) return '';
 
-    const res = await this.__request(`/content/item/product?filter={"product_id": "${ ShopifyProductID }"}`);
+    const res = await this.__request(`/content/item/product?filter={"product_id": "${ ShopifyProductID }","store_id": "${ this.__STORE_ID }"}`);
     return res;
   }
 
   async saveProducrBuilderData(data) {
+    data.store_id = this.__STORE_ID; // push store id 
     const res = await this.__request('/content/item/product', {
       data
     }, 'POST');

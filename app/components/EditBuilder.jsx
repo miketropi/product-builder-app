@@ -2,13 +2,16 @@ import { useState, useEffect, Fragment, useCallback } from 'react';
 import {
   Page, BlockStack, Layout, FullscreenBar, Text, ButtonGroup, Button
 } from "@shopify/polaris";
+import { useNavigate } from "@remix-run/react";
 import VariantItem from './edit-components/VariantItem';
 import VariantConfigBox from './edit-components/VariantConfigBox';
 import { useProductBuilderContext } from '../context/ProductBuilderContext';
+import { useAppBridge, } from '@shopify/app-bridge-react';
 
 export default function EditBuilder({ productObject, editItem }) {
-  // console.log([productObject, editItem]);
-  const { API_FA } = useProductBuilderContext();
+  const shopify = useAppBridge();
+  const navigate = useNavigate();
+  const { API_FA, __getProductsBuilderData } = useProductBuilderContext();
   const [ builderData, setBuilderData ] = useState([]);
   const [ editItemID, setEditItemID ] = useState('');
   const [ editObject, setEditObject ] = useState();
@@ -16,7 +19,15 @@ export default function EditBuilder({ productObject, editItem }) {
 
   useEffect(() => {
     // setEditItemID(editItem);
-  }, [editItem])
+    // console.log(editObject);
+    if(!editObject) return; 
+
+    let __builderData = [...builderData];
+    let __index = __builderData.findIndex(i => { return i.id == editItemID })
+    __builderData[__index] = { ...editObject };
+
+    setBuilderData(__builderData);
+  }, [editObject])
 
   const __getProductBySID = async(ID, callback) => {
     try{
@@ -68,7 +79,7 @@ export default function EditBuilder({ productObject, editItem }) {
     const { id } = productObject;
     const pushData = {
       "status": true,
-      "store_id": "__test__buildmat_builder_store__",
+      // "store_id": "", auto push on API
       "product_id": id,
       "builder_design_data": builderData,
     }
@@ -79,11 +90,35 @@ export default function EditBuilder({ productObject, editItem }) {
 
     const res = await API_FA.current.saveProducrBuilderData(pushData);
     console.log(res);
+    shopify.toast.show('Save Successful!');
   }
 
   const onBackScreen = useCallback(() => {
-    alert('back');
+    // shopify.toast.show('Success!');
+    __getProductsBuilderData(); // reload data
+    navigate("/app/product-builder")
   }, [])
+
+  const onAddConfigBox = useCallback(() => {
+    let __editObject = {...editObject};
+    __editObject.builderData.__options.push(
+      {
+        __key: `__` + (Math.random() + 1).toString(36).substring(7),
+        name: 'Option name',
+        type: 'options', // options, addon
+        description: '',
+        options: [
+          {
+            __key: `__` + (Math.random() + 1).toString(36).substring(7),
+            name: '',
+            image: '',
+          }
+        ]
+      }
+    )
+
+    setEditObject(__editObject)
+  }, [editObject])
 
   const fullscreenBarMarkup = (
     <FullscreenBar onAction={ onBackScreen }>
@@ -112,9 +147,6 @@ export default function EditBuilder({ productObject, editItem }) {
   )
 
   return <Page>
-    {/* <ui-title-bar title={ `Product: ${ productObject?.title }` }>
-      <button variant="primary" onClick={ e => onSave() }>Save</button>  
-    </ui-title-bar> */}
     { fullscreenBarMarkup } 
     <BlockStack>
       <Layout>
@@ -136,14 +168,23 @@ export default function EditBuilder({ productObject, editItem }) {
             </div>
             <div className="config-container">
               {/* { _productBuilderEditID } */}
+              {/* { JSON.stringify(editObject) } */}
               {/* { JSON.stringify(builderData) } */}
               {
                 editObject &&
                 <>
                   <VariantConfigBox variant={ editObject } onChange={ data => {
-                    console.log(data);
-                    setEditObject({ ...editObject, __options: editObject.editObject })
-                  } } />
+                    // console.log(data);
+                    setEditObject(prevState => {
+                      // console.log(prevState);
+                      return {...prevState, builderData: data }
+                    })
+                    // setEditObject({ ...editObject, __options: data.__options })
+                    } } 
+                  />
+                  <button className="pb-add-button" onClick={ onAddConfigBox }>
+                    + Add More Config Box
+                  </button>
                 </>
               }
             </div>

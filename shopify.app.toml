@@ -3,7 +3,7 @@
 client_id = "b32d95389dff1e07f175147fd41f1b93"
 name = "product-builder-app"
 handle = "product-builder-app-2"
-application_url = "https://citizen-lesson-survey-momentum.trycloudflare.com"
+application_url = "https://d2c5-2001-ee0-4b52-af10-49bc-41bd-e1bf-93fc.ngrok-free.app"
 embedded = true
 
 [build]
@@ -11,15 +11,19 @@ automatically_update_urls_on_dev = true
 dev_store_url = "devmegamenu.myshopify.com"
 include_config_on_deploy = true
 
+[access.admin]
+direct_api_mode = "online"
+embedded_app_direct_api_access = true
+
 [access_scopes]
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
 scopes = "read_files,read_metaobjects,read_products,write_files,write_metaobjects,write_products"
 
 [auth]
 redirect_urls = [
-  "https://citizen-lesson-survey-momentum.trycloudflare.com/auth/callback",
-  "https://citizen-lesson-survey-momentum.trycloudflare.com/auth/shopify/callback",
-  "https://citizen-lesson-survey-momentum.trycloudflare.com/api/auth/callback"
+  "https://d2c5-2001-ee0-4b52-af10-49bc-41bd-e1bf-93fc.ngrok-free.app/auth/callback",
+  "https://d2c5-2001-ee0-4b52-af10-49bc-41bd-e1bf-93fc.ngrok-free.app/auth/shopify/callback",
+  "https://d2c5-2001-ee0-4b52-af10-49bc-41bd-e1bf-93fc.ngrok-free.app/api/auth/callback"
 ]
 
 [webhooks]

@@ -1,9 +1,9 @@
 import { useState, useEffect, Fragment } from 'react';
 import { useProductBuilderContext } from '../context/ProductBuilderContext';
-import SelectProductModal from './SelectProductModal';
-import { useSubmit } from "@remix-run/react";
+import { useSubmit, useNavigate } from "@remix-run/react";
 import EditBuilder from './EditBuilder';
 import PbTable from './PbTable';
+import { useAppBridge, } from '@shopify/app-bridge-react';
 
 import {
   Page, 
@@ -11,12 +11,16 @@ import {
   Layout, 
   Link,
   LegacyCard, 
+  ButtonGroup,
+  Button,
+  FullscreenBar,
+  Text,
   DataTable } from "@shopify/polaris";
 
 export default function ProductBuilderApp() {
-  const { version, loadData, actionData, productsBuilderList } = useProductBuilderContext();
-  const [ modalAddProductDisplay, setModalAddProductDisplay ] = useState(false);
-  const getProductSumit = useSubmit();
+  const shopify = useAppBridge();
+  const navigation = useNavigate();
+  const { version, loadData, actionData, productsBuilderList, __getProductsBuilderData } = useProductBuilderContext();
 
   const switchViews = {
     'product-builder': () => {
@@ -26,27 +30,59 @@ export default function ProductBuilderApp() {
         editItem={ firstVariantID } />
     },
     '': () => {
+      
+      const fullscreenBarMarkup = (
+        <div className="__hide-back-button">
+          <FullscreenBar>
+            <div
+              style={{
+                display: 'flex',
+                flexGrow: 1,
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                paddingLeft: '1rem',
+                paddingRight: '1rem',
+              }}
+            >
+              <div style={{marginLeft: '1rem', flexGrow: 1}}>
+                <Text variant="headingLg" as="p">
+                  { `Product Builder` }
+                </Text>
+              </div>
+              <ButtonGroup>
+                <Button variant="primary" onClick={ async e => {
+                  const selected = await shopify.resourcePicker({type: 'product', showVariants: false});
+                  if(!selected) return;
+
+                  let [ first ] = selected;
+                  let __id = first.id.replace('gid://shopify/Product/', '')
+                  navigation(`/app/product-builder?__product=${ __id }&__view=product-builder`);
+                } }>
+                  Select a Product Builder
+                </Button>
+              </ButtonGroup>
+            </div>
+          </FullscreenBar>
+        </div>
+      )
+
       return (
         <Page>
-          <ui-title-bar title="Product Builder">
-            <button variant="primary" onClick={ e => { setModalAddProductDisplay(true) } }>
-              Add a Product Builder
+          { fullscreenBarMarkup }
+          {/* <ui-title-bar title="Product Builder">
+            <button variant="primary" onClick={ async e => {
+              const selected = await shopify.resourcePicker({type: 'product', showVariants: false});
+              let [ first ] = selected;
+              let __id = first.id.replace('gid://shopify/Product/', '')
+              navigation(`/app/product-builder?__product=${ __id }&__view=product-builder`);
+            } }>
+              Select a Product Builder
             </button>  
-          </ui-title-bar>
+          </ui-title-bar> */}
+          <div style={{ paddingTop: '2em' }}></div>
           <BlockStack gap="500">
             <Layout>
               <Layout.Section>
-                <SelectProductModal 
-                  open={ modalAddProductDisplay } 
-                  onClose={ e => setModalAddProductDisplay(false) } 
-                  onHandle={ (pID) => {
-                    setModalAddProductDisplay(false);
-                    getProductSumit({}, { 
-                      action: `?__product=${ pID.replace('gid://shopify/Product/', '') }&__view=product-builder`,
-                      method: "post",
-                    });
-                  } }
-                />
                 {
                   // JSON.stringify(productsBuilderList)
                 }

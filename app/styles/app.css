@@ -27,6 +27,10 @@
   color: white;
 }
 
+.__hide-back-button .Polaris-FullscreenBar__BackAction {
+  display: none;
+}
+
 .list-products {
   margin: 2em 0;
 }

@@ -17,13 +17,14 @@ const ProductBuilderContext_Provider = ({ children, loadData, actionData }) => {
   const [ productCurrentObject, setProductCurrentObject ] = useState({})
 
   const __getProductsBuilderData = async () => {
+    console.log('___Get Data___')
     const { data, meta: { total } } = await API_FA.current.getProductsBuilderData();
     setProductsBuilderList(data);
     setTotal(total)
   }
 
   useEffect(() => {
-    API_FA.current = new ApiForApp(APP_API_KEY, APP_API_ENDPOINT);
+    API_FA.current = new ApiForApp(loadData?.store?.id, APP_API_KEY, APP_API_ENDPOINT);
     __getProductsBuilderData();
   }, [])
 
@@ -35,7 +36,8 @@ const ProductBuilderContext_Provider = ({ children, loadData, actionData }) => {
     productsBuilderList, 
     total,
     productCurrentID, setProductCurrentID,
-    productCurrentObject, setProductCurrentObject
+    productCurrentObject, setProductCurrentObject,
+    __getProductsBuilderData
   }
 
   return <ProductBuilderContext.Provider value={ value } >

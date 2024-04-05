@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import BoxConfig from './BoxConfig';
 import _ from 'lodash';
 const { update } = _;
@@ -29,7 +29,7 @@ export default function VariantConfigBox({ variant, onChange }) {
     setBuilderData(variant.builderData);
   }, [variant])
 
-  const onAddOption = () => {
+  const onAddOption = useCallback(() => {
     let new_builderData = { ...builderData };
     new_builderData.__options.push(OPTION_ITEM_DATA_TEMPLATE())
     setBuilderData(new_builderData);
@@ -37,7 +37,7 @@ export default function VariantConfigBox({ variant, onChange }) {
     if(onChange) {
       onChange(new_builderData)
     }
-  }
+  }, [builderData])
 
   const onChangeBoxConfig = (value, field, __i_index) => {
     let new_builderData = { ...builderData };
@@ -57,6 +57,6 @@ export default function VariantConfigBox({ variant, onChange }) {
         } } />)
       })
     }
-    <button type="button" className="pb-add-button" onClick={ onAddOption }>+ Add Option</button>
+    {/* <button type="button" className="pb-add-button" onClick={ onAddOption }>+ Add Option</button> */}
   </div>
 }
