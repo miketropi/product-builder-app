@@ -3,7 +3,7 @@
 client_id = "b32d95389dff1e07f175147fd41f1b93"
 name = "product-builder-app"
 handle = "product-builder-app-2"
-application_url = "https://toshiba-again-apart-michel.trycloudflare.com"
+application_url = "https://citizen-lesson-survey-momentum.trycloudflare.com"
 embedded = true
 
 [build]
@@ -13,13 +13,13 @@ include_config_on_deploy = true
 
 [access_scopes]
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
-scopes = "read_metaobjects,read_products,write_metaobjects,write_products,read_files,write_files"
+scopes = "read_files,read_metaobjects,read_products,write_files,write_metaobjects,write_products"
 
 [auth]
 redirect_urls = [
-  "https://toshiba-again-apart-michel.trycloudflare.com/auth/callback",
-  "https://toshiba-again-apart-michel.trycloudflare.com/auth/shopify/callback",
-  "https://toshiba-again-apart-michel.trycloudflare.com/api/auth/callback"
+  "https://citizen-lesson-survey-momentum.trycloudflare.com/auth/callback",
+  "https://citizen-lesson-survey-momentum.trycloudflare.com/auth/shopify/callback",
+  "https://citizen-lesson-survey-momentum.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

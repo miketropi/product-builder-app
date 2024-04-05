@@ -1,6 +1,6 @@
-import { useState, useEffect, Fragment } from 'react';
+import { useState, useEffect, Fragment, useCallback } from 'react';
 import {
-  Page, BlockStack, Layout
+  Page, BlockStack, Layout, FullscreenBar, Text, ButtonGroup, Button
 } from "@shopify/polaris";
 import VariantItem from './edit-components/VariantItem';
 import VariantConfigBox from './edit-components/VariantConfigBox';
@@ -81,10 +81,41 @@ export default function EditBuilder({ productObject, editItem }) {
     console.log(res);
   }
 
+  const onBackScreen = useCallback(() => {
+    alert('back');
+  }, [])
+
+  const fullscreenBarMarkup = (
+    <FullscreenBar onAction={ onBackScreen }>
+      <div
+        style={{
+          display: 'flex',
+          flexGrow: 1,
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          paddingLeft: '1rem',
+          paddingRight: '1rem',
+        }}
+      >
+        <div style={{marginLeft: '1rem', flexGrow: 1}}>
+          <Text variant="headingLg" as="p">
+            { `Product: ${ productObject?.title }` }
+          </Text>
+        </div>
+        <ButtonGroup>
+          <Button variant="primary" onClick={ e => onSave() }>
+            Save
+          </Button>
+        </ButtonGroup>
+      </div>
+    </FullscreenBar>
+  )
+
   return <Page>
-    <ui-title-bar title={ `Product: ${ productObject?.title }` }>
+    {/* <ui-title-bar title={ `Product: ${ productObject?.title }` }>
       <button variant="primary" onClick={ e => onSave() }>Save</button>  
-    </ui-title-bar>
+    </ui-title-bar> */}
+    { fullscreenBarMarkup } 
     <BlockStack>
       <Layout>
         <Layout.Section>

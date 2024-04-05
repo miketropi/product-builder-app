@@ -3,7 +3,6 @@
   font-family: "Outfit", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
-  padding: 4em 0;
 }
 #PRODUCT_BUILDER_CONTAINER p, #PRODUCT_BUILDER_CONTAINER h1, #PRODUCT_BUILDER_CONTAINER h2, #PRODUCT_BUILDER_CONTAINER h3, #PRODUCT_BUILDER_CONTAINER h4, #PRODUCT_BUILDER_CONTAINER h5, #PRODUCT_BUILDER_CONTAINER h6, #PRODUCT_BUILDER_CONTAINER input, #PRODUCT_BUILDER_CONTAINER textarea, #PRODUCT_BUILDER_CONTAINER select, #PRODUCT_BUILDER_CONTAINER label, #PRODUCT_BUILDER_CONTAINER button {
   font-family: "Outfit", sans-serif;
@@ -97,6 +96,7 @@
   flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
+  margin: 2em 0;
 }
 .edit-container .variants-list {
   width: 260px;
