@@ -46,4 +46,9 @@ export default class ApiForApp {
     }, 'POST');
     return res;
   }
+
+  async deleteProduct(productID) {
+    const res = await this.__request(`/content/item/product/${ productID }`, {}, 'DELETE');
+    return res;
+  }
 }

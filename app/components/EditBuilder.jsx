@@ -1,6 +1,6 @@
 import { useState, useEffect, Fragment, useCallback } from 'react';
 import {
-  Page, BlockStack, Layout, FullscreenBar, Text, ButtonGroup, Button
+  Page, BlockStack, Layout, FullscreenBar, Text, ButtonGroup, Button, Badge
 } from "@shopify/polaris";
 import { useNavigate } from "@remix-run/react";
 import VariantItem from './edit-components/VariantItem';
@@ -32,9 +32,12 @@ export default function EditBuilder({ productObject, editItem }) {
   const __getProductBySID = async(ID, callback) => {
     try{
       const res = await API_FA.current.getProductBuilderBySID(ID);
-      callback(res)
+      callback(res);
+      // setBadgeText('Edit')
+      // setEditID()
     } catch(err) {
       console.log(err);
+      // setBadgeText('New')
       callback('')
     }
   }
@@ -69,17 +72,27 @@ export default function EditBuilder({ productObject, editItem }) {
   useEffect(() => {
     if(!editItemID) return;
     let __builderData = [...builderData];
-    setEditObject(__builderData.find(i => { return i.id == editItemID }));
+    const found = __builderData.find(i => { return i.id == editItemID });
+    // console.log(found, __builderData);
+    if(!found) {
+      const vItem = productObject.variants.edges.find(({ node }) => {
+        return node.id == editItemID
+      })
+
+      console.log(vItem.node)
+    }
+
+    setEditObject(found);
   }, [editItemID])
 
   const onSave = async () => {
     console.log('onSave called');
-    // console.log(productObject);
-    // console.log(builderData);
-    const { id } = productObject;
+    shopify.loading(true);
+    const { id, title } = productObject;
     const pushData = {
       "status": true,
       // "store_id": "", auto push on API
+      "product_name": title,
       "product_id": id,
       "builder_design_data": builderData,
     }
@@ -89,7 +102,10 @@ export default function EditBuilder({ productObject, editItem }) {
     }
 
     const res = await API_FA.current.saveProducrBuilderData(pushData);
-    console.log(res);
+    if(res?._id) {
+      set_productBuilderEditID(res._id);  
+    }
+    shopify.loading(false);
     shopify.toast.show('Save Successful!');
   }
 
@@ -134,12 +150,19 @@ export default function EditBuilder({ productObject, editItem }) {
       >
         <div style={{marginLeft: '1rem', flexGrow: 1}}>
           <Text variant="headingLg" as="p">
-            { `Product: ${ productObject?.title }` }
+            { `Product: ${ productObject?.title }` } 
+            <span style={{ marginLeft: '.5em' }}>
+              <Badge 
+                tone={ _productBuilderEditID ? 'attention' : 'success' }
+              >
+                { _productBuilderEditID ? 'Edit' : 'New' }
+              </Badge>
+            </span>
           </Text>
         </div>
         <ButtonGroup>
           <Button variant="primary" onClick={ e => onSave() }>
-            Save
+            { _productBuilderEditID ? 'Update Product' : 'Create Product' }
           </Button>
         </ButtonGroup>
       </div>
@@ -173,13 +196,12 @@ export default function EditBuilder({ productObject, editItem }) {
               {
                 editObject &&
                 <>
-                  <VariantConfigBox variant={ editObject } onChange={ data => {
-                    // console.log(data);
-                    setEditObject(prevState => {
-                      // console.log(prevState);
-                      return {...prevState, builderData: data }
-                    })
-                    // setEditObject({ ...editObject, __options: data.__options })
+                  <VariantConfigBox 
+                    variant={ editObject } 
+                    onChange={ data => {
+                      setEditObject(prevState => {
+                        return {...prevState, builderData: data }
+                      })
                     } } 
                   />
                   <button className="pb-add-button" onClick={ onAddConfigBox }>

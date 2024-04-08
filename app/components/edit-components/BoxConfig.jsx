@@ -1,6 +1,6 @@
 import PbButton from '../PbButton';
 
-export default function BoxConfig({ configData, onChange }) {
+export default function BoxConfig({ configData, onChange, onDelete }) {
 
   const onUpdateField = (value, name) => {
     onChange(value, name);
@@ -86,6 +86,10 @@ export default function BoxConfig({ configData, onChange }) {
             } } />
           </div>
         </fieldset>
+      </div>
+      <br />
+      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <PbButton classes={ '__small' } text={ 'Delete Item' } onClick={ onDelete } />
       </div>
     </fieldset>
   </div>

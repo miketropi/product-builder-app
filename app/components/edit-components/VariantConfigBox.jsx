@@ -52,9 +52,21 @@ export default function VariantConfigBox({ variant, onChange }) {
   return <div className="variant-config-box">
     {
       builderData.__options?.map((i, __i_index) => {
-        return (<BoxConfig key={ i.__key } configData={ i } onChange={ (value, field) => {
-          onChangeBoxConfig(value, field, __i_index)
-        } } />)
+        return (<BoxConfig 
+          key={ i.__key } 
+          configData={ i } 
+          onChange={ (value, field) => { onChangeBoxConfig(value, field, __i_index) } }
+          onDelete={ e => {
+            let r = confirm("Are you sure you want to delete?");
+            if(!r) return;
+
+            let new_builderData = { ...builderData };
+            let __o = [...new_builderData.__options];
+            __o.splice(__i_index, 1);
+            update(new_builderData, `__options`, () => __o);
+            setBuilderData(new_builderData);
+            if(onChange) { onChange(new_builderData) }
+          } } />)
       })
     }
     {/* <button type="button" className="pb-add-button" onClick={ onAddOption }>+ Add Option</button> */}
