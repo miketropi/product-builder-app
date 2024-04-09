@@ -1,7 +1,7 @@
 import PbButton from '../PbButton';
+import PbSelectImage from '../PbSelectImage';
 
 export default function BoxConfig({ configData, onChange, onDelete }) {
-
   const onUpdateField = (value, name) => {
     onChange(value, name);
   }
@@ -74,6 +74,9 @@ export default function BoxConfig({ configData, onChange, onDelete }) {
                     <span>Image URl</span>
                     <input type="text" value={ o.image } onChange={ e => {
                       onUpdateField(e.target.value, `options[${ __o_index }].image`)
+                    } } />
+                    <PbSelectImage onSelect={ (media) => {
+                      onUpdateField(JSON.stringify(media), `options[${ __o_index }].image`);
                     } } />
                   </label>
                 </div>

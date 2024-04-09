@@ -222,6 +222,18 @@
   align-items: center;
   border-bottom: solid 1px #4a4a4a;
   padding: 0.5em;
+  position: relative;
+}
+.group-option__item label .pb-select-image-container {
+  position: absolute;
+  right: 1em;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  line-height: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .group-option__item label > span {
   width: 120px;
@@ -235,6 +247,10 @@
 }
 .group-option__item label:last-child {
   border-bottom: none;
+}
+
+.pb-select-image-container .__target {
+  cursor: pointer;
 }
 
 .pbtable-container table.pbtable {

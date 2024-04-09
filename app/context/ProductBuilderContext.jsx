@@ -28,6 +28,57 @@ const ProductBuilderContext_Provider = ({ children, loadData, actionData }) => {
     __getProductsBuilderData();
   }, [])
 
+  /**
+   * Media Modal
+   */
+  const [ mediaActive, setMediaActive ] = useState(false);
+  const [ mediaSelected, setMediaSelected ] = useState([]);
+  const onSelectMedia_Fn = useRef(null);
+  const mediaPicker = async (callback) => {
+    setMediaActive(true);
+    onSelectMedia_Fn.current = callback;
+  }
+
+  const onLoadMedia_Fn = async (searchText) => {
+    console.log(`onLoadMedia_Fn`)
+    const res = await fetch('shopify:admin/api/graphql.json', {
+      method: 'POST',
+      body: JSON.stringify({
+        query: `
+        query getFiles($searchText: String) {
+          files(first:20, query: $searchText) {
+            pageInfo {
+              hasNextPage
+              hasPreviousPage
+            }
+            edges {
+              node {
+                ... on MediaImage {
+                  id
+                  createdAt
+                  mimeType
+                  originalSource {
+                    fileSize
+                  }
+                  image {
+                    id
+                    originalSrc: url
+                    width
+                    height
+                  }
+                }
+              }
+            }
+          }
+        }
+        `,
+        variables: { searchText },
+      }),
+    });
+    
+    return await res.json();
+  }
+
   const value = {
     version: '1.0.0',
     API_FA,
@@ -37,6 +88,13 @@ const ProductBuilderContext_Provider = ({ children, loadData, actionData }) => {
     total,
     productCurrentID, setProductCurrentID,
     productCurrentObject, setProductCurrentObject,
+    mediaModal: {
+      mediaActive, setMediaActive,
+      mediaSelected, setMediaSelected,
+      mediaPicker,
+      onSelectMedia_Fn,
+      onLoadMedia_Fn
+    },
     __getProductsBuilderData
   }
 

@@ -5,6 +5,7 @@ import { useLoaderData, useActionData } from "@remix-run/react";
 import { getProductsByKeyworld, getProductByID, getStore } from "../libs/shopifyApi";
 import { authenticate } from "../shopify.server";
 import { redirect } from "@remix-run/node";
+import MediaModal from '../components/MediaModal';
 
 import appStyles from "../styles/app.css?url";
 export const links = () => [
@@ -72,6 +73,7 @@ export default function ProductBuilder() {
       loadData?.store && 
       <ProductBuilderContext_Provider loadData={ loadData } actionData={ actionData } >
         <ProductBuilderApp />
+        <MediaModal />
       </ProductBuilderContext_Provider>
     }
   </>)

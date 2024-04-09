@@ -17,11 +17,15 @@ export default function EditBuilder({ productObject, editItem }) {
   const [ editObject, setEditObject ] = useState();
   const [ _productBuilderEditID, set_productBuilderEditID ] = useState('');
 
-  useEffect(() => {
-    // setEditItemID(editItem);
-    // console.log(editObject);
-    if(!editObject) return; 
+  const builderDataTemp = {
+    __config: {
+      enable: true,
+    },
+    __options: []
+  }
 
+  useEffect(() => {
+    if(!editObject) return; 
     let __builderData = [...builderData];
     let __index = __builderData.findIndex(i => { return i.id == editItemID })
     __builderData[__index] = { ...editObject };
@@ -29,41 +33,41 @@ export default function EditBuilder({ productObject, editItem }) {
     setBuilderData(__builderData);
   }, [editObject])
 
-  const __getProductBySID = async(ID, callback) => {
+  const __getProductBySID = useCallback(async(ID, callback) => {
+    if(!API_FA?.current?.getProductBuilderBySID) return;
+
     try{
       const res = await API_FA.current.getProductBuilderBySID(ID);
       callback(res);
       // setBadgeText('Edit')
       // setEditID()
     } catch(err) {
-      console.log(err);
+      console.log('Error', err);
       // setBadgeText('New')
       callback('')
     }
-  }
+  }, [])
 
   useEffect(() => {
     if(!productObject?.variants) return;
+    // console.log(`3______________ ${ productObject?.id }`)
     __getProductBySID(productObject?.id, (res) => {
-      
       if(res) {
-        // console.log('aaaaa', res)
         const { _id, builder_design_data } = res;
-        setBuilderData(builder_design_data);
+        let editBuilderData = [...productObject.variants.edges].map(({ node }) => {
+          let found = builder_design_data.find(({ id }) => (id == node.id));
+          return (found ? found : { ...node, 'builderData': builderDataTemp }); 
+        })
+        setBuilderData(editBuilderData);
         set_productBuilderEditID(_id);
-        setEditItemID(editItem);
-        return;
+        // console.log(`1______________ ${ editItem }`)
+      } else {
+        setBuilderData([...productObject.variants.edges].map(({ node }) => {
+          node.builderData = builderDataTemp;
+          return node;
+        }));
+        // console.log(`2______________ ${ editItem }`)
       }
-
-      setBuilderData([...productObject.variants.edges].map(({ node }) => {
-        node.builderData = {
-          __config: {
-            enable: true,
-          },
-          __options: []
-        }
-        return node;
-      }));
 
       setEditItemID(editItem);
     })
@@ -73,17 +77,13 @@ export default function EditBuilder({ productObject, editItem }) {
     if(!editItemID) return;
     let __builderData = [...builderData];
     const found = __builderData.find(i => { return i.id == editItemID });
-    // console.log(found, __builderData);
-    if(!found) {
-      const vItem = productObject.variants.edges.find(({ node }) => {
-        return node.id == editItemID
-      })
-
-      console.log(vItem.node)
-    }
 
     setEditObject(found);
   }, [editItemID])
+
+  useEffect(() => {
+
+  }, [builderData]);
 
   const onSave = async () => {
     console.log('onSave called');
@@ -110,7 +110,6 @@ export default function EditBuilder({ productObject, editItem }) {
   }
 
   const onBackScreen = useCallback(() => {
-    // shopify.toast.show('Success!');
     __getProductsBuilderData(); // reload data
     navigate("/app/product-builder")
   }, [])
@@ -150,7 +149,7 @@ export default function EditBuilder({ productObject, editItem }) {
       >
         <div style={{marginLeft: '1rem', flexGrow: 1}}>
           <Text variant="headingLg" as="p">
-            { `Product: ${ productObject?.title }` } 
+            { `Product: ${ productObject?.title }` } ({ productObject?.id.replace('gid://shopify/Product/', '') }) 
             <span style={{ marginLeft: '.5em' }}>
               <Badge 
                 tone={ _productBuilderEditID ? 'attention' : 'success' }

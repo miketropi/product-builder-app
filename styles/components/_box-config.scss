@@ -89,6 +89,19 @@
       align-items: center;
       border-bottom: solid 1px #4a4a4a;
       padding: .5em;
+      position: relative;
+
+      .pb-select-image-container {
+        position: absolute;
+        right: 1em;
+        top: 50%;
+        transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        line-height: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
       > span {
         width: 120px;
@@ -106,5 +119,12 @@
         border-bottom: none;
       }
     }
+  }
+}
+
+.pb-select-image-container {
+
+  .__target {
+    cursor: pointer;
   }
 }
