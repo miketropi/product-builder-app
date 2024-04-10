@@ -1,0 +1,28 @@
+# fly.toml app configuration file generated for product-builder-app on 2024-04-10T13:39:59+07:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'product-builder-app'
+primary_region = 'sin'
+
+[build]
+
+[http_service]
+  internal_port = 8081
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
+
+[env]
+  PORT = "8081"
+  SHOPIFY_APP_URL = "https://my-app.fly.dev"
+  SHOPIFY_API_KEY = "b32d95389dff1e07f175147fd41f1b93"
+  SCOPES = "read_files,read_metaobjects,read_products,write_files,write_metaobjects,write_products"

@@ -7,7 +7,9 @@ import {
   ResourceList, 
   ResourceItem, 
   Thumbnail,
-  Text } from '@shopify/polaris';
+  Text, 
+  Filters,
+  Badge} from '@shopify/polaris';
 import { useState, useEffect, useCallback } from 'react';
 import { useProductBuilderContext } from '../context/ProductBuilderContext';
 
@@ -21,8 +23,8 @@ export default function MediaModal() {
     onSelectMedia_Fn,
     onLoadMedia_Fn } = mediaModal;
   
-  const loadMedia = async () => {
-    const { data } = await onLoadMedia_Fn();
+  const loadMedia = async (s = '') => {
+    const { data } = await onLoadMedia_Fn(s);
     // console.log(data);
     setItems( data?.files?.edges )
   }
@@ -34,13 +36,35 @@ export default function MediaModal() {
 
   const _onSelect = useCallback(() => {
     setMediaActive(false);
-    onSelectMedia_Fn.current(mediaSelected);
-  }, [])
+    let __mediaSelected = [ ...mediaSelected ]
+    onSelectMedia_Fn.current( __mediaSelected );
+    setMediaSelected([]);
+  }, [mediaSelected])
 
   const _onClose = useCallback(() => {
-    setMediaSelected([]);
+    // setMediaSelected([]);
     setMediaActive(false);
   }, [])
+
+  const resourceName = {
+    singular: 'image',
+    plural: 'images',
+  };
+
+  const onUpdateSearchText_fn = useCallback((value) => {
+    setSearchText(value);
+  }, [])
+
+  const onSelectMedia = useCallback((value) => {
+    setMediaSelected(prevState => {
+      let item = value.pop()
+      return item ? [item] : []
+    })
+  })
+
+  useEffect(() => {
+    loadMedia(searchText)
+  }, [searchText])
 
   return <Frame>
     <Modal
@@ -50,6 +74,7 @@ export default function MediaModal() {
       primaryAction={{
         content: 'Select',
         onAction: _onSelect,
+        disabled: (mediaSelected.length == 0 ? true : false)
       }}
       secondaryActions={[
         {
@@ -59,27 +84,44 @@ export default function MediaModal() {
       ]}
     >
       <Modal.Section>
-        {/* { JSON.stringify(items) } */}
         <LegacyCard>
+          <Filters
+            queryValue={ searchText }
+            queryPlaceholder="Search image"
+            filters={ [] }
+            appliedFilters={ [] }
+            onQueryChange={ onUpdateSearchText_fn }
+            // onQueryClear={ _fn }
+            // onClearAll={ _fn }
+          />
           <ResourceList 
+            resourceName={ resourceName }
             items={ items }
+            selectable={ true }
+            selectedItems={ mediaSelected }
+            onSelectionChange={ onSelectMedia }
+            showHeader={ false }
             renderItem={ (_item, _i_index) => {
               const { createdAt, id, image, mimeType, originalSource } = _item.node;
               const thumb = (<Thumbnail
                 source={ image?.originalSrc }
                 alt={ '' }
               />)
-              const fileName = image?.originalSrc.split('/').pop();
+              const fileName = image?.originalSrc.split('/').pop().split('.').shift();
               const fileSize = parseFloat(parseInt(originalSource?.fileSize) / 1024 / 1024).toFixed(2);
 
               return <ResourceItem
-                id={ id }
+                id={ image?.originalSrc }
                 media={ thumb }
               >
                 <Text variant="bodyMd" fontWeight="bold" as="h3">
                   { fileName }
                 </Text>
-                <div>{ mimeType }, { fileSize } Mb, { createdAt }</div>
+                <div style={{ marginTop: '.3em' }}>
+                  <Badge tone="info">{ fileSize } Mb</Badge> { ' ' }
+                  <Badge>{ mimeType }</Badge> { ' ' }
+                  <Badge>{ createdAt }</Badge>
+                </div>
               </ResourceItem>
             } }
           />

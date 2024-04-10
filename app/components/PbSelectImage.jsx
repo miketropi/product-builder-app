@@ -15,7 +15,7 @@ export default function PbSelectImage({ onSelect }) {
       <Tooltip content={ `Select image` }>
         <Icon
           source={ImageIcon}
-          tone="base"
+          tone="subdued"
         />
       </Tooltip>
     </span>

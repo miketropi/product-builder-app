@@ -3,7 +3,7 @@
 client_id = "b32d95389dff1e07f175147fd41f1b93"
 name = "product-builder-app"
 handle = "product-builder-app-2"
-application_url = "https://6b35-2001-ee0-4b52-af10-d12-26cc-804c-c74a.ngrok-free.app"
+application_url = "https://1171-2001-ee0-4b52-af10-d12-26cc-804c-c74a.ngrok-free.app"
 embedded = true
 
 [build]
@@ -21,9 +21,9 @@ scopes = "read_files,read_metaobjects,read_products,write_files,write_metaobject
 
 [auth]
 redirect_urls = [
-  "https://6b35-2001-ee0-4b52-af10-d12-26cc-804c-c74a.ngrok-free.app/auth/callback",
-  "https://6b35-2001-ee0-4b52-af10-d12-26cc-804c-c74a.ngrok-free.app/auth/shopify/callback",
-  "https://6b35-2001-ee0-4b52-af10-d12-26cc-804c-c74a.ngrok-free.app/api/auth/callback"
+  "https://1171-2001-ee0-4b52-af10-d12-26cc-804c-c74a.ngrok-free.app/auth/callback",
+  "https://1171-2001-ee0-4b52-af10-d12-26cc-804c-c74a.ngrok-free.app/auth/shopify/callback",
+  "https://1171-2001-ee0-4b52-af10-d12-26cc-804c-c74a.ngrok-free.app/api/auth/callback"
 ]
 
 [webhooks]

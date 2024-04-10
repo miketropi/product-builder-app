@@ -76,7 +76,7 @@ export default function BoxConfig({ configData, onChange, onDelete }) {
                       onUpdateField(e.target.value, `options[${ __o_index }].image`)
                     } } />
                     <PbSelectImage onSelect={ (media) => {
-                      onUpdateField(JSON.stringify(media), `options[${ __o_index }].image`);
+                      onUpdateField(media.shift(), `options[${ __o_index }].image`);
                     } } />
                   </label>
                 </div>
