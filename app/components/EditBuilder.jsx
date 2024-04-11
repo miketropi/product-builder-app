@@ -25,12 +25,11 @@ export default function EditBuilder({ productObject, editItem }) {
   }
 
   useEffect(() => {
-    if(!editObject) return; 
-    let __builderData = [...builderData];
-    let __index = __builderData.findIndex(i => { return i.id == editItemID })
-    __builderData[__index] = { ...editObject };
-
-    setBuilderData(__builderData);
+    // if(!editObject) return; 
+    // let __builderData = [...builderData];
+    // let __index = __builderData.findIndex(i => { return i.id == editItemID })
+    // __builderData[__index] = { ...editObject };
+    // setBuilderData(__builderData);
   }, [editObject])
 
   const __getProductBySID = useCallback(async(ID, callback) => {
@@ -56,16 +55,17 @@ export default function EditBuilder({ productObject, editItem }) {
         const { _id, builder_design_data } = res;
         let editBuilderData = [...productObject.variants.edges].map(({ node }) => {
           let found = builder_design_data.find(({ id }) => (id == node.id));
-          return (found ? found : { ...node, 'builderData': builderDataTemp }); 
+          return (found ? found : { ...node, 'builderData': {...builderDataTemp} }); 
         })
         setBuilderData(editBuilderData);
         set_productBuilderEditID(_id);
         // console.log(`1______________ ${ editItem }`)
       } else {
-        setBuilderData([...productObject.variants.edges].map(({ node }) => {
-          node.builderData = builderDataTemp;
+        let newBuilderData = [...productObject.variants.edges].map(({ node }) => {
+          node.builderData = {...builderDataTemp};
           return node;
-        }));
+        })
+        setBuilderData(newBuilderData);
         // console.log(`2______________ ${ editItem }`)
       }
 
@@ -190,7 +190,9 @@ export default function EditBuilder({ productObject, editItem }) {
             </div>
             <div className="config-container">
               {/* { _productBuilderEditID } */}
-              {/* { JSON.stringify(editObject) } */}
+              { editItemID }
+              <br />
+              { JSON.stringify(editObject) }
               {/* { JSON.stringify(builderData) } */}
               {
                 editObject &&

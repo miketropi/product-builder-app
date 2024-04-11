@@ -44,6 +44,11 @@
     }
   }
 
+  .Polaris-Select {
+    margin: 4px 0 1em;
+    outline: none;
+  }
+
   &__repeater {
 
     
@@ -84,7 +89,8 @@
       }
     }
 
-    label {
+    label,
+    .asLabel {
       display: flex;
       align-items: center;
       border-bottom: solid 1px #4a4a4a;

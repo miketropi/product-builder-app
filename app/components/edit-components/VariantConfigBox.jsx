@@ -1,25 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
 import BoxConfig from './BoxConfig';
 import _ from 'lodash';
-const { update } = _;
 
-const OPTION_ITEM_DATA_TEMPLATE = () => {
-  const rand1 = (Math.random() + 1).toString(36).substring(7);
-  const rand2 = (Math.random() + 1).toString(36).substring(7);
-  return {
-    __key: `__${ rand1 }`,
-    name: 'Option name',
-    type: 'options', // options, addon
-    description: '',
-    options: [
-      {
-        __key: `__${ rand2 }`,
-        name: '',
-        image: '',
-      }
-    ]
-  }
-}
+const { update } = _;
 
 export default function VariantConfigBox({ variant, onChange }) {
   const [ builderData, setBuilderData ] = useState({});
@@ -28,16 +11,6 @@ export default function VariantConfigBox({ variant, onChange }) {
     if(!variant.builderData) return;
     setBuilderData(variant.builderData);
   }, [variant])
-
-  const onAddOption = useCallback(() => {
-    let new_builderData = { ...builderData };
-    new_builderData.__options.push(OPTION_ITEM_DATA_TEMPLATE())
-    setBuilderData(new_builderData);
-    
-    if(onChange) {
-      onChange(new_builderData)
-    }
-  }, [builderData])
 
   const onChangeBoxConfig = (value, field, __i_index) => {
     let new_builderData = { ...builderData };
@@ -61,7 +34,7 @@ export default function VariantConfigBox({ variant, onChange }) {
             if(!r) return;
 
             let new_builderData = { ...builderData };
-            let __o = [...new_builderData.__options];
+            let __o = new_builderData.__options;
             __o.splice(__i_index, 1);
             update(new_builderData, `__options`, () => __o);
             setBuilderData(new_builderData);
@@ -69,6 +42,5 @@ export default function VariantConfigBox({ variant, onChange }) {
           } } />)
       })
     }
-    {/* <button type="button" className="pb-add-button" onClick={ onAddOption }>+ Add Option</button> */}
   </div>
 }

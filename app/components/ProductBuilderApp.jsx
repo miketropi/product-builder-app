@@ -2,6 +2,7 @@ import { useState, useEffect, Fragment } from 'react';
 import { useProductBuilderContext } from '../context/ProductBuilderContext';
 import { useSubmit, useNavigate } from "@remix-run/react";
 import EditBuilder from './EditBuilder';
+import EditBuilderV2 from './EditBuilderV2';
 import PbTable from './PbTable';
 import { useAppBridge, } from '@shopify/app-bridge-react';
 import { DeleteIcon } from '@shopify/polaris-icons';
@@ -32,10 +33,7 @@ export default function ProductBuilderApp() {
 
   const switchViews = {
     'product-builder': () => {
-      let firstVariantID = loadData?.productObject?.variants.edges[0].node.id
-      return <EditBuilder 
-        productObject={ loadData.productObject } 
-        editItem={ firstVariantID } />
+      return <EditBuilderV2 ShopifyProductObject={ loadData.productObject } />
     },
     '': () => {
       const fullscreenBarMarkup = (
@@ -92,7 +90,7 @@ export default function ProductBuilderApp() {
                     <PbTable 
                       headings={[
                         '',
-                        'Product',
+                        'Product Name',
                         'Status',
                         ''
                       ]}

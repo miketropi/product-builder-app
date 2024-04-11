@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, useRef } from "react"; 
+import { createContext, useContext, useState, useEffect, useRef, useCallback } from "react"; 
 import { useOutletContext } from "@remix-run/react";
 import ApiForApp from "../libs/api";
 
@@ -79,6 +79,99 @@ const ProductBuilderContext_Provider = ({ children, loadData, actionData }) => {
     return await res.json();
   }
 
+  const [ editProduct_data, setEditProduct_data ] = useState([]);
+  const [ editProduct_ID_Update, setEditProduct_ID_Update ] = useState();
+  const [ editProduct__editObject, setEditProduct__editObject ] = useState({});
+
+  const optTemp_Fn = () => {
+    return {
+      __key: `__` + (Math.random() + 1).toString(36).substring(7),
+      name: 'Option name',
+      type: 'options', // options, addon
+      description: '',
+      addons: [
+        {
+          __key: `__` + (Math.random() + 1).toString(36).substring(7),
+          name: '',
+          products: [],
+        }
+      ],
+      options: [
+        {
+          __key: `__` + (Math.random() + 1).toString(36).substring(7),
+          name: '',
+          image: '',
+        }
+      ]
+    }
+  }
+
+  const editProduct__editDataReset_Fn = () => {
+    setEditProduct_data([]);
+    setEditProduct_ID_Update('');
+    setEditProduct__editObject({})
+  }
+
+  const editProduct__editDataSetup_Fn = async (shopifyProductObject) => {
+    const res = await API_FA.current.getProductBuilderBySID(shopifyProductObject?.id);
+    let editData = [];
+    // console.log(res);
+    // console.log(shopifyProductObject.variants.edges);
+    if(res) {
+      setEditProduct_ID_Update(res?._id);
+      editData = [...shopifyProductObject.variants.edges].map(({ node }) => {
+        let builderData = { __config: { enable: true, }, __options: [] };
+        const foundIndex = res.builder_design_data.findIndex(rItem => rItem.id == node.id);
+        
+        // not found
+        if(foundIndex !== -1) { 
+          builderData = res.builder_design_data[foundIndex]?.builderData
+        }
+
+        return { ...node, builderData };
+      })
+    } else {
+      editData = [...shopifyProductObject.variants.edges].map(({ node }) => {
+        const builderData = { __config: { enable: true, }, __options: [] };
+        return { ...node, builderData };
+      })
+    }
+    
+    setEditProduct_data([...editData]);
+    setEditProduct__editObject(editData[0]);
+  }
+
+  const editProduct__onUpdateCurrentObject_Fn = useCallback((obj) => {
+    setEditProduct__editObject(obj)
+  })
+
+  const editProduct__onAddConfigBox_Fn = useCallback(() => {
+    let __editProduct__editObject = { ...editProduct__editObject };
+    __editProduct__editObject.builderData.__options.push(optTemp_Fn());
+    setEditProduct__editObject(__editProduct__editObject);
+  })
+
+  const editProduct__onSave_Fn = useCallback(async ({ id, title }) => {
+    // const { id, title } = editProduct_data;
+    const pushData = {
+      "status": true,
+      // "store_id": "", auto push on API
+      "product_name": title,
+      "product_id": id,
+      "builder_design_data": editProduct_data,
+    }
+
+    if(editProduct_ID_Update) {
+      pushData._id = editProduct_ID_Update;
+    }
+
+    const res = await API_FA.current.saveProducrBuilderData(pushData);
+    if(res?._id) {
+      setEditProduct_ID_Update(res._id);  
+    }
+    return res;
+  })
+
   const value = {
     version: '1.0.0',
     API_FA,
@@ -88,6 +181,16 @@ const ProductBuilderContext_Provider = ({ children, loadData, actionData }) => {
     total,
     productCurrentID, setProductCurrentID,
     productCurrentObject, setProductCurrentObject,
+    editProduct: {
+      editProduct__editDataReset_Fn,
+      onSave: editProduct__onSave_Fn,
+      initSetup: editProduct__editDataSetup_Fn,
+      editProduct_data, setEditProduct_data,
+      editProduct_ID_Update, setEditProduct_ID_Update,
+      editProduct__onUpdateCurrentObject_Fn,
+      editProduct__onAddConfigBox_Fn,
+      editProduct__editObject, setEditProduct__editObject
+    },
     mediaModal: {
       mediaActive, setMediaActive,
       mediaSelected, setMediaSelected,

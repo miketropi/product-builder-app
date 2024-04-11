@@ -31,6 +31,11 @@
   display: none;
 }
 
+.__sticky {
+  position: sticky;
+  top: 50px;
+}
+
 .list-products {
   margin: 2em 0;
 }
@@ -190,6 +195,10 @@
   border-color: black;
   outline: none !important;
 }
+.box-config .Polaris-Select {
+  margin: 4px 0 1em;
+  outline: none;
+}
 .group-option__item {
   background: black;
   border-radius: 8px;
@@ -217,14 +226,16 @@
 .group-option__item:hover .__close {
   opacity: 1;
 }
-.group-option__item label {
+.group-option__item label,
+.group-option__item .asLabel {
   display: flex;
   align-items: center;
   border-bottom: solid 1px #4a4a4a;
   padding: 0.5em;
   position: relative;
 }
-.group-option__item label .pb-select-image-container {
+.group-option__item label .pb-select-image-container,
+.group-option__item .asLabel .pb-select-image-container {
   opacity: 0;
   position: absolute;
   right: 1em;
@@ -238,20 +249,24 @@
   transition: 0.3s ease;
   -webkit-transition: 0.3s ease;
 }
-.group-option__item label:hover .pb-select-image-container {
+.group-option__item label:hover .pb-select-image-container,
+.group-option__item .asLabel:hover .pb-select-image-container {
   opacity: 1;
 }
-.group-option__item label > span {
+.group-option__item label > span,
+.group-option__item .asLabel > span {
   width: 120px;
   min-width: 120px;
   color: white;
   padding: 0 10px;
 }
-.group-option__item label input {
+.group-option__item label input,
+.group-option__item .asLabel input {
   margin: 0 !important;
   border: none !important;
 }
-.group-option__item label:last-child {
+.group-option__item label:last-child,
+.group-option__item .asLabel:last-child {
   border-bottom: none;
 }
 

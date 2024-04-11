@@ -34,9 +34,12 @@ export default class ApiForApp {
 
   async getProductBuilderBySID(ShopifyProductID) {
     if(!ShopifyProductID) return '';
-
-    const res = await this.__request(`/content/item/product?filter={"product_id": "${ ShopifyProductID }","store_id": "${ this.__STORE_ID }"}`);
-    return res;
+    try {
+      const res = await this.__request(`/content/item/product?filter={"product_id": "${ ShopifyProductID }","store_id": "${ this.__STORE_ID }"}`);
+      return res;
+    } catch(err) {
+      return false
+    }
   }
 
   async saveProducrBuilderData(data) {
