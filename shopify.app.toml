@@ -3,7 +3,7 @@
 client_id = "b32d95389dff1e07f175147fd41f1b93"
 name = "product-builder-app"
 handle = "product-builder-app-2"
-application_url = "https://arguments-woman-developed-contrast.trycloudflare.com"
+application_url = "https://d96f-2001-ee0-4b52-af10-85af-98cd-86e9-ca88.ngrok-free.app"
 embedded = true
 
 [build]
@@ -21,9 +21,9 @@ scopes = "read_files,read_metaobjects,read_products,write_files,write_metaobject
 
 [auth]
 redirect_urls = [
-  "https://arguments-woman-developed-contrast.trycloudflare.com/auth/callback",
-  "https://arguments-woman-developed-contrast.trycloudflare.com/auth/shopify/callback",
-  "https://arguments-woman-developed-contrast.trycloudflare.com/api/auth/callback"
+  "https://d96f-2001-ee0-4b52-af10-85af-98cd-86e9-ca88.ngrok-free.app/auth/callback",
+  "https://d96f-2001-ee0-4b52-af10-85af-98cd-86e9-ca88.ngrok-free.app/auth/shopify/callback",
+  "https://d96f-2001-ee0-4b52-af10-85af-98cd-86e9-ca88.ngrok-free.app/api/auth/callback"
 ]
 
 [webhooks]

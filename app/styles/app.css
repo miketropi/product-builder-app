@@ -123,6 +123,17 @@
 .edit-container .variants-list .variant-item h4 {
   font-weight: bold;
 }
+.edit-container .variants-list .variant-item h4 sup {
+  font-weight: normal;
+  line-height: normal;
+  font-size: 10px;
+  margin-left: 3px;
+  transform: translateY(-7px);
+  padding: 1px 4px;
+  display: inline-block;
+  background: #cae8ff;
+  border-radius: 8px;
+}
 .edit-container .variants-list .variant-item.__selected {
   opacity: 1;
   background: white;

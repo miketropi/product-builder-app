@@ -164,7 +164,7 @@ export default function EditBuilder({ productObject, editItem }) {
             { _productBuilderEditID ? 'Update Product' : 'Create Product' }
           </Button>
         </ButtonGroup>
-      </div>
+      </div> 
     </FullscreenBar>
   )
 

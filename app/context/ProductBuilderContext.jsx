@@ -123,7 +123,7 @@ const ProductBuilderContext_Provider = ({ children, loadData, actionData }) => {
         let builderData = { __config: { enable: true, }, __options: [] };
         const foundIndex = res.builder_design_data.findIndex(rItem => rItem.id == node.id);
         
-        // not found
+        // found
         if(foundIndex !== -1) { 
           builderData = res.builder_design_data[foundIndex]?.builderData
         }

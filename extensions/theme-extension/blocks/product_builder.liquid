@@ -1,10 +1,11 @@
-<div id="__PRODUCT_BUILDER_APP__" data-product-id="{{ product.id }}"></div>
-
+<div id="__PRODUCT_BUILDER_APP__" data-store-id="{{ shop.id }}" data-product-id="{{ product.id }}" data-product-url="{{ product.url }}">
+</div>
 {% schema %}
 {
   "name": "Product Builder",
   "target": "section",
-  "javascript": "product-builder.frontend.js",
+  "javascript": "product-builder.bundle.js",
+  "stylesheet": "product-builder.bundle.css",
   "settings": []
 }
-{% endschema %} 
+{% endschema %}
