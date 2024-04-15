@@ -6,9 +6,91 @@
 .product-builder__product-image {
   width: 48%;
 }
+.product-builder__product-image .__product-images {
+  position: sticky;
+  top: 30px;
+}
 .product-builder__product-image .__product-images img {
   max-width: 100%;
 }
 .product-builder__product-meta {
   width: 48%;
+}
+.product-builder__product-heading {
+  border-bottom: solid 1px #DDDEDE;
+}
+
+.__box-option .__box-option__heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.__box-option .__box-option__heading h4 {
+  font-weight: bold;
+  padding: 2em 0;
+  margin: 0;
+  color: #006875;
+}
+.__box-option .__box-option__heading .__value {
+  margin-left: auto;
+}
+.__box-option .__box-option__options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1em;
+  padding-bottom: 2em;
+}
+.__box-option .__box-option__options .variant-option-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 0.5em;
+  border: solid 1px #DDDEDE;
+  border-radius: 3px;
+  cursor: pointer;
+  min-height: 130px;
+}
+.__box-option .__box-option__options .variant-option-item img, .__box-option .__box-option__options .variant-option-item svg {
+  max-width: 100%;
+  border-radius: 3px;
+  margin-bottom: 1em;
+}
+.__box-option .__box-option__options .variant-option-item h4 {
+  margin: 0;
+  padding: 0;
+  font-size: 13px;
+  text-align: center;
+  width: 100%;
+}
+.__box-option .__box-option__options .variant-option-item.__selected {
+  background: black;
+  color: white;
+  border-color: black;
+}
+.__box-option .__box-option__options .variant-option-item.__selected h4 {
+  color: white;
+}
+
+.__variant-options {
+  border-bottom: solid 1px #DDDEDE;
+}
+
+.__product-option-meta .__box-option {
+  border-bottom: solid 1px #DDDEDE;
+}
+
+.__box-number {
+  display: flex;
+  width: 32px;
+  height: 32px;
+  border-radius: 32px;
+  align-items: center;
+  justify-content: center;
+  background-color: #E3F3F6;
+  color: #006875;
+  font-weight: bold;
+}
+.__box-number svg {
+  width: 40%;
 }
