@@ -4,22 +4,97 @@
 }
 
 .product-builder__product-image {
-  width: 48%;
+  width: 47%;
 }
 .product-builder__product-image .__product-images {
   position: sticky;
   top: 30px;
+  margin-top: 10px;
 }
 .product-builder__product-image .__product-images img {
   max-width: 100%;
 }
 .product-builder__product-meta {
-  width: 48%;
+  width: 47%;
 }
 .product-builder__product-heading {
   border-bottom: solid 1px #DDDEDE;
 }
+.product-builder__product-heading .__product-title {
+  margin-top: 0;
+}
+.product-builder__product-footer {
+  margin-top: 2em;
+}
+.product-builder__product-price {
+  font-size: 24px;
+  font-weight: bold;
+  color: black;
+  margin-bottom: 0.5em;
+}
+.product-builder__button-add-to-cart {
+  width: 100%;
+  border-radius: 6px;
+  background: #006875;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 13px;
+  display: flex;
+  gap: 10px;
+  transition: 0.3s ease;
+  -webkit-transition: 0.3s ease;
+}
+.product-builder__button-add-to-cart.__disable {
+  pointer-events: none;
+  opacity: 0.6;
+  background: #B8B8B8;
+}
+.product-builder__button-add-to-cart:after, .product-builder__button-add-to-cart::before {
+  display: none;
+}
+.product-builder__button-add-to-cart:hover {
+  opacity: 0.8;
+}
+.product-builder__product-card-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1em;
+  margin-bottom: 2em;
+}
+.product-builder__product-card {
+  padding: 0.5em;
+  border-radius: 3px;
+  background: #FFF;
+  border: solid 1px #DDDEDE;
+  text-align: center;
+  font-size: 13px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.product-builder__product-card .__product-image {
+  margin-bottom: 1em;
+}
+.product-builder__product-card .__product-image img {
+  max-width: 100%;
+  border-radius: 3px;
+}
+.product-builder__product-card .__product-title {
+  margin: 0;
+}
+.product-builder__product-card .__product-price {
+  color: black;
+  font-weight: bold;
+}
 
+.__box-option__addon-item .__addon-heading-tag {
+  background: #EEEFF0;
+  border-radius: 30px;
+  display: inline-block;
+  padding: 0.6em 1em;
+  color: black;
+  margin-top: 0;
+}
 .__box-option .__box-option__heading {
   display: flex;
   align-items: center;
@@ -30,6 +105,7 @@
   padding: 2em 0;
   margin: 0;
   color: #006875;
+  cursor: pointer;
 }
 .__box-option .__box-option__heading .__value {
   margin-left: auto;
@@ -90,6 +166,7 @@
   background-color: #E3F3F6;
   color: #006875;
   font-weight: bold;
+  line-height: 0;
 }
 .__box-number svg {
   width: 40%;

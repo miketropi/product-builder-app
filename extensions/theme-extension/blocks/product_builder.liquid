@@ -1,5 +1,19 @@
 <div id="__PRODUCT_BUILDER_APP__" data-store-id="{{ shop.id }}" data-product-id="{{ product.id }}" data-product-url="{{ product.url }}">
 </div>
+
+{%- capture PRODUCT_BUILDER_APP__JS_META_DATA -%}
+{
+  {% for variant in product.variants %}
+  "gid://shopify/ProductVariant/{{ variant.id }}": "{{ variant.price | money }}",
+  {% endfor %}
+}
+{%- endcapture %}
+
+<script>
+  window.__P_{{ product.id }} = {{ PRODUCT_BUILDER_APP__JS_META_DATA }};
+  window.__MONEY_FORMAT = "{{ shop.money_format }}"; 
+</script>
+
 {% schema %}
 {
   "name": "Product Builder",

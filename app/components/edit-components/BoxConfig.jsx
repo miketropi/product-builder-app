@@ -45,9 +45,10 @@ export default function BoxConfig({ configData, onChange, onDelete }) {
   const onAddProduct = async (__a_index) => {
     const selected = await shopify.resourcePicker({type: 'product', multiple: true, showVariants: false });
     if(!selected) return;
-    const items =  selected.map(({ id, title, images, variants }) => {
-      return {
-        id, title, images, 
+    const items =  selected.map((__product) => {
+      const { id, title, images, variants, handle } = __product;
+      return { 
+        id, title, images, handle, 
         variants: variants.map(({ id, title, displayName, price, image }) => {
           return { id, title, displayName, price, image }
         })
@@ -177,7 +178,8 @@ export default function BoxConfig({ configData, onChange, onDelete }) {
                           return (<ResourceItem
                             id={ id }
                             verticalAlignment="center"
-                            shortcutActions={ shortcutActions }
+                            // shortcutActions={ shortcutActions }
+                            onClick={ e => { onRemoveProduct(__a_index, __p_index); } }
                             media={ thumb }
                           >
                             <Text variant="bodyMd" fontWeight="bold" as="h4">{ title }</Text>
