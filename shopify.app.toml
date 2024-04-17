@@ -3,7 +3,7 @@
 client_id = "b32d95389dff1e07f175147fd41f1b93"
 name = "product-builder-app"
 handle = "product-builder-app-2"
-application_url = "https://202f-2001-ee0-4b52-af10-7915-2ce6-e733-6efe.ngrok-free.app"
+application_url = "https://colony-celtic-annie-production.trycloudflare.com"
 embedded = true
 
 [build]
@@ -21,9 +21,9 @@ scopes = "read_files,read_metaobjects,read_products,write_files,write_metaobject
 
 [auth]
 redirect_urls = [
-  "https://202f-2001-ee0-4b52-af10-7915-2ce6-e733-6efe.ngrok-free.app/auth/callback",
-  "https://202f-2001-ee0-4b52-af10-7915-2ce6-e733-6efe.ngrok-free.app/auth/shopify/callback",
-  "https://202f-2001-ee0-4b52-af10-7915-2ce6-e733-6efe.ngrok-free.app/api/auth/callback"
+  "https://colony-celtic-annie-production.trycloudflare.com/auth/callback",
+  "https://colony-celtic-annie-production.trycloudflare.com/auth/shopify/callback",
+  "https://colony-celtic-annie-production.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
