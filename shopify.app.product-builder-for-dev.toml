@@ -1,0 +1,33 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "92c567249760ebdd465718fd71b4fe55"
+name = "Product Builder For Dev"
+handle = "product-builder-for-dev"
+application_url = "https://basketball-refers-floppy-solving.trycloudflare.com"
+embedded = true
+
+[build]
+automatically_update_urls_on_dev = true
+dev_store_url = "devmegamenu.myshopify.com"
+include_config_on_deploy = true
+
+[access.admin]
+direct_api_mode = "online"
+embedded_app_direct_api_access = true
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "read_files,read_metaobjects,read_products,write_files,write_metaobjects,write_products"
+
+[auth]
+redirect_urls = [
+  "https://basketball-refers-floppy-solving.trycloudflare.com/auth/callback",
+  "https://basketball-refers-floppy-solving.trycloudflare.com/auth/shopify/callback",
+  "https://basketball-refers-floppy-solving.trycloudflare.com/api/auth/callback"
+]
+
+[webhooks]
+api_version = "2024-04"
+
+[pos]
+embedded = false

@@ -4,6 +4,8 @@ import VariantItem from './edit-components/VariantItem';
 import VariantConfigBox from './edit-components/VariantConfigBox';
 import { useNavigate } from "@remix-run/react";
 import { useAppBridge } from '@shopify/app-bridge-react';
+import ActionsTool from './edit-components/ActionsTool';
+
 import {
   Page, 
   BlockStack, 
@@ -78,6 +80,7 @@ export default function EditBuilderV2({ ShopifyProductObject }) {
           </Text>
         </div>
         <ButtonGroup>
+          <ActionsTool />
           <Button variant="primary" onClick={ e => __onSave() }>
             { editProduct_ID_Update ? 'Update Product' : 'Create Product' }
           </Button>
