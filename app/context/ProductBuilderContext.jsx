@@ -172,6 +172,22 @@ const ProductBuilderContext_Provider = ({ children, loadData, actionData }) => {
     return res;
   })
 
+  const editProduct__onImport_Fn = (importData) => {
+    // editProduct_data, setEditProduct_data
+
+    // const {__config, __options} = importData;
+    
+    // console.log(importData);
+    let __editObject = { ...editProduct__editObject, builderData: importData }
+    // editProduct__editObject.builderData.__config = __config
+    // editProduct__editObject.builderData.__options = __options
+    let __editProduct_data = [...editProduct_data];
+    let __index = [...editProduct_data].findIndex(i => i.id == editProduct__editObject.id);
+    __editProduct_data[__index] = __editObject;
+    setEditProduct_data(__editProduct_data)
+    setEditProduct__editObject(__editProduct_data[__index]);
+  }
+
   const value = {
     version: '1.0.0',
     API_FA,
@@ -189,7 +205,8 @@ const ProductBuilderContext_Provider = ({ children, loadData, actionData }) => {
       editProduct_ID_Update, setEditProduct_ID_Update,
       editProduct__onUpdateCurrentObject_Fn,
       editProduct__onAddConfigBox_Fn,
-      editProduct__editObject, setEditProduct__editObject
+      editProduct__editObject, setEditProduct__editObject,
+      editProduct__onImport_Fn
     },
     mediaModal: {
       mediaActive, setMediaActive,
