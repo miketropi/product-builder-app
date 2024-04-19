@@ -45,26 +45,51 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ ButtonAddToCart)
 /* harmony export */ });
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _context_ProductBuilderContext__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../context/ProductBuilderContext */ "./src/context/ProductBuilderContext.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
 
 function ButtonAddToCart(_ref) {
   var onClick = _ref.onClick,
     disable = _ref.disable;
-  var __iconATC = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", {
+  var _useProductBuilderCon = (0,_context_ProductBuilderContext__WEBPACK_IMPORTED_MODULE_0__.useProductBuilderContext)(),
+    addToCartLoading = _useProductBuilderCon.addToCartLoading;
+  var __iconATC = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("svg", {
     width: "16",
     height: "17",
     viewBox: "0 0 16 17",
     fill: "none",
     xmlns: "http://www.w3.org/2000/svg",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("path", {
       d: "M6 14C6 14.1978 5.94135 14.3911 5.83147 14.5556C5.72159 14.72 5.56541 14.8482 5.38268 14.9239C5.19996 14.9996 4.99889 15.0194 4.80491 14.9808C4.61093 14.9422 4.43275 14.847 4.29289 14.7071C4.15304 14.5673 4.0578 14.3891 4.01921 14.1951C3.98063 14.0011 4.00043 13.8 4.07612 13.6173C4.15181 13.4346 4.27998 13.2784 4.44443 13.1685C4.60888 13.0587 4.80222 13 5 13C5.26522 13 5.51957 13.1054 5.70711 13.2929C5.89464 13.4804 6 13.7348 6 14ZM11.5 13C11.3022 13 11.1089 13.0587 10.9444 13.1685C10.78 13.2784 10.6518 13.4346 10.5761 13.6173C10.5004 13.8 10.4806 14.0011 10.5192 14.1951C10.5578 14.3891 10.653 14.5673 10.7929 14.7071C10.9327 14.847 11.1109 14.9422 11.3049 14.9808C11.4989 15.0194 11.7 14.9996 11.8827 14.9239C12.0654 14.8482 12.2216 14.72 12.3315 14.5556C12.4414 14.3911 12.5 14.1978 12.5 14C12.5 13.7348 12.3946 13.4804 12.2071 13.2929C12.0196 13.1054 11.7652 13 11.5 13ZM14.3375 5.1375L12.6875 10.9125C12.5969 11.2256 12.4072 11.5008 12.1469 11.6969C11.8866 11.893 11.5697 11.9993 11.2437 12H5.25625C4.93034 11.9993 4.61345 11.893 4.35312 11.6969C4.0928 11.5008 3.9031 11.2256 3.8125 10.9125L2.1625 5.14375V5.13125L1.55 3H0.5C0.367392 3 0.240215 2.94732 0.146447 2.85355C0.0526784 2.75979 0 2.63261 0 2.5C0 2.36739 0.0526784 2.24021 0.146447 2.14645C0.240215 2.05268 0.367392 2 0.5 2H1.55C1.76719 2.00079 1.97829 2.07182 2.15177 2.2025C2.32525 2.33317 2.4518 2.51647 2.5125 2.725L3.01875 4.5H13.8562C13.9337 4.49992 14.0101 4.51783 14.0794 4.55232C14.1488 4.58681 14.2092 4.63694 14.2558 4.69875C14.3025 4.76056 14.3342 4.83237 14.3483 4.90851C14.3625 4.98465 14.3588 5.06304 14.3375 5.1375ZM13.1938 5.5H3.30625L4.775 10.6375C4.8049 10.742 4.86805 10.834 4.95489 10.8994C5.04173 10.9648 5.14753 11.0001 5.25625 11H11.2437C11.3525 11.0001 11.4583 10.9648 11.5451 10.8994C11.6319 10.834 11.6951 10.742 11.725 10.6375L13.1938 5.5Z",
       fill: "white"
     })
   });
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("button", {
-    className: ['button product-builder__button-add-to-cart', disable ? '__disable' : ''].join(' '),
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("button", {
+    className: ['button product-builder__button-add-to-cart', disable ? '__disable' : '', addToCartLoading ? '__loading' : ''].join(' '),
     onClick: onClick,
-    children: ["Add To Cart ", __iconATC]
+    children: ["Add To Cart", function () {
+      return addToCartLoading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+        className: "__loading__spinner",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("svg", {
+          xmlns: "http://www.w3.org/2000/svg",
+          width: "1em",
+          height: "1em",
+          viewBox: "0 0 24 24",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("path", {
+            fill: "currentColor",
+            d: "M12,4a8,8,0,0,1,7.89,6.7A1.53,1.53,0,0,0,21.38,12h0a1.5,1.5,0,0,0,1.48-1.75,11,11,0,0,0-21.72,0A1.5,1.5,0,0,0,2.62,12h0a1.53,1.53,0,0,0,1.49-1.3A8,8,0,0,1,12,4Z",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("animateTransform", {
+              attributeName: "transform",
+              dur: "0.75s",
+              repeatCount: "indefinite",
+              type: "rotate",
+              values: "0 12 12;360 12 12"
+            })
+          })
+        })
+      }) : __iconATC;
+    }()]
   });
 }
 
@@ -477,15 +502,63 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_slick__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-slick */ "./node_modules/react-slick/lib/index.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 
 
 
+var NextArrow = function NextArrow(props) {
+  var className = props.className,
+    style = props.style,
+    onClick = props.onClick;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    className: [className, '__custom-arrow'].join(' '),
+    style: _objectSpread({}, style),
+    onClick: onClick,
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("svg", {
+      width: "25",
+      height: "24",
+      viewBox: "0 0 25 24",
+      fill: "none",
+      xmlns: "http://www.w3.org/2000/svg",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("path", {
+        d: "M17.3322 11.5644C17.3854 11.6215 17.4276 11.6894 17.4564 11.7642C17.4852 11.8389 17.5 11.9191 17.5 12C17.5 12.0809 17.4852 12.1611 17.4564 12.2358C17.4276 12.3106 17.3854 12.3785 17.3322 12.4356L10.4765 19.8195C10.3692 19.9351 10.2237 20 10.072 20C9.92031 20 9.77482 19.9351 9.66754 19.8195C9.56027 19.704 9.5 19.5473 9.5 19.3839C9.5 19.2205 9.56027 19.0638 9.66754 18.9482L16.1199 12L9.66754 5.05175C9.56027 4.93621 9.5 4.7795 9.5 4.6161C9.5 4.4527 9.56027 4.29599 9.66754 4.18045C9.77482 4.06491 9.92031 4 10.072 4C10.2237 4 10.3692 4.06491 10.4765 4.18045L17.3322 11.5644Z",
+        fill: "#222730"
+      })
+    })
+  });
+};
+var PrevArrow = function PrevArrow(props) {
+  var className = props.className,
+    style = props.style,
+    onClick = props.onClick;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    className: [className, '__custom-arrow'].join(' '),
+    style: _objectSpread({}, style),
+    onClick: onClick,
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("svg", {
+      width: "25",
+      height: "24",
+      viewBox: "0 0 25 24",
+      fill: "none",
+      xmlns: "http://www.w3.org/2000/svg",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("path", {
+        d: "M7.66784 12.4356C7.61464 12.3785 7.57243 12.3106 7.54362 12.2358C7.51482 12.1611 7.5 12.0809 7.5 12C7.5 11.9191 7.51482 11.8389 7.54362 11.7642C7.57243 11.6894 7.61464 11.6215 7.66784 11.5644L14.5235 4.18045C14.6308 4.06491 14.7763 4 14.928 4C15.0797 4 15.2252 4.06491 15.3325 4.18045C15.4397 4.29599 15.5 4.4527 15.5 4.6161C15.5 4.7795 15.4397 4.93621 15.3325 5.05175L8.88015 12L15.3325 18.9482C15.4397 19.0638 15.5 19.2205 15.5 19.3839C15.5 19.5473 15.4397 19.704 15.3325 19.8195C15.2252 19.9351 15.0797 20 14.928 20C14.7763 20 14.6308 19.9351 14.5235 19.8195L7.66784 12.4356Z",
+        fill: "#222730"
+      })
+    })
+  });
+};
 function ProductImages(_ref) {
   var images = _ref.images;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
@@ -536,6 +609,8 @@ function ProductImages(_ref) {
         swipeToSlide: true,
         focusOnSelect: true,
         arrows: true,
+        nextArrow: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(NextArrow, {}),
+        prevArrow: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(PrevArrow, {}),
         children: images.map(function (_image, _i_index) {
           var src = _image.src,
             id = _image.id;
@@ -556,6 +631,15 @@ function ProductImages(_ref) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
     className: "product-builder__product-image",
     children: function (_images) {
+      if (_images.length == 1) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          className: "__product-images",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+            src: _images[0].src,
+            alt: "#"
+          })
+        });
+      }
       return _images.length > 0 ? HAS_IMAGE : NO_IMAGE;
     }(images)
   });
@@ -751,6 +835,10 @@ var ProductBuilderProvider = function ProductBuilderProvider(_ref) {
     _useState18 = _slicedToArray(_useState17, 2),
     addOnCaching = _useState18[0],
     setAddOncaching = _useState18[1];
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState20 = _slicedToArray(_useState19, 2),
+    addToCartLoading = _useState20[0],
+    setAddToCartLoading = _useState20[1];
   var __getProduct_Fn = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
       var shopifyProductData, productBuilderData, productVariantsPrice, productBuilderData__FilterAvailable;
@@ -843,9 +931,50 @@ var ProductBuilderProvider = function ProductBuilderProvider(_ref) {
     setVariantObjectCurrent(vObj);
     setCurrentStepNumber(1);
   };
-  var onAddToCart_Fn = function onAddToCart_Fn() {
-    console.log(optionsSelected);
-  };
+  var onAddToCart_Fn = /*#__PURE__*/function () {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+      var id, formData, res, event;
+      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+        while (1) switch (_context2.prev = _context2.next) {
+          case 0:
+            id = variantObjectCurrent.id; // 'cart-notification-product,cart-notification-button,cart-icon-bubble'
+            setAddToCartLoading(true);
+            formData = {
+              id: id.replace('gid://shopify/ProductVariant/', ''),
+              quantity: 1,
+              properties: function () {
+                var obj = {};
+                optionsSelected.forEach(function (o) {
+                  obj[o.name] = o.value;
+                });
+                return obj;
+              }(),
+              sections: function (_window$__PBA_ADD_TO_) {
+                return (_window$__PBA_ADD_TO_ = window.__PBA_ADD_TO_CART_SECTIONS) !== null && _window$__PBA_ADD_TO_ !== void 0 ? _window$__PBA_ADD_TO_ : '';
+              }()
+            };
+            _context2.next = 5;
+            return (0,_libs_helpers__WEBPACK_IMPORTED_MODULE_2__.addToCart)(formData);
+          case 5:
+            res = _context2.sent;
+            setAddToCartLoading(false);
+            // renderContents(res.sections)
+            // document.querySelector('#cart-notification').classList.add('active');
+            // Create the event
+            event = new CustomEvent("PBA::AFTER_AJAX_ADD_TO_CART", {
+              detail: res
+            });
+            document.dispatchEvent(event);
+          case 9:
+          case "end":
+            return _context2.stop();
+        }
+      }, _callee2);
+    }));
+    return function onAddToCart_Fn() {
+      return _ref4.apply(this, arguments);
+    };
+  }();
   var onPushAddonToCache_Fn = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(function (item) {
     // addOnCaching.push(item);
     setAddOncaching(function (prevState) {
@@ -865,6 +994,7 @@ var ProductBuilderProvider = function ProductBuilderProvider(_ref) {
     setCurrentStepNumber: setCurrentStepNumber,
     addToCartEnable: addToCartEnable,
     addOnCaching: addOnCaching,
+    addToCartLoading: addToCartLoading,
     onUpadteVariantObjectCurrent_Fn: onUpadteVariantObjectCurrent_Fn,
     onUpdateOptions_Fn: onUpdateOptions_Fn,
     onAddToCart_Fn: onAddToCart_Fn,
@@ -992,7 +1122,9 @@ var ProductBuilderApi = /*#__PURE__*/function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   addToCart: () => (/* binding */ addToCart),
 /* harmony export */   getShopifyProductJson: () => (/* binding */ getShopifyProductJson),
+/* harmony export */   renderContents: () => (/* binding */ renderContents),
 /* harmony export */   toPrice: () => (/* binding */ toPrice)
 /* harmony export */ });
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
@@ -1024,6 +1156,40 @@ var toPrice = function toPrice(price) {
   var money_format = window.__MONEY_FORMAT;
   var __price = new Intl.NumberFormat('en-DE').format(price);
   return money_format.replace('{{amount_no_decimals_with_comma_separator}}', __price);
+};
+var addToCart = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(data) {
+    var res;
+    return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+      while (1) switch (_context2.prev = _context2.next) {
+        case 0:
+          _context2.next = 2;
+          return fetch("/cart/add.js", {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          }).then(function (res) {
+            return res.json();
+          });
+        case 2:
+          res = _context2.sent;
+          return _context2.abrupt("return", res);
+        case 4:
+        case "end":
+          return _context2.stop();
+      }
+    }, _callee2);
+  }));
+  return function addToCart(_x2) {
+    return _ref2.apply(this, arguments);
+  };
+}();
+var renderContents = function renderContents(contentObj) {
+  Object.keys(contentObj).forEach(function (selector) {
+    document.querySelector("#".concat(selector)).innerHTML = contentObj[selector];
+  });
 };
 
 /***/ }),
