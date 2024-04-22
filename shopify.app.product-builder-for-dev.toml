@@ -3,13 +3,12 @@
 client_id = "92c567249760ebdd465718fd71b4fe55"
 name = "Product Builder For Dev"
 handle = "product-builder-for-dev"
-application_url = "https://decreased-roommates-heater-mentioned.trycloudflare.com"
+application_url = "https://51cb-2001-ee0-4b52-af10-8d0f-a926-f9d6-bb28.ngrok-free.app"
 embedded = true
 
 [build]
 automatically_update_urls_on_dev = true
 dev_store_url = "devmegamenu.myshopify.com"
-include_config_on_deploy = true
 
 [access.admin]
 direct_api_mode = "online"
@@ -21,9 +20,9 @@ scopes = "read_files,read_metaobjects,read_products,write_files,write_metaobject
 
 [auth]
 redirect_urls = [
-  "https://decreased-roommates-heater-mentioned.trycloudflare.com/auth/callback",
-  "https://decreased-roommates-heater-mentioned.trycloudflare.com/auth/shopify/callback",
-  "https://decreased-roommates-heater-mentioned.trycloudflare.com/api/auth/callback"
+  "https://51cb-2001-ee0-4b52-af10-8d0f-a926-f9d6-bb28.ngrok-free.app/auth/callback",
+  "https://51cb-2001-ee0-4b52-af10-8d0f-a926-f9d6-bb28.ngrok-free.app/auth/shopify/callback",
+  "https://51cb-2001-ee0-4b52-af10-8d0f-a926-f9d6-bb28.ngrok-free.app/api/auth/callback"
 ]
 
 [webhooks]

@@ -6,6 +6,7 @@ import EditBuilderV2 from './EditBuilderV2';
 import PbTable from './PbTable';
 import { useAppBridge, } from '@shopify/app-bridge-react';
 import { DeleteIcon } from '@shopify/polaris-icons';
+import Paginate from './Paginate';
 
 import {
   Page, 
@@ -29,6 +30,9 @@ export default function ProductBuilderApp() {
     actionData, 
     productsBuilderList, 
     API_FA, 
+    total,
+    currentPage,
+    onUpdateCurrentPage_Fn,
     __getProductsBuilderData } = useProductBuilderContext();
 
   const switchViews = {
@@ -63,7 +67,7 @@ export default function ProductBuilderApp() {
                   let __id = first.id.replace('gid://shopify/Product/', '')
                   navigation(`/app/product-builder?__product=${ __id }&__view=product-builder`);
                 } }>
-                  Select a Product Builder
+                  Select a Product
                 </Button>
               </ButtonGroup>
             </div>
@@ -128,6 +132,15 @@ export default function ProductBuilderApp() {
                         ];
                       }) }
                     />
+                    {
+                      Math.ceil(total / 20) > 1 && 
+                      <Paginate 
+                      currentPage={ currentPage } 
+                      maxPages={ Math.ceil(total / 1) } 
+                      onSelectPage={ num => {
+                        onUpdateCurrentPage_Fn(num)
+                      } } />
+                    }
                   </LegacyCard>
                 }
               </Layout.Section>
