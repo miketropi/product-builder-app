@@ -957,9 +957,6 @@ var ProductBuilderProvider = function ProductBuilderProvider(_ref) {
                   obj[o.name] = o.value;
                 });
                 return obj;
-              }(),
-              sections: function (_window$__PBA_ADD_TO_) {
-                return (_window$__PBA_ADD_TO_ = window.__PBA_ADD_TO_CART_SECTIONS) !== null && _window$__PBA_ADD_TO_ !== void 0 ? _window$__PBA_ADD_TO_ : '';
               }()
             };
             cartDataSend = {
@@ -970,21 +967,28 @@ var ProductBuilderProvider = function ProductBuilderProvider(_ref) {
                   id: __id,
                   quantity: 1
                 };
-              })))
+              }))),
+              sections: function (_window$__PBA_ADD_TO_) {
+                // return 'cart-notification-product,cart-notification-button,cart-icon-bubble';
+                return (_window$__PBA_ADD_TO_ = window.__PBA_ADD_TO_CART_SECTIONS) !== null && _window$__PBA_ADD_TO_ !== void 0 ? _window$__PBA_ADD_TO_ : '';
+              }()
             };
             _context2.next = 6;
             return (0,_libs_helpers__WEBPACK_IMPORTED_MODULE_2__.addToCart)(cartDataSend);
           case 6:
             res = _context2.sent;
             setAddToCartLoading(false);
-            // renderContents(res.sections)
-            // document.querySelector('#cart-notification').classList.add('active');
+            if (res !== null && res !== void 0 && res.sections) {
+              (0,_libs_helpers__WEBPACK_IMPORTED_MODULE_2__.renderContents)(res.sections);
+              // document.querySelector('#cart-notification').classList.add('active');
+            }
+
             // Create the event
             event = new CustomEvent("PBA::AFTER_AJAX_ADD_TO_CART", {
               detail: res
             });
             document.dispatchEvent(event);
-          case 10:
+          case 11:
           case "end":
             return _context2.stop();
         }
