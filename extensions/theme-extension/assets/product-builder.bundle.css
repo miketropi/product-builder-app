@@ -219,6 +219,9 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  cursor: pointer;
+  transition: 0.3s ease;
+  -webkit-transition: 0.3s ease;
 }
 .product-builder__product-card .__product-image {
   margin-bottom: 1em;
@@ -229,10 +232,22 @@
 }
 .product-builder__product-card .__product-title {
   margin: 0;
+  transition: 0.3s ease;
+  -webkit-transition: 0.3s ease;
 }
 .product-builder__product-card .__product-price {
   color: black;
   font-weight: bold;
+  transition: 0.3s ease;
+  -webkit-transition: 0.3s ease;
+}
+.product-builder__product-card.__selected {
+  background: black;
+}
+.product-builder__product-card.__selected .__product-title,
+.product-builder__product-card.__selected .__product-price,
+.product-builder__product-card.__selected .__product-image {
+  color: white;
 }
 
 .__box-option__addon-item .__addon-heading-tag {
