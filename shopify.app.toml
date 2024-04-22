@@ -3,12 +3,12 @@
 client_id = "b32d95389dff1e07f175147fd41f1b93"
 name = "product-builder-app"
 handle = "product-builder-app-2"
-application_url = "https://colony-celtic-annie-production.trycloudflare.com"
+application_url = "https://product-builder-app.fly.dev/"
 embedded = true
 
 [build]
-automatically_update_urls_on_dev = true
-dev_store_url = "devmegamenu.myshopify.com"
+automatically_update_urls_on_dev = false
+dev_store_url = "buildmatstaging.myshopify.com"
 include_config_on_deploy = true
 
 [access.admin]
@@ -21,9 +21,9 @@ scopes = "read_files,read_metaobjects,read_products,write_files,write_metaobject
 
 [auth]
 redirect_urls = [
-  "https://colony-celtic-annie-production.trycloudflare.com/auth/callback",
-  "https://colony-celtic-annie-production.trycloudflare.com/auth/shopify/callback",
-  "https://colony-celtic-annie-production.trycloudflare.com/api/auth/callback"
+  "https://product-builder-app.fly.dev/auth/callback",
+  "https://product-builder-app.fly.dev/auth/shopify/callback",
+  "https://product-builder-app.fly.dev/api/auth/callback"
 ]
 
 [webhooks]
