@@ -8,6 +8,7 @@ const ProductBuilderContext_Provider = ({ children, loadData, actionData }) => {
   const { APP_API_KEY, APP_API_ENDPOINT } = useOutletContext();
   const [ productsBuilderList, setProductsBuilderList ] = useState([]);
   const [ total, setTotal ] = useState(0);
+  const [ currentPage, setCurrentPage ] = useState(1);
   const API_FA = useRef(null);
 
   /**
@@ -18,7 +19,7 @@ const ProductBuilderContext_Provider = ({ children, loadData, actionData }) => {
 
   const __getProductsBuilderData = async () => {
     console.log('___Get Data___')
-    const { data, meta: { total } } = await API_FA.current.getProductsBuilderData();
+    const { data, meta: { total } } = await API_FA.current.getProductsBuilderData(currentPage);
     setProductsBuilderList(data);
     setTotal(total)
   }
@@ -188,6 +189,14 @@ const ProductBuilderContext_Provider = ({ children, loadData, actionData }) => {
     setEditProduct__editObject(__editProduct_data[__index]);
   }
 
+  const onUpdateCurrentPage_Fn = (num) => {
+    setCurrentPage(num);
+  }
+
+  useEffect(() => {
+    __getProductsBuilderData();
+  }, [currentPage])
+
   const value = {
     version: '1.0.0',
     API_FA,
@@ -195,6 +204,7 @@ const ProductBuilderContext_Provider = ({ children, loadData, actionData }) => {
     actionData,
     productsBuilderList, 
     total,
+    currentPage,
     productCurrentID, setProductCurrentID,
     productCurrentObject, setProductCurrentObject,
     editProduct: {
@@ -215,7 +225,8 @@ const ProductBuilderContext_Provider = ({ children, loadData, actionData }) => {
       onSelectMedia_Fn,
       onLoadMedia_Fn
     },
-    __getProductsBuilderData
+    __getProductsBuilderData,
+    onUpdateCurrentPage_Fn
   }
 
   return <ProductBuilderContext.Provider value={ value } >

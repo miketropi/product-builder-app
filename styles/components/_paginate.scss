@@ -1,0 +1,20 @@
+.pb__paginate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px;
+
+  a {
+    cursor: pointer;
+    opacity: .6;
+  }
+
+  .pb__paginate-item {
+    padding: .6em;
+  }
+
+  .__current__ {
+    text-decoration: underline;
+  }
+}

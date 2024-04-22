@@ -27,8 +27,9 @@ export default class ApiForApp {
     return response.json();
   }
 
-  async getProductsBuilderData(limit = 20, paged = 0) {
-    const res = await this.__request(`/content/items/product?limit=${ limit }&skip=0&filter={"store_id": "${ this.__STORE_ID }"}`);
+  async getProductsBuilderData(paged = 1, limit = 20) {
+    let skip = (paged - 1) * limit;
+    const res = await this.__request(`/content/items/product?limit=${ limit }&skip=${ skip }&filter={"store_id": "${ this.__STORE_ID }"}`);
     return res;
   }
 

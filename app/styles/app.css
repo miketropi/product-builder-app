@@ -148,7 +148,6 @@ body p, body h1, body h2, body h3, body h4, body h5, body h6, body input, body t
   line-height: normal;
   font-size: 10px;
   margin-left: 3px;
-  transform: translateY(-7px);
   padding: 1px 4px;
   display: inline-block;
   background: #cae8ff;
@@ -321,6 +320,24 @@ body p, body h1, body h2, body h3, body h4, body h5, body h6, body input, body t
   padding: 1em;
   border: none;
   border-bottom: solid 1px #ddd;
+}
+
+.pb__paginate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.pb__paginate a {
+  cursor: pointer;
+  opacity: 0.6;
+}
+.pb__paginate .pb__paginate-item {
+  padding: 0.6em;
+}
+.pb__paginate .__current__ {
+  text-decoration: underline;
 }
 
 /*# sourceMappingURL=app.css.map */
