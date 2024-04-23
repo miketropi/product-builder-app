@@ -132,7 +132,6 @@ body p, body h1, body h2, body h3, body h4, body h5, body h6, body input, body t
 }
 .edit-container .variants-list .variant-item {
   padding: 1em;
-  cursor: pointer;
   margin-top: 10px;
   opacity: 0.6;
   border: solid 2px transparent;
@@ -142,6 +141,7 @@ body p, body h1, body h2, body h3, body h4, body h5, body h6, body input, body t
 }
 .edit-container .variants-list .variant-item h4 {
   font-weight: bold;
+  cursor: pointer;
 }
 .edit-container .variants-list .variant-item h4 sup {
   font-weight: normal;
@@ -178,6 +178,24 @@ body p, body h1, body h2, body h3, body h4, body h5, body h6, body input, body t
 .pb-add-button:hover {
   background: black;
   color: white;
+}
+
+.__option-box-nav {
+  margin: 0.5em 0 0 0;
+  padding: 1em;
+  background: #e9f5ff;
+  border-radius: 8px;
+}
+.__option-box-nav__item {
+  border-bottom: solid 2px #c6d5e1;
+  padding: 0.5em 0;
+  list-style: none;
+  color: #333;
+  display: flex;
+  align-items: center;
+}
+.__option-box-nav__item > a {
+  cursor: grab;
 }
 
 .box-config {
