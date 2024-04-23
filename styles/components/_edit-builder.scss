@@ -10,7 +10,7 @@
 
     .variant-item {
       padding: 1em;
-      cursor: pointer;
+      
       margin-top: 10px;
       opacity: .6;
       border: solid 2px transparent;
@@ -20,6 +20,7 @@
 
       h4 {
         font-weight: bold;
+        cursor: pointer;
 
         sup {
           font-weight: normal;
@@ -63,5 +64,25 @@
   &:hover { 
     background: black;
     color: white
+  }
+}
+
+.__option-box-nav {
+  margin: .5em 0 0 0;
+  padding: 1em;
+  background: #e9f5ff;
+  border-radius: $border-radius;
+
+  &__item {
+    border-bottom: solid 2px #c6d5e1;
+    padding: .5em 0;
+    list-style: none;
+    color: #333;
+    display: flex;
+    align-items: center;
+
+    > a {
+      cursor: grab;
+    }
   }
 }

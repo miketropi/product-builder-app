@@ -335,7 +335,7 @@ function ProductCard(_ref) {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var __getVariantData = /*#__PURE__*/function () {
       var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-        var cacheFound, product_json_url, res, _yield$res$json, _yield$res$json$produ, variants, images, title, findItem, __productDarta;
+        var cacheFound, product_json_url, res, _yield$res$json, _yield$res$json$produ, variants, images, image, title, findItem, __productDarta;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
@@ -362,6 +362,7 @@ function ProductCard(_ref) {
               _yield$res$json$produ = _yield$res$json.product;
               variants = _yield$res$json$produ.variants;
               images = _yield$res$json$produ.images;
+              image = _yield$res$json$produ.image;
               title = _yield$res$json$produ.title;
               findItem = variants.find(function (__v) {
                 return __v.id == product.id.replace('gid://shopify/ProductVariant/', '');
@@ -371,7 +372,7 @@ function ProductCard(_ref) {
                 title: "".concat(title, " - ").concat(findItem.title),
                 price: findItem.price,
                 thumb: function (_images) {
-                  if (!findItem.image_id) return '';
+                  if (!findItem.image_id) return image === null || image === void 0 ? void 0 : image.src;
                   var found = _images.find(function (i) {
                     return i.id == findItem.image_id;
                   });
@@ -381,7 +382,7 @@ function ProductCard(_ref) {
               setProductData(__productDarta);
               onPushAddonToCache_Fn(__productDarta);
               setLoading(false);
-            case 21:
+            case 22:
             case "end":
               return _context.stop();
           }
@@ -485,7 +486,9 @@ function ProductHeading() {
       className: "__product-title",
       children: shopifyProductObject.product.title
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
-      children: shopifyProductObject.product.body_html
+      dangerouslySetInnerHTML: {
+        __html: shopifyProductObject.product.body_html
+      }
     })]
   });
 }

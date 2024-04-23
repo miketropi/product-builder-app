@@ -197,6 +197,13 @@ const ProductBuilderContext_Provider = ({ children, loadData, actionData }) => {
     __getProductsBuilderData();
   }, [currentPage])
 
+  const onOrderingVariantItem_Fn = (fromIndex, toIndex) => {
+    let __editProduct__editObject = { ...editProduct__editObject };
+    const item = __editProduct__editObject.builderData.__options.splice(fromIndex, 1)[0];
+    __editProduct__editObject.builderData.__options.splice(toIndex, 0, item);
+    setEditProduct__editObject(__editProduct__editObject);
+  }
+
   const value = {
     version: '1.0.0',
     API_FA,
@@ -216,7 +223,8 @@ const ProductBuilderContext_Provider = ({ children, loadData, actionData }) => {
       editProduct__onUpdateCurrentObject_Fn,
       editProduct__onAddConfigBox_Fn,
       editProduct__editObject, setEditProduct__editObject,
-      editProduct__onImport_Fn
+      editProduct__onImport_Fn,
+      onOrderingVariantItem_Fn
     },
     mediaModal: {
       mediaActive, setMediaActive,
