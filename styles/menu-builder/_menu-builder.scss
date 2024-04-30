@@ -1,0 +1,15 @@
+.menu-builder-edit__container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.menu-builder {
+
+  &__toolbar {
+    width: 280px;
+  }
+
+  &__editor {
+    width: calc(100% - (280px + 30px));
+  }
+}

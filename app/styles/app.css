@@ -56,6 +56,10 @@ body p, body h1, body h2, body h3, body h4, body h5, body h6, body input, body t
   border-color: black;
 }
 
+.heading-bar {
+  margin-bottom: 3em;
+}
+
 .list-products {
   margin: 2em 0;
 }
@@ -356,6 +360,18 @@ body p, body h1, body h2, body h3, body h4, body h5, body h6, body input, body t
 }
 .pb__paginate .__current__ {
   text-decoration: underline;
+}
+
+.menu-builder-edit__container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.menu-builder__toolbar {
+  width: 280px;
+}
+.menu-builder__editor {
+  width: calc(100% - 310px);
 }
 
 /*# sourceMappingURL=app.css.map */
