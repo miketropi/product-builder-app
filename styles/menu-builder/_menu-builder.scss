@@ -6,10 +6,27 @@
 .menu-builder {
 
   &__toolbar {
-    width: 280px;
+    width: 360px;
   }
 
   &__editor {
-    width: calc(100% - (280px + 30px));
+    width: calc(100% - (360px + 30px));
+  }
+}
+
+.fieldset-ui {
+  border-radius: $border-radius;
+  border: solid 1px $border-color;
+
+  legend {
+    padding: 0 1em;
+    font-weight: bold;
+  }
+
+  input[type=text] {
+    padding: .5em;
+    border-radius: $border-radius;
+    border: solid 1px $border-color;
+    width: 100%;
   }
 }

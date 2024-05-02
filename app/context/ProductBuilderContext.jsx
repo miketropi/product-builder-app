@@ -243,7 +243,8 @@ const ProductBuilderContext_Provider = ({ children, loadData, actionData }) => {
 }
 
 const useProductBuilderContext = () => {
-  return useContext(ProductBuilderContext)
+  const value = useContext(ProductBuilderContext);
+  return value;
 }
 
 export { ProductBuilderContext_Provider, useProductBuilderContext }

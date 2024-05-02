@@ -1,0 +1,33 @@
+.menu-builder {
+
+  &__visual-editor {
+
+  }
+
+  &__visual-editor-ul {
+    margin: 2em 0 1em;
+    padding: 0;
+  }
+
+  &__visual-editor-li {
+    list-style: none;
+
+    .__heading-item {
+      display: grid;
+      grid-template-columns: 24px 1fr 24px;
+      border: solid $border-color;
+      border-width: 1px;
+      padding: .5em 0;
+      background: #eee; 
+      margin: .3em 0;
+    }
+
+    .__menu-name {
+      font-size: .9em;
+    }
+
+    .__toggle-config {
+      cursor: pointer;
+    }
+  }
+}
