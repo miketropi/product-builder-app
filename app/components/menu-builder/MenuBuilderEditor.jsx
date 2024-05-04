@@ -4,6 +4,6 @@ export default function MenuBuilderEditor() {
   const { menuBuilderData } = useMenuBuilderContext(); 
 
   return <div className="menu-builder__editor">
-    { JSON.stringify(menuBuilderData) }   
+    <textarea value={ JSON.stringify(menuBuilderData, null, 4) }></textarea>   
   </div>
 } 

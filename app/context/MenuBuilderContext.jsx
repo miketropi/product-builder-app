@@ -63,22 +63,22 @@ export default function MenuBuilderContext_Provider ({ children, store }) {
     setMenuBuilderData(newMenuBuilderData);
   }
 
-  const newMenuItem_Fn = (type = 'Custom Link') => {
+  const newMenuItem_Fn = (type = 'Custom Link', parent = null) => {
     let __key = `__key-${ Date.now().toString(36) + Math.random().toString(36).substr(2) }`;
     switch (type) {
       case 'Custom Link':
         return {
           __type: type,
           __key,
-          name: 'Menu Item',
+          name: `Menu Item #${ menuBuilderData.menuData.length + 1 }`,
           url: '',
-          children: [],
+          parent: parent,
         }
         break;
     }
   } 
 
-  const onAddMenuItem_Fn = (value) => {
+  const onAddMenuItem_Fn = (value) => { 
     const newMenuBuilderData = { ...menuBuilderData };
     newMenuBuilderData.menuData.push(value);
     setMenuBuilderData(newMenuBuilderData);
@@ -95,9 +95,9 @@ export default function MenuBuilderContext_Provider ({ children, store }) {
   const value = {
     version: '1.0.0',
     currentTab,
-    menuBuilderData,
+    menuBuilderData, setMenuBuilderData,
     menuToolTabData,
-    currentEditMenuItem,
+    currentEditMenuItem, setCurrentEditMenuItem,
     onChangeCurrentTab_Fn,
     onUpdateBuilderData_Fn,
     onAddMenuItem_Fn,

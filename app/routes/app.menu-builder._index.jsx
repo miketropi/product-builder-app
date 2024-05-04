@@ -1,4 +1,4 @@
-import { MenuBuilderContext_Provider } from "../context/MenuBuilderContext";
+import MenuBuilderContext_Provider from "../context/MenuBuilderContext";
 import { Page, Button } from "@shopify/polaris";
 import Heading from '../components/menu-builder/Heading';
 

@@ -3,7 +3,7 @@ body {
   font-family: "Outfit", sans-serif;
 }
 body p, body h1, body h2, body h3, body h4, body h5, body h6, body input, body textarea, body select, body label, body button, body span {
-  font-family: "Outfit", sans-serif;
+  font-family: "Outfit", sans-serif !important;
 }
 
 #PRODUCT_BUILDER_CONTAINER {
@@ -382,11 +382,22 @@ body p, body h1, body h2, body h3, body h4, body h5, body h6, body input, body t
   padding: 0 1em;
   font-weight: bold;
 }
-.fieldset-ui input[type=text] {
-  padding: 0.5em;
+.fieldset-ui .__field-item {
+  margin-bottom: 0.5em;
+}
+
+.drag__placeholder {
+  position: absolute;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 3px;
+}
+.drag__placeholder .drag__placeholder-level {
+  position: relative;
+  height: 100%;
+  background: rgba(1, 1, 1, 0.1);
   border-radius: 8px;
-  border: solid 1px #ddd;
-  width: 100%;
 }
 
 .menu-builder__tooltab {
@@ -423,8 +434,11 @@ body p, body h1, body h2, body h3, body h4, body h5, body h6, body input, body t
 }
 
 .menu-builder__visual-editor-ul {
-  margin: 2em 0 1em;
+  margin: 1em 0 1em;
   padding: 0;
+}
+.menu-builder__visual-editor-ul-sub {
+  padding-left: 1em;
 }
 .menu-builder__visual-editor-li {
   list-style: none;
@@ -435,14 +449,24 @@ body p, body h1, body h2, body h3, body h4, body h5, body h6, body input, body t
   border: solid #ddd;
   border-width: 1px;
   padding: 0.5em 0;
-  background: #eee;
-  margin: 0.3em 0;
+  background: #f5f5f5;
+  border-radius: 8px;
 }
 .menu-builder__visual-editor-li .__menu-name {
   font-size: 0.9em;
 }
 .menu-builder__visual-editor-li .__toggle-config {
   cursor: pointer;
+}
+.menu-builder__visual-editor-li .__config-item {
+  background: #f5f5f5;
+  padding: 1em;
+  border: solid 1px #ddd;
+  border-radius: 8px;
+  margin-top: 0.3em;
+}
+.menu-builder__visual-editor-li .__config-item .fieldset-ui {
+  background: white;
 }
 
 /*# sourceMappingURL=app.css.map */
