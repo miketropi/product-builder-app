@@ -32,9 +32,12 @@ export default function MenuVisualEditor() {
     menuBuilderData, setMenuBuilderData,
     currentEditMenuItem, 
     setCurrentEditMenuItem, 
+    setCurrentDragItem,
+    groupItemDrag, setGroupItemDrag,
     newMenuItem_Fn, 
     onAddMenuItem_Fn, 
-    onSelectEditMenuItem_Fn } = useMenuBuilderContext(); 
+    onSelectEditMenuItem_Fn,
+    getItemChildren_Fn } = useMenuBuilderContext(); 
   const [popoverActive, setPopoverActive] = useState(false);
   const [placeholderProps, setPlaceholderProps] = useState({});
   const queryAttr = "data-rbd-drag-handle-draggable-id";
@@ -183,7 +186,7 @@ export default function MenuVisualEditor() {
         const __active = (__key == currentEditMenuItem?.__key ? true : false);
         const __index = navData.indexOf(i);
 
-        return <Fragment key={ __key }>
+        return !groupItemDrag.includes(__key) && <Fragment key={ __key }>
           <Draggable draggableId={ __key } index={ __index } >
             {
               (provided, snapshot) => {
@@ -223,10 +226,27 @@ export default function MenuVisualEditor() {
         menuBuilderData?.menuData && 
         <div style={{ marginTop: '1em' }}>
           <DragDropContext 
-            onDragStart={ handleDragStart }
-            onDragUpdate={ handleDragUpdate }
+            onBeforeCapture={ e=> {
+              // console.log('onBeforeCapture', e);
+              setCurrentDragItem(e?.draggableId);
+              let arr = getItemChildren_Fn(e?.draggableId);
+              // console.log(arr);
+              setGroupItemDrag(arr);
+            } }
+            onBeforeDragStart={ e => {
+              // console.log('onBeforeDragStart', e);
+              // setCurrentDragItem(e?.draggableId);
+            } }
+            onDragStart={ e => {
+              // console.log(e);
+              handleDragStart(e);
+            } } 
+            onDragUpdate={ e => {
+              console.log(e);
+              handleDragUpdate(e);
+            } }
             onDragEnd={ res => {
-              
+              setGroupItemDrag([]);
             } } 
           >
             <StrictModeDroppable droppableId={ `droppable` }>

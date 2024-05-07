@@ -1,0 +1,151 @@
+$menu_bg: #141D24;
+$accent_color: #004F59;
+$link_color_lv1: rgba(255,255,255,.5);
+$link_color_accent: #19242D;
+$font_size: 14px;
+
+.menu-builder-editor_v2 {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 3em;
+
+  .__sidebar {
+    background: white;
+    padding: 2em;
+  }
+}
+
+.menu-design {
+  display: block;
+  width: 100%;
+
+  &.design-mode {
+
+    .__menu-item {
+
+      a {
+        display: flex !important;
+        align-items: center;
+        position: relative;
+      }
+    }
+  }
+}
+
+.__menu-edit-item {
+
+  legend {
+    padding: 0 .5em;
+    font-weight: bold;
+  }
+
+  border-radius: $border-radius; 
+  border: solid 1px #ddd;
+  padding: 1em;
+}
+
+ul.menu-builder {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  font-size: $font_size;
+  position: relative;
+  background: $menu_bg;
+
+  .menu-builder__sub {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    background: white;
+    visibility: hidden;
+    opacity: 0;
+
+    .__menu-item {
+      border-bottom: solid 1px #ECECEC;
+
+      a {
+        color: $link_color_accent;
+        padding: 20px 16px;
+        display: block;
+        text-decoration: none;
+        transition: .3s ease;
+        -webkit-transition: .3s ease;
+      }
+
+      &:hover {
+
+        > a {
+          background: $accent_color;
+          color: white;
+        }
+      }
+    }
+
+    &.__type__MEGASHOP__ {
+      width: 332px;
+      
+    }
+  }
+
+  .__show-all-sub {
+
+    .menu-builder__sub {
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+  }
+
+  > li.__menu-item {
+
+    > a {
+      display: inline-block;
+      padding: 25px 32px;
+      list-style: none;
+      text-decoration: none;
+      color: $link_color_lv1;
+      transition: .3s ease;
+      -webkit-transition: .3s ease;
+
+      .__menu-icon {
+        margin-right: 8px;
+
+        svg {
+          fill: $link_color_lv1;
+        }
+      }
+    }
+
+    &:hover {
+
+      > a {
+        background: white;
+        color: $link_color_accent;
+
+        .__menu-icon {
+
+          svg {
+            fill: $link_color_accent;
+          }
+        }
+      }
+    }
+    
+  }
+
+  li.__menu-item {
+    list-style: none;
+    transition: .3s ease;
+    -webkit-transition: .3s ease;
+
+    &:hover {
+
+      > .menu-builder__sub {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+  }
+}

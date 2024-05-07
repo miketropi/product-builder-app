@@ -10,8 +10,34 @@ import {
   XSmallIcon
 } from '@shopify/polaris-icons';
 
+const MenuItemTransport = ({ menuItem }) => {
+  const { menuBuilderData } = useMenuBuilderContext();
+  // return <div>{ JSON.stringify(menuBuilderData.menuData.filter(i => i.parent == menuItem.__key)) }</div>
+  
+  const renderSubItemTransport = (__key) => {
+    let found = [...menuBuilderData.menuData].filter(i => i.parent == __key);
+    if(found.length == 0) return;
+
+    return <ul className="__menu-transport-ul">
+      { 
+        found.map(i => {
+          let { __key, name } = i;
+          return <li key={ __key } className="__menu-transport-li">
+            <div>{ name }</div>
+            { renderSubItemTransport(__key) }
+          </li>
+        }) 
+      }
+    </ul>
+  }
+
+  return <div className="__menu-transport">
+    { renderSubItemTransport(menuItem.__key) }
+  </div>
+}
+
 export default function MenuItemEditor({ menu, active, onSelect, level }) {
-  const { menuBuilderData, setMenuBuilderData } = useMenuBuilderContext();
+  const { menuBuilderData, setMenuBuilderData, currentDragItem, groupItemDrag } = useMenuBuilderContext();
   const { __key, __type, name, url } = menu;
 
   const configBy__Type = (type) => {
@@ -57,17 +83,29 @@ export default function MenuItemEditor({ menu, active, onSelect, level }) {
     return __Fn[type]();
   }
 
-  return <div 
-    className={ ['menu-builder__visual-editor-li', `level_${ level }`, (active ? '__active' : '')].join(' ') } 
-    style={{ paddingLeft: `${ parseInt(level) * 15 }px` }}
-    >
-    <div className="__heading-item">
-      <div className="__drag-icon"><Icon source={ DragHandleIcon } /></div>
-      <div className="__menu-name">{ name }</div>
-      <div className="__toggle-config" onClick={ e => onSelect(menu) }>
-        <Icon source={ active ? CaretUpIcon : CaretDownIcon } />
+  const dragNumber = (
+    currentDragItem == menu.__key && groupItemDrag.length > 0 &&
+    <span>({ groupItemDrag.length })</span>
+  )
+
+  return <>
+    { 
+      // ! groupItemDrag.includes(menu.__key) && 
+      <div 
+        className={ ['menu-builder__visual-editor-li', `level_${ level }`, (active ? '__active' : '')].join(' ') } 
+        style={{ paddingLeft: `${ parseInt(level) * 15 }px` }}
+        >
+        <div className="__heading-item">
+          {/* { JSON.stringify(groupItemDrag) } */}
+          <div className="__drag-icon"><Icon source={ DragHandleIcon } /></div>
+          <div className="__menu-name">{ name } { dragNumber }</div>
+          <div className="__toggle-config" onClick={ e => onSelect(menu) }>
+            <Icon source={ active ? CaretUpIcon : CaretDownIcon } />
+          </div>
+        </div>
+        { active && configBy__Type(__type) }
       </div>
-    </div>
-    { active && configBy__Type(__type) }
-  </div>
+    }
+    
+  </>
 }

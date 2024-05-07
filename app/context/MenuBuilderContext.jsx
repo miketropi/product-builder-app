@@ -46,6 +46,8 @@ export default function MenuBuilderContext_Provider ({ children, store }) {
   const [menuToolTabData, setMenuToolTabData] = useState(null);
   const [menuBuilderData, setMenuBuilderData] = useState(null);
   const [currentEditMenuItem, setCurrentEditMenuItem] = useState(null);
+  const [currentDragItem, setCurrentDragItem] = useState(null);
+  const [groupItemDrag, setGroupItemDrag] = useState([]);
 
   useEffect(() => {
     setCurrentTab(__TOOLTAB_DATA[0].__key);
@@ -92,17 +94,37 @@ export default function MenuBuilderContext_Provider ({ children, store }) {
     }   
   }
 
+  const getItemChildren_Fn = (__key) => {
+    // const { menuBuilderData } = useMenuBuilderContext();
+    let items = [];
+  
+    const __deep = (__key) => {
+      let found = [...menuBuilderData.menuData].filter(i => i.parent == __key);
+      if(found.length == 0) return;    
+      items.push(...found.map(i => i.__key));
+      for(let i = 0; i <= (found.length - 1); i += 1) {
+        __deep(found[i].__key);
+      }
+    }
+  
+    __deep(__key);
+    return items;
+  }
+
   const value = {
     version: '1.0.0',
     currentTab,
     menuBuilderData, setMenuBuilderData,
     menuToolTabData,
     currentEditMenuItem, setCurrentEditMenuItem,
+    currentDragItem, setCurrentDragItem,
+    groupItemDrag, setGroupItemDrag,
     onChangeCurrentTab_Fn,
     onUpdateBuilderData_Fn,
     onAddMenuItem_Fn,
     newMenuItem_Fn,
     onSelectEditMenuItem_Fn,
+    getItemChildren_Fn,
   }
 
   return <MenuBuilderContext.Provider value={ value } >
