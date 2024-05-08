@@ -8,11 +8,13 @@ const MenuBuilderContextV2_Provider = ({ children }) => {
   const [menuData, setMenuData] = useState(menuDataInit);
   const [currentItemEdit, setCurrentItemEdit] = useState(null);
   const [showAllSub, setShowAllSub] = useState(null);
+  const [isHoverKeys, setIsHoverKeys] = useState([]);
 
   const value = {
     menuData, setMenuData,
     currentItemEdit, setCurrentItemEdit,
     showAllSub, setShowAllSub,
+    isHoverKeys, setIsHoverKeys,
   }
 
   return <MenuBuilderContextV2.Provider value={ value }>

@@ -3,7 +3,7 @@
 client_id = "92c567249760ebdd465718fd71b4fe55"
 name = "Product Builder For Dev"
 handle = "product-builder-for-dev"
-application_url = "https://current-commander-join-lean.trycloudflare.com"
+application_url = "https://family-preferred-goal-feature.trycloudflare.com"
 embedded = true
 
 [build]
@@ -20,9 +20,9 @@ scopes = "read_files,read_metaobjects,read_products,write_files,write_metaobject
 
 [auth]
 redirect_urls = [
-  "https://current-commander-join-lean.trycloudflare.com/auth/callback",
-  "https://current-commander-join-lean.trycloudflare.com/auth/shopify/callback",
-  "https://current-commander-join-lean.trycloudflare.com/api/auth/callback"
+  "https://family-preferred-goal-feature.trycloudflare.com/auth/callback",
+  "https://family-preferred-goal-feature.trycloudflare.com/auth/shopify/callback",
+  "https://family-preferred-goal-feature.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

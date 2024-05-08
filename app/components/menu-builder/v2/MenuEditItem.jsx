@@ -33,7 +33,7 @@ export default function MenuEditItem() {
       <TextField
         label="Url"
         value={ currentItemEdit.url }
-        onChange={ name => { setCurrentItemEdit({ ...currentItemEdit, url }) } }
+        onChange={ value => { onUpdate(value, 'url') } }
         autoComplete="off"
       />
     </div>
@@ -46,7 +46,7 @@ export default function MenuEditItem() {
           {label: 'No', value: ''},
           {label: 'Hamburger', value: 'HB'},
         ]}
-        onChange={ e => {} }
+        onChange={ value => { onUpdate(value, 'icon') } }
         value={ currentItemEdit.icon }
       />
     </div>
