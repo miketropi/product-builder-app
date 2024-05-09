@@ -358,3 +358,47 @@ li.__menu-item_type____MEGA__ {
   }
 }
 
+ul.__type__BLOCK_BRAND__ {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 33px 12px;
+  padding: 24px !important;
+}
+
+.design-mode {
+  
+  .__menu-item_type____BLOCK_BRAND__ {
+
+    &:hover,
+    &.__is-hover {
+      outline: solid 1px $link_color_accent;
+    }
+  }
+}
+
+li.__menu-item_type____BLOCK_BRAND_ITEM__ {
+  border-bottom: none !important;
+
+  &:hover,
+  &.__is-hover {
+
+    a {
+      background: #eee !important;
+      color: $link_color_accent !important; 
+    }
+  }
+
+  > a {
+    display: flex;
+    flex-direction: column;
+
+    .__brand-image {
+
+      img {
+        width: 100%;
+      }
+    }
+
+    font-size: 12px;
+  }
+}

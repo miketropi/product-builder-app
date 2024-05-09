@@ -2,7 +2,7 @@ import { Fragment, useCallback } from 'react';
 import { useMenuBuilderContextV2 } from '../../../context/MenuBuilderContextV2'; 
 import MenuIcon from './MenuIcon';
 import { Icon, Badge } from '@shopify/polaris';
-import { EditIcon, PlusIcon } from '@shopify/polaris-icons';
+import { EditIcon, PlusIcon, AlertCircleIcon } from '@shopify/polaris-icons';
 import MenuItemTool from './MenuItemTool';
 import { getParents } from '../../../libs/helpers';
 
@@ -73,7 +73,16 @@ export default function MenuDesign() {
               onSelectEditItem(e, item)
             } }>
               { icon ? <MenuIcon source={ icon } /> : '' } 
-              { name } { edit ? <Badge tone="warning">Edit</Badge> : '' }
+              { 
+                type == '__BLOCK_BRAND_ITEM__' && item?.image &&
+                <div className="__brand-image">
+                  <img src={ item.image } />
+                </div>
+              }
+              <span>
+                { name } { ['__BLOCK_BRAND__'].includes(type) ? <u>Brand Element (⚠️ Not showing on front-end)</u> : '' }
+                { edit ? <Badge tone="warning">Edit</Badge> : '' }
+              </span>
             </a>
             { edit ? <MenuItemTool menu={ item } level={ lv } type={ type } /> : '' }
             { (children && children.length > 0) && renderMenu(children, lv, item) }

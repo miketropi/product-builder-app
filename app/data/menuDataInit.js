@@ -157,19 +157,78 @@ const megaBrandChildren = [
         __key: uuidv4(),
         name: 'ADP', 
         image: 'https://cdn.shopify.com/s/files/1/0648/1071/3313/files/ADP.png?v=1715158385',
-        url: '#' 
+        url: '#',
+        type: '__BLOCK_BRAND_ITEM__',
       },
       { 
         __key: uuidv4(),
         name: 'Alma', 
         image: 'https://cdn.shopify.com/s/files/1/0648/1071/3313/files/ALMA.png?v=1715158386',
-        url: '#' 
+        url: '#',
+        type: '__BLOCK_BRAND_ITEM__',
       },
       { 
         __key: uuidv4(),
         name: 'Art Australia', 
         image: 'https://cdn.shopify.com/s/files/1/0648/1071/3313/files/Art_Australia.png?v=1715158386',
-        url: '#' 
+        url: '#',
+        type: '__BLOCK_BRAND_ITEM__',
+      },
+      { 
+        __key: uuidv4(),
+        name: 'Carecover', 
+        image: 'https://cdn.shopify.com/s/files/1/0648/1071/3313/files/Carecover.png?v=1715228246',
+        url: '#',
+        type: '__BLOCK_BRAND_ITEM__',
+      },
+      { 
+        __key: uuidv4(),
+        name: 'Castano', 
+        image: 'https://cdn.shopify.com/s/files/1/0648/1071/3313/files/Castano.png?v=1715228246',
+        url: '#',
+        type: '__BLOCK_BRAND_ITEM__',
+      },
+      { 
+        __key: uuidv4(),
+        name: 'Johnson Suisse', 
+        image: 'https://cdn.shopify.com/s/files/1/0648/1071/3313/files/Johnson-Suisse.png?v=1715228247',
+        url: '#',
+        type: '__BLOCK_BRAND_ITEM__',
+      },
+      { 
+        __key: uuidv4(),
+        name: 'Joseph Joseph', 
+        image: 'https://cdn.shopify.com/s/files/1/0648/1071/3313/files/Joseph-Joseph.png?v=1715228246',
+        url: '#',
+        type: '__BLOCK_BRAND_ITEM__',
+      },
+      { 
+        __key: uuidv4(),
+        name: 'Nero', 
+        image: 'https://cdn.shopify.com/s/files/1/0648/1071/3313/files/Nero.png?v=1715228246',
+        url: '#',
+        type: '__BLOCK_BRAND_ITEM__',
+      },
+      { 
+        __key: uuidv4(),
+        name: 'Phoenix', 
+        image: 'https://cdn.shopify.com/s/files/1/0648/1071/3313/files/Phoenix.png?v=1715228247',
+        url: '#',
+        type: '__BLOCK_BRAND_ITEM__',
+      },
+      { 
+        __key: uuidv4(),
+        name: 'Puretec', 
+        image: 'https://cdn.shopify.com/s/files/1/0648/1071/3313/files/Puretec.png?v=1715228246',
+        url: '#',
+        type: '__BLOCK_BRAND_ITEM__',
+      },
+      { 
+        __key: uuidv4(),
+        name: 'Thermogroup', 
+        image: 'https://cdn.shopify.com/s/files/1/0648/1071/3313/files/Thermogroup.png?v=1715228246',
+        url: '#',
+        type: '__BLOCK_BRAND_ITEM__',
       },
     ]
   }

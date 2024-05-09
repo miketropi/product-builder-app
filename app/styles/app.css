@@ -701,4 +701,31 @@ li.__menu-item_type____MEGA__ ul.__type__MEGA__ .menu-builder__sub {
   position: relative !important;
 }
 
+ul.__type__BLOCK_BRAND__ {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 33px 12px;
+  padding: 24px !important;
+}
+
+.design-mode .__menu-item_type____BLOCK_BRAND__:hover, .design-mode .__menu-item_type____BLOCK_BRAND__.__is-hover {
+  outline: solid 1px #19242D;
+}
+
+li.__menu-item_type____BLOCK_BRAND_ITEM__ {
+  border-bottom: none !important;
+}
+li.__menu-item_type____BLOCK_BRAND_ITEM__:hover a, li.__menu-item_type____BLOCK_BRAND_ITEM__.__is-hover a {
+  background: #eee !important;
+  color: #19242D !important;
+}
+li.__menu-item_type____BLOCK_BRAND_ITEM__ > a {
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+}
+li.__menu-item_type____BLOCK_BRAND_ITEM__ > a .__brand-image img {
+  width: 100%;
+}
+
 /*# sourceMappingURL=app.css.map */
