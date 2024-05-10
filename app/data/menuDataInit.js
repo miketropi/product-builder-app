@@ -234,6 +234,151 @@ const megaBrandChildren = [
   }
 ]
 
+const megaBlockMenuImage = [
+  {
+    __key: uuidv4(),
+    name: 'INTREND COLOURS', 
+    url: '#',
+    type: '__BLOCK_MENU_IMAGE__',
+    config: {
+      containerSize: 'fullwidth', 
+    },
+    children: [
+      { 
+        __key: uuidv4(),
+        name: 'Aged Brass', 
+        image: 'https://cdn.shopify.com/s/files/1/0648/1071/3313/files/Aged_Brass.png?v=1715325947',
+        url: '#',
+        type: '__BLOCK_MENU_IMAGE_ITEM__',
+      },
+      { 
+        __key: uuidv4(),
+        name: 'Brushed Brass Gold', 
+        image: 'https://cdn.shopify.com/s/files/1/0648/1071/3313/files/Brushed_Brass_Gold.png?v=1715325947',
+        url: '#',
+        type: '__BLOCK_MENU_IMAGE_ITEM__',
+      },
+      { 
+        __key: uuidv4(),
+        name: 'Brushed Gunmetal', 
+        image: 'https://cdn.shopify.com/s/files/1/0648/1071/3313/files/Brushed_Gunmetal.png?v=1715325947',
+        url: '#',
+        type: '__BLOCK_MENU_IMAGE_ITEM__',
+      },
+      { 
+        __key: uuidv4(),
+        name: 'Brushed Nickel', 
+        image: 'https://cdn.shopify.com/s/files/1/0648/1071/3313/files/Brushed_Nickel.png?v=1715325947',
+        url: '#',
+        type: '__BLOCK_MENU_IMAGE_ITEM__',
+      },
+    ]
+  },
+  {
+    __key: uuidv4(),
+    name: 'Natural and Stone-Like', 
+    url: '#',
+    type: '__BLOCK_MENU_IMAGE__',
+    config: {
+      containerSize: 'small',
+    },
+    children: [
+      { 
+        __key: uuidv4(),
+        name: 'Marble', 
+        image: 'https://cdn.shopify.com/s/files/1/0648/1071/3313/files/Marble.png?v=1715325947',
+        url: '#',
+        type: '__BLOCK_MENU_IMAGE_ITEM__',
+      },
+      { 
+        __key: uuidv4(),
+        name: 'Terrazzo', 
+        image: 'https://cdn.shopify.com/s/files/1/0648/1071/3313/files/Terrazzo.png?v=1715325947',
+        url: '#',
+        type: '__BLOCK_MENU_IMAGE_ITEM__',
+      },
+    ]
+  },
+  {
+    __key: uuidv4(),
+    name: 'Monochrome', 
+    url: '#',
+    type: '__BLOCK_MENU_IMAGE__',
+    config: {
+      containerSize: 'medium', 
+    },
+    children: [
+      { 
+        __key: uuidv4(),
+        name: 'White', 
+        image: 'https://cdn.shopify.com/s/files/1/0648/1071/3313/files/White.png?v=1715325947',
+        url: '#',
+        type: '__BLOCK_MENU_IMAGE_ITEM__',
+      },
+      { 
+        __key: uuidv4(),
+        name: 'Gloss White', 
+        image: 'https://cdn.shopify.com/s/files/1/0648/1071/3313/files/Gloss_White.png?v=1715325947',
+        url: '#',
+        type: '__BLOCK_MENU_IMAGE_ITEM__',
+      },
+      { 
+        __key: uuidv4(),
+        name: 'Matte Black', 
+        image: 'https://cdn.shopify.com/s/files/1/0648/1071/3313/files/Matte_Black.png?v=1715325947',
+        url: '#',
+        type: '__BLOCK_MENU_IMAGE_ITEM__',
+      },
+      { 
+        __key: uuidv4(),
+        name: 'Black', 
+        image: 'https://cdn.shopify.com/s/files/1/0648/1071/3313/files/Black.png?v=1715325948',
+        url: '#',
+        type: '__BLOCK_MENU_IMAGE_ITEM__',
+      },
+    ]
+  },
+  {
+    __key: uuidv4(),
+    name: 'Specialized Finishes', 
+    url: '#',
+    type: '__BLOCK_MENU_IMAGE__',
+    config: {
+      containerSize: 'medium', 
+    },
+    children: [
+      { 
+        __key: uuidv4(),
+        name: 'Champagne Pink', 
+        image: 'https://cdn.shopify.com/s/files/1/0648/1071/3313/files/Champagne_Pink.png?v=1715325947',
+        url: '#',
+        type: '__BLOCK_MENU_IMAGE_ITEM__',
+      },
+      { 
+        __key: uuidv4(),
+        name: 'Graphite', 
+        image: 'https://cdn.shopify.com/s/files/1/0648/1071/3313/files/Graphite.png?v=1715325947',
+        url: '#',
+        type: '__BLOCK_MENU_IMAGE_ITEM__',
+      },
+      { 
+        __key: uuidv4(),
+        name: 'Meteor Grey', 
+        image: 'https://cdn.shopify.com/s/files/1/0648/1071/3313/files/Meteor_Grey.png?v=1715325947',
+        url: '#',
+        type: '__BLOCK_MENU_IMAGE_ITEM__',
+      },
+      { 
+        __key: uuidv4(),
+        name: 'Sea Salt White', 
+        image: 'https://cdn.shopify.com/s/files/1/0648/1071/3313/files/Sea_Salt_White.png?v=1715325947',
+        url: '#',
+        type: '__BLOCK_MENU_IMAGE_ITEM__',
+      },
+    ]
+  }
+]
+
 export const menuDataInit = [
   { 
     __key: uuidv4(),
@@ -268,6 +413,12 @@ export const menuDataInit = [
   { 
     __key: uuidv4(),
     name: 'By Colour', 
-    url: '#' 
+    url: '#',
+    type: '__MEGA__',
+    config: {
+      container: true,
+      containerPadding: `20px`
+    },
+    children: megaBlockMenuImage
   },
 ]

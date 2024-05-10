@@ -35,61 +35,89 @@ export default function MenuDesign() {
       'menu-builder__sub', 
       `sub-lv__${ lv }`, 
       (__parent_item?.type ? `__type${ __parent_item.type }` : '')]);
-
-    return <ul className={ classesUl.join(' ') }>
-      {
-        __parent_item?.type && __parent_item.type == '__MEGASHOP_SUBITEM__' && 
-        <div 
-          className="__menu-item-banner" 
-          style={{ background: `url(${ __parent_item.config.background_image }) no-repeat center center / cover, #333` }}>
-          {/* { JSON.stringify(__parent_item.config) } */}
-          <div className="__menu-item-banner__entry">
-            <div className="__parent-name">{ __parent_item.name }</div>
-            <div className="__custom-link">
-              <a href={ __parent_item.config.custom_url }>{ __parent_item.config.custom_text }</a>
+    
+    let __li = (
+      <>
+        {
+          __parent_item?.type && __parent_item.type == '__MEGASHOP_SUBITEM__' && 
+          <div 
+            className="__menu-item-banner" 
+            style={{ background: `url(${ __parent_item.config.background_image }) no-repeat center center / cover, #333` }}>
+            {/* { JSON.stringify(__parent_item.config) } */}
+            <div className="__menu-item-banner__entry">
+              <div className="__parent-name">{ __parent_item.name }</div>
+              <div className="__custom-link">
+                <a href={ __parent_item.config.custom_url }>{ __parent_item.config.custom_text }</a>
+              </div>
             </div>
           </div>
-        </div>
-      }
-      {
-        menu.map(item => {
-          const { __key, name, url, children, type, icon } = item;
+        }
+        {
+          menu.map(item => {
+            const { __key, name, url, children, type, icon } = item;
+            const size = (item?.config?.containerSize ? `__size-${ item.config.containerSize }` : '');
+            // showAllSub
+            // console.log([showAllSub, __key, showAllSub == __key])
+            let edit = currentItemEdit?.__key == __key ? true : false;
+            let liClasses = [
+              '__menu-item', 
+              `__item-lv-${ lv }`, 
+              size,
+              (item.type ? `__menu-item_type__${ type }` : ''),
+              // `${ showAllSub == __key ? '__show-all-sub' : ''}`,
+              `${ isHoverKeys?.includes(__key) ? '__is-hover' : '' }`,
+              `${ edit ? '__edit-item' : '' }`
+            ];
 
-          // showAllSub
-          // console.log([showAllSub, __key, showAllSub == __key])
-          let edit = currentItemEdit?.__key == __key ? true : false;
-          let liClasses = [
-            '__menu-item', 
-            `__item-lv-${ lv }`, 
-            (item.type ? `__menu-item_type__${ type }` : ''),
-            // `${ showAllSub == __key ? '__show-all-sub' : ''}`,
-            `${ isHoverKeys?.includes(__key) ? '__is-hover' : '' }`,
-            `${ edit ? '__edit-item' : '' }`
-          ];
+            return <li className={ liClasses.join(' ') } key={ __key } data-id={ __key }>
+              <a href={ url } onClick={ function(e) {
+                e.preventDefault();
+                onSelectEditItem(e, item)
+              } }>
+                { icon ? <MenuIcon source={ icon } /> : '' } 
+                { 
+                  ['__BLOCK_BRAND_ITEM__', '__BLOCK_MENU_IMAGE_ITEM__'].includes(type) && item?.image &&
+                  <div className={ ((__type) => {
+                    let __c = {
+                      '__BLOCK_BRAND_ITEM__': '__brand-image',
+                      '__BLOCK_MENU_IMAGE_ITEM__': '__image',
+                    }
+                    return __c[__type];
+                  })(type) }>
+                    <img src={ item.image } />
+                  </div>
+                }
+                <span className="__menu-item-name">
+                  { name } 
+                  { children && children.length > 0 ? <MenuIcon className={ 'dropdown-icon' } source={ 'arrow_down' } /> : '' } 
+                  { ['__BLOCK_BRAND__'].includes(type) ? <u>Brand Element (⚠️ Not showing on front-end)</u> : '' }
+                  { edit ? <Badge tone="warning">Edit</Badge> : '' }
+                </span>
+              </a>
+              { edit ? <MenuItemTool menu={ item } level={ lv } type={ type } /> : '' }
+              { (children && children.length > 0) && renderMenu(children, lv, item) }
+            </li>
+          })
+        }
+      </>
+    )
 
-          return <li className={ liClasses.join(' ') } key={ __key } data-id={ __key }>
-            <a href={ url } onClick={ function(e) {
-              e.preventDefault();
-              onSelectEditItem(e, item)
-            } }>
-              { icon ? <MenuIcon source={ icon } /> : '' } 
-              { 
-                type == '__BLOCK_BRAND_ITEM__' && item?.image &&
-                <div className="__brand-image">
-                  <img src={ item.image } />
-                </div>
-              }
-              <span>
-                { name } { ['__BLOCK_BRAND__'].includes(type) ? <u>Brand Element (⚠️ Not showing on front-end)</u> : '' }
-                { edit ? <Badge tone="warning">Edit</Badge> : '' }
-              </span>
-            </a>
-            { edit ? <MenuItemTool menu={ item } level={ lv } type={ type } /> : '' }
-            { (children && children.length > 0) && renderMenu(children, lv, item) }
-          </li>
-        })
+    const containerStyle = {};
+    if(__parent_item?.config?.containerPadding) {
+      containerStyle.padding = __parent_item?.config?.containerPadding;
+    }
+
+    let __ul = (<ul className={ classesUl.join(' ') }>
+      { 
+        __parent_item?.config?.container == true 
+          ? <div className="__container-item">
+              <div className="__container-item-inner" style={ containerStyle }>{ __li }</div>
+            </div> 
+          : __li 
       }
-    </ul>
+    </ul>)
+
+    return __ul;
   }
 
   return <div className="menu-design design-mode">

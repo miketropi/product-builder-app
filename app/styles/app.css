@@ -543,9 +543,15 @@ ul.menu-builder .menu-builder__sub .__menu-item a {
   transition: 0.3s ease;
   -webkit-transition: 0.3s ease;
 }
+ul.menu-builder .menu-builder__sub .__menu-item a .dropdown-icon svg {
+  fill: #19242D;
+}
 ul.menu-builder .menu-builder__sub .__menu-item:hover > a, ul.menu-builder .menu-builder__sub .__menu-item.__is-hover > a {
   background: #004F59;
   color: white;
+}
+ul.menu-builder .menu-builder__sub .__menu-item:hover > a .dropdown-icon svg, ul.menu-builder .menu-builder__sub .__menu-item.__is-hover > a .dropdown-icon svg {
+  fill: white;
 }
 ul.menu-builder .menu-builder__sub.__type__MEGASHOP__ {
   width: 332px;
@@ -589,6 +595,15 @@ ul.menu-builder li.__menu-item > a .__menu-icon {
 }
 ul.menu-builder li.__menu-item > a .__menu-icon svg {
   fill: rgba(255, 255, 255, 0.5);
+}
+ul.menu-builder li.__menu-item > a .__menu-item-name {
+  display: flex;
+  align-items: center;
+}
+ul.menu-builder li.__menu-item > a .__menu-item-name .dropdown-icon {
+  width: 18px;
+  margin-left: 0.3em;
+  line-height: 0;
 }
 
 .__menu-item-tool {
@@ -674,7 +689,7 @@ ul.menu-builder li.__menu-item > a .__menu-icon svg {
 .__type__MEGASHOP_SUBITEM__ .__menu-item:hover a, .__type__MEGASHOP_SUBITEM__ .__menu-item.__is-hover a {
   background: none !important;
 }
-.__type__MEGASHOP_SUBITEM__ > li.__menu-item > a {
+li.__menu-item_type____BLOCK_MENU__ > a {
   font-weight: bold;
   text-transform: uppercase;
   color: #004F59 !important;
@@ -696,6 +711,8 @@ li.__menu-item_type____MEGA__:hover .menu-builder__sub, li.__menu-item_type____M
 li.__menu-item_type____MEGA__ ul.__type__MEGA__ {
   left: 0px !important;
   width: 100% !important;
+  display: flex;
+  flex-wrap: wrap;
 }
 li.__menu-item_type____MEGA__ ul.__type__MEGA__ .menu-builder__sub {
   position: relative !important;
@@ -712,6 +729,10 @@ ul.__type__BLOCK_BRAND__ {
   outline: solid 1px #19242D;
 }
 
+li.__menu-item_type____BLOCK_BRAND__ {
+  width: 100%;
+}
+
 li.__menu-item_type____BLOCK_BRAND_ITEM__ {
   border-bottom: none !important;
 }
@@ -726,6 +747,80 @@ li.__menu-item_type____BLOCK_BRAND_ITEM__ > a {
 }
 li.__menu-item_type____BLOCK_BRAND_ITEM__ > a .__brand-image img {
   width: 100%;
+}
+
+li.__menu-item_type____BLOCK_MENU_IMAGE__ {
+  width: 100%;
+  padding: 4px;
+  border-bottom: none !important;
+}
+li.__menu-item_type____BLOCK_MENU_IMAGE__ > a {
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #004F59 !important;
+  border-bottom: 2px solid #004F59 !important;
+  padding: 16px 0 !important;
+}
+li.__menu-item_type____BLOCK_MENU_IMAGE__:hover a, li.__menu-item_type____BLOCK_MENU_IMAGE__.__is-hover a {
+  background: none !important;
+}
+li.__menu-item_type____BLOCK_MENU_IMAGE__.__size-fullwidth .__type__BLOCK_MENU_IMAGE__ .__menu-item_type____BLOCK_MENU_IMAGE_ITEM__ {
+  width: 10%;
+}
+li.__menu-item_type____BLOCK_MENU_IMAGE__.__size-small {
+  width: 20%;
+}
+li.__menu-item_type____BLOCK_MENU_IMAGE__.__size-small .__type__BLOCK_MENU_IMAGE__ .__menu-item_type____BLOCK_MENU_IMAGE_ITEM__ {
+  width: 50%;
+}
+li.__menu-item_type____BLOCK_MENU_IMAGE__.__size-medium {
+  width: 40%;
+}
+li.__menu-item_type____BLOCK_MENU_IMAGE__.__size-medium .__type__BLOCK_MENU_IMAGE__ .__menu-item_type____BLOCK_MENU_IMAGE_ITEM__ {
+  width: 25%;
+}
+li.__menu-item_type____BLOCK_MENU_IMAGE__.__size-large {
+  width: 80%;
+}
+li.__menu-item_type____BLOCK_MENU_IMAGE__.__size-large .__type__BLOCK_MENU_IMAGE__ .__menu-item_type____BLOCK_MENU_IMAGE_ITEM__ {
+  width: 12.5%;
+}
+
+ul.__type__BLOCK_MENU_IMAGE__ {
+  display: flex;
+  background: none !important;
+}
+li.__menu-item_type____BLOCK_MENU_IMAGE_ITEM__ {
+  border-bottom: none !important;
+}
+li.__menu-item_type____BLOCK_MENU_IMAGE_ITEM__ > a {
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+  text-align: center;
+  line-height: normal;
+}
+li.__menu-item_type____BLOCK_MENU_IMAGE_ITEM__ > a .__image {
+  line-height: 0;
+  margin-bottom: 12px;
+}
+
+ul.__type__MEGA__ .__container-item {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+ul.__type__MEGA__ .__container-item .__container-item-inner {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+li.__menu-item_type____MEGASHOP__ > a .__menu-item-name .dropdown-icon,
+li.__menu-item_type____BLOCK_MENU__ > a .__menu-item-name .dropdown-icon,
+li.__menu-item_type____BLOCK_BRAND__ > a .__menu-item-name .dropdown-icon,
+li.__menu-item_type____BLOCK_MENU_IMAGE__ > a .__menu-item-name .dropdown-icon {
+  display: none;
 }
 
 /*# sourceMappingURL=app.css.map */
