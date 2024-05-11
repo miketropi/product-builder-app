@@ -272,6 +272,48 @@ const megaBlockMenuImage = [
         url: '#',
         type: '__BLOCK_MENU_IMAGE_ITEM__',
       },
+      { 
+        __key: uuidv4(),
+        name: 'Brushed Stainless Steel', 
+        image: 'https://cdn.shopify.com/s/files/1/0648/1071/3313/files/Brushed_Stainless_Steel.png?v=1715393151',
+        url: '#',
+        type: '__BLOCK_MENU_IMAGE_ITEM__',
+      },
+      { 
+        __key: uuidv4(),
+        name: 'Brushed Vintage Antique Brass', 
+        image: 'https://cdn.shopify.com/s/files/1/0648/1071/3313/files/Brushed_Vintage_Antique_Brass.png?v=1715393151',
+        url: '#',
+        type: '__BLOCK_MENU_IMAGE_ITEM__',
+      },
+      { 
+        __key: uuidv4(),
+        name: 'Chrome', 
+        image: 'https://cdn.shopify.com/s/files/1/0648/1071/3313/files/Chrome.png?v=1715393151',
+        url: '#',
+        type: '__BLOCK_MENU_IMAGE_ITEM__',
+      },
+      { 
+        __key: uuidv4(),
+        name: 'Matte White', 
+        image: 'https://cdn.shopify.com/s/files/1/0648/1071/3313/files/Matte_White.png?v=1715393151',
+        url: '#',
+        type: '__BLOCK_MENU_IMAGE_ITEM__',
+      },
+      { 
+        __key: uuidv4(),
+        name: 'Stainless Steel', 
+        image: 'https://cdn.shopify.com/s/files/1/0648/1071/3313/files/Stainless_Steel.png?v=1715393151',
+        url: '#',
+        type: '__BLOCK_MENU_IMAGE_ITEM__',
+      },
+      { 
+        __key: uuidv4(),
+        name: 'Vintage Brass', 
+        image: 'https://cdn.shopify.com/s/files/1/0648/1071/3313/files/Vintage_Brass.png?v=1715393151',
+        url: '#',
+        type: '__BLOCK_MENU_IMAGE_ITEM__',
+      },
     ]
   },
   {
@@ -417,7 +459,9 @@ export const menuDataInit = [
     type: '__MEGA__',
     config: {
       container: true,
-      containerPadding: `20px`
+      container_padding: `20px`,
+      container_bottom_custom_text: 'View All Colours',
+      container_bottom_custom_url: '#',
     },
     children: megaBlockMenuImage
   },

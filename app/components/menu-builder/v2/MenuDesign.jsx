@@ -56,15 +56,13 @@ export default function MenuDesign() {
           menu.map(item => {
             const { __key, name, url, children, type, icon } = item;
             const size = (item?.config?.containerSize ? `__size-${ item.config.containerSize }` : '');
-            // showAllSub
-            // console.log([showAllSub, __key, showAllSub == __key])
+            
             let edit = currentItemEdit?.__key == __key ? true : false;
             let liClasses = [
               '__menu-item', 
               `__item-lv-${ lv }`, 
               size,
               (item.type ? `__menu-item_type__${ type }` : ''),
-              // `${ showAllSub == __key ? '__show-all-sub' : ''}`,
               `${ isHoverKeys?.includes(__key) ? '__is-hover' : '' }`,
               `${ edit ? '__edit-item' : '' }`
             ];
@@ -94,7 +92,7 @@ export default function MenuDesign() {
                   { edit ? <Badge tone="warning">Edit</Badge> : '' }
                 </span>
               </a>
-              { edit ? <MenuItemTool menu={ item } level={ lv } type={ type } /> : '' }
+              { edit ? <MenuItemTool menu={ item } level={ lv } parent={ __parent_item } /> : '' }
               { (children && children.length > 0) && renderMenu(children, lv, item) }
             </li>
           })
@@ -103,15 +101,24 @@ export default function MenuDesign() {
     )
 
     const containerStyle = {};
-    if(__parent_item?.config?.containerPadding) {
-      containerStyle.padding = __parent_item?.config?.containerPadding;
+    if(__parent_item?.config?.container_padding) {
+      containerStyle.padding = __parent_item?.config?.container_padding;
     }
 
-    let __ul = (<ul className={ classesUl.join(' ') }>
+    let __ul = (<ul className={ classesUl.join(' ') }> 
       { 
         __parent_item?.config?.container == true 
           ? <div className="__container-item">
               <div className="__container-item-inner" style={ containerStyle }>{ __li }</div>
+              {
+                __parent_item?.config?.container_bottom_custom_text && 
+                <div className="__container-item__button-custom-link">
+                  <a href={ __parent_item?.config?.container_bottom_custom_url }>
+                    { __parent_item.config.container_bottom_custom_text }
+                    <MenuIcon source={ 'arrow_next' } />
+                  </a>
+                </div>
+              }
             </div> 
           : __li 
       }

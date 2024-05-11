@@ -3,7 +3,7 @@
 client_id = "92c567249760ebdd465718fd71b4fe55"
 name = "Product Builder For Dev"
 handle = "product-builder-for-dev"
-application_url = "https://hdtv-apollo-sole-radios.trycloudflare.com"
+application_url = "https://isbn-retailer-walnut-gibraltar.trycloudflare.com"
 embedded = true
 
 [build]
@@ -20,9 +20,9 @@ scopes = "read_files,read_metaobjects,read_products,write_files,write_metaobject
 
 [auth]
 redirect_urls = [
-  "https://hdtv-apollo-sole-radios.trycloudflare.com/auth/callback",
-  "https://hdtv-apollo-sole-radios.trycloudflare.com/auth/shopify/callback",
-  "https://hdtv-apollo-sole-radios.trycloudflare.com/api/auth/callback"
+  "https://isbn-retailer-walnut-gibraltar.trycloudflare.com/auth/callback",
+  "https://isbn-retailer-walnut-gibraltar.trycloudflare.com/auth/shopify/callback",
+  "https://isbn-retailer-walnut-gibraltar.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

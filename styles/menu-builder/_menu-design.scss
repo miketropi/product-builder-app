@@ -450,7 +450,7 @@ li.__menu-item_type____BLOCK_MENU_IMAGE__ {
     font-weight: bold;
     text-transform: uppercase;
     color: $accent_color !important;
-    border-bottom: 2px solid $accent_color !important;
+    border-bottom: 2px solid #004f5936 !important;
     padding: 16px 0 !important;
   }
 
@@ -524,10 +524,19 @@ li.__menu-item_type____BLOCK_MENU_IMAGE_ITEM__ {
     font-size: 12px;
     text-align: center;
     line-height: normal;
+    padding: 20px 12px !important;
 
     .__image {
       line-height: 0;
       margin-bottom: 12px;
+    }
+  }
+
+  &:hover,
+  &.__is-hover {
+
+    > a {
+      color: $accent_color !important; 
     }
   }
 }
@@ -543,6 +552,40 @@ ul.__type__MEGA__ {
       width: 100%;
       display: flex;
       flex-wrap: wrap;
+    }
+
+    .__container-item__button-custom-link {
+      border-top: solid 1px #E2E2E2;
+      width: 100%;
+
+      > a {
+        padding: 16px 24px;
+        display: flex;
+        justify-content: space-between;
+        color: $link_color_accent;
+        transition: .3s ease;
+        -webkit-transition: .3s ease;
+        text-decoration: none;
+
+        .__menu-icon  {
+          width: 18px;
+          line-height: 0;
+
+          svg {
+            width: 100%;
+            fill: $link_color_accent;
+          }
+        }
+
+        &:hover {
+          background: $accent_color;
+          color: white;
+
+          svg {
+            fill: white;
+          }
+        }
+      }
     }
   }
 }

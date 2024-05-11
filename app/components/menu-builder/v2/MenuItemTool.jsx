@@ -11,7 +11,7 @@ import {
   ArrowLeftIcon,
   ArrowRightIcon } from "@shopify/polaris-icons";
 
-export default function MenuItemTool({ menu, level, t }) {
+export default function MenuItemTool({ menu, level, parent }) {
   const [popoverActive, setPopoverActive] = useState(false);
 
   const togglePopoverActive = useCallback(
@@ -28,7 +28,8 @@ export default function MenuItemTool({ menu, level, t }) {
   const actions = [
     { content: `${ level == 0 ? 'Move Left' : 'Move Up' }`, icon: (level == 0 ? ArrowLeftIcon : ArrowUpIcon) }, 
     { content: `${ level == 0 ? 'Move Right' : 'Move Down' }`, icon: (level == 0 ? ArrowRightIcon : ArrowDownIcon) },
-    { content: 'Add Menu Item', icon: NoteAddIcon },
+    { content: 'Add Next Item', icon: NoteAddIcon },
+    { content: 'Add Children', icon: NoteAddIcon },
     { content: 'Remove', icon: DeleteIcon },
   ]
  
