@@ -10,12 +10,14 @@ const blockMenu = [
       { 
         __key: uuidv4(),
         name: 'Single Bowl Sinks', 
-        url: '#' 
+        url: '#',
+        type: '__BLOCK_MENU_ITEM__',
       },
       { 
         __key: uuidv4(),
         name: 'Double Bowl Sinks', 
-        url: '#' 
+        url: '#',
+        type: '__BLOCK_MENU_ITEM__',
       },
     ]
   },
@@ -28,12 +30,14 @@ const blockMenu = [
       { 
         __key: uuidv4(),
         name: 'Brushed Stainless Steel', 
-        url: '#' 
+        url: '#',
+        type: '__BLOCK_MENU_ITEM__',
       },
       { 
         __key: uuidv4(),
         name: 'Brushed Gunmetal', 
-        url: '#' 
+        url: '#',
+        type: '__BLOCK_MENU_ITEM__',
       },
     ]
   }
@@ -49,12 +53,14 @@ const blockMenu2 = [
       { 
         __key: uuidv4(),
         name: 'Pull Out Mixers', 
-        url: '#' 
+        url: '#',
+        type: '__BLOCK_MENU_ITEM__',
       },
       { 
         __key: uuidv4(),
         name: 'Gooseneck Mixers', 
-        url: '#' 
+        url: '#',
+        type: '__BLOCK_MENU_ITEM__',
       },
     ]
   },
@@ -67,12 +73,14 @@ const blockMenu2 = [
       { 
         __key: uuidv4(),
         name: 'Water Filters', 
-        url: '#' 
+        url: '#',
+        type: '__BLOCK_MENU_ITEM__',
       },
       { 
         __key: uuidv4(),
         name: 'Filtered Water Taps', 
-        url: '#' 
+        url: '#',
+        type: '__BLOCK_MENU_ITEM__',
       },
     ]
   }
@@ -433,7 +441,19 @@ export const menuDataInit = [
   { 
     __key: uuidv4(),
     name: 'Best Sellers', 
-    url: '#' 
+    url: '#',
+    children: [
+      { 
+        __key: uuidv4(),
+        name: 'Best Sellers', 
+        url: '#' 
+      },
+      { 
+        __key: uuidv4(),
+        name: 'Kitchen Sinks', 
+        url: '#' 
+      },
+    ]
   },
   { 
     __key: uuidv4(),

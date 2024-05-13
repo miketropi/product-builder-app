@@ -530,7 +530,7 @@ ul.menu-builder .menu-builder__sub {
   background: white;
   visibility: hidden;
   opacity: 0;
-  z-index: 3;
+  z-index: -1;
 }
 ul.menu-builder .menu-builder__sub .__menu-item {
   border-bottom: solid 1px #ECECEC;
@@ -589,6 +589,7 @@ ul.menu-builder li.__menu-item {
 ul.menu-builder li.__menu-item:hover > .menu-builder__sub, ul.menu-builder li.__menu-item.__is-hover > .menu-builder__sub {
   visibility: visible;
   opacity: 1;
+  z-index: 9;
 }
 ul.menu-builder li.__menu-item > a .__menu-icon {
   margin-right: 8px;
@@ -606,9 +607,13 @@ ul.menu-builder li.__menu-item > a .__menu-item-name .dropdown-icon {
   line-height: 0;
 }
 
+.menu-builder__sub {
+  width: 280px;
+}
+
 .__menu-item-tool {
   position: relative;
-  z-index: 5;
+  z-index: 15;
 }
 .__menu-item-tool .__button-toggle-actions {
   position: absolute;
@@ -625,23 +630,24 @@ ul.menu-builder li.__menu-item > a .__menu-item-name .dropdown-icon {
   fill: white;
 }
 
-.__type__MEGASHOP_SUBITEM__ {
+ul.__type__MEGASHOP_SUBITEM__ {
   left: 100%;
   top: 0;
   width: 720px;
+  padding-bottom: 40px !important;
   display: flex;
   flex-wrap: wrap;
   background: #DADDDE !important;
 }
-.__type__MEGASHOP_SUBITEM__ .menu-builder__sub {
+ul.__type__MEGASHOP_SUBITEM__ .menu-builder__sub {
   background: transparent !important;
 }
-.__type__MEGASHOP_SUBITEM__ > .__menu-item-banner {
+ul.__type__MEGASHOP_SUBITEM__ > .__menu-item-banner {
   width: 100%;
   height: 180px;
   position: relative;
 }
-.__type__MEGASHOP_SUBITEM__ > .__menu-item-banner:after {
+ul.__type__MEGASHOP_SUBITEM__ > .__menu-item-banner:after {
   content: "";
   position: absolute;
   left: 0;
@@ -654,7 +660,7 @@ ul.menu-builder li.__menu-item > a .__menu-item-name .dropdown-icon {
   background: linear-gradient(9deg, rgb(0, 13, 15) 0%, rgba(0, 14, 15, 0) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000d0f",endColorstr="#000e0f",GradientType=1);
 }
-.__type__MEGASHOP_SUBITEM__ > .__menu-item-banner .__menu-item-banner__entry {
+ul.__type__MEGASHOP_SUBITEM__ > .__menu-item-banner .__menu-item-banner__entry {
   padding: 40px;
   display: flex;
   height: 100%;
@@ -663,31 +669,35 @@ ul.menu-builder li.__menu-item > a .__menu-item-name .dropdown-icon {
   position: relative;
   z-index: 3;
 }
-.__type__MEGASHOP_SUBITEM__ > .__menu-item-banner .__menu-item-banner__entry .__parent-name {
+ul.__type__MEGASHOP_SUBITEM__ > .__menu-item-banner .__menu-item-banner__entry .__parent-name {
   color: white;
   font-size: 24px;
   font-weight: bold;
 }
-.__type__MEGASHOP_SUBITEM__ > .__menu-item-banner .__menu-item-banner__entry .__custom-link a {
+ul.__type__MEGASHOP_SUBITEM__ > .__menu-item-banner .__menu-item-banner__entry .__custom-link a {
   padding: 0;
   color: white;
 }
-.__type__MEGASHOP_SUBITEM__ > .__menu-item-banner .__menu-item-banner__entry .__custom-link a svg {
+ul.__type__MEGASHOP_SUBITEM__ > .__menu-item-banner .__menu-item-banner__entry .__custom-link a svg {
   fill: white;
 }
-.__type__MEGASHOP_SUBITEM__ > li.__menu-item {
+ul.__type__MEGASHOP_SUBITEM__ > li.__menu-item {
   padding: 40px;
   box-sizing: border-box;
   width: 50%;
 }
-.__type__MEGASHOP_SUBITEM__ .menu-builder__sub {
+ul.__type__MEGASHOP_SUBITEM__ .menu-builder__sub {
   position: relative !important;
 }
-.__type__MEGASHOP_SUBITEM__ .__menu-item a {
+ul.__type__MEGASHOP_SUBITEM__ .__menu-item a {
   padding: 16px 0 !important;
 }
-.__type__MEGASHOP_SUBITEM__ .__menu-item:hover a, .__type__MEGASHOP_SUBITEM__ .__menu-item.__is-hover a {
+ul.__type__MEGASHOP_SUBITEM__ .__menu-item:hover a, ul.__type__MEGASHOP_SUBITEM__ .__menu-item.__is-hover a {
   background: none !important;
+}
+li.__menu-item_type____BLOCK_MENU__ {
+  padding: 25px 40px 0 !important;
+  border-bottom: none !important;
 }
 li.__menu-item_type____BLOCK_MENU__ > a {
   font-weight: bold;
@@ -723,6 +733,7 @@ ul.__type__BLOCK_BRAND__ {
   grid-template-columns: repeat(7, 1fr);
   gap: 33px 12px;
   padding: 24px !important;
+  width: 100% !important;
 }
 
 .design-mode .__menu-item_type____BLOCK_BRAND__:hover, .design-mode .__menu-item_type____BLOCK_BRAND__.__is-hover {
@@ -789,6 +800,7 @@ li.__menu-item_type____BLOCK_MENU_IMAGE__.__size-large .__type__BLOCK_MENU_IMAGE
 ul.__type__BLOCK_MENU_IMAGE__ {
   display: flex;
   background: none !important;
+  width: 100%;
 }
 li.__menu-item_type____BLOCK_MENU_IMAGE_ITEM__ {
   border-bottom: none !important;

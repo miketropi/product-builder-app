@@ -1,4 +1,5 @@
-import { useState, useCallback } from "react";
+import { useMenuBuilderContextV2 } from '../../../context/MenuBuilderContextV2';
+import { useState, useCallback, useEffect } from "react";
 import { Button, Popover, ActionList, Icon } from "@shopify/polaris";
 import { 
   MenuHorizontalIcon, 
@@ -12,7 +13,15 @@ import {
   ArrowRightIcon } from "@shopify/polaris-icons";
 
 export default function MenuItemTool({ menu, level, parent }) {
+  const { editFn } = useMenuBuilderContextV2();
+  const { 
+    addNextItem_Fn, 
+    addChildren_Fn,
+    removeItem_Fn,
+    moveItem_Fn } = editFn;
+
   const [popoverActive, setPopoverActive] = useState(false);
+  const [actionList, setAcctionList] = useState([]);
 
   const togglePopoverActive = useCallback(
     () => setPopoverActive((popoverActive) => !popoverActive),
@@ -25,14 +34,66 @@ export default function MenuItemTool({ menu, level, parent }) {
     </span>
   );
 
-  const actions = [
-    { content: `${ level == 0 ? 'Move Left' : 'Move Up' }`, icon: (level == 0 ? ArrowLeftIcon : ArrowUpIcon) }, 
-    { content: `${ level == 0 ? 'Move Right' : 'Move Down' }`, icon: (level == 0 ? ArrowRightIcon : ArrowDownIcon) },
-    { content: 'Add Next Item', icon: NoteAddIcon },
-    { content: 'Add Children', icon: NoteAddIcon },
-    { content: 'Remove', icon: DeleteIcon },
-  ]
- 
+  const onAddNextItem = useCallback(() => {
+    addNextItem_Fn(menu, level)
+  })
+
+  const onAddChildren = useCallback(() => {
+    addChildren_Fn(menu, level)
+  })
+
+  useEffect(() => {
+    // console.log(!menu.children, (menu?.children?.length))
+    let actions = {
+      actionMove__Up: (() => {
+        return { 
+          content: `${ level == 0 ? 'Move Left' : 'Move Up' }`, 
+          icon: (level == 0 ? ArrowLeftIcon : ArrowUpIcon) 
+        }
+      })(),
+      actionMove__Down: (() => {
+        return { 
+          content: `${ level == 0 ? 'Move Right' : 'Move Down' }`, 
+          icon: (level == 0 ? ArrowRightIcon : ArrowDownIcon) 
+        }
+      })(),
+      actionAddNextItem: (() => {
+        return {
+          content: 'Add Next Item', 
+          icon: NoteAddIcon,
+          onAction: onAddNextItem
+        }
+      })(),
+      actionAddChildren: (() => {
+        // console.log(['__BLOCK_MENU_IMAGE_ITEM__'].includes(menu?.type));
+        if(menu?.children) {
+          return false;
+        }
+
+        return (([
+          '__BLOCK_MENU_IMAGE_ITEM__', 
+          '__BLOCK_BRAND_ITEM__',
+          '__BLOCK_MENU_ITEM__',
+        ].includes(menu?.type) == false) ? { 
+          content: 'Add Children', 
+          icon: NoteAddIcon,
+          onAction: onAddChildren,
+        } : false);
+      })(),
+      actionDeleteItem: (() => {
+        return {
+          content: 'Remove', 
+          icon: DeleteIcon 
+        }
+      })
+    }
+    
+    
+    console.log(actions);
+    setAcctionList(actions);
+
+  }, [menu])
+
   return <div className="__menu-item-tool">
     <Popover
       active={popoverActive}
@@ -42,7 +103,7 @@ export default function MenuItemTool({ menu, level, parent }) {
     >
       <ActionList
         actionRole="menuitem"
-        items={ actions }
+        items={ Object.values(actionList).filter(a => a != false) }
       />
     </Popover>
   </div>

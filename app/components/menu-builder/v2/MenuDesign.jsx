@@ -11,7 +11,8 @@ export default function MenuDesign() {
     menuData, 
     currentItemEdit, setCurrentItemEdit, 
     showAllSub, setShowAllSub,
-    isHoverKeys, setIsHoverKeys } = useMenuBuilderContextV2();
+    isHoverKeys, setIsHoverKeys, 
+    editFn } = useMenuBuilderContextV2();
   
   const onSelectEditItem = useCallback((e, item) => {
     setCurrentItemEdit(item);
