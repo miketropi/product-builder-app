@@ -3,7 +3,7 @@
 client_id = "92c567249760ebdd465718fd71b4fe55"
 name = "Product Builder For Dev"
 handle = "product-builder-for-dev"
-application_url = "https://cube-bobby-sleeps-procedure.trycloudflare.com"
+application_url = "https://geek-usgs-inline-enquiry.trycloudflare.com"
 embedded = true
 
 [build]
@@ -20,9 +20,9 @@ scopes = "read_files,read_metaobjects,read_products,write_files,write_metaobject
 
 [auth]
 redirect_urls = [
-  "https://cube-bobby-sleeps-procedure.trycloudflare.com/auth/callback",
-  "https://cube-bobby-sleeps-procedure.trycloudflare.com/auth/shopify/callback",
-  "https://cube-bobby-sleeps-procedure.trycloudflare.com/api/auth/callback"
+  "https://geek-usgs-inline-enquiry.trycloudflare.com/auth/callback",
+  "https://geek-usgs-inline-enquiry.trycloudflare.com/auth/shopify/callback",
+  "https://geek-usgs-inline-enquiry.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

@@ -5,6 +5,8 @@ import { Icon, Badge } from '@shopify/polaris';
 import { EditIcon, PlusIcon, AlertCircleIcon } from '@shopify/polaris-icons';
 import MenuItemTool from './MenuItemTool';
 import { getParents } from '../../../libs/helpers';
+import SubMenuOptionsTemplate from './SubMenuOptionsTemplate';
+import { publish } from '../../../libs/events';
 
 export default function MenuDesign() {
   const { 
@@ -12,6 +14,8 @@ export default function MenuDesign() {
     currentItemEdit, setCurrentItemEdit, 
     showAllSub, setShowAllSub,
     isHoverKeys, setIsHoverKeys, 
+    modalSelectTemplateActive, setModalSelectTemplateActive,
+    modalSelectTemplateActiveRef, _event,
     editFn } = useMenuBuilderContextV2();
   
   const onSelectEditItem = useCallback((e, item) => {
@@ -54,7 +58,7 @@ export default function MenuDesign() {
           </div>
         }
         {
-          menu.map(item => {
+          menu.map((item, __i_index) => {
             const { __key, name, url, children, type, icon } = item;
             const size = (item?.config?.containerSize ? `__size-${ item.config.containerSize }` : '');
             
@@ -87,13 +91,13 @@ export default function MenuDesign() {
                   </div>
                 }
                 <span className="__menu-item-name">
-                  { name } 
+                  { name }
                   { children && children.length > 0 ? <MenuIcon className={ 'dropdown-icon' } source={ 'arrow_down' } /> : '' } 
                   { ['__BLOCK_BRAND__'].includes(type) ? <u>Brand Element (⚠️ Not showing on front-end)</u> : '' }
                   { edit ? <Badge tone="warning">Edit</Badge> : '' }
                 </span>
               </a>
-              { edit ? <MenuItemTool menu={ item } level={ lv } parent={ __parent_item } /> : '' }
+              { edit ? <MenuItemTool menu={ item } level={ lv } parent={ __parent_item } num_index={ __i_index } /> : '' }
               { (children && children.length > 0) && renderMenu(children, lv, item) }
             </li>
           })
@@ -133,6 +137,14 @@ export default function MenuDesign() {
     {
       renderMenu(menuData)
     }
-    
+    <SubMenuOptionsTemplate 
+      _ref={ modalSelectTemplateActiveRef }
+      open={ modalSelectTemplateActive } 
+      onClose={ e => { setModalSelectTemplateActive(false) } } 
+      onSelect={ value => { 
+        // console.log(value) 
+        // modalSelectTemplateActiveRef.current.dispatchEvent(_event.current, { detail: value });
+        // publish('SubMenuOptionsTemplate:Selected', { detail: value });
+      } } />
   </div>
 }

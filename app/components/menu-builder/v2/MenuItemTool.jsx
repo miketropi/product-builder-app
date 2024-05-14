@@ -12,7 +12,7 @@ import {
   ArrowLeftIcon,
   ArrowRightIcon } from "@shopify/polaris-icons";
 
-export default function MenuItemTool({ menu, level, parent }) {
+export default function MenuItemTool({ menu, level, parent, num_index }) {
   const { editFn } = useMenuBuilderContextV2();
   const { 
     addNextItem_Fn, 
@@ -36,10 +36,22 @@ export default function MenuItemTool({ menu, level, parent }) {
 
   const onAddNextItem = useCallback(() => {
     addNextItem_Fn(menu, level)
+    setPopoverActive(false);
   })
 
   const onAddChildren = useCallback(() => {
     addChildren_Fn(menu, level)
+    setPopoverActive(false);
+  })
+
+  const onRemoveItem = useCallback(() => {
+    removeItem_Fn(menu, level);
+    setPopoverActive(false);
+  })
+
+  const onMoveItem = useCallback((step) => {
+    moveItem_Fn(menu, level, step);
+    setPopoverActive(false);
   })
 
   useEffect(() => {
@@ -48,25 +60,29 @@ export default function MenuItemTool({ menu, level, parent }) {
       actionMove__Up: (() => {
         return { 
           content: `${ level == 0 ? 'Move Left' : 'Move Up' }`, 
-          icon: (level == 0 ? ArrowLeftIcon : ArrowUpIcon) 
+          icon: (level == 0 ? ArrowLeftIcon : ArrowUpIcon),
+          onAction: () => onMoveItem(-1)
         }
       })(),
       actionMove__Down: (() => {
         return { 
           content: `${ level == 0 ? 'Move Right' : 'Move Down' }`, 
-          icon: (level == 0 ? ArrowRightIcon : ArrowDownIcon) 
+          icon: (level == 0 ? ArrowRightIcon : ArrowDownIcon),
+          onAction: () => onMoveItem(1)
         }
       })(),
       actionAddNextItem: (() => {
-        return {
+        return (([
+          '__BLOCK_BRAND__', 
+        ].includes(menu?.type) == false) ? {
           content: 'Add Next Item', 
           icon: NoteAddIcon,
           onAction: onAddNextItem
-        }
+        } : false)
       })(),
       actionAddChildren: (() => {
         // console.log(['__BLOCK_MENU_IMAGE_ITEM__'].includes(menu?.type));
-        if(menu?.children) {
+        if(menu?.children && menu?.children.length > 0) {
           return false;
         }
 
@@ -83,13 +99,13 @@ export default function MenuItemTool({ menu, level, parent }) {
       actionDeleteItem: (() => {
         return {
           content: 'Remove', 
-          icon: DeleteIcon 
+          icon: DeleteIcon,
+          onAction: onRemoveItem,
         }
-      })
+      })()
     }
     
-    
-    console.log(actions);
+    // console.log(actions);
     setAcctionList(actions);
 
   }, [menu])
