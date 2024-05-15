@@ -55,4 +55,27 @@ export default class ApiForApp {
     const res = await this.__request(`/content/item/product/${ productID }`, {}, 'DELETE');
     return res;
   }
+
+  /**
+   * Menu Builder API
+   */
+  async saveMenuBuilder(data) {
+    data.store_id = this.__STORE_ID; // push store id 
+    const res = await this.__request('/content/item/menubuilder', {
+      data
+    }, 'POST');
+    return res;
+  }
+
+  async loadMenuBuilderById(menuID) {
+    try {
+      const res = await this.__request(`/content/item/menubuilder/${ menuID }`);
+      return res;
+    } catch(err) {
+      return false
+    }
+  }
+  /**
+   * End Menu Builder API
+   */
 }

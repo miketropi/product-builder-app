@@ -11,5 +11,6 @@
     "/product-builder-app--dev-env/extensions/theme-extension/blocks/star_rating.liquid": "/product-builder-app--dev-env/extensions/theme-extension/blocks/star_rating.liquid",
     "/product-builder-app--dev-env/extensions/theme-extension/locales/en.default.json": "/product-builder-app--dev-env/extensions/theme-extension/locales/en.default.json",
     "/product-builder-app--dev-env/extensions/theme-extension/shopify.extension.toml": "/product-builder-app--dev-env/extensions/theme-extension/shopify.extension.toml",
-    "/product-builder-app--dev-env/extensions/theme-extension/snippets/stars.liquid": "/product-builder-app--dev-env/extensions/theme-extension/snippets/stars.liquid"
+    "/product-builder-app--dev-env/extensions/theme-extension/snippets/stars.liquid": "/product-builder-app--dev-env/extensions/theme-extension/snippets/stars.liquid",
+    "/product-builder-app--dev-env/extensions/theme-extension/blocks/menu_builder.liquid": "/product-builder-app--dev-env/extensions/theme-extension/blocks/menu_builder.liquid"
 }

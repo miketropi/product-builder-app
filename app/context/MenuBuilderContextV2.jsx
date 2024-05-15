@@ -5,22 +5,45 @@ import { produce } from 'immer';
 import { v4 as uuidv4 } from 'uuid';
 import { subscribe, unsubscribe } from '../libs/events';
 
+import { useOutletContext } from "@remix-run/react";
+import ApiForApp from "../libs/api";
+
 const MenuBuilderContextV2 = createContext(null);
 
-const MenuBuilderContextV2_Provider = ({ children }) => {
-  const [menuData, setMenuData] = useState(menuDataInit);
+const MenuBuilderContextV2_Provider = ({ children, store, menu_id }) => {
+  const { APP_API_KEY, APP_API_ENDPOINT } = useOutletContext();
+  const API_FA = useRef(null);
+  
+  const [menuData, setMenuData] = useState([]);
   const [currentItemEdit, setCurrentItemEdit] = useState(null);
   const [showAllSub, setShowAllSub] = useState(null);
   const [isHoverKeys, setIsHoverKeys] = useState([]);
   const [modalSelectTemplateActive, setModalSelectTemplateActive] = useState(false);
+  const [menuTitle, setMenuTitle] = useState('');
+  const [__menuID, set__MenuID] = useState(null);
 
   const _event = useRef(null);
   const modalSelectTemplateActiveRef = useRef(null);
 
-  useEffect(() => {
-    return () => {
-      
+  const loadData = async (menu_id) => {
+    if(menu_id == 'new') {
+      setMenuData(menuDataInit)
+    } else {
+      const res = await API_FA.current.loadMenuBuilderById(menu_id);
+      if(res == false) {
+        alert('Error: Failed to load!')
+      }
+
+      const { _id, store_id, title, status, builder_data } = res;
+      setMenuData(builder_data);
+      set__MenuID(_id);
+      setMenuTitle(title);
     }
+  }
+
+  useEffect(() => {
+    API_FA.current = new ApiForApp(store?.id, APP_API_KEY, APP_API_ENDPOINT);
+    loadData(menu_id);
   }, [])
 
   const addNextItem_Fn = (currentItem, level = 0) => {
@@ -276,17 +299,39 @@ const MenuBuilderContextV2_Provider = ({ children }) => {
     }))
   }, [])
 
+  const save_Fn = async () => {
+    // console.log(menuData);
+
+    // __menuID, set__MenuID
+    let data = {
+      title: 'New Menu__Test',
+      builder_data: menuData,
+      status: true,
+    }
+
+    if(__menuID) {
+      data._id = __menuID;
+    }
+    
+    const res = await API_FA.current.saveMenuBuilder(data);
+    set__MenuID(res._id);
+    // console.log(res);
+  }
+
   const value = {
+    API_FA,
     menuData, setMenuData,
     currentItemEdit, setCurrentItemEdit,
     showAllSub, setShowAllSub,
     isHoverKeys, setIsHoverKeys,
+    menuTitle, setMenuTitle,
     modalSelectTemplateActive, setModalSelectTemplateActive, modalSelectTemplateActiveRef, _event,
     editFn: {
       addNextItem_Fn, 
       addChildren_Fn,
       removeItem_Fn,
-      moveItem_Fn
+      moveItem_Fn,
+      save_Fn
     }
   }
 

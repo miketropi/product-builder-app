@@ -442,18 +442,6 @@ export const menuDataInit = [
     __key: uuidv4(),
     name: 'Best Sellers', 
     url: '#',
-    children: [
-      { 
-        __key: uuidv4(),
-        name: 'Best Sellers', 
-        url: '#' 
-      },
-      { 
-        __key: uuidv4(),
-        name: 'Kitchen Sinks', 
-        url: '#' 
-      },
-    ]
   },
   { 
     __key: uuidv4(),
