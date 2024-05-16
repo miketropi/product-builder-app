@@ -374,3 +374,444 @@
     width: 100%;
   }
 }
+.section-header ~ .shopify-section-group-header-group {
+  z-index: 9;
+}
+
+ul.menu-builder {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  position: relative;
+  background: #141D24;
+}
+ul.menu-builder .menu-builder__sub {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  background: white;
+  visibility: hidden;
+  opacity: 0;
+  z-index: -1;
+}
+ul.menu-builder .menu-builder__sub .__menu-item {
+  border-bottom: solid 1px #ECECEC;
+}
+ul.menu-builder .menu-builder__sub .__menu-item a {
+  color: #19242D;
+  padding: 20px 16px;
+  display: block;
+  text-decoration: none;
+  transition: 0.3s ease;
+  -webkit-transition: 0.3s ease;
+}
+ul.menu-builder .menu-builder__sub .__menu-item a .dropdown-icon svg {
+  fill: #19242D;
+}
+ul.menu-builder .menu-builder__sub .__menu-item:hover > a, ul.menu-builder .menu-builder__sub .__menu-item.__is-hover > a {
+  background: #004F59;
+  color: white;
+}
+ul.menu-builder .menu-builder__sub .__menu-item:hover > a .dropdown-icon svg, ul.menu-builder .menu-builder__sub .__menu-item.__is-hover > a .dropdown-icon svg {
+  fill: white;
+}
+ul.menu-builder .menu-builder__sub.__type__MEGASHOP__ {
+  width: 332px;
+}
+ul.menu-builder .menu-builder__sub.__type__MEGASHOP__ > li.__menu-item:hover .__type__MEGASHOP_SUBITEM__ .menu-builder__sub, ul.menu-builder .menu-builder__sub.__type__MEGASHOP__ > li.__menu-item.__is-hover .__type__MEGASHOP_SUBITEM__ .menu-builder__sub {
+  opacity: 1 !important;
+  visibility: visible !important;
+  position: relative !important;
+}
+ul.menu-builder .__show-all-sub .menu-builder__sub {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+ul.menu-builder > li.__menu-item > a {
+  display: flex;
+  padding: 25px 32px;
+  list-style: none;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.5);
+  transition: 0.3s ease;
+  -webkit-transition: 0.3s ease;
+}
+ul.menu-builder > li.__menu-item:hover > a, ul.menu-builder > li.__menu-item.__is-hover > a {
+  background: white;
+  color: #19242D;
+}
+ul.menu-builder > li.__menu-item:hover > a .__menu-icon svg, ul.menu-builder > li.__menu-item.__is-hover > a .__menu-icon svg {
+  fill: #19242D;
+}
+ul.menu-builder li.__menu-item {
+  list-style: none;
+  transition: 0.3s ease;
+  -webkit-transition: 0.3s ease;
+}
+ul.menu-builder li.__menu-item:hover > .menu-builder__sub, ul.menu-builder li.__menu-item.__is-hover > .menu-builder__sub {
+  visibility: visible;
+  opacity: 1;
+  z-index: 9;
+}
+ul.menu-builder li.__menu-item > a .__menu-icon {
+  margin-right: 8px;
+}
+ul.menu-builder li.__menu-item > a .__menu-icon svg {
+  fill: rgba(255, 255, 255, 0.5);
+}
+ul.menu-builder li.__menu-item > a .__menu-item-name {
+  display: flex;
+  align-items: center;
+}
+ul.menu-builder li.__menu-item > a .__menu-item-name .dropdown-icon {
+  width: 18px;
+  margin-left: 0.3em;
+  line-height: 0;
+}
+
+.menu-builder__sub {
+  width: 280px;
+}
+
+.__menu-item-tool {
+  position: relative;
+  z-index: 15;
+}
+.__menu-item-tool .__button-toggle-actions {
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  padding: 0.2em;
+  background: #ff9800;
+  line-height: 0;
+  border-radius: 50px;
+}
+.__menu-item-tool .__button-toggle-actions svg {
+  fill: white;
+}
+
+ul.__type__MEGASHOP_SUBITEM__ {
+  left: 100%;
+  top: 0;
+  width: 720px;
+  padding-bottom: 40px !important;
+  display: flex;
+  flex-wrap: wrap;
+  background: #DADDDE !important;
+}
+ul.__type__MEGASHOP_SUBITEM__ .menu-builder__sub {
+  background: transparent !important;
+}
+ul.__type__MEGASHOP_SUBITEM__ > .__menu-item-banner {
+  width: 100%;
+  height: 180px;
+  position: relative;
+}
+ul.__type__MEGASHOP_SUBITEM__ > .__menu-item-banner:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(0, 13, 15);
+  background: linear-gradient(9deg, rgb(0, 13, 15) 0%, rgba(0, 14, 15, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000d0f",endColorstr="#000e0f",GradientType=1);
+}
+ul.__type__MEGASHOP_SUBITEM__ > .__menu-item-banner .__menu-item-banner__entry {
+  padding: 40px;
+  display: flex;
+  height: 100%;
+  align-items: end;
+  justify-content: space-between;
+  position: relative;
+  z-index: 3;
+}
+ul.__type__MEGASHOP_SUBITEM__ > .__menu-item-banner .__menu-item-banner__entry .__parent-name {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+}
+ul.__type__MEGASHOP_SUBITEM__ > .__menu-item-banner .__menu-item-banner__entry .__custom-link a {
+  padding: 0;
+  color: white;
+}
+ul.__type__MEGASHOP_SUBITEM__ > .__menu-item-banner .__menu-item-banner__entry .__custom-link a svg {
+  fill: white;
+}
+ul.__type__MEGASHOP_SUBITEM__ > li.__menu-item {
+  padding: 40px;
+  box-sizing: border-box;
+  width: 50%;
+}
+ul.__type__MEGASHOP_SUBITEM__ .menu-builder__sub {
+  position: relative !important;
+}
+ul.__type__MEGASHOP_SUBITEM__ .__menu-item a {
+  padding: 16px 0 !important;
+}
+ul.__type__MEGASHOP_SUBITEM__ .__menu-item:hover a, ul.__type__MEGASHOP_SUBITEM__ .__menu-item.__is-hover a {
+  background: none !important;
+}
+li.__menu-item_type____BLOCK_MENU__ {
+  padding: 25px 40px 0 !important;
+  border-bottom: none !important;
+}
+li.__menu-item_type____BLOCK_MENU__ > a {
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #004F59 !important;
+  border-bottom: 2px solid #004F59 !important;
+}
+
+.__type__BLOCK_MENU__ li.__menu-item {
+  border-bottom-color: #c0c0c0 !important;
+}
+.__type__BLOCK_MENU__ li.__menu-item:hover a, .__type__BLOCK_MENU__ li.__menu-item.__is-hover a {
+  color: #004F59 !important;
+  background: none !important;
+}
+
+li.__menu-item_type____MEGA__:hover .menu-builder__sub, li.__menu-item_type____MEGA__.__is-hover .menu-builder__sub {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+li.__menu-item_type____MEGA__ ul.__type__MEGA__ {
+  left: 0px !important;
+  width: 100% !important;
+  display: flex;
+  flex-wrap: wrap;
+}
+li.__menu-item_type____MEGA__ ul.__type__MEGA__ .menu-builder__sub {
+  position: relative !important;
+}
+
+ul.__type__BLOCK_BRAND__ {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 33px 12px;
+  padding: 24px !important;
+  width: 100% !important;
+}
+
+.design-mode .__menu-item_type____BLOCK_BRAND__:hover, .design-mode .__menu-item_type____BLOCK_BRAND__.__is-hover {
+  outline: solid 1px #19242D;
+}
+
+li.__menu-item_type____BLOCK_BRAND__ {
+  width: 100%;
+}
+
+li.__menu-item_type____BLOCK_BRAND_ITEM__ {
+  border-bottom: none !important;
+}
+li.__menu-item_type____BLOCK_BRAND_ITEM__:hover a, li.__menu-item_type____BLOCK_BRAND_ITEM__.__is-hover a {
+  background: #eee !important;
+  color: #19242D !important;
+}
+li.__menu-item_type____BLOCK_BRAND_ITEM__ > a {
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+}
+li.__menu-item_type____BLOCK_BRAND_ITEM__ > a .__brand-image img {
+  width: 100%;
+}
+li.__menu-item_type____BLOCK_BRAND_ITEM__ > a .__menu-item-name {
+  display: inline-block !important;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+li.__menu-item_type____BLOCK_MENU_IMAGE__ {
+  width: 100%;
+  padding: 4px;
+  border-bottom: none !important;
+}
+li.__menu-item_type____BLOCK_MENU_IMAGE__ > a {
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #004F59 !important;
+  border-bottom: 2px solid rgba(0, 79, 89, 0.2117647059) !important;
+  padding: 16px 0 !important;
+}
+li.__menu-item_type____BLOCK_MENU_IMAGE__:hover a, li.__menu-item_type____BLOCK_MENU_IMAGE__.__is-hover a {
+  background: none !important;
+}
+li.__menu-item_type____BLOCK_MENU_IMAGE__.__size-50 {
+  width: 50%;
+}
+li.__menu-item_type____BLOCK_MENU_IMAGE__.__size-50 .__type__BLOCK_MENU_IMAGE__ .__menu-item_type____BLOCK_MENU_IMAGE_ITEM__ {
+  width: 25%;
+}
+li.__menu-item_type____BLOCK_MENU_IMAGE__.__size-fullwidth .__type__BLOCK_MENU_IMAGE__ .__menu-item_type____BLOCK_MENU_IMAGE_ITEM__ {
+  width: 10%;
+}
+li.__menu-item_type____BLOCK_MENU_IMAGE__.__size-small {
+  width: 20%;
+}
+li.__menu-item_type____BLOCK_MENU_IMAGE__.__size-small .__type__BLOCK_MENU_IMAGE__ .__menu-item_type____BLOCK_MENU_IMAGE_ITEM__ {
+  width: 50%;
+}
+li.__menu-item_type____BLOCK_MENU_IMAGE__.__size-medium {
+  width: 40%;
+}
+li.__menu-item_type____BLOCK_MENU_IMAGE__.__size-medium .__type__BLOCK_MENU_IMAGE__ .__menu-item_type____BLOCK_MENU_IMAGE_ITEM__ {
+  width: 25%;
+}
+li.__menu-item_type____BLOCK_MENU_IMAGE__.__size-large {
+  width: 80%;
+}
+li.__menu-item_type____BLOCK_MENU_IMAGE__.__size-large .__type__BLOCK_MENU_IMAGE__ .__menu-item_type____BLOCK_MENU_IMAGE_ITEM__ {
+  width: 12.5%;
+}
+
+ul.__type__BLOCK_MENU_IMAGE__ {
+  display: flex;
+  background: none !important;
+  width: 100%;
+}
+li.__menu-item_type____BLOCK_MENU_IMAGE_ITEM__ {
+  border-bottom: none !important;
+}
+li.__menu-item_type____BLOCK_MENU_IMAGE_ITEM__ > a {
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+  text-align: center;
+  line-height: normal;
+  padding: 20px 12px !important;
+}
+li.__menu-item_type____BLOCK_MENU_IMAGE_ITEM__ > a .__image {
+  line-height: 0;
+  margin-bottom: 12px;
+}
+li.__menu-item_type____BLOCK_MENU_IMAGE_ITEM__ > a .__menu-item-name {
+  display: inline-block !important;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+li.__menu-item_type____BLOCK_MENU_IMAGE_ITEM__:hover > a, li.__menu-item_type____BLOCK_MENU_IMAGE_ITEM__.__is-hover > a {
+  color: #004F59 !important;
+}
+
+ul.__type__MEGA__ .__container-item {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+ul.__type__MEGA__ .__container-item .__container-item-inner {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+ul.__type__MEGA__ .__container-item .__container-item__button-custom-link {
+  border-top: solid 1px #E2E2E2;
+  width: 100%;
+}
+ul.__type__MEGA__ .__container-item .__container-item__button-custom-link > a {
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  color: #19242D;
+  transition: 0.3s ease;
+  -webkit-transition: 0.3s ease;
+  text-decoration: none;
+}
+ul.__type__MEGA__ .__container-item .__container-item__button-custom-link > a .__menu-icon {
+  width: 18px;
+  line-height: 0;
+}
+ul.__type__MEGA__ .__container-item .__container-item__button-custom-link > a .__menu-icon svg {
+  width: 100%;
+  fill: #19242D;
+}
+ul.__type__MEGA__ .__container-item .__container-item__button-custom-link > a:hover {
+  background: #004F59;
+  color: white;
+}
+ul.__type__MEGA__ .__container-item .__container-item__button-custom-link > a:hover svg {
+  fill: white;
+}
+
+li.__menu-item_type____MEGASHOP__ > a .__menu-item-name .dropdown-icon,
+li.__menu-item_type____BLOCK_MENU__ > a .__menu-item-name .dropdown-icon,
+li.__menu-item_type____BLOCK_BRAND__ > a .__menu-item-name .dropdown-icon,
+li.__menu-item_type____BLOCK_MENU_IMAGE__ > a .__menu-item-name .dropdown-icon {
+  display: none;
+}
+
+.sub-menu-options-template {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 30;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.1s ease;
+  -webkit-transition: 0.1s ease;
+}
+.sub-menu-options-template.__open {
+  visibility: visible;
+  opacity: 1;
+}
+.sub-menu-options-template__inner {
+  width: 500px;
+  background: white;
+  padding: 2em;
+  border-radius: 1px;
+}
+.sub-menu-options-template .__heading {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+.sub-menu-options-template .template-item {
+  margin-bottom: 1em;
+  cursor: pointer;
+}
+.sub-menu-options-template .template-item .Polaris-Badge {
+  margin-left: 0.5em;
+}
+.sub-menu-options-template .template-item img {
+  max-width: 100%;
+}
+.sub-menu-options-template .template-item fieldset {
+  border: solid 1px #ddd;
+  line-height: normal;
+}
+.sub-menu-options-template .template-item fieldset legend {
+  padding: 0.5em 1em;
+}
+.sub-menu-options-template .template-item fieldset img {
+  border-radius: 1px;
+  border: solid 1px #ececec;
+}
+.sub-menu-options-template .template-item.__active fieldset {
+  border-color: black;
+}
+.sub-menu-options-template .template-item.__active fieldset legend {
+  font-weight: bold;
+}
+.sub-menu-options-template .__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+li.__menu-item_type____BLOCK_BRAND__ > a {
+  display: none !important;
+}

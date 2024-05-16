@@ -16,7 +16,6 @@ export const links = () => [
 export const loader = async ({ params, request }) => {
   const { admin } = await authenticate.admin(request);
   const store = await getStore(admin.graphql);
-  console.log(params)
   return { ...params, store }
 }
 

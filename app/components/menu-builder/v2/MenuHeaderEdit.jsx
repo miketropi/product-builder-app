@@ -1,8 +1,10 @@
 import { Button } from "@shopify/polaris";
 import Heading from "../Heading";
 import { useMenuBuilderContextV2 } from "../../../context/MenuBuilderContextV2";
+import { useNavigate } from "@remix-run/react";
 
 export default function MenuHeaderEdit({ menu_id }) {
+  const navigate = useNavigate();
   const { editFn } = useMenuBuilderContextV2();
   const { save_Fn } = editFn;
 
@@ -10,7 +12,7 @@ export default function MenuHeaderEdit({ menu_id }) {
     backButtonEnable={ true }
     title={ 'Menu Builder' } 
     backFn={ e => {
-      console.log('back...!')
+      navigate("/app/menu-builder")
     } } 
     buttons={ [
       <Button variant="primary" onClick={ save_Fn }>{

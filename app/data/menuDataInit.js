@@ -127,6 +127,7 @@ const megaShopChildren = [
     __key: uuidv4(),
     name: 'Basins',
     url: '#',
+    type: '__MEGASHOP_SUBITEM__',
   },
   {
     __key: uuidv4(),

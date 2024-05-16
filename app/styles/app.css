@@ -475,11 +475,6 @@ body p, body h1, body h2, body h3, body h4, body h5, body h6, body input, body t
   grid-template-columns: 300px 1fr;
   gap: 3em;
 }
-.menu-builder-editor_v2 .__sidebar {
-  background: white;
-  padding: 2em;
-}
-
 .menu-design {
   display: block;
   width: 100%;
@@ -504,6 +499,7 @@ body p, body h1, body h2, body h3, body h4, body h5, body h6, body input, body t
 }
 
 .__menu-edit-item {
+  background: white;
   border-radius: 8px;
   border: solid 1px #ddd;
   padding: 1em;
@@ -778,6 +774,12 @@ li.__menu-item_type____BLOCK_MENU_IMAGE__:hover a, li.__menu-item_type____BLOCK_
 li.__menu-item_type____BLOCK_MENU_IMAGE__.__size-fullwidth .__type__BLOCK_MENU_IMAGE__ .__menu-item_type____BLOCK_MENU_IMAGE_ITEM__ {
   width: 10%;
 }
+li.__menu-item_type____BLOCK_MENU_IMAGE__.__size-50 {
+  width: 50%;
+}
+li.__menu-item_type____BLOCK_MENU_IMAGE__.__size-50 .__type__BLOCK_MENU_IMAGE__ .__menu-item_type____BLOCK_MENU_IMAGE_ITEM__ {
+  width: 25%;
+}
 li.__menu-item_type____BLOCK_MENU_IMAGE__.__size-small {
   width: 20%;
 }
@@ -929,6 +931,18 @@ li.__menu-item_type____BLOCK_MENU_IMAGE__ > a .__menu-item-name .dropdown-icon {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
+}
+
+.fieldset-field-ui {
+  border-radius: 8px;
+  border: solid 1px #ddd;
+  padding: 1em;
+  margin-bottom: 1.5em;
+  background: white;
+}
+.fieldset-field-ui legend {
+  padding: 0 0.5em;
+  font-weight: bold;
 }
 
 /*# sourceMappingURL=app.css.map */

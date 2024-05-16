@@ -773,16 +773,143 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ MenuBuilderApp)
 /* harmony export */ });
-/* harmony import */ var _context_MenuBuilderContext__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../context/MenuBuilderContext */ "./src/context/MenuBuilderContext.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _context_MenuBuilderContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../context/MenuBuilderContext */ "./src/context/MenuBuilderContext.js");
+/* harmony import */ var _MenuIcon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./MenuIcon */ "./src/components/menu-builder/MenuIcon.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
 
 
 function MenuBuilderApp() {
-  var _useMenuBuilderContex = (0,_context_MenuBuilderContext__WEBPACK_IMPORTED_MODULE_0__.useMenuBuilderContext)(),
+  var _useMenuBuilderContex = (0,_context_MenuBuilderContext__WEBPACK_IMPORTED_MODULE_1__.useMenuBuilderContext)(),
     version = _useMenuBuilderContex.version,
     menuData = _useMenuBuilderContex.menuData;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-    children: JSON.stringify(menuData)
+  var renderMenu = function renderMenu(menu) {
+    var _parent_item$config, _parent_item$config3, _parent_item$config4, _parent_item$config5;
+    var lv = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+    var __parent_item = arguments.length > 2 ? arguments[2] : undefined;
+    lv = lv === null ? 0 : lv += 1;
+    var classesUl = lv == 0 ? ['menu-builder'] : ['menu-builder__sub', "sub-lv__".concat(lv), __parent_item !== null && __parent_item !== void 0 && __parent_item.type ? "__type".concat(__parent_item.type) : ''];
+    var __li = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+      children: [(__parent_item === null || __parent_item === void 0 ? void 0 : __parent_item.type) && __parent_item.type == '__MEGASHOP_SUBITEM__' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        className: "__menu-item-banner",
+        style: {
+          background: "url(".concat(__parent_item.config.background_image, ") no-repeat center center / cover, #333")
+        },
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+          className: "__menu-item-banner__entry",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+            className: "__parent-name",
+            children: __parent_item.name
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+            className: "__custom-link",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
+              href: __parent_item.config.custom_url,
+              children: __parent_item.config.custom_text
+            })
+          })]
+        })
+      }), menu.map(function (item, __i_index) {
+        var _item$config;
+        var __key = item.__key,
+          name = item.name,
+          url = item.url,
+          children = item.children,
+          type = item.type,
+          icon = item.icon;
+        var size = item !== null && item !== void 0 && (_item$config = item.config) !== null && _item$config !== void 0 && _item$config.containerSize ? "__size-".concat(item.config.containerSize) : '';
+        var liClasses = ['__menu-item', "__item-lv-".concat(lv), size, item.type ? "__menu-item_type__".concat(type) : ''];
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("li", {
+          className: liClasses.join(' '),
+          "data-id": __key,
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("a", {
+            href: url,
+            children: [icon ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_MenuIcon__WEBPACK_IMPORTED_MODULE_2__["default"], {
+              source: icon
+            }) : '', ['__BLOCK_BRAND_ITEM__', '__BLOCK_MENU_IMAGE_ITEM__'].includes(type) && (item === null || item === void 0 ? void 0 : item.image) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+              className: function (__type) {
+                var __c = {
+                  '__BLOCK_BRAND_ITEM__': '__brand-image',
+                  '__BLOCK_MENU_IMAGE_ITEM__': '__image'
+                };
+                return __c[__type];
+              }(type),
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
+                src: item.image
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
+              className: "__menu-item-name",
+              children: [name, children && children.length > 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_MenuIcon__WEBPACK_IMPORTED_MODULE_2__["default"], {
+                className: 'dropdown-icon',
+                source: 'arrow_down'
+              }) : '']
+            })]
+          }), children && children.length > 0 && renderMenu(children, lv, item)]
+        }, __key);
+      })]
+    });
+    var containerStyle = {};
+    if (__parent_item !== null && __parent_item !== void 0 && (_parent_item$config = __parent_item.config) !== null && _parent_item$config !== void 0 && _parent_item$config.container_padding) {
+      var _parent_item$config2;
+      containerStyle.padding = __parent_item === null || __parent_item === void 0 || (_parent_item$config2 = __parent_item.config) === null || _parent_item$config2 === void 0 ? void 0 : _parent_item$config2.container_padding;
+    }
+    var __ul = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("ul", {
+      className: classesUl.join(' '),
+      children: (__parent_item === null || __parent_item === void 0 || (_parent_item$config3 = __parent_item.config) === null || _parent_item$config3 === void 0 ? void 0 : _parent_item$config3.container) == true ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        className: "__container-item",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+          className: "__container-item-inner",
+          style: containerStyle,
+          children: __li
+        }), (__parent_item === null || __parent_item === void 0 || (_parent_item$config4 = __parent_item.config) === null || _parent_item$config4 === void 0 ? void 0 : _parent_item$config4.container_bottom_custom_text) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+          className: "__container-item__button-custom-link",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("a", {
+            href: __parent_item === null || __parent_item === void 0 || (_parent_item$config5 = __parent_item.config) === null || _parent_item$config5 === void 0 ? void 0 : _parent_item$config5.container_bottom_custom_url,
+            children: [__parent_item.config.container_bottom_custom_text, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_MenuIcon__WEBPACK_IMPORTED_MODULE_2__["default"], {
+              source: 'arrow_next'
+            })]
+          })
+        })]
+      }) : __li
+    });
+    return __ul;
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+    className: "menu-builder-container",
+    children: menuData && menuData.length > 0 && renderMenu(menuData)
+  });
+}
+
+/***/ }),
+
+/***/ "./src/components/menu-builder/MenuIcon.jsx":
+/*!**************************************************!*\
+  !*** ./src/components/menu-builder/MenuIcon.jsx ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ MenuIcon)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+var __ICONS = {
+  'HB': "<svg width=\"12\" height=\"12\" viewBox=\"0 0 12 12\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M11.88 0H0.12C0.054 0 0 0.0613636 0 0.136364V1.22727C0 1.30227 0.054 1.36364 0.12 1.36364H11.88C11.946 1.36364 12 1.30227 12 1.22727V0.136364C12 0.0613636 11.946 0 11.88 0ZM11.88 10.6364H0.12C0.054 10.6364 0 10.6977 0 10.7727V11.8636C0 11.9386 0.054 12 0.12 12H11.88C11.946 12 12 11.9386 12 11.8636V10.7727C12 10.6977 11.946 10.6364 11.88 10.6364ZM11.88 5.31818H0.12C0.054 5.31818 0 5.37955 0 5.45455V6.54545C0 6.62045 0.054 6.68182 0.12 6.68182H11.88C11.946 6.68182 12 6.62045 12 6.54545V5.45455C12 5.37955 11.946 5.31818 11.88 5.31818Z\"/> </svg>",
+  'arrow_down': "<svg viewBox=\"0 0 1024 1024\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M759.2 419.8L697.4 358 512 543.4 326.6 358l-61.8 61.8L512 667z\"/></svg>",
+  'arrow_next': "<svg viewBox=\"0 0 1024 1024\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M419.3 264.8l-61.8 61.8L542.9 512 357.5 697.4l61.8 61.8L666.5 512z\"/></svg>"
+};
+function MenuIcon(_ref) {
+  var source = _ref.source,
+    className = _ref.className;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
+    className: ['__menu-icon', className].join(' '),
+    dangerouslySetInnerHTML: {
+      __html: __ICONS[source]
+    }
   });
 }
 

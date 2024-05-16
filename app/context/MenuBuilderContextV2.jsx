@@ -21,13 +21,16 @@ const MenuBuilderContextV2_Provider = ({ children, store, menu_id }) => {
   const [modalSelectTemplateActive, setModalSelectTemplateActive] = useState(false);
   const [menuTitle, setMenuTitle] = useState('');
   const [__menuID, set__MenuID] = useState(null);
+  const [menuBuilderList, setMenuBuilderList] = useState([]);
 
   const _event = useRef(null);
   const modalSelectTemplateActiveRef = useRef(null);
 
   const loadData = async (menu_id) => {
+    
     if(menu_id == 'new') {
-      setMenuData(menuDataInit)
+      setMenuData(menuDataInit); 
+      setMenuTitle('New Menu');
     } else {
       const res = await API_FA.current.loadMenuBuilderById(menu_id);
       if(res == false) {
@@ -304,7 +307,7 @@ const MenuBuilderContextV2_Provider = ({ children, store, menu_id }) => {
 
     // __menuID, set__MenuID
     let data = {
-      title: 'New Menu__Test',
+      title: menuTitle,
       builder_data: menuData,
       status: true,
     }
@@ -320,6 +323,7 @@ const MenuBuilderContextV2_Provider = ({ children, store, menu_id }) => {
 
   const value = {
     API_FA,
+    menuBuilderList, setMenuBuilderList,
     menuData, setMenuData,
     currentItemEdit, setCurrentItemEdit,
     showAllSub, setShowAllSub,

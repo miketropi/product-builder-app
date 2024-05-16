@@ -75,6 +75,12 @@ export default class ApiForApp {
       return false
     }
   }
+
+  async getMenuBuilderList(paged = 1, limit = 20) {
+    let skip = (paged - 1) * limit;
+    const res = await this.__request(`/content/items/menubuilder?limit=${ limit }&skip=${ skip }&filter={"store_id": "${ this.__STORE_ID }"}`);
+    return res;
+  }
   /**
    * End Menu Builder API
    */
