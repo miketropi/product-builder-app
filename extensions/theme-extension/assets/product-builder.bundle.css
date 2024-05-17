@@ -815,3 +815,67 @@ li.__menu-item_type____BLOCK_MENU_IMAGE__ > a .__menu-item-name .dropdown-icon {
 li.__menu-item_type____BLOCK_BRAND__ > a {
   display: none !important;
 }
+
+.menu-builder-mobi-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 99;
+  background: white;
+  height: 100%;
+  overflow: auto;
+  width: 100%;
+  background: rgba(1, 1, 1, 0.1);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.menu-builder-mobi__inner {
+  background: white;
+}
+
+ul.menu-builder-mobi {
+  margin: 0;
+  padding: 0;
+  width: 390px;
+  max-width: 100%;
+}
+ul.menu-builder-mobi > li.__menu-item {
+  border-bottom: solid 1px #ECECEC;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+ul.menu-builder-mobi > li.__menu-item .dropdown-icon {
+  display: block;
+  width: 20px;
+  line-height: 0;
+  padding: 16px;
+  box-sizing: content-box;
+  height: 100%;
+  position: relative;
+  cursor: pointer;
+}
+ul.menu-builder-mobi > li.__menu-item .dropdown-icon svg {
+  width: 100%;
+  opacity: 0.5;
+}
+ul.menu-builder-mobi > li.__menu-item > a {
+  display: block;
+  padding: 16px;
+  line-height: normal;
+  color: #19242D;
+  text-decoration: none;
+}
+ul.menu-builder-mobi > li.__menu-item.__back-item > a {
+  display: flex;
+  align-items: center;
+}
+ul.menu-builder-mobi > li.__menu-item.__back-item > a .__menu-icon {
+  width: 20px;
+  line-height: normal;
+  line-height: 0;
+  margin-right: 0.2em;
+  opacity: 0.5;
+}
