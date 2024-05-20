@@ -879,3 +879,40 @@ ul.menu-builder-mobi > li.__menu-item.__back-item > a .__menu-icon {
   margin-right: 0.2em;
   opacity: 0.5;
 }
+
+.__mobi-menu-banner {
+  padding: 16px;
+  min-height: 96px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+}
+.__mobi-menu-banner:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: rgb(0, 13, 15);
+  background: linear-gradient(9deg, rgb(0, 13, 15) 0%, rgba(0, 13, 15, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000d0f",endColorstr="#000d0f",GradientType=1);
+}
+.__mobi-menu-banner > * {
+  margin: 0;
+  line-height: normal;
+  position: relative;
+  z-index: 3;
+}
+.__mobi-menu-banner h4 {
+  font-size: 1.3em;
+  font-weight: bold;
+  color: white;
+}
+.__mobi-menu-banner a {
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+}

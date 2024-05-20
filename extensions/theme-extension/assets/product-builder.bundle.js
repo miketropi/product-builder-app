@@ -949,13 +949,15 @@ function MenuMobi() {
     setMobiItemsCurrent = _useMenuBuilderContex.setMobiItemsCurrent,
     jumpDeep = _useMenuBuilderContex.jumpDeep,
     onJumpMobiNav_Fn = _useMenuBuilderContex.onJumpMobiNav_Fn,
-    onBack_Fn = _useMenuBuilderContex.onBack_Fn;
+    onBack_Fn = _useMenuBuilderContex.onBack_Fn,
+    parentItem = _useMenuBuilderContex.parentItem;
   var wrapEl = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     wrapEl.current = document.createElement('div');
     document.body.appendChild(wrapEl.current);
   }, []);
   var renderMenuMobi = function renderMenuMobi(menu) {
+    var _parentItem$config, _parentItem$config2, _parentItem$config3, _parentItem$config4;
     var lv = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
     var __parent_item = arguments.length > 2 ? arguments[2] : undefined;
     lv = lv === null ? 0 : lv += 1;
@@ -973,7 +975,22 @@ function MenuMobi() {
             source: 'arrow_back'
           }), " Back"]
         })
+      }), ['__MEGASHOP_SUBITEM__'].includes(parentItem === null || parentItem === void 0 ? void 0 : parentItem.type) && (parentItem === null || parentItem === void 0 ? void 0 : parentItem.config) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("li", {
+        className: ['__custom-menu-item', "__custom-type__".concat(parentItem === null || parentItem === void 0 ? void 0 : parentItem.type)].join(' '),
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+          className: "__mobi-menu-banner",
+          style: {
+            background: "url(".concat(parentItem === null || parentItem === void 0 || (_parentItem$config = parentItem.config) === null || _parentItem$config === void 0 ? void 0 : _parentItem$config.background_image, ") no-repeat, center center / cover, #333")
+          },
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
+            children: parentItem === null || parentItem === void 0 ? void 0 : parentItem.name
+          }), (parentItem === null || parentItem === void 0 || (_parentItem$config2 = parentItem.config) === null || _parentItem$config2 === void 0 ? void 0 : _parentItem$config2.custom_text) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("a", {
+            href: parentItem === null || parentItem === void 0 || (_parentItem$config3 = parentItem.config) === null || _parentItem$config3 === void 0 ? void 0 : _parentItem$config3.custom_url,
+            children: parentItem === null || parentItem === void 0 || (_parentItem$config4 = parentItem.config) === null || _parentItem$config4 === void 0 ? void 0 : _parentItem$config4.custom_text
+          })]
+        })
       }), menu.map(function (item, __i_index) {
+        var _item$children;
         var __key = item.__key,
           name = item.name,
           url = item.url,
@@ -1001,13 +1018,24 @@ function MenuMobi() {
               className: "__menu-item-name",
               children: name
             })]
-          }), children && children.length > 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_MenuIcon__WEBPACK_IMPORTED_MODULE_3__["default"], {
-            onClick: function onClick(e) {
-              onJumpMobiNav_Fn(__key);
-            },
-            className: 'dropdown-icon',
-            source: 'arrow_next'
-          }) : '']
+          }), children && children.length > 0 ? function () {
+            var supportArrow = ['__BLOCK_MENU__'].includes(item.type) ? false : true;
+            return supportArrow && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_MenuIcon__WEBPACK_IMPORTED_MODULE_3__["default"], {
+              onClick: function onClick(e) {
+                onJumpMobiNav_Fn(__key);
+              },
+              className: 'dropdown-icon',
+              source: 'arrow_next'
+            });
+          }() : '', ['__BLOCK_MENU__'].includes(item.type) && (item === null || item === void 0 || (_item$children = item.children) === null || _item$children === void 0 ? void 0 : _item$children.length) > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("ul", {
+            className: "__sub-custom-type__".concat(item.type),
+            children: item.children.map(function (__i) {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("li", {
+                className: "__sub-item-type__".concat(__i === null || __i === void 0 ? void 0 : __i.type),
+                children: __i.name
+              });
+            })
+          })]
         }, __key);
       })]
     });
@@ -1094,6 +1122,10 @@ var MenuBuilderContext_Provider = function MenuBuilderContext_Provider(_ref) {
     _useState8 = _slicedToArray(_useState7, 2),
     jumpDeep = _useState8[0],
     setJumpDeep = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState10 = _slicedToArray(_useState9, 2),
+    parentItem = _useState10[0],
+    setParentItem = _useState10[1];
   var fixDataMenu = function fixDataMenu(menuData) {
     var megaShopItem = menuData.find(function (i) {
       return i.type == '__MEGASHOP__';
@@ -1150,19 +1182,27 @@ var MenuBuilderContext_Provider = function MenuBuilderContext_Provider(_ref) {
     var _found$hook = found.hook(),
       parentNode = _found$hook.parentNode,
       node = _found$hook.node;
+    setParentItem(found);
     setMobiItemsCurrent(found.children);
     setJumpDeep([].concat(_toConsumableArray(jumpDeep), [id]));
   };
   var onBack_Fn = function onBack_Fn() {
     var _jumpDeep = _toConsumableArray(jumpDeep);
     var last = _jumpDeep.slice(-1)[0];
-    _jumpDeep.splice(last, 1);
+    _jumpDeep.splice(_jumpDeep.length - 1, 1);
     var found = (0,_libs_helpers__WEBPACK_IMPORTED_MODULE_2__.deepSearch_API)(mobiMenuData, last);
     var _found$hook2 = found.hook(),
       parentNode = _found$hook2.parentNode,
       node = _found$hook2.node;
     setJumpDeep(_jumpDeep);
-    setMobiItemsCurrent(_jumpDeep.length > 0 ? parentNode : mobiMenuData);
+    if (_jumpDeep.length == 0) {
+      setParentItem(null);
+      setMobiItemsCurrent(mobiMenuData);
+    } else {
+      setParentItem((0,_libs_helpers__WEBPACK_IMPORTED_MODULE_2__.deepSearch_API)(mobiMenuData, _jumpDeep[_jumpDeep.length - 1]));
+      setMobiItemsCurrent(parentNode);
+    }
+    // setMobiItemsCurrent( (_jumpDeep.length > 0 ? parentNode : mobiMenuData) );
   };
   var value = {
     version: '1.0.0',
@@ -1176,6 +1216,8 @@ var MenuBuilderContext_Provider = function MenuBuilderContext_Provider(_ref) {
     setMobiItemsCurrent: setMobiItemsCurrent,
     jumpDeep: jumpDeep,
     setJumpDeep: setJumpDeep,
+    parentItem: parentItem,
+    setParentItem: setParentItem,
     onBack_Fn: onBack_Fn,
     onJumpMobiNav_Fn: onJumpMobiNav_Fn
   };
