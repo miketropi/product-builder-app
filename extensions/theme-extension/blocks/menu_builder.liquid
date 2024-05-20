@@ -1,3 +1,26 @@
+<script>
+  window.addEventListener('load', function() {
+    let btnToggleMobiMenu = document.querySelector('.menu-builder-mobi__open');
+    if(!btnToggleMobiMenu) return;
+
+    btnToggleMobiMenu.addEventListener('click', function(event) {
+      event.preventDefault();
+      document.body.classList.toggle('__mobi-menu-open');
+    });
+
+    setTimeout(function(){
+      let btnCloseMobiMenu = document.querySelector('.menu-builder-mobi__close');
+      if(!btnCloseMobiMenu) return;
+      
+      btnCloseMobiMenu.addEventListener('click', function(event) {
+        event.preventDefault();
+        document.body.classList.remove('__mobi-menu-open');
+      });
+    },500);
+    
+  })
+</script>
+
 <section class="__menu-builder-container">
   <div id="__MENU_BUILDER_APP__" data-store-id="{{ shop.id }}" data-menu-id="c4b675ef646330fb8d00039f" ></div>
 </section>
