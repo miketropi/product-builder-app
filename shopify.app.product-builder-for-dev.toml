@@ -3,16 +3,13 @@
 client_id = "92c567249760ebdd465718fd71b4fe55"
 name = "Product Builder For Dev"
 handle = "product-builder-for-dev"
-<<<<<<< HEAD
-application_url = "https://derived-available-yacht-showers.trycloudflare.com"
-=======
-application_url = "https://champion-formerly-landscape-lack.trycloudflare.com"
->>>>>>> 99b4930ee70b43bb76abf5cb935508a109320bcc
+application_url = "https://quiz-davidson-radios-scared.trycloudflare.com"
 embedded = true
 
 [build]
 automatically_update_urls_on_dev = true
 dev_store_url = "buildmatstaging.myshopify.com"
+include_config_on_deploy = true
 
 [access.admin]
 direct_api_mode = "online"
@@ -24,15 +21,9 @@ scopes = "read_files,read_metaobjects,read_products,write_files,write_metaobject
 
 [auth]
 redirect_urls = [
-<<<<<<< HEAD
-  "https://derived-available-yacht-showers.trycloudflare.com/auth/callback",
-  "https://derived-available-yacht-showers.trycloudflare.com/auth/shopify/callback",
-  "https://derived-available-yacht-showers.trycloudflare.com/api/auth/callback"
-=======
-  "https://champion-formerly-landscape-lack.trycloudflare.com/auth/callback",
-  "https://champion-formerly-landscape-lack.trycloudflare.com/auth/shopify/callback",
-  "https://champion-formerly-landscape-lack.trycloudflare.com/api/auth/callback"
->>>>>>> 99b4930ee70b43bb76abf5cb935508a109320bcc
+  "https://quiz-davidson-radios-scared.trycloudflare.com/auth/callback",
+  "https://quiz-davidson-radios-scared.trycloudflare.com/auth/shopify/callback",
+  "https://quiz-davidson-radios-scared.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
