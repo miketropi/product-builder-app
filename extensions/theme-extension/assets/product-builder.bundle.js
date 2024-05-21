@@ -1840,7 +1840,17 @@ var getShopifyProductJson = /*#__PURE__*/function () {
 var toPrice = function toPrice(price) {
   var money_format = window.__MONEY_FORMAT;
   var __price = new Intl.NumberFormat('en-DE').format(price);
-  return money_format.replace('{{amount_no_decimals_with_comma_separator}}', __price);
+  var replaceMap = {
+    '{{ amount_no_decimals }}': __price,
+    '{{amount_no_decimals}}': __price,
+    '{{ amount_no_decimals_with_comma_separator }}': __price,
+    '{{amount_no_decimals_with_comma_separator}}': __price
+  };
+  Object.keys(replaceMap).forEach(function (key) {
+    money_format = money_format.replaceAll(key, replaceMap[key]);
+  });
+  return money_format;
+  // return money_format.replace('{{amount_no_decimals_with_comma_separator}}', __price);
 };
 var addToCart = /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(data) {
