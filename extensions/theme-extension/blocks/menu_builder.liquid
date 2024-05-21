@@ -44,14 +44,21 @@
 </script>
 
 <section class="__menu-builder-container">
-  <div id="__MENU_BUILDER_APP__" data-store-id="{{ shop.id }}" data-menu-id="c4b675ef646330fb8d00039f" ></div>
+  <div id="__MENU_BUILDER_APP__" data-store-id="{{ shop.id }}" data-menu-id="{{ block.settings.menu_id }}" ></div>
 </section>
 {% schema %}
 {
-  "name": "Menu Builder",
+  "name": "Menu Builder", 
   "target": "section",
-  "javascript": "product-builder.bundle.js",
+  "javascript": "product-builder.bundle.js", 
   "stylesheet": "product-builder.bundle.css", 
-  "settings": []
+  "settings": [
+    {
+      "type": "text", 
+      "id": "menu_id",
+      "label": "Menu ID",
+      "default": "c4b675ef646330fb8d00039f"
+    } 
+  ]
 } 
 {% endschema %}
