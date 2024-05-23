@@ -16,9 +16,15 @@ export default function MenuEditItem() {
   }
 
   const onUpdateConfigItem = (value, name) => {
+    // console.log(typeof value, name);
     setMenuData(produce(draft => {
       let found = deepSearch(draft, currentItemEdit.__key);
-      found ? found.config[name] = value : '';
+      // console.log(found.config)
+      if(!found.config) {
+        found.config = {[name]: value};
+      } else {
+        found.config[name] = value
+      }
     }))
     
     let __config = currentItemEdit?.config ? currentItemEdit.config : {};
@@ -148,7 +154,10 @@ export default function MenuEditItem() {
               {label: 'No', value: false},
               {label: 'Yes', value: true},
             ]}
-            onChange={ value => { onUpdateConfigItem(value, 'container') } }
+            onChange={ value => {
+              let v = (value == 'true' ? true : false);
+              onUpdateConfigItem(v, 'container')
+            } }
             value={ currentItemEdit?.config?.container ?? false }
           />
         </div>
