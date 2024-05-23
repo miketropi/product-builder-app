@@ -1,8 +1,14 @@
 <script>
   window.addEventListener('load', function() {
+    let btnToggleMegaMenu = document.querySelector('li.__menu-item.__menu-item_type____MEGASHOP__ > a');
+    
+    btnToggleMegaMenu.addEventListener('click', function(event) {
+      event.preventDefault();
+      document.body.classList.toggle('__mega-menu-open');
+    });
+    
     let btnToggleMobiMenu = document.querySelector('.menu-builder-mobi__open');
-    if(!btnToggleMobiMenu) return;
-
+    
     btnToggleMobiMenu.addEventListener('click', function(event) {
       event.preventDefault();
       document.body.classList.toggle('__mobi-menu-open');
@@ -10,7 +16,6 @@
 
     setTimeout(function(){
       let btnCloseMobiMenu = document.querySelector('.menu-builder-mobi__close');
-      if(!btnCloseMobiMenu) return;
       
       btnCloseMobiMenu.addEventListener('click', function(event) {
         event.preventDefault();
