@@ -3,7 +3,7 @@ import PbTable from "../../PbTable";
 import { LegacyCard, Banner, Link, Button, ButtonGroup } from "@shopify/polaris";
 
 export default function MenuBuilderTableList() {
-  const { menuItems } = useMenuBuilderListContext();
+  const { menuItems, DeleteMenuItem_Fn } = useMenuBuilderListContext();
 
   return <div className="menu-builder-table-list">
     {/* { JSON.stringify(menuItems) } */}
@@ -32,7 +32,12 @@ export default function MenuBuilderTableList() {
               (status ? 'Published' : ''), 
               <ButtonGroup>
                 <Button url={ `/app/menu-builder/${ _id }` }>Edit</Button>
-                <Button variant="primary" tone="critical">Delete</Button>
+                <Button variant="primary" tone="critical" onClick={ e => {
+                  let r = confirm('Are you sure you want to delete this menu?');
+                  if(!r) return;
+                  
+                  DeleteMenuItem_Fn(_id);
+                } }>Delete</Button>
               </ButtonGroup>]
           }) }
         />

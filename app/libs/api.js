@@ -81,6 +81,11 @@ export default class ApiForApp {
     const res = await this.__request(`/content/items/menubuilder?limit=${ limit }&skip=${ skip }&filter={"store_id": "${ this.__STORE_ID }"}`);
     return res;
   }
+
+  async deleteMenuItem(menuID) {
+    const res = await this.__request(`/content/item/menubuilder/${ menuID }`, {}, 'DELETE');
+    return res;
+  }
   /**
    * End Menu Builder API
    */
