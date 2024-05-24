@@ -483,8 +483,24 @@ ul.menu-builder > li.__menu-item.__menu-item_type____MEGASHOP__ > ul {
   visibility: visible !important;
 }
 ul.menu-builder > li.__menu-item.__menu-item_type____MEGASHOP__ ul.__type__MEGASHOP_SUBITEM__ {
-  min-height: var(--sub-megashop-height);
+  height: var(--sub-megashop-height);
   align-content: flex-start;
+  overflow-y: auto;
+}
+ul.menu-builder > li.__menu-item.__menu-item_type____MEGASHOP__ ul.__type__MEGASHOP_SUBITEM__::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+  border-radius: 10px;
+  background-color: #F1F1F1;
+}
+ul.menu-builder > li.__menu-item.__menu-item_type____MEGASHOP__ ul.__type__MEGASHOP_SUBITEM__::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #004F59;
+  cursor: pointer;
+}
+ul.menu-builder > li.__menu-item.__menu-item_type____MEGASHOP__ ul.__type__MEGASHOP_SUBITEM__::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: #F1F1F1;
 }
 ul.menu-builder > li.__menu-item > a {
   display: flex;
