@@ -877,6 +877,7 @@ function MenuBuilderApp() {
           })
         })]
       }) : __li, (__parent_item === null || __parent_item === void 0 ? void 0 : __parent_item.type) && __parent_item.type == '__MEGASHOP__' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("li", {
+        className: "__menu-item __menu-item-type__custom-html",
         dangerouslySetInnerHTML: {
           __html: (_window = window) === null || _window === void 0 ? void 0 : _window.__custom_html
         }
@@ -1112,6 +1113,7 @@ function MenuMobi() {
           })
         })
       }), jumpDeep.length == 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("li", {
+        className: "__menu-item __menu-item-type__custom-html",
         dangerouslySetInnerHTML: {
           __html: (_window = window) === null || _window === void 0 ? void 0 : _window.__custom_html
         }
