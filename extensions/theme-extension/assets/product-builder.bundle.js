@@ -789,7 +789,7 @@ function MenuBuilderApp() {
     version = _useMenuBuilderContex.version,
     menuData = _useMenuBuilderContex.menuData;
   var renderMenu = function renderMenu(menu) {
-    var _parent_item$config, _parent_item$config3, _parent_item$config4, _parent_item$config5, _window;
+    var _parent_item$config, _parent_item$config3, _parent_item$config4, _parent_item$config5;
     var lv = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
     var __parent_item = arguments.length > 2 ? arguments[2] : undefined;
     lv = lv === null ? 0 : lv += 1;
@@ -877,10 +877,7 @@ function MenuBuilderApp() {
           })
         })]
       }) : __li, (__parent_item === null || __parent_item === void 0 ? void 0 : __parent_item.type) && __parent_item.type == '__MEGASHOP__' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("li", {
-        className: "__menu-item __menu-item-type__custom-html",
-        dangerouslySetInnerHTML: {
-          __html: (_window = window) === null || _window === void 0 ? void 0 : _window.__custom_html
-        }
+        className: "__menu-item __menu-item-type__custom-html"
       })]
     });
     return __ul;
@@ -972,7 +969,7 @@ function MenuMobi() {
     document.body.appendChild(wrapEl.current);
   }, []);
   var renderMenuMobi = function renderMenuMobi(menu) {
-    var _parentItem$config, _parentItem$config2, _parentItem$config3, _parentItem$config4, _parentItem$config5, _parentItem$config6, _window;
+    var _parentItem$config, _parentItem$config2, _parentItem$config3, _parentItem$config4, _parentItem$config5, _parentItem$config6;
     var lv = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
     var __parent_item = arguments.length > 2 ? arguments[2] : undefined;
     lv = lv === null ? 0 : lv += 1;
@@ -1113,10 +1110,7 @@ function MenuMobi() {
           })
         })
       }), jumpDeep.length == 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("li", {
-        className: "__menu-item __menu-item-type__custom-html",
-        dangerouslySetInnerHTML: {
-          __html: (_window = window) === null || _window === void 0 ? void 0 : _window.__custom_html
-        }
+        className: "__menu-item __menu-item-type__custom-html"
       })]
     });
     var __ul = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("ul", {
