@@ -1,22 +1,31 @@
 <script>
   window.addEventListener('load', function() {
-    let btnToggleMobiMenu = document.querySelector('.menu-builder-mobi__open');
-    if(!btnToggleMobiMenu) return;
-
-    btnToggleMobiMenu.addEventListener('click', function(event) {
-      event.preventDefault();
-      document.body.classList.toggle('__mobi-menu-open');
-    });
-
     setTimeout(function(){
+      let btnToggleMegaShopMenu = document.querySelector('li.__menu-item_type____MEGASHOP__ > a');
+      
+      btnToggleMegaShopMenu.addEventListener('click', function(event) {
+        event.preventDefault();
+        document.body.classList.toggle('__mega-shop-menu-open');
+      });
+
+      let ulMegaShopMenu = document.querySelector('ul.__type__MEGASHOP__');
+      let ulSubMegaShopMenu = document.querySelector('ul.__type__MEGASHOP_SUBITEM__');
+      document.documentElement.style.cssText = '--sub-megashop-height: ' + ulMegaShopMenu.offsetHeight + 'px';
+
+      let btnToggleMobiMenu = document.querySelector('.menu-builder-mobi__open');
+
+      btnToggleMobiMenu.addEventListener('click', function(event) {
+        event.preventDefault();
+        document.body.classList.toggle('__mobi-menu-open');
+      });
+
       let btnCloseMobiMenu = document.querySelector('.menu-builder-mobi__close');
-      if(!btnCloseMobiMenu) return;
       
       btnCloseMobiMenu.addEventListener('click', function(event) {
         event.preventDefault();
         document.body.classList.remove('__mobi-menu-open');
       });
-    },500);
+    },1000);
 
     window.__custom_html = '<div class="__mega-menu-shop-custom-html">' +
       '<div class="__mega-menu-shop-block __about">' +

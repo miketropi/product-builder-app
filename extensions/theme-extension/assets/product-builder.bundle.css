@@ -447,6 +447,45 @@ ul.menu-builder .__show-all-sub .menu-builder__sub {
 ul.menu-builder > li.__menu-item.__menu-item_type____MEGASHOP__ > a {
   background: #323C44;
 }
+ul.menu-builder > li.__menu-item.__menu-item_type____MEGASHOP__ > a .__menu-icon {
+  position: relative;
+}
+ul.menu-builder > li.__menu-item.__menu-item_type____MEGASHOP__ > a .__menu-icon:before, ul.menu-builder > li.__menu-item.__menu-item_type____MEGASHOP__ > a .__menu-icon:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 1.5px;
+  background: #19242D;
+  opacity: 0;
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+ul.menu-builder > li.__menu-item.__menu-item_type____MEGASHOP__ > a .__menu-icon:after {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+ul.menu-builder > li.__menu-item.__menu-item_type____MEGASHOP__ > ul {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+.__mega-shop-menu-open ul.menu-builder > li.__menu-item.__menu-item_type____MEGASHOP__ > a {
+  color: #141D24;
+  background: #fff;
+}
+.__mega-shop-menu-open ul.menu-builder > li.__menu-item.__menu-item_type____MEGASHOP__ > a .__menu-icon:before, .__mega-shop-menu-open ul.menu-builder > li.__menu-item.__menu-item_type____MEGASHOP__ > a .__menu-icon:after {
+  opacity: 1;
+}
+.__mega-shop-menu-open ul.menu-builder > li.__menu-item.__menu-item_type____MEGASHOP__ > a .__menu-icon svg {
+  opacity: 0;
+}
+.__mega-shop-menu-open ul.menu-builder > li.__menu-item.__menu-item_type____MEGASHOP__ > ul {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+ul.menu-builder > li.__menu-item.__menu-item_type____MEGASHOP__ ul.__type__MEGASHOP_SUBITEM__ {
+  min-height: var(--sub-megashop-height);
+  align-content: flex-start;
+}
 ul.menu-builder > li.__menu-item > a {
   display: flex;
   padding: 25px 24px;
@@ -1220,6 +1259,7 @@ ul.menu-builder-mobi > li.__menu-item.__back-item > a .__menu-icon {
   }
 }
 .__mega-menu-shop-custom-html {
+  width: 100%;
   background: #F4F6F6;
 }
 .__mega-menu-shop-custom-html .__mega-menu-shop-block {

@@ -877,6 +877,7 @@ function MenuBuilderApp() {
           })
         })]
       }) : __li, (__parent_item === null || __parent_item === void 0 ? void 0 : __parent_item.type) && __parent_item.type == '__MEGASHOP__' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("li", {
+        className: "__menu-item __menu-item-type__custom-html",
         dangerouslySetInnerHTML: {
           __html: (_window = window) === null || _window === void 0 ? void 0 : _window.__custom_html
         }
@@ -1112,6 +1113,7 @@ function MenuMobi() {
           })
         })
       }), jumpDeep.length == 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("li", {
+        className: "__menu-item __menu-item-type__custom-html",
         dangerouslySetInnerHTML: {
           __html: (_window = window) === null || _window === void 0 ? void 0 : _window.__custom_html
         }
@@ -1948,8 +1950,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var ENDPOINT = 'https://shopify-dev.beplusprojects.com/api/';
-var API_KEY = 'API-7fe65d4d3bbf95285235f51e4183207387b5169f';
+var ENDPOINT = 'https://buildmat-app-api.fly.dev/api/';
+var API_KEY = 'API-ceab35274bec67420ab7f572d7288daa81a4e455';
 (function (w) {
   'use strict';
 
