@@ -481,6 +481,7 @@ ul.menu-builder > li.__menu-item.__menu-item_type____MEGASHOP__ > ul {
 .__mega-shop-menu-open ul.menu-builder > li.__menu-item.__menu-item_type____MEGASHOP__ > ul {
   opacity: 1 !important;
   visibility: visible !important;
+  z-index: 9 !important;
 }
 ul.menu-builder > li.__menu-item.__menu-item_type____MEGASHOP__ ul.__type__MEGASHOP_SUBITEM__ {
   height: var(--sub-megashop-height);
