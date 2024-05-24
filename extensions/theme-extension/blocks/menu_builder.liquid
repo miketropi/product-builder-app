@@ -1,46 +1,32 @@
 <script>
   window.addEventListener('load', function() {
-    let btnToggleMobiMenu = document.querySelector('.menu-builder-mobi__open');
-    if(!btnToggleMobiMenu) return;
-
-    btnToggleMobiMenu.addEventListener('click', function(event) {
-      event.preventDefault();
-      document.body.classList.toggle('__mobi-menu-open');
-    });
-
     setTimeout(function(){
+      let btnToggleMegaShopMenu = document.querySelector('li.__menu-item_type____MEGASHOP__ > a');
+      
+      btnToggleMegaShopMenu.addEventListener('click', function(event) {
+        event.preventDefault();
+        document.body.classList.toggle('__mega-shop-menu-open');
+      });
+
+      let ulMegaShopMenu = document.querySelector('ul.__type__MEGASHOP__');
+      let ulSubMegaShopMenu = document.querySelector('ul.__type__MEGASHOP_SUBITEM__');
+      document.documentElement.style.cssText = '--sub-megashop-height: ' + ulMegaShopMenu.offsetHeight + 'px';
+
+      let btnToggleMobiMenu = document.querySelector('.menu-builder-mobi__open');
+
+      btnToggleMobiMenu.addEventListener('click', function(event) {
+        event.preventDefault();
+        document.body.classList.toggle('__mobi-menu-open');
+      });
+
       let btnCloseMobiMenu = document.querySelector('.menu-builder-mobi__close');
-      if(!btnCloseMobiMenu) return;
       
       btnCloseMobiMenu.addEventListener('click', function(event) {
         event.preventDefault();
         document.body.classList.remove('__mobi-menu-open');
       });
-    },500);
-
-    window.__custom_html = '<div class="__mega-menu-shop-custom-html">' +
-      '<div class="__mega-menu-shop-block __about">' +
-        '<h4>ABOUT US</h4>' +
-        '<ul class="__links">' +
-          '<li><a href="/blogs/building-renovating-tips">Blog</a></li>' +
-          '<li><a href="/pages/reviews">Customer Reviews</a></li>' +
-        '</ul>' +
-      '</div>' +
-      '<div class="__mega-menu-shop-block __contact">' +
-        '<h4>CONTACT US</h4>' +
-        '<ul class="__links">' +
-          '<li><a href="tel:1300123122">1300 123 122</a></li>' +
-          '<li><a href="mailto:sales@buildmat.com.au">sales@buildmat.com.au</a></li>' +
-          '<li><a href="https://g.page/buildmat-hallam?share" target="_blank">46 Brindley St, Dandenong South VIC 3175</a></li>' +
-        '</ul>' +
-      '</div>' +
-      '<div class="__mega-menu-shop-block __award">' +
-        '<h4>Innovative Award Winning Sinks</h4>' +
-        '<img src="https://cdn.shopify.com/s/files/1/0023/9881/4278/t/131/assets/product-winner.png?v=1716273939" alt="" />' +
-      '</div>' +
-    '</div>';
-    
-  })
+    },1000);
+  });
 </script>
 
 <section class="__menu-builder-container">
