@@ -3,11 +3,7 @@
 client_id = "92c567249760ebdd465718fd71b4fe55"
 name = "BM Insanity - Dev"
 handle = "product-builder-for-dev"
-<<<<<<< HEAD
 application_url = "https://legislative-garbage-clause-rfc.trycloudflare.com"
-=======
-application_url = "https://agents-jacksonville-pac-prepaid.trycloudflare.com"
->>>>>>> a9cb075bcb5b987df9c7e3df79852f3bf32d6646
 embedded = true
 
 [build]
@@ -25,15 +21,9 @@ scopes = "read_files,read_metaobjects,read_products,write_files,write_metaobject
 
 [auth]
 redirect_urls = [
-<<<<<<< HEAD
   "https://legislative-garbage-clause-rfc.trycloudflare.com/auth/callback",
   "https://legislative-garbage-clause-rfc.trycloudflare.com/auth/shopify/callback",
   "https://legislative-garbage-clause-rfc.trycloudflare.com/api/auth/callback"
-=======
-  "https://agents-jacksonville-pac-prepaid.trycloudflare.com/auth/callback",
-  "https://agents-jacksonville-pac-prepaid.trycloudflare.com/auth/shopify/callback",
-  "https://agents-jacksonville-pac-prepaid.trycloudflare.com/api/auth/callback"
->>>>>>> a9cb075bcb5b987df9c7e3df79852f3bf32d6646
 ]
 
 [webhooks]
