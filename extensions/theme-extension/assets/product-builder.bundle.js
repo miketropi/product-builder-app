@@ -888,7 +888,7 @@ function MenuBuilderApp() {
     className: "menu-builder-container",
     children: [menuData && menuData.length > 0 && renderMenu(menuData), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("a", {
       href: "#",
-      "class": "menu-builder-mobi__open",
+      className: "menu-builder-mobi__open",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_MenuIcon__WEBPACK_IMPORTED_MODULE_2__["default"], {
         source: 'menu_toggle'
       })
@@ -1065,7 +1065,7 @@ function MenuMobi() {
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("a", {
                   href: __i.url,
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-                    "class": "__image",
+                    className: "__image",
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
                       src: __i.image
                     })
@@ -1084,7 +1084,7 @@ function MenuMobi() {
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("a", {
                   href: __i.url,
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-                    "class": "__image",
+                    className: "__image",
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
                       src: __i.image
                     })
@@ -1100,11 +1100,11 @@ function MenuMobi() {
       }), ['__MEGA__'].includes(parentItem === null || parentItem === void 0 ? void 0 : parentItem.type) && (parentItem === null || parentItem === void 0 ? void 0 : parentItem.config) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("li", {
         className: ['__custom-menu-item', "__custom-type__".concat(parentItem === null || parentItem === void 0 ? void 0 : parentItem.type)].join(' '),
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-          "class": "__mobi-menu-custom-link",
+          className: "__mobi-menu-custom-link",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("a", {
             href: parentItem === null || parentItem === void 0 || (_parentItem$config5 = parentItem.config) === null || _parentItem$config5 === void 0 ? void 0 : _parentItem$config5.container_bottom_custom_url,
             children: [parentItem === null || parentItem === void 0 || (_parentItem$config6 = parentItem.config) === null || _parentItem$config6 === void 0 ? void 0 : _parentItem$config6.container_bottom_custom_text, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
-              "class": "__menu-icon ",
+              className: "__menu-icon ",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_MenuIcon__WEBPACK_IMPORTED_MODULE_3__["default"], {
                 source: 'arrow_next'
               })
@@ -1130,10 +1130,10 @@ function MenuMobi() {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
           className: "menu-builder-mobi__inner",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-            "class": "menu-builder-mobi__head",
+            className: "menu-builder-mobi__head",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("a", {
               href: "/",
-              "class": "menu-builder-mobi__logo",
+              className: "menu-builder-mobi__logo",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("svg", {
                 width: "26",
                 height: "22",
@@ -1178,7 +1178,7 @@ function MenuMobi() {
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("a", {
               href: "#",
-              "class": "menu-builder-mobi__close",
+              className: "menu-builder-mobi__close",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_MenuIcon__WEBPACK_IMPORTED_MODULE_3__["default"], {
                 source: 'menu_close'
               })

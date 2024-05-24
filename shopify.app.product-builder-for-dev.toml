@@ -3,7 +3,7 @@
 client_id = "92c567249760ebdd465718fd71b4fe55"
 name = "BM Insanity - Dev"
 handle = "product-builder-for-dev"
-application_url = "https://agents-jacksonville-pac-prepaid.trycloudflare.com"
+application_url = "https://saw-worry-should-ati.trycloudflare.com"
 embedded = true
 
 [build]
@@ -21,9 +21,9 @@ scopes = "read_files,read_metaobjects,read_products,write_files,write_metaobject
 
 [auth]
 redirect_urls = [
-  "https://agents-jacksonville-pac-prepaid.trycloudflare.com/auth/callback",
-  "https://agents-jacksonville-pac-prepaid.trycloudflare.com/auth/shopify/callback",
-  "https://agents-jacksonville-pac-prepaid.trycloudflare.com/api/auth/callback"
+  "https://saw-worry-should-ati.trycloudflare.com/auth/callback",
+  "https://saw-worry-should-ati.trycloudflare.com/auth/shopify/callback",
+  "https://saw-worry-should-ati.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
