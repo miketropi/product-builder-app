@@ -26,8 +26,16 @@ const MenuBuilderListContext_Provider = ({ children, store }) => {
     loadData();
   }, [])
 
+  const DeleteMenuItem_Fn = async (menuID) => {
+    // deleteMenuItem
+    const res = await API_FA.current.deleteMenuItem(menuID);
+    console.log(res);    
+    loadData();
+  }
+
   const value = {
-    menuItems, setMenuItems
+    menuItems, setMenuItems,
+    DeleteMenuItem_Fn,
   }
 
   return <MenuBuilderListContext.Provider value={ value }>

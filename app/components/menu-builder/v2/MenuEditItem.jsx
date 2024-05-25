@@ -34,7 +34,7 @@ export default function MenuEditItem() {
   }
 
   return <fieldset className="__menu-edit-item">
-    { JSON.stringify(currentItemEdit?.type) }
+    {/* { JSON.stringify(currentItemEdit?.type) } */}
     {/* { JSON.stringify(currentItemEdit?.config) } */}
     <legend>Edit item</legend>
     <small>{ currentItemEdit.__key }</small>
@@ -188,6 +188,6 @@ export default function MenuEditItem() {
       </>
     }
 
-    <Button variant="primary">Remove</Button>
+    {/* <Button variant="primary">Remove</Button> */}
   </fieldset>
 }
