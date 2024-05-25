@@ -1,7 +1,7 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
 client_id = "b32d95389dff1e07f175147fd41f1b93"
-name = "product-builder-app"
+name = "BM Insanity - Staging"
 handle = "product-builder-app-2"
 application_url = "https://product-builder-app.fly.dev/"
 embedded = true

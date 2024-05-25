@@ -397,7 +397,7 @@ function ProductCard(_ref) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
     className: ['product-builder__product-card', loading ? '__loading-effect' : '', addonSelected.includes(productData.id) ? '__selected' : ''].join(' '),
     onClick: function onClick(e) {
-      onAddonSelected_Fn(productData.id);
+      onAddonSelected_Fn(productData.id, price);
     },
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
       className: "__product-image",
@@ -442,12 +442,21 @@ function ProductFooter() {
   var _useProductBuilderCon = (0,_context_ProductBuilderContext__WEBPACK_IMPORTED_MODULE_0__.useProductBuilderContext)(),
     variantObjectCurrent = _useProductBuilderCon.variantObjectCurrent,
     addToCartEnable = _useProductBuilderCon.addToCartEnable,
-    onAddToCart_Fn = _useProductBuilderCon.onAddToCart_Fn;
+    onAddToCart_Fn = _useProductBuilderCon.onAddToCart_Fn,
+    addonWithPrice = _useProductBuilderCon.addonWithPrice;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
     className: "product-builder__product-footer",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
       className: "product-builder__product-price",
-      children: (0,_libs_helpers__WEBPACK_IMPORTED_MODULE_2__.toPrice)(variantObjectCurrent.price)
+      children: function () {
+        var mainPrice = parseFloat(variantObjectCurrent.price);
+        var totalAddOnPrice = addonWithPrice.map(function (i) {
+          return parseFloat(i.price);
+        }).reduce(function (a, b) {
+          return a + b;
+        }, 0);
+        return (0,_libs_helpers__WEBPACK_IMPORTED_MODULE_2__.toPrice)(mainPrice + totalAddOnPrice);
+      }()
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
       className: "product-builder__buttons",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ButtonAddToCart__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -824,7 +833,7 @@ function MenuBuilderApp() {
           type = item.type,
           icon = item.icon;
         var size = item !== null && item !== void 0 && (_item$config = item.config) !== null && _item$config !== void 0 && _item$config.containerSize ? "__size-".concat(item.config.containerSize) : '';
-        var liClasses = ['__menu-item', "__item-lv-".concat(lv), size, item.type ? "__menu-item_type__".concat(type) : ''];
+        var liClasses = ['__menu-item', "__item-lv-".concat(lv), size, children && children.length > 0 ? "__has-children" : '', item.type ? "__menu-item_type__".concat(type) : ''];
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("li", {
           className: liClasses.join(' '),
           "data-id": __key,
@@ -1450,6 +1459,10 @@ var ProductBuilderProvider = function ProductBuilderProvider(_ref) {
     _useState22 = _slicedToArray(_useState21, 2),
     addonSelected = _useState22[0],
     setAddonSelected = _useState22[1];
+  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState24 = _slicedToArray(_useState23, 2),
+    addonWithPrice = _useState24[0],
+    setAddonWithPrice = _useState24[1];
   var __getProduct_Fn = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
       var shopifyProductData, productBuilderData, productVariantsPrice, productBuilderData__FilterAvailable;
@@ -1606,17 +1619,27 @@ var ProductBuilderProvider = function ProductBuilderProvider(_ref) {
       return [].concat(_toConsumableArray(prevState), [item]);
     });
   }, [addOnCaching]);
-  var onAddonSelected_Fn = function onAddonSelected_Fn(id) {
+  var onAddonSelected_Fn = function onAddonSelected_Fn(id, price) {
+    console.log(price);
     // addonSelected, setAddonSelected
+    // addonWithPrice, setAddonWithPrice
+
     var __addonSelected = _toConsumableArray(addonSelected);
     var foundIndex = __addonSelected.findIndex(function (__id) {
       return __id == id;
     });
+    var __addonWithPrice = _toConsumableArray(addonWithPrice);
     if (foundIndex === -1) {
       setAddonSelected([].concat(_toConsumableArray(__addonSelected), [id]));
+      setAddonWithPrice([].concat(_toConsumableArray(__addonWithPrice), [{
+        id: id,
+        price: price
+      }]));
     } else {
       __addonSelected.splice(foundIndex, 1);
       setAddonSelected(__addonSelected);
+      __addonWithPrice.splice(foundIndex, 1);
+      setAddonWithPrice(__addonWithPrice);
     }
   };
   var value = {
@@ -1634,6 +1657,7 @@ var ProductBuilderProvider = function ProductBuilderProvider(_ref) {
     addOnCaching: addOnCaching,
     addToCartLoading: addToCartLoading,
     addonSelected: addonSelected,
+    addonWithPrice: addonWithPrice,
     onUpadteVariantObjectCurrent_Fn: onUpadteVariantObjectCurrent_Fn,
     onUpdateOptions_Fn: onUpdateOptions_Fn,
     onAddToCart_Fn: onAddToCart_Fn,

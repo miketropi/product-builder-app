@@ -1,16 +1,16 @@
 {
     "/product-builder.bundle.js": "/product-builder.bundle.js",
     "/product-builder.bundle.css": "/product-builder.bundle.css",
-    "/product-builder-app/extensions/theme-extension/assets/manifest.js": "/product-builder-app/extensions/theme-extension/assets/manifest.js",
-    "/product-builder-app/extensions/theme-extension/assets/mix-manifest.json": "/product-builder-app/extensions/theme-extension/assets/mix-manifest.json",
-    "/product-builder-app/extensions/theme-extension/assets/product-builder.bundle.css": "/product-builder-app/extensions/theme-extension/assets/product-builder.bundle.css",
-    "/product-builder-app/extensions/theme-extension/assets/product-builder.bundle.js": "/product-builder-app/extensions/theme-extension/assets/product-builder.bundle.js",
-    "/product-builder-app/extensions/theme-extension/assets/product-builder.frontend.js": "/product-builder-app/extensions/theme-extension/assets/product-builder.frontend.js",
-    "/product-builder-app/extensions/theme-extension/assets/thumbs-up.png": "/product-builder-app/extensions/theme-extension/assets/thumbs-up.png",
-    "/product-builder-app/extensions/theme-extension/blocks/menu_builder.liquid": "/product-builder-app/extensions/theme-extension/blocks/menu_builder.liquid",
-    "/product-builder-app/extensions/theme-extension/blocks/product_builder.liquid": "/product-builder-app/extensions/theme-extension/blocks/product_builder.liquid",
-    "/product-builder-app/extensions/theme-extension/blocks/star_rating.liquid": "/product-builder-app/extensions/theme-extension/blocks/star_rating.liquid",
-    "/product-builder-app/extensions/theme-extension/locales/en.default.json": "/product-builder-app/extensions/theme-extension/locales/en.default.json",
-    "/product-builder-app/extensions/theme-extension/shopify.extension.toml": "/product-builder-app/extensions/theme-extension/shopify.extension.toml",
-    "/product-builder-app/extensions/theme-extension/snippets/stars.liquid": "/product-builder-app/extensions/theme-extension/snippets/stars.liquid"
+    "/product-builder-app--dev-env/extensions/theme-extension/assets/manifest.js": "/product-builder-app--dev-env/extensions/theme-extension/assets/manifest.js",
+    "/product-builder-app--dev-env/extensions/theme-extension/assets/mix-manifest.json": "/product-builder-app--dev-env/extensions/theme-extension/assets/mix-manifest.json",
+    "/product-builder-app--dev-env/extensions/theme-extension/assets/product-builder.bundle.css": "/product-builder-app--dev-env/extensions/theme-extension/assets/product-builder.bundle.css",
+    "/product-builder-app--dev-env/extensions/theme-extension/assets/product-builder.bundle.js": "/product-builder-app--dev-env/extensions/theme-extension/assets/product-builder.bundle.js",
+    "/product-builder-app--dev-env/extensions/theme-extension/assets/product-builder.frontend.js": "/product-builder-app--dev-env/extensions/theme-extension/assets/product-builder.frontend.js",
+    "/product-builder-app--dev-env/extensions/theme-extension/assets/thumbs-up.png": "/product-builder-app--dev-env/extensions/theme-extension/assets/thumbs-up.png",
+    "/product-builder-app--dev-env/extensions/theme-extension/blocks/menu_builder.liquid": "/product-builder-app--dev-env/extensions/theme-extension/blocks/menu_builder.liquid",
+    "/product-builder-app--dev-env/extensions/theme-extension/blocks/product_builder.liquid": "/product-builder-app--dev-env/extensions/theme-extension/blocks/product_builder.liquid",
+    "/product-builder-app--dev-env/extensions/theme-extension/blocks/star_rating.liquid": "/product-builder-app--dev-env/extensions/theme-extension/blocks/star_rating.liquid",
+    "/product-builder-app--dev-env/extensions/theme-extension/locales/en.default.json": "/product-builder-app--dev-env/extensions/theme-extension/locales/en.default.json",
+    "/product-builder-app--dev-env/extensions/theme-extension/shopify.extension.toml": "/product-builder-app--dev-env/extensions/theme-extension/shopify.extension.toml",
+    "/product-builder-app--dev-env/extensions/theme-extension/snippets/stars.liquid": "/product-builder-app--dev-env/extensions/theme-extension/snippets/stars.liquid"
 }
