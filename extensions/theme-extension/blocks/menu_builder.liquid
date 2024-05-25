@@ -3,8 +3,8 @@
     setTimeout(function(){
       let btnToggleMegaShopMenu = document.querySelector('li.__menu-item_type____MEGASHOP__ > a');
       
-      btnToggleMegaShopMenu.addEventListener('click', function(event) {
-        event.preventDefault();
+      btnToggleMegaShopMenu.addEventListener('click', function(e) {
+        e.preventDefault();
         document.body.classList.toggle('__mega-shop-menu-open');
       });
 
@@ -14,15 +14,15 @@
 
       let btnToggleMobiMenu = document.querySelector('.menu-builder-mobi__open');
 
-      btnToggleMobiMenu.addEventListener('click', function(event) {
-        event.preventDefault();
+      btnToggleMobiMenu.addEventListener('click', function(e) {
+        e.preventDefault();
         document.body.classList.toggle('__mobi-menu-open');
       });
 
       let btnCloseMobiMenu = document.querySelector('.menu-builder-mobi__close');
       
-      btnCloseMobiMenu.addEventListener('click', function(event) {
-        event.preventDefault();
+      btnCloseMobiMenu.addEventListener('click', function(e) {
+        e.preventDefault();
         document.body.classList.remove('__mobi-menu-open');
       });
     },1000);
