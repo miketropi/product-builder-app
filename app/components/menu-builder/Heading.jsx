@@ -3,7 +3,8 @@ import {
   ButtonGroup,
   Button,
   FullscreenBar,
-  Text } from "@shopify/polaris";
+  Text,
+  Spinner } from "@shopify/polaris";
 
 export default function Heading({ title, buttons, backButtonEnable, className, backFn }) {
   return <div className={ ['heading-bar', className, (backButtonEnable ? '' : '__hide-back-button')].join(' ') }>
@@ -31,7 +32,9 @@ export default function Heading({ title, buttons, backButtonEnable, className, b
           <ButtonGroup>
             {
               buttons.map((b, __b_index) => {
-                return <Fragment key={ __b_index }>{ b }</Fragment>
+                return <Fragment key={ __b_index }>
+                  { b }
+                </Fragment>
               })
             }
           </ButtonGroup>

@@ -27,18 +27,6 @@ export default function MenuBuilder() {
       store && 
       <MenuBuilderContextV2_Provider store={ store } menu_id={ id }>
         <Page fullWidth>
-          {/* <Heading 
-            backButtonEnable={ true }
-            title={ 'Menu Builder' } 
-            backFn={ e => {
-              console.log('back...!')
-            } } 
-            buttons={ [
-              <Button variant="primary" onClick={ e => {} }>{
-                id == 'new' ? 'Create Menu' : 'Update'
-              }</Button>
-            ] } 
-          /> */}
           <MenuHeaderEdit menu_id={ id } />
           <div className="menu-builder-edit__container">
             <MenuBuilderEditorV2 />
