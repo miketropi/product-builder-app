@@ -22,6 +22,7 @@ const MenuBuilderContextV2_Provider = ({ children, store, menu_id }) => {
   const [menuTitle, setMenuTitle] = useState('');
   const [__menuID, set__MenuID] = useState(null);
   const [menuBuilderList, setMenuBuilderList] = useState([]);
+  const [isSaving, setIsSaving] = useState(false);
 
   const _event = useRef(null);
   const modalSelectTemplateActiveRef = useRef(null);
@@ -304,6 +305,8 @@ const MenuBuilderContextV2_Provider = ({ children, store, menu_id }) => {
 
   const save_Fn = async () => {
     // console.log(menuData);
+    // isSaving, setIsSaving
+    setIsSaving(true);
 
     // __menuID, set__MenuID
     let data = {
@@ -318,6 +321,7 @@ const MenuBuilderContextV2_Provider = ({ children, store, menu_id }) => {
     
     const res = await API_FA.current.saveMenuBuilder(data);
     set__MenuID(res._id);
+    setIsSaving(false);
     // console.log(res);
   }
 
@@ -329,6 +333,7 @@ const MenuBuilderContextV2_Provider = ({ children, store, menu_id }) => {
     showAllSub, setShowAllSub,
     isHoverKeys, setIsHoverKeys,
     menuTitle, setMenuTitle,
+    isSaving, setIsSaving,
     modalSelectTemplateActive, setModalSelectTemplateActive, modalSelectTemplateActiveRef, _event,
     editFn: {
       addNextItem_Fn, 

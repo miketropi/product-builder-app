@@ -5,7 +5,7 @@ import { useNavigate } from "@remix-run/react";
 
 export default function MenuHeaderEdit({ menu_id }) {
   const navigate = useNavigate();
-  const { editFn } = useMenuBuilderContextV2();
+  const { editFn, isSaving } = useMenuBuilderContextV2();
   const { save_Fn } = editFn;
 
   return <Heading 
@@ -15,9 +15,9 @@ export default function MenuHeaderEdit({ menu_id }) {
       navigate("/app/menu-builder")
     } } 
     buttons={ [
-      <Button variant="primary" onClick={ save_Fn }>{
-        menu_id == 'new' ? 'Create Menu' : 'Update Menu'
-      }</Button>
+      <Button variant="primary" onClick={ save_Fn } loading={ isSaving }>
+        { menu_id == 'new' ? 'Create Menu' : 'Update Menu' } 
+      </Button>
     ] } 
   />
 }
