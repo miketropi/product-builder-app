@@ -442,6 +442,7 @@ function ProductFooter() {
   var _useProductBuilderCon = (0,_context_ProductBuilderContext__WEBPACK_IMPORTED_MODULE_0__.useProductBuilderContext)(),
     variantObjectCurrent = _useProductBuilderCon.variantObjectCurrent,
     addToCartEnable = _useProductBuilderCon.addToCartEnable,
+    shopifyProductObject = _useProductBuilderCon.shopifyProductObject,
     onAddToCart_Fn = _useProductBuilderCon.onAddToCart_Fn,
     addonWithPrice = _useProductBuilderCon.addonWithPrice;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
@@ -449,7 +450,11 @@ function ProductFooter() {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
       className: "product-builder__product-price",
       children: function () {
-        var mainPrice = parseFloat(variantObjectCurrent.price);
+        var currentID = parseInt(variantObjectCurrent.id.replace('gid://shopify/ProductVariant/', ''));
+        var found = shopifyProductObject.product.variants.find(function (v) {
+          return v.id === currentID;
+        });
+        var mainPrice = parseFloat(found.price);
         var totalAddOnPrice = addonWithPrice.map(function (i) {
           return parseFloat(i.price);
         }).reduce(function (a, b) {
@@ -737,6 +742,7 @@ function ProductVariantOptions(_ref) {
   var options = _ref.options;
   var _useProductBuilderCon = (0,_context_ProductBuilderContext__WEBPACK_IMPORTED_MODULE_0__.useProductBuilderContext)(),
     variantObjectCurrent = _useProductBuilderCon.variantObjectCurrent,
+    shopifyProductObject = _useProductBuilderCon.shopifyProductObject,
     onUpadteVariantObjectCurrent_Fn = _useProductBuilderCon.onUpadteVariantObjectCurrent_Fn;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
     className: "__variant-options __box-option",
@@ -758,7 +764,13 @@ function ProductVariantOptions(_ref) {
             onUpadteVariantObjectCurrent_Fn(v);
           },
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-            src: image === null || image === void 0 ? void 0 : image.url,
+            src: function (_shopifyProductObject) {
+              var __id = parseInt(id.replace('gid://shopify/ProductVariant/', ''));
+              var found = shopifyProductObject === null || shopifyProductObject === void 0 || (_shopifyProductObject = shopifyProductObject.product) === null || _shopifyProductObject === void 0 ? void 0 : _shopifyProductObject.images.find(function (__i) {
+                return __i.variant_ids.includes(__id);
+              });
+              return found ? found === null || found === void 0 ? void 0 : found.src : image === null || image === void 0 ? void 0 : image.url;
+            }(),
             alt: title
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h4", {
             children: title
@@ -1620,7 +1632,7 @@ var ProductBuilderProvider = function ProductBuilderProvider(_ref) {
     });
   }, [addOnCaching]);
   var onAddonSelected_Fn = function onAddonSelected_Fn(id, price) {
-    console.log(price);
+    // console.log(price);
     // addonSelected, setAddonSelected
     // addonWithPrice, setAddonWithPrice
 
@@ -1849,7 +1861,7 @@ var getShopifyProductJson = /*#__PURE__*/function () {
 }();
 var toPrice = function toPrice(price) {
   var money_format = window.__MONEY_FORMAT;
-  var __price = new Intl.NumberFormat('en-DE').format(price);
+  var __price = new Intl.NumberFormat('en-US', {}).format(price);
   var replaceMap = {
     '{{ amount_no_decimals }}': __price,
     '{{amount_no_decimals}}': __price,
