@@ -3,7 +3,7 @@
 client_id = "cd5f35517b5f119a3f2166110eda635a"
 name = "BM Insanity"
 handle = "buildmat-app"
-application_url = "https://buildmat-app.fly.dev/"
+application_url = "https://bm-insanity.fly.dev/"
 embedded = true
 
 [build]
@@ -21,9 +21,9 @@ scopes = "read_files,read_metaobjects,read_products,write_files,write_metaobject
 
 [auth]
 redirect_urls = [
-  "https://buildmat-app.fly.dev/auth/callback",
-  "https://buildmat-app.fly.dev/auth/shopify/callback",
-  "https://buildmat-app.fly.dev/api/auth/callback"
+  "https://bm-insanity.fly.dev/auth/callback",
+  "https://bm-insanity.fly.dev/auth/shopify/callback",
+  "https://bm-insanity.fly.dev/api/auth/callback"
 ]
 
 [webhooks]
