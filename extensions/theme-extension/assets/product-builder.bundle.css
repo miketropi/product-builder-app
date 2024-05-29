@@ -250,6 +250,25 @@
   color: white;
 }
 
+.__box-option__addon .__clear-addon {
+  width: calc(33% - 0.5em);
+  border: solid 1px #DDDEDE;
+  padding: 0.5em;
+  border-radius: 3px;
+  margin-bottom: 1em;
+  line-height: normal;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  color: black;
+  cursor: pointer;
+}
+.__box-option__addon .__clear-addon.__selected {
+  background: black;
+  color: white;
+  border-color: black;
+}
 .__box-option__addon-item .__addon-heading-tag {
   background: #EEEFF0;
   border-radius: 30px;

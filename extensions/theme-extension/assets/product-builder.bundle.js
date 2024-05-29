@@ -108,7 +108,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _BoxNumber__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BoxNumber */ "./src/components/BoxNumber.jsx");
 /* harmony import */ var _ProductCard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProductCard */ "./src/components/ProductCard.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _context_ProductBuilderContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../context/ProductBuilderContext */ "./src/context/ProductBuilderContext.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
 
 
 
@@ -119,17 +121,20 @@ function OptionMetaBox(_ref) {
     value = _ref.value,
     toggle = _ref.toggle,
     toggleTargetClick = _ref.toggleTargetClick;
+  var _useProductBuilderCon = (0,_context_ProductBuilderContext__WEBPACK_IMPORTED_MODULE_2__.useProductBuilderContext)(),
+    userAddonSelected = _useProductBuilderCon.userAddonSelected,
+    clearAddon_Fn = _useProductBuilderCon.clearAddon_Fn;
   var name = boxOption.name,
     type = boxOption.type,
     description = boxOption.description,
     addons = boxOption.addons,
     options = boxOption.options;
-  var __icon_no_image = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("svg", {
+  var __icon_no_image = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("svg", {
     viewBox: "0 0 24 24",
     width: "40px",
     fill: "none",
     xmlns: "http://www.w3.org/2000/svg",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("path", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("path", {
       d: "M14.2647 15.9377L12.5473 14.2346C11.758 13.4519 11.3633 13.0605 10.9089 12.9137C10.5092 12.7845 10.079 12.7845 9.67922 12.9137C9.22485 13.0605 8.83017 13.4519 8.04082 14.2346L4.04193 18.2622M14.2647 15.9377L14.606 15.5991C15.412 14.7999 15.8149 14.4003 16.2773 14.2545C16.6839 14.1262 17.1208 14.1312 17.5244 14.2688C17.9832 14.4253 18.3769 14.834 19.1642 15.6515L20 16.5001M14.2647 15.9377L18.22 19.9628M12 4H7.2C6.07989 4 5.51984 4 5.09202 4.21799C4.7157 4.40973 4.40973 4.71569 4.21799 5.09202C4 5.51984 4 6.0799 4 7.2V16.8C4 17.4466 4 17.9066 4.04193 18.2622M4.04193 18.2622C4.07264 18.5226 4.12583 18.7271 4.21799 18.908C4.40973 19.2843 4.7157 19.5903 5.09202 19.782C5.51984 20 6.07989 20 7.2 20H16.8C17.9201 20 18.4802 20 18.908 19.782C19.2843 19.5903 19.5903 19.2843 19.782 18.908C20 18.4802 20 17.9201 20 16.8V12M16 3L18.5 5.5M18.5 5.5L21 8M18.5 5.5L21 3M18.5 5.5L16 8",
       stroke: "#eee",
       strokeWidth: "2",
@@ -137,46 +142,57 @@ function OptionMetaBox(_ref) {
       strokeLinejoin: "round"
     })
   });
-  var __OPTION_TEMP = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+  var __OPTION_TEMP = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
     className: "__box-option__options",
     children: options.map(function (o) {
       var __key = o.__key,
         name = o.name,
         image = o.image;
       var selected = name == value ? '__selected' : '';
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
         className: ['variant-option-item', selected].join(' '),
         onClick: function onClick(e) {
           return onSelect(o);
         },
-        children: [image ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+        children: [image ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
           src: image,
           alt: "#".concat(name)
-        }) : __icon_no_image, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h4", {
+        }) : __icon_no_image, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h4", {
           children: name
         })]
       }, __key);
     })
   });
-  var __ADDON_TEMP = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+  var __ADDON_TEMP = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
     className: "__box-option__addon",
-    children: addons.map(function (a) {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      className: ['__clear-addon', function () {
+        var _found = userAddonSelected.find(function (a) {
+          return a.optkey == boxOption.__key;
+        });
+        return _found ? '' : '__selected';
+      }()].join(' '),
+      onClick: function onClick(e) {
+        return clearAddon_Fn(boxOption.__key);
+      },
+      children: "None"
+    }), addons.map(function (a) {
       var __key = a.__key,
         name = a.name,
         products = a.products;
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
         className: "__box-option__addon-item",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h4", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h4", {
           className: "__addon-heading-tag",
           children: name
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
           className: "product-builder__product-card-list",
           children: products.length > 0 && products.map(function (__p) {
             // #product
             return __p.variants.map(function (__v) {
               // #variant
               var id = __v.id;
-              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ProductCard__WEBPACK_IMPORTED_MODULE_1__["default"], {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ProductCard__WEBPACK_IMPORTED_MODULE_1__["default"], {
                 optkey: boxOption.__key,
                 product: __v,
                 parent: __p
@@ -185,19 +201,19 @@ function OptionMetaBox(_ref) {
           })
         })]
       }, __key);
-    })
+    })]
   });
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
     className: "__box-option",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
       className: "__box-option__heading",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_BoxNumber__WEBPACK_IMPORTED_MODULE_0__["default"], {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_BoxNumber__WEBPACK_IMPORTED_MODULE_0__["default"], {
         number: indexNum,
         active: value ? true : false
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h4", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h4", {
         onClick: toggleTargetClick,
         children: name
-      }), value && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+      }), value && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
         className: "__value",
         children: value
       })]
@@ -1682,28 +1698,21 @@ var ProductBuilderProvider = function ProductBuilderProvider(_ref) {
     }
     setUserAddonSelected(__userAddonSelected);
     return;
-    // console.log(price);
-    // addonSelected, setAddonSelected
-    // addonWithPrice, setAddonWithPrice
-    // console.log(optkey);
-
-    var __addonSelected = _toConsumableArray(addonSelected);
-    var foundIndex = __addonSelected.findIndex(function (__id) {
-      return __id == id;
+  };
+  var clearAddon_Fn = function clearAddon_Fn(optkey) {
+    var __userAddonSelected = _toConsumableArray(userAddonSelected);
+    var addonByOptkey = __userAddonSelected.filter(function (a) {
+      return a.optkey == optkey;
     });
-    var __addonWithPrice = _toConsumableArray(addonWithPrice);
-    if (foundIndex === -1) {
-      setAddonSelected([].concat(_toConsumableArray(__addonSelected), [id]));
-      setAddonWithPrice([].concat(_toConsumableArray(__addonWithPrice), [{
-        id: id,
-        price: price
-      }]));
-    } else {
-      __addonSelected.splice(foundIndex, 1);
-      setAddonSelected(__addonSelected);
-      __addonWithPrice.splice(foundIndex, 1);
-      setAddonWithPrice(__addonWithPrice);
+    if (addonByOptkey.length > 0) {
+      addonByOptkey.forEach(function (item) {
+        var __fIndex = __userAddonSelected.findIndex(function (a) {
+          return a.id == item.id && a.optkey == item.optkey;
+        });
+        __userAddonSelected.splice(__fIndex, 1);
+      });
     }
+    setUserAddonSelected(__userAddonSelected);
   };
   var value = {
     version: '1.0.0',
@@ -1727,7 +1736,8 @@ var ProductBuilderProvider = function ProductBuilderProvider(_ref) {
     onUpdateOptions_Fn: onUpdateOptions_Fn,
     onAddToCart_Fn: onAddToCart_Fn,
     onPushAddonToCache_Fn: onPushAddonToCache_Fn,
-    onAddonSelected_Fn: onAddonSelected_Fn
+    onAddonSelected_Fn: onAddonSelected_Fn,
+    clearAddon_Fn: clearAddon_Fn
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(ProductBuilderContext.Provider, {
     value: value,
