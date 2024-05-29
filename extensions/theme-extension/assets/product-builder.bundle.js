@@ -177,6 +177,7 @@ function OptionMetaBox(_ref) {
               // #variant
               var id = __v.id;
               return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ProductCard__WEBPACK_IMPORTED_MODULE_1__["default"], {
+                optkey: boxOption.__key,
                 product: __v,
                 parent: __p
               }, id);
@@ -306,13 +307,15 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function ProductCard(_ref) {
-  var product = _ref.product,
+  var optkey = _ref.optkey,
+    product = _ref.product,
     parent = _ref.parent;
   var _useProductBuilderCon = (0,_context_ProductBuilderContext__WEBPACK_IMPORTED_MODULE_2__.useProductBuilderContext)(),
     onPushAddonToCache_Fn = _useProductBuilderCon.onPushAddonToCache_Fn,
     addOnCaching = _useProductBuilderCon.addOnCaching,
     addonSelected = _useProductBuilderCon.addonSelected,
-    onAddonSelected_Fn = _useProductBuilderCon.onAddonSelected_Fn;
+    onAddonSelected_Fn = _useProductBuilderCon.onAddonSelected_Fn,
+    userAddonSelected = _useProductBuilderCon.userAddonSelected;
   var id = product.id,
     title = product.title,
     displayName = product.displayName,
@@ -395,9 +398,16 @@ function ProductCard(_ref) {
     __getVariantData();
   }, [parent]);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-    className: ['product-builder__product-card', loading ? '__loading-effect' : '', addonSelected.includes(productData.id) ? '__selected' : ''].join(' '),
+    className: ['product-builder__product-card', loading ? '__loading-effect' : '',
+    // (addonSelected.includes(productData.id) ? '__selected' : ''),
+    function () {
+      var f = userAddonSelected.find(function (a) {
+        return a.id == productData.id && a.optkey == optkey;
+      });
+      return f ? '__selected' : '';
+    }()].join(' '),
     onClick: function onClick(e) {
-      onAddonSelected_Fn(productData.id, price);
+      onAddonSelected_Fn(productData.id, price, optkey);
     },
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
       className: "__product-image",
@@ -442,15 +452,21 @@ function ProductFooter() {
   var _useProductBuilderCon = (0,_context_ProductBuilderContext__WEBPACK_IMPORTED_MODULE_0__.useProductBuilderContext)(),
     variantObjectCurrent = _useProductBuilderCon.variantObjectCurrent,
     addToCartEnable = _useProductBuilderCon.addToCartEnable,
+    shopifyProductObject = _useProductBuilderCon.shopifyProductObject,
     onAddToCart_Fn = _useProductBuilderCon.onAddToCart_Fn,
-    addonWithPrice = _useProductBuilderCon.addonWithPrice;
+    addonWithPrice = _useProductBuilderCon.addonWithPrice,
+    userAddonSelected = _useProductBuilderCon.userAddonSelected;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
     className: "product-builder__product-footer",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
       className: "product-builder__product-price",
       children: function () {
-        var mainPrice = parseFloat(variantObjectCurrent.price);
-        var totalAddOnPrice = addonWithPrice.map(function (i) {
+        var currentID = parseInt(variantObjectCurrent.id.replace('gid://shopify/ProductVariant/', ''));
+        var found = shopifyProductObject.product.variants.find(function (v) {
+          return v.id === currentID;
+        });
+        var mainPrice = parseFloat(found.price);
+        var totalAddOnPrice = userAddonSelected.map(function (i) {
           return parseFloat(i.price);
         }).reduce(function (a, b) {
           return a + b;
@@ -737,6 +753,7 @@ function ProductVariantOptions(_ref) {
   var options = _ref.options;
   var _useProductBuilderCon = (0,_context_ProductBuilderContext__WEBPACK_IMPORTED_MODULE_0__.useProductBuilderContext)(),
     variantObjectCurrent = _useProductBuilderCon.variantObjectCurrent,
+    shopifyProductObject = _useProductBuilderCon.shopifyProductObject,
     onUpadteVariantObjectCurrent_Fn = _useProductBuilderCon.onUpadteVariantObjectCurrent_Fn;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
     className: "__variant-options __box-option",
@@ -758,7 +775,13 @@ function ProductVariantOptions(_ref) {
             onUpadteVariantObjectCurrent_Fn(v);
           },
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-            src: image === null || image === void 0 ? void 0 : image.url,
+            src: function (_shopifyProductObject) {
+              var __id = parseInt(id.replace('gid://shopify/ProductVariant/', ''));
+              var found = shopifyProductObject === null || shopifyProductObject === void 0 || (_shopifyProductObject = shopifyProductObject.product) === null || _shopifyProductObject === void 0 ? void 0 : _shopifyProductObject.images.find(function (__i) {
+                return __i.variant_ids.includes(__id);
+              });
+              return found ? found === null || found === void 0 ? void 0 : found.src : image === null || image === void 0 ? void 0 : image.url;
+            }(),
             alt: title
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h4", {
             children: title
@@ -1406,6 +1429,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var ProductBuilderContext = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.createContext)(null);
+var __ADDON_MULTIPLE_SUPPORT = false;
 var ProductBuilderProvider = function ProductBuilderProvider(_ref) {
   var children = _ref.children,
     API_ENDPOINT = _ref.API_ENDPOINT,
@@ -1463,6 +1487,10 @@ var ProductBuilderProvider = function ProductBuilderProvider(_ref) {
     _useState24 = _slicedToArray(_useState23, 2),
     addonWithPrice = _useState24[0],
     setAddonWithPrice = _useState24[1];
+  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState26 = _slicedToArray(_useState25, 2),
+    userAddonSelected = _useState26[0],
+    setUserAddonSelected = _useState26[1];
   var __getProduct_Fn = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
       var shopifyProductData, productBuilderData, productVariantsPrice, productBuilderData__FilterAvailable;
@@ -1577,9 +1605,9 @@ var ProductBuilderProvider = function ProductBuilderProvider(_ref) {
             cartDataSend = {
               items: [
               // main product
-              mainProduc].concat(_toConsumableArray(addonSelected.map(function (__id) {
+              mainProduc].concat(_toConsumableArray(userAddonSelected.map(function (a) {
                 return {
-                  id: __id,
+                  id: a.id,
                   quantity: 1
                 };
               }))),
@@ -1619,10 +1647,45 @@ var ProductBuilderProvider = function ProductBuilderProvider(_ref) {
       return [].concat(_toConsumableArray(prevState), [item]);
     });
   }, [addOnCaching]);
-  var onAddonSelected_Fn = function onAddonSelected_Fn(id, price) {
-    console.log(price);
+  var onAddonSelected_Fn = function onAddonSelected_Fn(id, price, optkey) {
+    // userAddonSelected, setUserAddonSelected
+    var __userAddonSelected = _toConsumableArray(userAddonSelected);
+    var __foundIndex = __userAddonSelected.findIndex(function (a) {
+      return a.id == id && a.optkey == optkey;
+    });
+    if (__foundIndex == -1) {
+      // add if not found
+      if (__ADDON_MULTIPLE_SUPPORT) {
+        __userAddonSelected.push({
+          id: id,
+          price: price,
+          optkey: optkey
+        });
+      } else {
+        var __foundOptkeyItemIndex = __userAddonSelected.findIndex(function (a) {
+          return a.optkey == optkey;
+        });
+        if (__foundOptkeyItemIndex == -1) {
+          __userAddonSelected.push({
+            id: id,
+            price: price,
+            optkey: optkey
+          });
+        } else {
+          __userAddonSelected[__foundOptkeyItemIndex].id = id;
+          __userAddonSelected[__foundOptkeyItemIndex].price = price;
+        }
+      }
+    } else {
+      // remove if exists
+      __userAddonSelected.splice(__foundIndex, 1);
+    }
+    setUserAddonSelected(__userAddonSelected);
+    return;
+    // console.log(price);
     // addonSelected, setAddonSelected
     // addonWithPrice, setAddonWithPrice
+    // console.log(optkey);
 
     var __addonSelected = _toConsumableArray(addonSelected);
     var foundIndex = __addonSelected.findIndex(function (__id) {
@@ -1658,6 +1721,8 @@ var ProductBuilderProvider = function ProductBuilderProvider(_ref) {
     addToCartLoading: addToCartLoading,
     addonSelected: addonSelected,
     addonWithPrice: addonWithPrice,
+    userAddonSelected: userAddonSelected,
+    setUserAddonSelected: setUserAddonSelected,
     onUpadteVariantObjectCurrent_Fn: onUpadteVariantObjectCurrent_Fn,
     onUpdateOptions_Fn: onUpdateOptions_Fn,
     onAddToCart_Fn: onAddToCart_Fn,
@@ -1849,7 +1914,7 @@ var getShopifyProductJson = /*#__PURE__*/function () {
 }();
 var toPrice = function toPrice(price) {
   var money_format = window.__MONEY_FORMAT;
-  var __price = new Intl.NumberFormat('en-DE').format(price);
+  var __price = new Intl.NumberFormat('en-US', {}).format(price);
   var replaceMap = {
     '{{ amount_no_decimals }}': __price,
     '{{amount_no_decimals}}': __price,

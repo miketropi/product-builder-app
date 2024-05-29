@@ -1,9 +1,9 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
-client_id = "9b94b30109de385b8b978ed747968862"
+client_id = "a31790a79c946c76cf232419a0ea906e"
 name = "BM Insanity Dev"
 handle = "bm-insanity-dev"
-application_url = "https://tremendous-jury-genes-rb.trycloudflare.com"
+application_url = "https://positions-about-organizations-cartoon.trycloudflare.com"
 embedded = true
 
 [build]
@@ -21,9 +21,9 @@ scopes = "read_files,read_metaobjects,read_products,write_files,write_metaobject
 
 [auth]
 redirect_urls = [
-  "https://tremendous-jury-genes-rb.trycloudflare.com/auth/callback",
-  "https://tremendous-jury-genes-rb.trycloudflare.com/auth/shopify/callback",
-  "https://tremendous-jury-genes-rb.trycloudflare.com/api/auth/callback"
+  "https://positions-about-organizations-cartoon.trycloudflare.com/auth/callback",
+  "https://positions-about-organizations-cartoon.trycloudflare.com/auth/shopify/callback",
+  "https://positions-about-organizations-cartoon.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
