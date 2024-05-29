@@ -369,6 +369,7 @@
   .product-builder-app .product-builder-container {
     width: 560px;
     margin: 0 auto;
+    max-width: 100%;
   }
   .product-builder__product-image, .product-builder__product-meta {
     width: 100%;
