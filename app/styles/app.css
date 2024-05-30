@@ -201,6 +201,9 @@ body p, body h1, body h2, body h3, body h4, body h5, body h6, body input, body t
 .__option-box-nav__item > a {
   cursor: grab;
 }
+.__option-box-nav__item .opt-box-item-actions {
+  margin-left: auto;
+}
 
 .box-config {
   margin-bottom: 2em;

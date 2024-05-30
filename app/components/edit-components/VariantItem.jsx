@@ -3,6 +3,7 @@ import { useProductBuilderContext } from "../../context/ProductBuilderContext";
 import ReactDragListView from 'react-drag-listview';
 import { DragHandleIcon } from '@shopify/polaris-icons';
 import { Icon } from "@shopify/polaris";
+import OptBoxItemActions from './OptBoxItemActions';
 
 export default function VariantItem({ variant, onSelect, active }) {
   const { editProduct } = useProductBuilderContext();
@@ -43,6 +44,7 @@ export default function VariantItem({ variant, onSelect, active }) {
                   />
                 </a>
                 <span>{ o.name }</span>
+                <OptBoxItemActions item={ o } />
               </li>
             })
           }
