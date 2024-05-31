@@ -3,11 +3,7 @@
 client_id = "a31790a79c946c76cf232419a0ea906e"
 name = "BM Insanity Dev"
 handle = "bm-insanity-dev"
-<<<<<<< HEAD
 application_url = "https://fine-table-seo-analog.trycloudflare.com"
-=======
-application_url = "https://offshore-envelope-quad-bicycle.trycloudflare.com"
->>>>>>> 77ca2257fa0ea3257bd3432dce7d99b4fcb1d6a2
 embedded = true
 
 [build]
@@ -24,15 +20,9 @@ scopes = "read_files,read_metaobjects,read_products,write_files,write_metaobject
 
 [auth]
 redirect_urls = [
-<<<<<<< HEAD
   "https://fine-table-seo-analog.trycloudflare.com/auth/callback",
   "https://fine-table-seo-analog.trycloudflare.com/auth/shopify/callback",
   "https://fine-table-seo-analog.trycloudflare.com/api/auth/callback"
-=======
-  "https://offshore-envelope-quad-bicycle.trycloudflare.com/auth/callback",
-  "https://offshore-envelope-quad-bicycle.trycloudflare.com/auth/shopify/callback",
-  "https://offshore-envelope-quad-bicycle.trycloudflare.com/api/auth/callback"
->>>>>>> 77ca2257fa0ea3257bd3432dce7d99b4fcb1d6a2
 ]
 
 [webhooks]
