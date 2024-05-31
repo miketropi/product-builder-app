@@ -3,7 +3,7 @@
 client_id = "a31790a79c946c76cf232419a0ea906e"
 name = "BM Insanity Dev"
 handle = "bm-insanity-dev"
-application_url = "https://cause-oc-propose-citation.trycloudflare.com"
+application_url = "https://fine-table-seo-analog.trycloudflare.com"
 embedded = true
 
 [build]
@@ -20,9 +20,9 @@ scopes = "read_files,read_metaobjects,read_products,write_files,write_metaobject
 
 [auth]
 redirect_urls = [
-  "https://cause-oc-propose-citation.trycloudflare.com/auth/callback",
-  "https://cause-oc-propose-citation.trycloudflare.com/auth/shopify/callback",
-  "https://cause-oc-propose-citation.trycloudflare.com/api/auth/callback"
+  "https://fine-table-seo-analog.trycloudflare.com/auth/callback",
+  "https://fine-table-seo-analog.trycloudflare.com/auth/shopify/callback",
+  "https://fine-table-seo-analog.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

@@ -31,8 +31,15 @@ export default function OptBoxItemActions({ item }) {
         <ActionList
           actionRole="menuitem"
           items={[
-            { content: 'Copy Config', icon: ClipboardIcon, onAction: () => { copyHanndle_Fn(item) } },
-            { content: 'Paste Config', disabled: (copyData ? false : true), icon: ClipboardIcon, onAction: () => { pasteHanndle_Fn(item) } },
+            { content: 'Copy Config', icon: ClipboardIcon, onAction: () => { 
+              copyHanndle_Fn(item);
+              setPopoverActive(false);
+            } },
+            { content: 'Paste Config', disabled: (copyData ? false : true), icon: ClipboardIcon, 
+              onAction: () => { 
+                pasteHanndle_Fn(item);
+                setPopoverActive(false);
+              } },
           ]}
         />
       </Popover.Pane>
