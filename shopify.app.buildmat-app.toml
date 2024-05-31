@@ -9,7 +9,6 @@ embedded = true
 [build]
 automatically_update_urls_on_dev = false
 dev_store_url = "buildmatstaging.myshopify.com"
-include_config_on_deploy = true
 
 [access.admin]
 direct_api_mode = "online"

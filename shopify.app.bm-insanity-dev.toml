@@ -3,13 +3,12 @@
 client_id = "a31790a79c946c76cf232419a0ea906e"
 name = "BM Insanity Dev"
 handle = "bm-insanity-dev"
-application_url = "https://confusion-pop-tattoo-sustainable.trycloudflare.com"
+application_url = "https://offshore-envelope-quad-bicycle.trycloudflare.com"
 embedded = true
 
 [build]
 automatically_update_urls_on_dev = true
 dev_store_url = "buildmatstaging.myshopify.com"
-include_config_on_deploy = true
 
 [access.admin]
 direct_api_mode = "online"
@@ -21,9 +20,9 @@ scopes = "read_files,read_metaobjects,read_products,write_files,write_metaobject
 
 [auth]
 redirect_urls = [
-  "https://confusion-pop-tattoo-sustainable.trycloudflare.com/auth/callback",
-  "https://confusion-pop-tattoo-sustainable.trycloudflare.com/auth/shopify/callback",
-  "https://confusion-pop-tattoo-sustainable.trycloudflare.com/api/auth/callback"
+  "https://offshore-envelope-quad-bicycle.trycloudflare.com/auth/callback",
+  "https://offshore-envelope-quad-bicycle.trycloudflare.com/auth/shopify/callback",
+  "https://offshore-envelope-quad-bicycle.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
