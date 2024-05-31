@@ -9,6 +9,7 @@ const ProductBuilderContext_Provider = ({ children, loadData, actionData }) => {
   const [ productsBuilderList, setProductsBuilderList ] = useState([]);
   const [ total, setTotal ] = useState(0);
   const [ currentPage, setCurrentPage ] = useState(1);
+  const [ copyData, setCopyData ] = useState(null);
   const API_FA = useRef(null);
 
   /**
@@ -204,6 +205,37 @@ const ProductBuilderContext_Provider = ({ children, loadData, actionData }) => {
     setEditProduct__editObject(__editProduct__editObject);
   }
 
+  const copyHanndle_Fn = (item) => {
+    // console.log(item);
+    setCopyData(JSON.parse(JSON.stringify(item)));
+  }
+
+  const pasteHanndle_Fn = (item) => {
+    console.log(item);
+    let __editObject = { ...editProduct__editObject }
+    let foundIndex = __editObject.builderData.__options.findIndex(o => o.__key == item.__key);
+    let newCopyData = JSON.parse(JSON.stringify(copyData))
+    
+    // newCopyData.options = [...newCopyData.options];
+
+    newCopyData.options = newCopyData.options.map(o => {
+      o.__key = `__` + (Math.random() + 1).toString(36).substring(7);
+      return o;
+    })
+
+    newCopyData.addons = newCopyData.addons.map(o => {
+      o.__key = `__` + (Math.random() + 1).toString(36).substring(7);
+      return o;
+    })
+
+    newCopyData.__key = __editObject.builderData.__options[foundIndex].__key;
+
+    __editObject.builderData.__options[foundIndex] = newCopyData;
+    setEditProduct__editObject(__editObject);
+    
+    // console.log(editProduct__editObject.builderData.__options);
+  }
+
   const value = {
     version: '1.0.0',
     API_FA,
@@ -224,7 +256,9 @@ const ProductBuilderContext_Provider = ({ children, loadData, actionData }) => {
       editProduct__onAddConfigBox_Fn,
       editProduct__editObject, setEditProduct__editObject,
       editProduct__onImport_Fn,
-      onOrderingVariantItem_Fn
+      onOrderingVariantItem_Fn,
+      copyData, setCopyData,
+      copyHanndle_Fn, pasteHanndle_Fn,
     },
     mediaModal: {
       mediaActive, setMediaActive,

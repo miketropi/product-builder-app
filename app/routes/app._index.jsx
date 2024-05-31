@@ -87,8 +87,8 @@ export default function Index() {
           <Layout.Section>
             <Banner
               title="BM Insanity"
-              action={{content: 'Create a Product Builder', url: '/app/product-builder'}}
-              secondaryAction={{content: 'Create a Menu', url: '/app/menu-builder' }}
+              action={{content: 'Product Builder', url: '/app/product-builder'}}
+              secondaryAction={{content: 'Menu Builder', url: '/app/menu-builder' }}
               tone="info"
               onDismiss={() => {}} 
             >
