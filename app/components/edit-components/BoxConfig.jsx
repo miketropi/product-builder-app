@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import PbButton from '../PbButton';
 import PbSelectImage from '../PbSelectImage';
 import { PlusIcon } from '@shopify/polaris-icons';
@@ -10,7 +11,8 @@ import {
   ResourceItem,
   Thumbnail,
   Text,
-  Badge
+  Badge,
+  Checkbox
 } from '@shopify/polaris';
 
 export default function BoxConfig({ configData, onChange, onDelete }) {
@@ -127,89 +129,102 @@ export default function BoxConfig({ configData, onChange, onDelete }) {
     </div>
   </fieldset>)
 
-  const __TYPE_ADDONS = (<fieldset>
-    <legend>Addons</legend>
-    <div className="group-option">
-      {
-        configData.addons && 
-        configData.addons.map((a, __a_index) => {
-          return <div className="group-option__item" key={ __a_index }>
-            <PbButton 
-              text={ '✕' } 
-              classes={ '__close' } 
-              title={ 'Remove item' } 
-              onClick={ e => {
-                let r = confirm('Are you sure you want to remove?')
-                if(!r) return;
-                
-                onRemoveAddonItem(__a_index);
-              } } />
-            <label>
-              <span>Name</span>
-              <input type="text" value={ a.name } onChange={ e => {
-                onUpdateField(e.target.value, `addons[${ __a_index }].name`)
-              } } />
-            </label>
-            <div className="asLabel">
-              <span>Products</span>
-              <div style={{ width: '100%' }}>
-                {
-                  a.products.length > 0 &&
-                  <>
-                    <LegacyCard>
-                      <ResourceList
-                        items={ a.products }
-                        renderItem={ ({ id, title, images, variants }, __id, __p_index) => {
-                          let thumb = (<Thumbnail
-                            source={ ((images && images.length > 0) ? images[0]?.originalSrc : '') }
-                            size="small"
-                            alt={ title }
-                          />);
+  const __TYPE_ADDONS = (<>
+    <label className="box-config__field">
+      <Checkbox
+        label="Addon Multiple Selection"
+        checked={ configData?.addon_multiple ?? false }
+        onChange={ value => {
+          // console.log(value);
+          onUpdateField(value, `addon_multiple`)
+        } }
+      />
+    </label>
+    <br />
+    <fieldset>
+      <legend>Addons</legend>
+      <div className="group-option">
+        { 
+          configData.addons && 
+          configData.addons.map((a, __a_index) => {
+            return <div className="group-option__item" key={ __a_index }>
+              <PbButton 
+                text={ '✕' } 
+                classes={ '__close' } 
+                title={ 'Remove item' } 
+                onClick={ e => {
+                  let r = confirm('Are you sure you want to remove?')
+                  if(!r) return;
+                  
+                  onRemoveAddonItem(__a_index);
+                } } />
+              <label>
+                <span>Name</span>
+                <input type="text" value={ a.name } onChange={ e => {
+                  onUpdateField(e.target.value, `addons[${ __a_index }].name`)
+                } } />
+              </label>
+              <div className="asLabel">
+                <span>Products</span>
+                <div style={{ width: '100%' }}>
+                  {
+                    a.products.length > 0 &&
+                    <>
+                      <LegacyCard>
+                        <ResourceList
+                          items={ a.products }
+                          renderItem={ ({ id, title, images, variants }, __id, __p_index) => {
+                            let thumb = (<Thumbnail
+                              source={ ((images && images.length > 0) ? images[0]?.originalSrc : '') }
+                              size="small"
+                              alt={ title }
+                            />);
 
-                          const shortcutActions = [
-                            {
-                              content: 'Remove',
-                              onAction: e => {
-                                onRemoveProduct(__a_index, __p_index);
-                              }
-                            },
-                          ]
+                            const shortcutActions = [
+                              { 
+                                content: 'Remove',
+                                onAction: e => {
+                                  onRemoveProduct(__a_index, __p_index);
+                                }
+                              },
+                            ]
 
-                          return (<ResourceItem
-                            id={ id }
-                            verticalAlignment="center"
-                            // shortcutActions={ shortcutActions }
-                            onClick={ e => { onRemoveProduct(__a_index, __p_index); } }
-                            media={ thumb }
-                          >
-                            <Text variant="bodyMd" fontWeight="bold" as="h4">{ title }</Text>
-                            <div>
-                              {
-                                variants &&
-                                variants.map(v => { 
-                                  return <small key={ v.id }><u size="small">{ v.title }</u> { ' ' }</small>
-                                })
-                              }
-                            </div>
-                          </ResourceItem>)
-                        } }
-                      />
-                    </LegacyCard>
-                    <br />
-                  </>
-                }
-                <Button icon={ PlusIcon } onClick={ e => onAddProduct(__a_index) }>Add Product</Button>
+                            return (<ResourceItem
+                              id={ id }
+                              verticalAlignment="center"
+                              // shortcutActions={ shortcutActions }
+                              onClick={ e => { onRemoveProduct(__a_index, __p_index); } }
+                              media={ thumb }
+                            >
+                              <Text variant="bodyMd" fontWeight="bold" as="h4">{ title }</Text>
+                              <div>
+                                {
+                                  variants &&
+                                  variants.map(v => { 
+                                    return <small key={ v.id }><u size="small">{ v.title }</u> { ' ' }</small>
+                                  })
+                                }
+                              </div>
+                            </ResourceItem>)
+                          } }
+                        />
+                      </LegacyCard>
+                      <br />
+                    </>
+                  }
+                  <Button icon={ PlusIcon } onClick={ e => onAddProduct(__a_index) }>Add Product</Button>
+                </div>
               </div>
             </div>
-          </div>
-        })
-      }
-      <PbButton text={ '+ Add More' } classes={ '__small' } onClick={ e => {
-        e.preventDefault();
-        onAddMoreAddon();
-      } } />
-    </div>
-  </fieldset>)
+          })
+        }
+        <PbButton text={ '+ Add More' } classes={ '__small' } onClick={ e => {
+          e.preventDefault();
+          onAddMoreAddon();
+        } } />
+      </div>
+    </fieldset>
+  </>)
 
   return <div className="box-config">
     <fieldset>

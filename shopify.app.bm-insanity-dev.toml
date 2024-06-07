@@ -3,7 +3,7 @@
 client_id = "a31790a79c946c76cf232419a0ea906e"
 name = "BM Insanity Dev"
 handle = "bm-insanity-dev"
-application_url = "https://individual-seven-challenging-jane.trycloudflare.com"
+application_url = "https://antarctica-extension-folder-memorial.trycloudflare.com"
 embedded = true
 
 [build]
@@ -20,9 +20,9 @@ scopes = "read_files,read_metaobjects,read_products,write_files,write_metaobject
 
 [auth]
 redirect_urls = [
-  "https://individual-seven-challenging-jane.trycloudflare.com/auth/callback",
-  "https://individual-seven-challenging-jane.trycloudflare.com/auth/shopify/callback",
-  "https://individual-seven-challenging-jane.trycloudflare.com/api/auth/callback"
+  "https://antarctica-extension-folder-memorial.trycloudflare.com/auth/callback",
+  "https://antarctica-extension-folder-memorial.trycloudflare.com/auth/shopify/callback",
+  "https://antarctica-extension-folder-memorial.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

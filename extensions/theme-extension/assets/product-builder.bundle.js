@@ -190,10 +190,14 @@ function OptionMetaBox(_ref) {
           children: products.length > 0 && products.map(function (__p) {
             // #product
             return __p.variants.map(function (__v) {
+              var _boxOption$addon_mult;
               // #variant
-              var id = __v.id;
+              var id = __v.id,
+                displayName = __v.displayName;
               return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ProductCard__WEBPACK_IMPORTED_MODULE_1__["default"], {
                 optkey: boxOption.__key,
+                multiple: (_boxOption$addon_mult = boxOption === null || boxOption === void 0 ? void 0 : boxOption.addon_multiple) !== null && _boxOption$addon_mult !== void 0 ? _boxOption$addon_mult : false,
+                name: displayName,
                 product: __v,
                 parent: __p
               }, id);
@@ -213,10 +217,37 @@ function OptionMetaBox(_ref) {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h4", {
         onClick: toggleTargetClick,
         children: name
-      }), value && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-        className: "__value",
-        children: value
-      })]
+      }),
+      // userAddonSelected
+      function (__type) {
+        if (__type == 'options') {
+          return value && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+            className: "__value",
+            title: value,
+            children: value
+          });
+        } else {
+          var found = userAddonSelected.filter(function (s) {
+            return s.optkey == boxOption.__key;
+          });
+          if (found.length == 0) {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+              className: "__value",
+              children: "No item"
+            });
+          } else {
+            var __string = found.map(function (s) {
+              return s.title.replace('- Default Title', '');
+            }).join(', ');
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
+              className: "__value",
+              title: __string,
+              children: [found.length > 1 ? "".concat(found.length, " items - ") : '', " ", __string]
+            });
+          }
+          // return JSON.stringify(found);
+        }
+      }(type)]
     }), toggle && function (__type) {
       // __type: options, addon
       return __type == 'options' ? __OPTION_TEMP : __ADDON_TEMP;
@@ -325,7 +356,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 function ProductCard(_ref) {
   var optkey = _ref.optkey,
     product = _ref.product,
-    parent = _ref.parent;
+    parent = _ref.parent,
+    multiple = _ref.multiple;
   var _useProductBuilderCon = (0,_context_ProductBuilderContext__WEBPACK_IMPORTED_MODULE_2__.useProductBuilderContext)(),
     onPushAddonToCache_Fn = _useProductBuilderCon.onPushAddonToCache_Fn,
     addOnCaching = _useProductBuilderCon.addOnCaching,
@@ -423,7 +455,7 @@ function ProductCard(_ref) {
       return f ? '__selected' : '';
     }()].join(' '),
     onClick: function onClick(e) {
-      onAddonSelected_Fn(productData.id, price, optkey);
+      onAddonSelected_Fn(productData.id, price, optkey, productData.title, multiple);
     },
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
       className: "__product-image",
@@ -471,7 +503,8 @@ function ProductFooter() {
     shopifyProductObject = _useProductBuilderCon.shopifyProductObject,
     onAddToCart_Fn = _useProductBuilderCon.onAddToCart_Fn,
     addonWithPrice = _useProductBuilderCon.addonWithPrice,
-    userAddonSelected = _useProductBuilderCon.userAddonSelected;
+    userAddonSelected = _useProductBuilderCon.userAddonSelected,
+    optionsSelected = _useProductBuilderCon.optionsSelected;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
     className: "product-builder__product-footer",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
@@ -1663,19 +1696,21 @@ var ProductBuilderProvider = function ProductBuilderProvider(_ref) {
       return [].concat(_toConsumableArray(prevState), [item]);
     });
   }, [addOnCaching]);
-  var onAddonSelected_Fn = function onAddonSelected_Fn(id, price, optkey) {
+  var onAddonSelected_Fn = function onAddonSelected_Fn(id, price, optkey, title, multiple) {
     // userAddonSelected, setUserAddonSelected
     var __userAddonSelected = _toConsumableArray(userAddonSelected);
     var __foundIndex = __userAddonSelected.findIndex(function (a) {
       return a.id == id && a.optkey == optkey;
     });
+    console.log(multiple);
     if (__foundIndex == -1) {
       // add if not found
-      if (__ADDON_MULTIPLE_SUPPORT) {
+      if (multiple) {
         __userAddonSelected.push({
           id: id,
           price: price,
-          optkey: optkey
+          optkey: optkey,
+          title: title
         });
       } else {
         var __foundOptkeyItemIndex = __userAddonSelected.findIndex(function (a) {
@@ -1685,11 +1720,13 @@ var ProductBuilderProvider = function ProductBuilderProvider(_ref) {
           __userAddonSelected.push({
             id: id,
             price: price,
-            optkey: optkey
+            optkey: optkey,
+            title: title
           });
         } else {
           __userAddonSelected[__foundOptkeyItemIndex].id = id;
           __userAddonSelected[__foundOptkeyItemIndex].price = price;
+          __userAddonSelected[__foundOptkeyItemIndex].title = title;
         }
       }
     } else {

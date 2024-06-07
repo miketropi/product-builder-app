@@ -291,6 +291,10 @@
 }
 .__box-option .__box-option__heading .__value {
   margin-left: auto;
+  max-width: 50%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 .__box-option .__box-option__options {
   display: grid;

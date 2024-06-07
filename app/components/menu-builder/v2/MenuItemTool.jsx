@@ -10,7 +10,9 @@ import {
   ArrowUpIcon,
   ArrowDownIcon,
   ArrowLeftIcon,
-  ArrowRightIcon } from "@shopify/polaris-icons";
+  ArrowRightIcon,
+  MenuVerticalIcon,
+  EditIcon } from "@shopify/polaris-icons";
 
 export default function MenuItemTool({ menu, level, parent, num_index }) {
   const { editFn } = useMenuBuilderContextV2();
@@ -30,7 +32,7 @@ export default function MenuItemTool({ menu, level, parent, num_index }) {
 
   const activator = (
     <span className="__button-toggle-actions" onClick={togglePopoverActive}>
-      <Icon source={ PlusIcon } />
+      <Icon source={ MenuVerticalIcon } />
     </span>
   );
 
