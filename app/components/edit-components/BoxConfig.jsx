@@ -132,7 +132,7 @@ export default function BoxConfig({ configData, onChange, onDelete }) {
   const __TYPE_ADDONS = (<>
     <label className="box-config__field">
       <Checkbox
-        label="Addon Multiple Selection"
+        label="Allow multiple selections"
         checked={ configData?.addon_multiple ?? false }
         onChange={ value => {
           // console.log(value);
