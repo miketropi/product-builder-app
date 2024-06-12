@@ -398,6 +398,72 @@
     width: 100%;
   }
 }
+.__skeleton-square {
+  width: 100%;
+  padding-bottom: 100%;
+  background: #ddd;
+  display: inline-block !important;
+}
+
+.__skeleton-heading-line {
+  width: 100%;
+  height: 2em;
+  background: #ddd;
+  display: inline-block !important;
+}
+
+.__skeleton-line {
+  width: 100%;
+  height: 1em;
+  background: #ddd;
+  display: inline-block !important;
+  margin-bottom: 0.8em;
+}
+
+.__thumb-fake-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.__thumb-fake-container .__skeleton-square {
+  padding-bottom: 100px;
+}
+
+.skeleton-box {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  background-color: #DDDBDD;
+}
+.skeleton-box::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, 0.2) 20%, rgba(255, 255, 255, 0.5) 60%, rgba(255, 255, 255, 0));
+  animation: shimmer 2s infinite;
+  content: "";
+}
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.__skeleton-container .__box-option__heading .__box-number {
+  min-width: 32px;
+}
+.__skeleton-container .__box-option__heading h4 {
+  width: 100%;
+}
+.__skeleton-container .__box-option__heading h4 .__skeleton-line {
+  margin: 0;
+}
+
 .section-header ~ .shopify-section-group-header-group {
   z-index: 9;
 }
