@@ -48,9 +48,9 @@
 <script>
   window.__P_{{ product.id }} = {{ PRODUCT_BUILDER_APP__JS_META_DATA }}; 
   window.__MONEY_FORMAT = "{{ shop.money_format }}"; 
-  window.__P_title = "{{ product.title }}";
-  window.__P_content = "{{ product.content }}";
-  window.__P_fimage = "{{ product.featured_image | image_url: width: 600 }}"; 
+  window.__P_title = `{{ product.title }}`;
+  window.__P_content = `{{ product.content }}`;
+  window.__P_fimage = `{{ product.featured_image | image_url: width: 600 }}`; 
 </script>
 
 {% schema %}
