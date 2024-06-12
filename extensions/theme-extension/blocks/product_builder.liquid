@@ -1,5 +1,41 @@
-<div id="__PRODUCT_BUILDER_APP__" data-store-id="{{ shop.id }}" data-product-id="{{ product.id }}" data-product-url="{{ product.url }}">
+<div 
+  id="__PRODUCT_BUILDER_APP__" 
+  data-store-id="{{ shop.id }}" 
+  data-product-id="{{ product.id }}" 
+  data-product-url="{{ product.url }}">
+  <div class="product-builder-app">
+    <div class="product-builder-container">
+      <div class="product-builder__product-image">
+        <div class="__p-feature-image">
+          {{ product.featured_image | img_url: '600x600' | img_tag: product.featured_image.alt }}
+        </div>
+        <div style="text-align: center;">
+        {%- for media in product.media -%}
+          {{ media.preview_image.src | img_url: '100x100' | img_tag }}
+        {%- endfor -%}
+        </div>
+      </div>
+      <div class="product-builder__product-meta">
+        <div class="product-builder__product-heading">
+          <h2 class="__product-title">{{ product.title }}</h2>
+          <p>{{ product.content }}</p>
+        </div>
+        <div class="product-builder__product-footer">
+          <div class="product-builder__product-price">{{ product.price | money }}</div>
+          <div class="product-builder__buttons">
+            <button class="button product-builder__button-add-to-cart __disable " style="text-align: center; display: block; padding: 1em;">Add To Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+<style>
+.__p-feature-image img {
+  max-width: 100% !important;
+}
+</style>
 
 {%- capture PRODUCT_BUILDER_APP__JS_META_DATA -%}
 {
