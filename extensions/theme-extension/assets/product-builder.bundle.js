@@ -203,10 +203,12 @@ function OptionMetaBox(_ref) {
         var _found = userAddonSelected.find(function (a) {
           return a.optkey == boxOption.__key;
         });
-        return _found ? '' : '__selected';
+        return ''; // (_found ? '' : '__selected')
       }()].join(' '),
       onClick: function onClick(e) {
-        return clearAddon_Fn(boxOption.__key);
+        clearAddon_Fn(boxOption.__key);
+        var __next = currentStepNumber + 1;
+        setCurrentStepNumber(__next);
       },
       children: "None"
     }), addons.map(function (a) {
@@ -315,7 +317,12 @@ function OptionMetaBox(_ref) {
             return __type == 'options' ? __OPTION_TEMP : __ADDON_TEMP;
           }(type)
         })
-      }), type == 'addon' && toggle == true && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+      }), type == 'addon' && toggle == true && (boxOption === null || boxOption === void 0 ? void 0 : boxOption.addon_multiple) && boxOption.addon_multiple == true && function () {
+        var found = userAddonSelected.filter(function (s) {
+          return s.optkey == boxOption.__key;
+        });
+        return found.length > 0 ? true : false;
+      }() && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
         className: "button __next-step",
         type: "button",
         onClick: function onClick(e) {
