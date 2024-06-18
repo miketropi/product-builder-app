@@ -464,6 +464,27 @@
   margin: 0;
 }
 
+.__box-option .__next-step {
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  border-radius: 6px;
+  background: #006875;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 13px;
+  display: flex;
+  gap: 10px;
+  transition: 0.3s ease;
+  -webkit-transition: 0.3s ease;
+}
+.__box-option .__next-step:after, .__box-option .__next-step:before {
+  display: none;
+}
+.__box-option .__next-step:hover {
+  opacity: 0.8;
+}
+
 .section-header ~ .shopify-section-group-header-group {
   z-index: 9;
 }
