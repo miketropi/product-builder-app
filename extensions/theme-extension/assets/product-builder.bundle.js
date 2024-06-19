@@ -106,12 +106,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ OptionMetaBox)
 /* harmony export */ });
-/* harmony import */ var _BoxNumber__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BoxNumber */ "./src/components/BoxNumber.jsx");
-/* harmony import */ var _ProductCard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProductCard */ "./src/components/ProductCard.jsx");
-/* harmony import */ var _context_ProductBuilderContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../context/ProductBuilderContext */ "./src/context/ProductBuilderContext.js");
-/* harmony import */ var _react_spring_web__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @react-spring/web */ "./node_modules/@react-spring/web/dist/react-spring_web.modern.mjs");
-/* harmony import */ var react_use_measure__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-use-measure */ "./node_modules/react-use-measure/dist/web.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _BoxNumber__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BoxNumber */ "./src/components/BoxNumber.jsx");
+/* harmony import */ var _ProductCard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ProductCard */ "./src/components/ProductCard.jsx");
+/* harmony import */ var _context_ProductBuilderContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../context/ProductBuilderContext */ "./src/context/ProductBuilderContext.js");
+/* harmony import */ var _react_spring_web__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @react-spring/web */ "./node_modules/@react-spring/web/dist/react-spring_web.modern.mjs");
+/* harmony import */ var react_use_measure__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-use-measure */ "./node_modules/react-use-measure/dist/web.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
@@ -130,6 +132,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 function OptionMetaBox(_ref) {
   var boxOption = _ref.boxOption,
     indexNum = _ref.indexNum,
@@ -137,22 +140,23 @@ function OptionMetaBox(_ref) {
     value = _ref.value,
     toggle = _ref.toggle,
     toggleTargetClick = _ref.toggleTargetClick;
-  var _useProductBuilderCon = (0,_context_ProductBuilderContext__WEBPACK_IMPORTED_MODULE_2__.useProductBuilderContext)(),
+  var _useProductBuilderCon = (0,_context_ProductBuilderContext__WEBPACK_IMPORTED_MODULE_3__.useProductBuilderContext)(),
     userAddonSelected = _useProductBuilderCon.userAddonSelected,
     clearAddon_Fn = _useProductBuilderCon.clearAddon_Fn,
     currentStepNumber = _useProductBuilderCon.currentStepNumber,
-    setCurrentStepNumber = _useProductBuilderCon.setCurrentStepNumber;
+    setCurrentStepNumber = _useProductBuilderCon.setCurrentStepNumber,
+    optionsSelected = _useProductBuilderCon.optionsSelected;
   var name = boxOption.name,
     type = boxOption.type,
     description = boxOption.description,
     addons = boxOption.addons,
     options = boxOption.options;
-  var __icon_no_image = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("svg", {
+  var __icon_no_image = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("svg", {
     viewBox: "0 0 24 24",
     width: "40px",
     fill: "none",
     xmlns: "http://www.w3.org/2000/svg",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("path", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("path", {
       d: "M14.2647 15.9377L12.5473 14.2346C11.758 13.4519 11.3633 13.0605 10.9089 12.9137C10.5092 12.7845 10.079 12.7845 9.67922 12.9137C9.22485 13.0605 8.83017 13.4519 8.04082 14.2346L4.04193 18.2622M14.2647 15.9377L14.606 15.5991C15.412 14.7999 15.8149 14.4003 16.2773 14.2545C16.6839 14.1262 17.1208 14.1312 17.5244 14.2688C17.9832 14.4253 18.3769 14.834 19.1642 15.6515L20 16.5001M14.2647 15.9377L18.22 19.9628M12 4H7.2C6.07989 4 5.51984 4 5.09202 4.21799C4.7157 4.40973 4.40973 4.71569 4.21799 5.09202C4 5.51984 4 6.0799 4 7.2V16.8C4 17.4466 4 17.9066 4.04193 18.2622M4.04193 18.2622C4.07264 18.5226 4.12583 18.7271 4.21799 18.908C4.40973 19.2843 4.7157 19.5903 5.09202 19.782C5.51984 20 6.07989 20 7.2 20H16.8C17.9201 20 18.4802 20 18.908 19.782C19.2843 19.5903 19.5903 19.2843 19.782 18.908C20 18.4802 20 17.9201 20 16.8V12M16 3L18.5 5.5M18.5 5.5L21 8M18.5 5.5L21 3M18.5 5.5L16 8",
       stroke: "#eee",
       strokeWidth: "2",
@@ -160,11 +164,13 @@ function OptionMetaBox(_ref) {
       strokeLinejoin: "round"
     })
   });
-  var _useMeasure = (0,react_use_measure__WEBPACK_IMPORTED_MODULE_5__["default"])(),
+  var boxRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
+  // const [boxRef, boxProperty] = useMeasure();
+  var _useMeasure = (0,react_use_measure__WEBPACK_IMPORTED_MODULE_6__["default"])(),
     _useMeasure2 = _slicedToArray(_useMeasure, 2),
     measureRef = _useMeasure2[0],
     height = _useMeasure2[1].height;
-  var styles = (0,_react_spring_web__WEBPACK_IMPORTED_MODULE_3__.useSpring)({
+  var styles = (0,_react_spring_web__WEBPACK_IMPORTED_MODULE_4__.useSpring)({
     // config: config.stiff,
     from: {
       opacity: 0,
@@ -175,30 +181,55 @@ function OptionMetaBox(_ref) {
       height: toggle ? height : 0
     }
   });
-  var __OPTION_TEMP = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (toggle == true && currentStepNumber > 1) {
+      // console.log(optionsSelected.length, currentStepNumber)
+      setTimeout(function () {
+        window.scrollTo({
+          top: boxRef.current.offsetTop,
+          left: 0,
+          behavior: 'smooth'
+        });
+      }, 400);
+    }
+  }, [toggle]);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (!optionsSelected || optionsSelected.length == 0) return;
+    if (currentStepNumber > optionsSelected.length) {
+      // console.log(optionsSelected.length, currentStepNumber)
+      setTimeout(function () {
+        window.scrollTo({
+          top: document.querySelector('.product-builder__product-footer').offsetTop,
+          left: 0,
+          behavior: 'smooth'
+        });
+      }, 400);
+    }
+  }, [currentStepNumber]);
+  var __OPTION_TEMP = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
     className: "__box-option__options",
     children: options.map(function (o) {
       var __key = o.__key,
         name = o.name,
         image = o.image;
       var selected = name == value ? '__selected' : '';
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
         className: ['variant-option-item', selected].join(' '),
         onClick: function onClick(e) {
           return onSelect(o);
         },
-        children: [image ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
+        children: [image ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
           src: image,
           alt: "#".concat(name)
-        }) : __icon_no_image, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
+        }) : __icon_no_image, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h4", {
           children: name
         })]
       }, __key);
     })
   });
-  var __ADDON_TEMP = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+  var __ADDON_TEMP = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
     className: "__box-option__addon",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
       className: ['__clear-addon', function () {
         var _found = userAddonSelected.find(function (a) {
           return a.optkey == boxOption.__key;
@@ -215,12 +246,12 @@ function OptionMetaBox(_ref) {
       var __key = a.__key,
         name = a.name,
         products = a.products;
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
         className: "__box-option__addon-item",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h4", {
           className: "__addon-heading-tag",
           children: name
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
           className: "product-builder__product-card-list",
           children: products.length > 0 && products.map(function (__p) {
             // #product
@@ -229,7 +260,7 @@ function OptionMetaBox(_ref) {
               // #variant
               var id = __v.id,
                 displayName = __v.displayName;
-              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ProductCard__WEBPACK_IMPORTED_MODULE_1__["default"], {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ProductCard__WEBPACK_IMPORTED_MODULE_2__["default"], {
                 optkey: boxOption.__key,
                 multiple: (_boxOption$addon_mult = boxOption === null || boxOption === void 0 ? void 0 : boxOption.addon_multiple) !== null && _boxOption$addon_mult !== void 0 ? _boxOption$addon_mult : false,
                 name: displayName,
@@ -242,11 +273,12 @@ function OptionMetaBox(_ref) {
       }, __key);
     })]
   });
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
     className: "__box-option",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+    ref: boxRef,
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
       className: "__box-option__heading",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_BoxNumber__WEBPACK_IMPORTED_MODULE_0__["default"], {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_BoxNumber__WEBPACK_IMPORTED_MODULE_1__["default"], {
         number: indexNum,
         active: function (__type) {
           if (__type == 'options') {
@@ -262,14 +294,14 @@ function OptionMetaBox(_ref) {
             }
           }
         }(type)
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h4", {
         onClick: toggleTargetClick,
         children: name
       }),
       // userAddonSelected
       function (__type) {
         if (__type == 'options') {
-          return value && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+          return value && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
             className: "__value",
             title: value,
             children: value
@@ -279,7 +311,7 @@ function OptionMetaBox(_ref) {
             return s.optkey == boxOption.__key;
           });
           if (found.length == 0) {
-            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
               className: "__value",
               children: "No item"
             });
@@ -287,7 +319,7 @@ function OptionMetaBox(_ref) {
             var __string = found.map(function (s) {
               return s.title.replace('- Default Title', '');
             }).join(', ');
-            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
               className: "__value",
               title: __string,
               children: [found.length > 1 ? "".concat(found.length, " items - ") : '', " ", __string]
@@ -296,15 +328,15 @@ function OptionMetaBox(_ref) {
           // return JSON.stringify(found);
         }
       }(type)]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
       style: {
         position: "relative"
       },
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_react_spring_web__WEBPACK_IMPORTED_MODULE_3__.animated.div, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_react_spring_web__WEBPACK_IMPORTED_MODULE_4__.animated.div, {
         style: _objectSpread({
           overflow: "hidden"
         }, styles),
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
           ref: measureRef,
           style: {
             display: "inline-block",
@@ -322,7 +354,7 @@ function OptionMetaBox(_ref) {
           return s.optkey == boxOption.__key;
         });
         return found.length > 0 ? true : false;
-      }() && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+      }() && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
         className: "button __next-step",
         type: "button",
         onClick: function onClick(e) {
