@@ -198,8 +198,11 @@ function OptionMetaBox(_ref) {
     if (currentStepNumber > optionsSelected.length) {
       // console.log(optionsSelected.length, currentStepNumber)
       setTimeout(function () {
+        var _window$__PB_EXTRA_TO, _window;
+        var elTop = document.querySelector('.product-builder__product-footer').offsetTop;
+        var extraTop = (_window$__PB_EXTRA_TO = (_window = window) === null || _window === void 0 ? void 0 : _window.__PB_EXTRA_TOP) !== null && _window$__PB_EXTRA_TO !== void 0 ? _window$__PB_EXTRA_TO : -100;
         window.scrollTo({
-          top: document.querySelector('.product-builder__product-footer').offsetTop,
+          top: elTop + extraTop,
           left: 0,
           behavior: 'smooth'
         });
