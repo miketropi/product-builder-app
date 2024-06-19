@@ -183,10 +183,11 @@ function OptionMetaBox(_ref) {
   });
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (toggle == true && currentStepNumber > 1) {
-      // console.log(optionsSelected.length, currentStepNumber)
+      var _window$__PB_EXTRA_TO, _window;
+      var extraTop = (_window$__PB_EXTRA_TO = (_window = window) === null || _window === void 0 ? void 0 : _window.__PB_EXTRA_TOP) !== null && _window$__PB_EXTRA_TO !== void 0 ? _window$__PB_EXTRA_TO : -100;
       setTimeout(function () {
         window.scrollTo({
-          top: boxRef.current.offsetTop,
+          top: boxRef.current.offsetTop + extraTop,
           left: 0,
           behavior: 'smooth'
         });
@@ -198,9 +199,9 @@ function OptionMetaBox(_ref) {
     if (currentStepNumber > optionsSelected.length) {
       // console.log(optionsSelected.length, currentStepNumber)
       setTimeout(function () {
-        var _window$__PB_EXTRA_TO, _window;
+        var _window$__PB_EXTRA_TO2, _window2;
         var elTop = document.querySelector('.product-builder__product-footer').offsetTop;
-        var extraTop = (_window$__PB_EXTRA_TO = (_window = window) === null || _window === void 0 ? void 0 : _window.__PB_EXTRA_TOP) !== null && _window$__PB_EXTRA_TO !== void 0 ? _window$__PB_EXTRA_TO : -100;
+        var extraTop = (_window$__PB_EXTRA_TO2 = (_window2 = window) === null || _window2 === void 0 ? void 0 : _window2.__PB_EXTRA_TOP) !== null && _window$__PB_EXTRA_TO2 !== void 0 ? _window$__PB_EXTRA_TO2 : -100;
         window.scrollTo({
           top: elTop + extraTop,
           left: 0,
