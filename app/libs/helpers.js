@@ -53,3 +53,11 @@ export const getParents = (el, parentSelector) => {
 
   return isParents.length > 0 ? isParents : false;
 }
+
+export const sanitizeForId = (label) => {
+  return label
+    .toLowerCase()
+    .replace(/[^\w\s]|(\s+)/g, (_match, group1) =>
+      group1 ? "-" : ""
+    );
+}

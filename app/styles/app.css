@@ -948,4 +948,85 @@ li.__menu-item_type____BLOCK_MENU_IMAGE__ > a .__menu-item-name .dropdown-icon {
   font-weight: bold;
 }
 
+.tab-comp__heading {
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+.tab-comp__heading .__tab-heading-item {
+  list-style: none;
+  cursor: pointer;
+  background: #e3e3e3;
+}
+.tab-comp__heading .__tab-heading-item.__active {
+  background: white;
+}
+.tab-comp__heading .__tab-heading-item.__active span {
+  font-weight: bold;
+  color: black;
+}
+.tab-comp__heading .__tab-heading-item span {
+  display: inline-block;
+  padding: 1em 2em;
+  color: #4d4d4d;
+}
+.tab-comp__body {
+  padding: 2em;
+  background: white;
+}
+.build-questions-comp {
+  display: grid;
+  grid-template-columns: 260px 1px 1fr;
+  gap: 2em;
+}
+.build-questions-comp .__line {
+  background: #ddd;
+}
+.build-questions-comp__list-items .heading {
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+.build-questions-comp__list-items ul.__q-list {
+  padding: 0 0 1em 0;
+  margin: 0 0 1em 0;
+  border-bottom: solid 1px #eee;
+}
+.build-questions-comp__list-items ul.__q-list li {
+  list-style: none;
+  border: solid 2px #673AB7;
+  padding: 1em;
+  line-height: normal;
+  display: flex;
+  margin-bottom: 4px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.build-questions-comp__list-items ul.__q-list li .__q-name {
+  width: 100%;
+}
+.build-questions-comp__list-items ul.__q-list li .Polaris-Icon {
+  margin-right: 1em;
+}
+.build-questions-comp__list-items ul.__q-list li span {
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.build-questions-comp__list-items ul.__q-list .__q-item.__edit {
+  background: #673AB7;
+  color: white;
+}
+.__q-fieldset {
+  background: #f2f2f2;
+  border-radius: 8px;
+  padding: 1em;
+  margin-bottom: 1em;
+  border: solid 1px #ddd;
+}
+.__q-fieldset legend {
+  padding: 0.5em 1em;
+  font-weight: bold;
+}
+
 /*# sourceMappingURL=app.css.map */

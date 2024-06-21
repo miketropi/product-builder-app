@@ -1,0 +1,38 @@
+.tab-comp {
+
+  &__heading {
+    display: flex;
+    margin: 0;
+    padding: 0;
+
+    .__tab-heading-item {
+      list-style: none;
+      cursor: pointer;
+      background: #e3e3e3;
+
+      &.__active {
+        background: white;
+
+        span {
+          font-weight: bold;
+          color: black;
+        }
+      }
+
+      span {
+        display: inline-block;
+        padding: 1em 2em;
+        color: #4d4d4d;
+      }
+    }
+  }
+
+  &__body {
+    padding: 2em;
+    background: white; 
+
+    .tab-panel {
+
+    }
+  }
+}

@@ -4,6 +4,7 @@ import Heading from '../components/menu-builder/Heading';
 import { useLoaderData, useActionData } from "@remix-run/react";
 import { authenticate } from "../shopify.server";
 import { useNavigate } from "@remix-run/react";
+import Edit from '../components/funnel/Edit';
 
 import appStyles from "../styles/app.css?url";
 export const links = () => [
@@ -20,7 +21,7 @@ export default function() {
   const { id } = useLoaderData();
   
   return <FunnelEditContextProvider>
-    <Page fullWidth>
+    <Page>
       <Heading 
         backButtonEnable={ true } 
         backFn={ e => { navigate("/app/funnel") } } 
@@ -29,11 +30,11 @@ export default function() {
       />
 
       <div style={{ paddingTop: '2em' }}></div>
-      
+
       <BlockStack gap="500">
         <Layout>
           <Layout.Section> 
-            Edit Funnel...! { id }
+            <Edit />
           </Layout.Section>
         </Layout>
       </BlockStack>
