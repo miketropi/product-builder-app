@@ -1,5 +1,6 @@
 import { useFunnelEditContext } from "../../context/FunnelEditContext";
 import {TextField} from '@shopify/polaris';
+import AddField from './AddField';
 
 export default function QuestionDesign() {
   const { editItem } = useFunnelEditContext();
@@ -29,5 +30,6 @@ export default function QuestionDesign() {
     </fieldset>
 
     { JSON.stringify(editItem) }
+    <AddField />
   </div>
 }
