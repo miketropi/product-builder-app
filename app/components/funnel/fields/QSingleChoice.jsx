@@ -1,53 +1,44 @@
 import { TextField, Checkbox, Text, Button } from '@shopify/polaris';
 import { useFunnelEditContext } from '../../../context/FunnelEditContext';
+import OptionsRepeater from './OptionsRepeater';
 
-const QTextFieldPreview = (config) => {
+const QSingleChoicePreview = (config) => {
   return <div>...</div>
 }
 
-export default function QTextField(config) {
+export default function QSingleChoice(props) {
   const { fn } = useFunnelEditContext();
   const { onUpdateQuestionField, onDeleteField } = fn;
 
-  return <fieldset className="q-text-field __q-fieldset">
-    <legend>Text Field Configs</legend>
-
+  return <fieldset className="q-single-choice __q-fieldset">
+    <legend>Single Choice Config</legend>
+    { JSON.stringify(props) }
     <fieldset className="__q-fieldset">
       <legend>Preview</legend>
-      <QTextFieldPreview />
+      <QSingleChoicePreview />
     </fieldset>
 
     <fieldset className="__q-fieldset">
-      <legend>Configs</legend> 
+      <legend>Configs</legend>
+
       <div className="__q-field-config-container">
-        {/* { JSON.stringify(config) } */}
-        <TextField
-          label="Default Value"
-          value={ config?.value }
-          onChange={ value => { onUpdateQuestionField(value, 'field.value') } }
-          autoComplete="off"
-        />
-        
-        <TextField
-          label="Placeholder"
-          value={ config?.placeholder }
-          onChange={ value => { onUpdateQuestionField(value, 'field.placeholder') } } 
-          autoComplete="off"
-        />
+
+        <OptionsRepeater options={ props?.options } />
 
         <TextField
           label="Help Text"
-          value={ config?.help_text }
+          value={ props?.help_text }
           onChange={ value => { onUpdateQuestionField(value, 'field.help_text') } }
           autoComplete="off"
         />
 
         <Checkbox
           label="required"
-          checked={ config?.required }
+          checked={ props?.required }
           onChange={ newChecked => { onUpdateQuestionField(newChecked, 'field.required') } }
         />
       </div>
+
     </fieldset>
 
     <fieldset className="__q-fieldset">
@@ -64,4 +55,4 @@ export default function QTextField(config) {
       </div>
     </fieldset>
   </fieldset>
-}
+} 

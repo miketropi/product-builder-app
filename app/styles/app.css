@@ -1029,4 +1029,15 @@ li.__menu-item_type____BLOCK_MENU_IMAGE__ > a .__menu-item-name .dropdown-icon {
   font-weight: bold;
 }
 
+.__q-field-config-container > * {
+  margin-bottom: 1em;
+}
+
+.q-text-field {
+  padding: 1em;
+  background: #f2f2f2;
+  border: solid 1px #ddd;
+  border-radius: 8px;
+}
+
 /*# sourceMappingURL=app.css.map */

@@ -3,7 +3,7 @@
 client_id = "a31790a79c946c76cf232419a0ea906e"
 name = "BM Insanity Dev"
 handle = "bm-insanity-dev"
-application_url = "https://facts-disks-debut-gained.trycloudflare.com"
+application_url = "https://configure-summit-unless-toshiba.trycloudflare.com"
 embedded = true
 
 [build]
@@ -20,9 +20,9 @@ scopes = "read_files,read_metaobjects,read_products,write_files,write_metaobject
 
 [auth]
 redirect_urls = [
-  "https://facts-disks-debut-gained.trycloudflare.com/auth/callback",
-  "https://facts-disks-debut-gained.trycloudflare.com/auth/shopify/callback",
-  "https://facts-disks-debut-gained.trycloudflare.com/api/auth/callback"
+  "https://configure-summit-unless-toshiba.trycloudflare.com/auth/callback",
+  "https://configure-summit-unless-toshiba.trycloudflare.com/auth/shopify/callback",
+  "https://configure-summit-unless-toshiba.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

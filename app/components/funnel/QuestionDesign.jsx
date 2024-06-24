@@ -1,9 +1,11 @@
 import { useFunnelEditContext } from "../../context/FunnelEditContext";
 import {TextField} from '@shopify/polaris';
 import AddField from './AddField';
+import DynamicComponent from '../DynamicComponent';
 
 export default function QuestionDesign() {
-  const { editItem } = useFunnelEditContext();
+  const { editItem, fn } = useFunnelEditContext();
+  const { onUpdateQuestionField } = fn;
 
   if(!editItem) return <div></div>
 
@@ -12,7 +14,7 @@ export default function QuestionDesign() {
       <legend>Question</legend>
       <TextField
         value={ editItem?.question }
-        onChange={ value => { } }
+        onChange={ value => { onUpdateQuestionField(value, 'question') } }
         autoComplete="off"
         helpText="Enter your question."
       />
@@ -22,14 +24,18 @@ export default function QuestionDesign() {
       <legend>Content</legend>
       <TextField
         value={ editItem?.content }
-        onChange={ value => { } }
+        onChange={ value => { onUpdateQuestionField(value, 'content') } }
         autoComplete="off"
         helpText="You can use HTML for this field."
         multiline={ 4 }
       />
     </fieldset>
 
-    { JSON.stringify(editItem) }
-    <AddField />
+    {/* { JSON.stringify(editItem) }  */}
+    {
+      editItem?.field 
+        ? <DynamicComponent c={ editItem.field?.type } { ...editItem.field }  /> 
+        : <AddField />
+    }
   </div>
 }

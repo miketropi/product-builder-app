@@ -13,6 +13,7 @@ export default function Tab({ children, activeTabIndex, onSelectTab }) {
           const { name } = item.props;
           const isActive = __i_index === activeTabIndex
           return <li 
+            key={ `tab_id_${ __i_index }` }
             className={ ['__tab-heading-item', (isActive ? '__active' : '')].join(' ') }
             onClick={ e => onSelectTab(__i_index, item) }>
             <span>{ name }</span>
