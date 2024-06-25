@@ -40,9 +40,9 @@ const FunnelEditContextProvider = ({ children }) => {
           type: c,
           value: '',
           options: [
-            { label: 'Option 1', value: 'option_1' },
-            { label: 'Option 2', value: 'option_2' },
-            { label: 'Option 3', value: 'option_3' }
+            { __key: uuidv4(), label: 'Option 1', value: 'option_1' },
+            { __key: uuidv4(), label: 'Option 2', value: 'option_2' },
+            { __key: uuidv4(), label: 'Option 3', value: 'option_3' }
           ],
           require: false,
         }
@@ -55,9 +55,9 @@ const FunnelEditContextProvider = ({ children }) => {
           value: [],
           multiple: true, 
           options: [
-            { label: 'Option 1', value: 'option_1' },
-            { label: 'Option 2', value: 'option_2' },
-            { label: 'Option 3', value: 'option_3' }
+            { __key: uuidv4(), label: 'Option 1', value: 'option_1' },
+            { __key: uuidv4(), label: 'Option 2', value: 'option_2' },
+            { __key: uuidv4(), label: 'Option 3', value: 'option_3' }
           ],
           require: false,
         }

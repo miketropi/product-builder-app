@@ -1,15 +1,23 @@
-import { TextField, Checkbox, Text, Button, Autocomplete } from '@shopify/polaris';
+import { useState } from 'react';
+import { TextField, Checkbox, Text, Button, Autocomplete, LegacyStack, Tag } from '@shopify/polaris';
 import { useFunnelEditContext } from '../../../context/FunnelEditContext';
 import OptionsRepeater from './OptionsRepeater';
 import { v4 as uuidv4 } from 'uuid';
 
-const QSingleChoicePreview = (config) => {
+const QMultipleChoicePreview = (config) => {
   return <div>...</div>
 }
 
-export default function QSingleChoice(props) {
+export default function QMultipleChoice(props) {
+  const [ filterOptionText, setFilterOptionText ] = useState('');
   const { fn } = useFunnelEditContext();
   const { onUpdateQuestionField, onDeleteField } = fn;
+
+  const onChangeOptionField = (value, fieldName, __index) => {
+    let __options = (props?.options ? [...props?.options] : []);
+    __options[__index][fieldName] = value;
+    onUpdateQuestionField(__options, `field.options`)
+  }
 
   const onAddOptionItem = () => {
     let __nextIndex = props.options.length + 1;
@@ -36,21 +44,42 @@ export default function QSingleChoice(props) {
     onUpdateQuestionField(__options, 'field.options');
   }
 
+  const onRemoveTag = (o) => {
+    const __value = [...props.value];
+    __value.splice(__value.indexOf(o), 1);
+    onUpdateQuestionField(__value, 'field.value');
+  }
+
+  const verticalContentMarkup =
+    props?.value.length > 0 ? (
+      <LegacyStack spacing="extraTight" alignment="center">
+        { props?.value.map((option) => {
+          return (
+            <Tag key={`option${option}`} onRemove={ o => { onRemoveTag(o) } }>
+              { option }
+            </Tag>
+          );
+        }) }
+      </LegacyStack>
+    ) : null;
+
   const textField = (
     <Autocomplete.TextField
-      onChange={ value => { onUpdateQuestionField(value, 'field.value') } }
+      onChange={ value => { setFilterOptionText(value) } }
       label="Default Value"
-      value={ props?.value }
+      value={ filterOptionText }
+      placeholder="..."
+      verticalContent={ verticalContentMarkup }
       autoComplete="off"
     />
   );
 
   return <fieldset className="q-single-choice __q-fieldset">
-    <legend>Single Choice Config</legend>
+    <legend>Multiple Choice Config</legend>
     {/* { JSON.stringify(props) } */}
     <fieldset className="__q-fieldset">
       <legend>Preview</legend>
-      <QSingleChoicePreview />
+      <QMultipleChoicePreview />
     </fieldset>
 
     <fieldset className="__q-fieldset">
@@ -61,26 +90,23 @@ export default function QSingleChoice(props) {
         <OptionsRepeater 
           label="Options" 
           options={ props?.options } 
-          onChange={ (value, fieldName, __index) => {
-            onUpdateQuestionField(value, `field.options[${ __index }].${ fieldName }`)
-          } } 
-          onDelete={ __index => { onDeleteOptionItem(__index) } }
-          onAdd={ () => { onAddOptionItem() } }
+          onChange={ onChangeOptionField } 
+          onDelete={ onDeleteOptionItem }
+          onAdd={ onAddOptionItem }
           onOrder={ onOrderOptionItem }
         />
 
-        {/* <TextField
-          label="Default Value"
-          value={ props?.value }
-          onChange={ value => { onUpdateQuestionField(value, 'field.value') } }
-          autoComplete="off"
-        /> */}
-
         <Autocomplete
-          options={ props?.options }
-          selected={ [props?.value] }
-          onSelect={ value => { onUpdateQuestionField(value[0], 'field.value') } }
-          textField={textField}
+          allowMultiple
+          options={ props?.options.filter(o => (o.value.search(filterOptionText) != -1) ) }
+          selected={ props?.value ?? [] }
+          textField={ textField }
+          onSelect={ value => { 
+            console.log(value)
+            onUpdateQuestionField(value, 'field.value');
+            setFilterOptionText('');
+          } }
+          listTitle="Suggested Options"
         />
 
         <TextField

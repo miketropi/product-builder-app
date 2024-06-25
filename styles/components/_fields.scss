@@ -12,3 +12,50 @@
   border: solid 1px #ddd; 
   border-radius: $border-radius;
 }
+
+.options-repeater-comp {
+  background: white;
+
+  .option-list {
+    margin: 0 0 1em 0;
+    padding: 0;
+
+    .option-item {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 20px 20px 1fr 1fr 20px;
+      gap: 1em;
+      align-items: center;
+      padding: 4px;
+      border-radius: 4px;
+      border: solid 1px #eee;
+      background: white;
+      margin: 4px 0;
+      
+      &:nth-child(odd) {
+        background: #eee;
+      }
+
+      .__order-number {
+        text-align: center;
+
+        > span {
+          width: 20px;
+          height: 20px;
+          border-radius: 20px;
+          background: black;
+          color: white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          line-height: 0;
+          font-size: .9em;
+        }
+      }
+
+      .__remote-item {
+        cursor: pointer;
+      }
+    }
+  }
+}

@@ -1,9 +1,11 @@
 import QTextField from "./funnel/fields/QTextField";
 import QSingleChoice from "./funnel/fields/QSingleChoice";
+import QMultipleChoice from "./funnel/fields/QMultipleChoice";
 
 const __COMPONENTS = {
   QTextField,
-  QSingleChoice
+  QSingleChoice,
+  QMultipleChoice
 }
 
 export default function DynamicComponent(props) {

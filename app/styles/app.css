@@ -1040,4 +1040,45 @@ li.__menu-item_type____BLOCK_MENU_IMAGE__ > a .__menu-item-name .dropdown-icon {
   border-radius: 8px;
 }
 
+.options-repeater-comp {
+  background: white;
+}
+.options-repeater-comp .option-list {
+  margin: 0 0 1em 0;
+  padding: 0;
+}
+.options-repeater-comp .option-list .option-item {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 20px 20px 1fr 1fr 20px;
+  gap: 1em;
+  align-items: center;
+  padding: 4px;
+  border-radius: 4px;
+  border: solid 1px #eee;
+  background: white;
+  margin: 4px 0;
+}
+.options-repeater-comp .option-list .option-item:nth-child(odd) {
+  background: #eee;
+}
+.options-repeater-comp .option-list .option-item .__order-number {
+  text-align: center;
+}
+.options-repeater-comp .option-list .option-item .__order-number > span {
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  background: black;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  font-size: 0.9em;
+}
+.options-repeater-comp .option-list .option-item .__remote-item {
+  cursor: pointer;
+}
+
 /*# sourceMappingURL=app.css.map */
