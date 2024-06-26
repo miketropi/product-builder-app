@@ -993,7 +993,7 @@ li.__menu-item_type____BLOCK_MENU_IMAGE__ > a .__menu-item-name .dropdown-icon {
 }
 .build-questions-comp__list-items ul.__q-list li {
   list-style: none;
-  border: solid 2px #673AB7;
+  background: #eee;
   padding: 1em;
   line-height: normal;
   display: flex;
@@ -1029,6 +1029,17 @@ li.__menu-item_type____BLOCK_MENU_IMAGE__ > a .__menu-item-name .dropdown-icon {
   font-weight: bold;
 }
 
+.question-design-comp__heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em;
+  margin-bottom: 2em;
+  border: solid #eee;
+  border-width: 1px;
+  border-radius: 8px;
+}
+
 .__q-field-config-container > * {
   margin-bottom: 1em;
 }
@@ -1049,15 +1060,25 @@ li.__menu-item_type____BLOCK_MENU_IMAGE__ > a .__menu-item-name .dropdown-icon {
 }
 .options-repeater-comp .option-list .option-item {
   list-style: none;
+  border-radius: 4px;
+  border: solid 1px #eee;
+  background: white;
+  margin: 4px 0;
+}
+.options-repeater-comp .option-list .option-item__default {
   display: grid;
   grid-template-columns: 20px 20px 1fr 1fr 20px;
   gap: 1em;
   align-items: center;
   padding: 4px;
-  border-radius: 4px;
-  border: solid 1px #eee;
+}
+.options-repeater-comp .option-list .option-item__extra {
+  padding: 4px;
+  border-top: solid 1px #eee;
+  width: 100%;
+  display: block;
   background: white;
-  margin: 4px 0;
+  border-radius: 0 0 4px 4px;
 }
 .options-repeater-comp .option-list .option-item:nth-child(odd) {
   background: #eee;

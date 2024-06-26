@@ -1,0 +1,13 @@
+.question-design-comp {
+
+  &__heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+    margin-bottom: 2em;
+    border: solid #eee;
+    border-width: 1px;
+    border-radius: $border-radius;
+  }
+}

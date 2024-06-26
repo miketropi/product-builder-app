@@ -1,4 +1,4 @@
-import { TextField, Checkbox, Text, Button, Autocomplete } from '@shopify/polaris';
+import { TextField, Checkbox, Text, Button, Autocomplete, ChoiceList } from '@shopify/polaris';
 import { useFunnelEditContext } from '../../../context/FunnelEditContext';
 import OptionsRepeater from './OptionsRepeater';
 import { v4 as uuidv4 } from 'uuid';
@@ -16,7 +16,7 @@ export default function QSingleChoice(props) {
     onUpdateQuestionField([
       ...props?.options,
       { __key: uuidv4(), label: `Option ${ __nextIndex }`, value: `option_${ __nextIndex }` },
-    ], 'field.options')
+    ], `field.options`)
   }
 
   const onDeleteOptionItem = (index) => {
@@ -25,7 +25,7 @@ export default function QSingleChoice(props) {
 
     let __options = (props?.options ? [...props?.options] : []);
     __options.splice(index, 1);
-    onUpdateQuestionField(__options, 'field.options');
+    onUpdateQuestionField(__options, `field.options`);
   }
 
   const onOrderOptionItem = (newIndex, oldIndex) => {
@@ -33,7 +33,7 @@ export default function QSingleChoice(props) {
     const [removed] = __options.splice(oldIndex, 1);
     __options.splice(newIndex, 0, removed);
 
-    onUpdateQuestionField(__options, 'field.options');
+    onUpdateQuestionField(__options, `field.options`);
   }
 
   const textField = (
@@ -44,6 +44,10 @@ export default function QSingleChoice(props) {
       autoComplete="off"
     />
   );
+
+  const getOptionsByUI = () => {
+    return props?.options ?? [];
+  }
 
   return <fieldset className="q-single-choice __q-fieldset">
     <legend>Single Choice Config</legend>
@@ -58,9 +62,24 @@ export default function QSingleChoice(props) {
 
       <div className="__q-field-config-container">
 
+        <fieldset className="__q-fieldset">
+          <legend>Options Style</legend>
+          <ChoiceList
+            choices={[
+              {label: 'Default', value: 'default'},
+              {label: 'Card', value: 'card'},
+              {label: 'Block (Image & Text)', value: 'block'},
+              {label: 'Custom HTML', value: 'custom_html'},
+            ]}
+            selected={ props.option_ui }
+            onChange={ value => { onUpdateQuestionField(value, 'field.option_ui') } }
+          />
+        </fieldset>
+
         <OptionsRepeater 
           label="Options" 
-          options={ props?.options } 
+          optionsStyle={ props.option_ui }
+          options={ getOptionsByUI() } 
           onChange={ (value, fieldName, __index) => {
             onUpdateQuestionField(value, `field.options[${ __index }].${ fieldName }`)
           } } 
@@ -77,7 +96,7 @@ export default function QSingleChoice(props) {
         /> */}
 
         <Autocomplete
-          options={ props?.options }
+          options={ getOptionsByUI() }
           selected={ [props?.value] }
           onSelect={ value => { onUpdateQuestionField(value[0], 'field.value') } }
           textField={textField}

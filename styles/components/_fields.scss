@@ -22,15 +22,28 @@
 
     .option-item {
       list-style: none;
-      display: grid;
-      grid-template-columns: 20px 20px 1fr 1fr 20px;
-      gap: 1em;
-      align-items: center;
-      padding: 4px;
+      
       border-radius: 4px;
       border: solid 1px #eee;
       background: white;
       margin: 4px 0;
+
+      &__default {
+        display: grid;
+        grid-template-columns: 20px 20px 1fr 1fr 20px;
+        gap: 1em;
+        align-items: center;
+        padding: 4px;
+      }
+
+      &__extra {
+        padding: 4px;
+        border-top: solid 1px #eee;
+        width: 100%;
+        display: block;
+        background: white;
+        border-radius: 0 0 4px 4px;
+      }
       
       &:nth-child(odd) {
         background: #eee;

@@ -8,6 +8,9 @@ const { set } = _;
 const FunnelEditContext = createContext(null);
 
 const FunnelEditContextProvider = ({ children }) => {
+  const [ title, setTitle ] = useState('');
+  const [ funnelID, setFunnelID ] = useState(null);
+  const [ storeID, setStoreID ] = useState(null);
   const [ tabActive, setTabActive ] = useState(0);
   const [ questions, setQuestions ] = useState(q);
   const [ editItem, setEditItem ] = useState(null);
@@ -39,6 +42,7 @@ const FunnelEditContextProvider = ({ children }) => {
           help_text: '',
           type: c,
           value: '',
+          option_ui: 'default',
           options: [
             { __key: uuidv4(), label: 'Option 1', value: 'option_1' },
             { __key: uuidv4(), label: 'Option 2', value: 'option_2' },
@@ -54,6 +58,7 @@ const FunnelEditContextProvider = ({ children }) => {
           type: c,
           value: [],
           multiple: true, 
+          option_ui: 'default',
           options: [
             { __key: uuidv4(), label: 'Option 1', value: 'option_1' },
             { __key: uuidv4(), label: 'Option 2', value: 'option_2' },
@@ -68,8 +73,8 @@ const FunnelEditContextProvider = ({ children }) => {
   const onAddQuestion = () => {
     setQuestions([...questions, {
       __key: uuidv4(),
-      question: `New Question ${ questions.length }`,
-      content: 'Content...!',
+      question: `New Question ${ questions.length + 1 }`,
+      content: '',
       field: null,
     }])
   }
@@ -93,7 +98,19 @@ const FunnelEditContextProvider = ({ children }) => {
     setEditItem(__editItem);
   }
 
+  const onDeleteQuestion = (key) => {
+    // questions, setQuestions
+    let __index = questions.findIndex( o => o.__key === key);
+    let __questions = [ ...questions ];
+    __questions.splice(__index, 1);
+
+    setQuestions(__questions);
+  }
+
   const value = {
+    title, setTitle,
+    storeID, setStoreID,
+    funnelID, setFunnelID,
     tabActive, setTabActive,
     questions, setQuestions,
     editItem, setEditItem,
@@ -102,6 +119,7 @@ const FunnelEditContextProvider = ({ children }) => {
       onAddField,
       onUpdateQuestionField,
       onDeleteField,
+      onDeleteQuestion,
     }
   }
 

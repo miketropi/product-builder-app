@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { TextField, Checkbox, Text, Button, Autocomplete, LegacyStack, Tag } from '@shopify/polaris';
+import { TextField, Checkbox, Text, Button, Autocomplete, LegacyStack, Tag, ChoiceList } from '@shopify/polaris';
 import { useFunnelEditContext } from '../../../context/FunnelEditContext';
 import OptionsRepeater from './OptionsRepeater';
 import { v4 as uuidv4 } from 'uuid';
@@ -74,9 +74,14 @@ export default function QMultipleChoice(props) {
     />
   );
 
+  const getOptionsByUI = () => {
+    return props?.options ?? [];
+  }
+
   return <fieldset className="q-single-choice __q-fieldset">
     <legend>Multiple Choice Config</legend>
     {/* { JSON.stringify(props) } */}
+    
     <fieldset className="__q-fieldset">
       <legend>Preview</legend>
       <QMultipleChoicePreview />
@@ -87,9 +92,24 @@ export default function QMultipleChoice(props) {
 
       <div className="__q-field-config-container">
 
+        <fieldset className="__q-fieldset">
+          <legend>Options Style</legend>
+          <ChoiceList
+            choices={[
+              {label: 'Default', value: 'default'},
+              {label: 'Card', value: 'card'},
+              {label: 'Block (Image & Text)', value: 'block'},
+              {label: 'Custom HTML', value: 'custom_html'},
+            ]}
+            selected={ props.option_ui }
+            onChange={ value => { onUpdateQuestionField(value, 'field.option_ui') } }
+          />
+        </fieldset>
+
         <OptionsRepeater 
           label="Options" 
-          options={ props?.options } 
+          optionsStyle={ props.option_ui }
+          options={ getOptionsByUI() } 
           onChange={ onChangeOptionField } 
           onDelete={ onDeleteOptionItem }
           onAdd={ onAddOptionItem }
@@ -98,7 +118,7 @@ export default function QMultipleChoice(props) {
 
         <Autocomplete
           allowMultiple
-          options={ props?.options.filter(o => (o.value.search(filterOptionText) != -1) ) }
+          options={ getOptionsByUI().filter(o => (o.value.search(filterOptionText) != -1) ) }
           selected={ props?.value ?? [] }
           textField={ textField }
           onSelect={ value => { 
