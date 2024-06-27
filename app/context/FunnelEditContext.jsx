@@ -1,19 +1,39 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect, useRef } from "react";
 import { q } from "../data/questionDataInit";
 import { v4 as uuidv4 } from 'uuid';
+import { useOutletContext } from "@remix-run/react";
+import ApiForApp from "../libs/api";
 import _ from 'lodash';
 
 const { set } = _;
 
 const FunnelEditContext = createContext(null);
 
-const FunnelEditContextProvider = ({ children }) => {
+const FunnelEditContextProvider = ({ children, store, funnel_id }) => {
+  const { APP_API_KEY, APP_API_ENDPOINT } = useOutletContext();
+  const API_FA = useRef(null);
+
   const [ title, setTitle ] = useState('');
-  const [ funnelID, setFunnelID ] = useState(null);
+  const [ funnelID, setFunnelID ] = useState(funnel_id == 'new' ? null : funnel_id);
   const [ storeID, setStoreID ] = useState(null);
   const [ tabActive, setTabActive ] = useState(0);
   const [ questions, setQuestions ] = useState(q);
   const [ editItem, setEditItem ] = useState(null);
+  const [ funnelConnectors, setFunnelConnectors ] = useState(null);
+  const [ isSave, setIsSave ] = useState(false);
+
+  const loadFunnel = async (fID) => {
+    const res = await API_FA.current.getFunnelById(fID);
+    // console.log(res);
+    setTitle(res?.title);
+    setQuestions(res?.questions);
+    setFunnelConnectors(res?.funnel_connectors);
+  }
+
+  useEffect(() => {
+    API_FA.current = new ApiForApp(store?.id, APP_API_KEY, APP_API_ENDPOINT);
+    if(funnelID) { loadFunnel(funnelID); }
+  }, [funnelID])
 
   useEffect(() => {
     if(!editItem) return;
@@ -107,6 +127,24 @@ const FunnelEditContextProvider = ({ children }) => {
     setQuestions(__questions);
   }
 
+  const onSave = async () => {
+    setIsSave(true);
+    let data = {
+      title: title,
+      status: true,
+      questions: questions,
+      funnel_connectors: funnelConnectors,
+    }
+
+    if(funnelID) {
+      data._id = funnelID;
+    }
+
+    const res = await API_FA.current.saveFunnel(data);
+    setFunnelID(res._id);
+    setIsSave(false);
+  }
+
   const value = {
     title, setTitle,
     storeID, setStoreID,
@@ -114,12 +152,15 @@ const FunnelEditContextProvider = ({ children }) => {
     tabActive, setTabActive,
     questions, setQuestions,
     editItem, setEditItem,
+    funnelConnectors, setFunnelConnectors,
+    isSave, setIsSave,
     fn: {
       onAddQuestion,
       onAddField,
       onUpdateQuestionField,
       onDeleteField,
       onDeleteQuestion,
+      onSave,
     }
   }
 

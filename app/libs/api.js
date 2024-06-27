@@ -89,4 +89,27 @@ export default class ApiForApp {
   /**
    * End Menu Builder API
    */
+
+  /**
+   * Funnel
+   */
+  async saveFunnel(data) {
+    data.store_id = this.__STORE_ID; // push store id 
+    const res = await this.__request('/content/item/funnel', {
+      data
+    }, 'POST');
+    return res;
+  }
+
+  async getFunnelById(funnelID) {
+    try {
+      const res = await this.__request(`/content/item/funnel/${ funnelID }`);
+      return res;
+    } catch(err) {
+      return false
+    }
+  }
+  /**
+   * End Funnel
+   */
 }

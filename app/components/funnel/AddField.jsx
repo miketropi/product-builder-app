@@ -11,6 +11,7 @@ import {useState, useCallback} from 'react';
 import {
   FormsIcon,
   CursorOptionIcon,
+  MetafieldsIcon
 } from '@shopify/polaris-icons';
 
 const __FIELDS = [
@@ -40,7 +41,7 @@ export default function AddField() {
 
   const [active, setActive] = useState(false);
   const handleChange = useCallback(() => setActive(!active), [active]);
-  const activator = <Button onClick={handleChange}>Select Field</Button>;
+  const activator = <Button icon={ MetafieldsIcon } onClick={handleChange}>Select Field</Button>;
 
   return <div className="add-field-comp">
     <div className="add-field-comp__inner">
