@@ -1,0 +1,11 @@
+.flow-tool-edit-comp {
+  padding: 1em;
+  border-radius: $border-radius;
+  border: solid 1px $border-color;
+  margin-bottom: 1em;
+
+  legend {
+    padding: 0.5em 1em;
+    font-weight: bold;
+  }
+}

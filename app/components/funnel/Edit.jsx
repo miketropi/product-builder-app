@@ -3,7 +3,8 @@ import { useFunnelEditContext } from "../../context/FunnelEditContext";
 import Tab, { TabItem } from "../Tab";
 import BuildQuestions from "./BuildQuestions";
 import { ClientOnly } from "remix-utils/client-only";
-import {TextField} from '@shopify/polaris';
+import { TextField } from '@shopify/polaris';
+import BuildFunnelConnectors from "./BuildFunnelConnectors";
 
 export default function Edit() { 
   const { tabActive, setTabActive, title, setTitle } = useFunnelEditContext(); 
@@ -27,7 +28,9 @@ export default function Edit() {
             <TabItem name={ 'Build Questions' }>
               <BuildQuestions />
             </TabItem> 
-            <TabItem name={ 'Build Funnel Connectors' }>2</TabItem> 
+            <TabItem name={ 'Build Funnel Connectors' }>
+              <BuildFunnelConnectors />
+            </TabItem> 
           </Tab>
         </>
       }

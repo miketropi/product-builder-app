@@ -1,0 +1,25 @@
+$border-node: black !important;
+
+.funnel-flow-comp {
+
+}
+
+.flow-node {
+  width: 150px;
+  background: white;
+  border-radius: $border-radius;
+  border: solid 1px $border-node;
+
+  &__heading {
+    padding: .5em;
+    border-bottom: solid 1px $border-node;
+  }
+
+  &__entry {
+    padding: .5em;
+  }
+
+  &.node-type__question {
+    
+  }
+}

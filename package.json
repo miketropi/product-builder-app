@@ -45,6 +45,7 @@
     "react-beautiful-dnd": "^13.1.1",
     "react-dom": "^18.2.0",
     "react-drag-listview": "^2.0.0",
+    "reactflow": "^11.11.4",
     "remix-utils": "^7.6.0",
     "styled-components": "^6.1.8",
     "uuid": "^9.0.1",

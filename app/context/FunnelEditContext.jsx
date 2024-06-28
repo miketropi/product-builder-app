@@ -4,6 +4,10 @@ import { v4 as uuidv4 } from 'uuid';
 import { useOutletContext } from "@remix-run/react";
 import ApiForApp from "../libs/api";
 import _ from 'lodash';
+import ReactFlow, {
+  useNodesState,
+  useEdgesState, 
+} from 'reactflow';
 
 const { set } = _;
 
@@ -20,6 +24,12 @@ const FunnelEditContextProvider = ({ children, store, funnel_id }) => {
   const [ questions, setQuestions ] = useState(q);
   const [ editItem, setEditItem ] = useState(null);
   const [ funnelConnectors, setFunnelConnectors ] = useState(null);
+
+  const [nodes, setNodes, onNodesChange] = useNodesState([ 
+    { id: '1', type: 'input', position: { x: 0, y: 0 }, data: { label: 'Start' } },
+  ]);
+  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+
   const [ isSave, setIsSave ] = useState(false);
 
   const loadFunnel = async (fID) => {
@@ -145,6 +155,19 @@ const FunnelEditContextProvider = ({ children, store, funnel_id }) => {
     setIsSave(false);
   }
 
+  const onAddQuestion__Flow = (__q_key) => {
+    const newNode = {
+      id: uuidv4(),
+      type: 'QuestionNode',
+      position: { x: 0, y: 0 },
+      data: { 
+        question_key: __q_key,
+      },
+    };
+
+    setNodes((nds) => nds.concat(newNode));
+  }
+
   const value = {
     title, setTitle,
     storeID, setStoreID,
@@ -161,6 +184,11 @@ const FunnelEditContextProvider = ({ children, store, funnel_id }) => {
       onDeleteField,
       onDeleteQuestion,
       onSave,
+    },
+    flowDesign: {
+      nodes, setNodes, onNodesChange,
+      edges, setEdges, onEdgesChange, 
+      onAddQuestion__Flow,
     }
   }
 

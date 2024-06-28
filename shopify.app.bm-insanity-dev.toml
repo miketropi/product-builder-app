@@ -3,7 +3,7 @@
 client_id = "a31790a79c946c76cf232419a0ea906e"
 name = "BM Insanity Dev"
 handle = "bm-insanity-dev"
-application_url = "https://short-nurse-mistress-seat.trycloudflare.com"
+application_url = "https://display-planes-grant-stay.trycloudflare.com"
 embedded = true
 
 [build]
@@ -20,9 +20,9 @@ scopes = "read_files,read_metaobjects,read_products,write_files,write_metaobject
 
 [auth]
 redirect_urls = [
-  "https://short-nurse-mistress-seat.trycloudflare.com/auth/callback",
-  "https://short-nurse-mistress-seat.trycloudflare.com/auth/shopify/callback",
-  "https://short-nurse-mistress-seat.trycloudflare.com/api/auth/callback"
+  "https://display-planes-grant-stay.trycloudflare.com/auth/callback",
+  "https://display-planes-grant-stay.trycloudflare.com/auth/shopify/callback",
+  "https://display-planes-grant-stay.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
