@@ -1,6 +1,7 @@
 import { useCallback } from 'react';
 import { useFunnelEditContext } from '../../context/FunnelEditContext';
 import FlowToolEdit from './FlowToolsEdit';
+import StartNode from './StartNode';
 import QuestionNode from './QuestionNode';
 import ReactFlow, {
   ReactFlowProvider,
@@ -13,7 +14,7 @@ import ReactFlow, {
 } from 'reactflow';
 
 
-const nodeTypes = { QuestionNode };
+const nodeTypes = { StartNode, QuestionNode };
 
 const FunnelFlow = () => {
   const { flowDesign } = useFunnelEditContext();
@@ -28,6 +29,7 @@ const FunnelFlow = () => {
   );
 
   return <div className="funnel-flow-comp">
+    { console.log(edges) }
     <FlowToolEdit />
     {/* { JSON.stringify(edges) } */}
     <div style={{ 

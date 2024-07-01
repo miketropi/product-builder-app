@@ -1118,14 +1118,62 @@ li.__menu-item_type____BLOCK_MENU_IMAGE__ > a .__menu-item-name .dropdown-icon {
   width: 150px;
   background: white;
   border-radius: 8px;
-  border: solid 1px black !important;
+  border: solid 1px #ddd !important;
 }
 .flow-node__heading {
   padding: 0.5em;
-  border-bottom: solid 1px black !important;
+  border-bottom: solid 1px #ddd !important;
+  background: #f7f7f7;
+  border-radius: 8px 8px 0 0;
 }
 .flow-node__entry {
   padding: 0.5em;
+}
+.flow-node.node-type__start {
+  padding: 1em;
+  display: inline-block;
+  width: 100%;
+}
+.flow-node.node-type__start label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.flow-node .choice-list {
+  margin: 0;
+  padding: 0;
+}
+.flow-node .choice-list .choice-item {
+  padding: 0.5em 0;
+  list-style: none;
+  font-size: 10px;
+  font-weight: bold;
+  position: relative;
+}
+.flow-node .choice-list .choice-item .__entry {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.flow-node .choice-list .choice-item .__number {
+  width: 18px;
+  height: 18px;
+  border-radius: 30px;
+  background: black;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.flow-node .choice-list .choice-item:not(:last-child) {
+  border-bottom: solid 1px #eee;
+}
+
+.__node-text {
+  font-weight: bold;
+  font-size: 10px;
+  display: flex;
+  gap: 4px;
 }
 
 /*# sourceMappingURL=app.css.map */

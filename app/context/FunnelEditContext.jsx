@@ -26,7 +26,7 @@ const FunnelEditContextProvider = ({ children, store, funnel_id }) => {
   const [ funnelConnectors, setFunnelConnectors ] = useState(null);
 
   const [nodes, setNodes, onNodesChange] = useNodesState([ 
-    { id: '1', type: 'input', position: { x: 0, y: 0 }, data: { label: 'Start' } },
+    { id: '__START__', type: 'StartNode', position: { x: 0, y: 0 }, data: { label: 'Start' } },
   ]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
 
@@ -157,7 +157,7 @@ const FunnelEditContextProvider = ({ children, store, funnel_id }) => {
 
   const onAddQuestion__Flow = (__q_key) => {
     const newNode = {
-      id: uuidv4(),
+      id: __q_key,
       type: 'QuestionNode',
       position: { x: 0, y: 0 },
       data: { 
