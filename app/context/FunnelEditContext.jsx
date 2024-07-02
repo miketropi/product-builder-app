@@ -168,6 +168,23 @@ const FunnelEditContextProvider = ({ children, store, funnel_id }) => {
     setNodes((nds) => nds.concat(newNode));
   }
 
+  const onAddRedirectNode_Flow = () => {
+    const newNode = {
+      id: uuidv4(),
+      type: 'RedirectNode',
+      position: { x: 0, y: 0 },
+      data: { 
+        redirect_url: '#',
+      },
+    };
+
+    setNodes((nds) => nds.concat(newNode));
+  }
+
+  const onUpdateNodeData_Flow = (nodeID, fKey, fValue) => {
+    
+  }
+
   const value = {
     title, setTitle,
     storeID, setStoreID,
@@ -189,6 +206,8 @@ const FunnelEditContextProvider = ({ children, store, funnel_id }) => {
       nodes, setNodes, onNodesChange,
       edges, setEdges, onEdgesChange, 
       onAddQuestion__Flow,
+      onAddRedirectNode_Flow,
+      onUpdateNodeData_Flow, 
     }
   }
 

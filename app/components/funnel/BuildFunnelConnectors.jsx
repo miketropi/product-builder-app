@@ -3,6 +3,7 @@ import { useFunnelEditContext } from '../../context/FunnelEditContext';
 import FlowToolEdit from './FlowToolsEdit';
 import StartNode from './StartNode';
 import QuestionNode from './QuestionNode';
+import RedirectNode from './RedirectNode';
 import ReactFlow, {
   ReactFlowProvider,
   MiniMap,
@@ -14,7 +15,7 @@ import ReactFlow, {
 } from 'reactflow';
 
 
-const nodeTypes = { StartNode, QuestionNode };
+const nodeTypes = { StartNode, QuestionNode, RedirectNode };
 
 const FunnelFlow = () => {
   const { flowDesign } = useFunnelEditContext();
@@ -29,7 +30,7 @@ const FunnelFlow = () => {
   );
 
   return <div className="funnel-flow-comp">
-    { console.log(edges) }
+    { JSON.stringify(edges) }
     <FlowToolEdit />
     {/* { JSON.stringify(edges) } */}
     <div style={{ 
