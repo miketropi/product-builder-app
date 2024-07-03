@@ -1,7 +1,7 @@
 import { useCallback, Fragment, useRef, useState, useEffect } from 'react';
 import { useFunnelEditContext } from '../../context/FunnelEditContext';
 import { Text, Icon, Badge, Modal, Button } from '@shopify/polaris';
-import { QuestionCircleIcon, AlertCircleIcon } from '@shopify/polaris-icons';
+import { QuestionCircleIcon, AlertCircleIcon, EditIcon } from '@shopify/polaris-icons';
 import { Handle, Position, NodeToolbar } from 'reactflow';
 import { MentionsInput, Mention } from 'react-mentions'
 
@@ -71,7 +71,7 @@ const InputFlow = ({ value, onChange }) => {
   const [ text, setText ] = useState(value);
   const [ active, setActive ] = useState(false);
   const handleChange = useCallback(() => setActive(!active), [active]);
-  const activator = <Button onClick={handleChange}>Open</Button>;
+  const activator = <Button icon={ EditIcon } onClick={handleChange}>Edit Redirect URL</Button>;
 
   useEffect(() => {
     setText(value)
@@ -103,7 +103,6 @@ const InputFlow = ({ value, onChange }) => {
       ]}
     >
       <Modal.Section>
-        { value }
         <MentionsInput
           placeholder="Enter redirect URL..."
           value={ text }
@@ -115,20 +114,19 @@ const InputFlow = ({ value, onChange }) => {
         >
           <Mention 
             trigger="@"
-            markup={ `{%__id__%}` } 
+            markup={ `[value]__id__[/value]` } 
             style={ __mentionStyle } 
             data={ questions.map((q, __q_index) => {
               const { __key, question } = q;
               return {
-                id: __key,
+                id: `${ __key }`,
                 display: `${ __q_index + 1 }. Value of "${ question }"`,
               }
             }) } />
         </MentionsInput>
-        { text }
         <div style={{ margin: `1em 0 7em` }}>
           <Text variant="bodyXs" as="p">
-            Use '@' for question value
+            Use '@' for mapping question value.
           </Text>
         </div>
       </Modal.Section>
@@ -152,9 +150,12 @@ export default function RedirectNode({ id, data, isConnectable }) {
       </Text>
     </div>
     <div className="flow-node__entry">
-      { JSON.stringify(data) } { id }
+      {/* { JSON.stringify(data) } { id } */}
       <div className="nodrag">
-        <InputFlow value={ data?.redirect_url } onChange={ value => { console.log(value) } } />
+        <InputFlow value={ data?.redirect_url } onChange={ value => { 
+          // console.log(value) 
+          onUpdateNodeData_Flow(id, 'redirect_url', value)
+          } } />
       </div>
     </div>
   </div>

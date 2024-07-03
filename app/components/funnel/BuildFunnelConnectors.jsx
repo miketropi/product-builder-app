@@ -30,7 +30,7 @@ const FunnelFlow = () => {
   );
 
   return <div className="funnel-flow-comp">
-    { JSON.stringify(edges) }
+    {/* { JSON.stringify(edges) } */}
     <FlowToolEdit />
     {/* { JSON.stringify(edges) } */}
     <div style={{ 

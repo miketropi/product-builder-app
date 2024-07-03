@@ -65,7 +65,7 @@ const QuestionNodeHandle = ({ handleData, isConnectable }) => {
                   type="source" 
                   position={Position.Right}  
                   // style={ { position: 'absolute', top: `49%`, right: `-12px` } }
-                  id={ '__NEXT_STEP__' } 
+                  // id={ '__NEXT_STEP__' } 
                   isConnectable={ isConnectable } />
               </div>
             </>

@@ -23,7 +23,6 @@ const FunnelEditContextProvider = ({ children, store, funnel_id }) => {
   const [ tabActive, setTabActive ] = useState(0);
   const [ questions, setQuestions ] = useState(q);
   const [ editItem, setEditItem ] = useState(null);
-  const [ funnelConnectors, setFunnelConnectors ] = useState(null);
 
   const [nodes, setNodes, onNodesChange] = useNodesState([ 
     { id: '__START__', type: 'StartNode', position: { x: 0, y: 0 }, data: { label: 'Start' } },
@@ -37,7 +36,14 @@ const FunnelEditContextProvider = ({ children, store, funnel_id }) => {
     // console.log(res);
     setTitle(res?.title);
     setQuestions(res?.questions);
-    setFunnelConnectors(res?.funnel_connectors);
+
+    // setFunnelConnectors(res?.funnel_connectors);
+    if(res?.funnel_connectors) {
+      const { nodes, edges } = res.funnel_connectors;
+      setNodes(nodes);
+      setEdges(edges);
+    }
+    
   }
 
   useEffect(() => {
@@ -143,7 +149,10 @@ const FunnelEditContextProvider = ({ children, store, funnel_id }) => {
       title: title,
       status: true,
       questions: questions,
-      funnel_connectors: funnelConnectors,
+      funnel_connectors: {
+        nodes,
+        edges
+      },
     }
 
     if(funnelID) {
@@ -182,7 +191,11 @@ const FunnelEditContextProvider = ({ children, store, funnel_id }) => {
   }
 
   const onUpdateNodeData_Flow = (nodeID, fKey, fValue) => {
-    
+    let __nodes = [...nodes];
+    let __found = __nodes.findIndex(n => n.id == nodeID);
+    __nodes[__found].data = { ...__nodes[__found].data, [fKey]: fValue }
+    // fValue;
+    setNodes(__nodes);
   }
 
   const value = {
@@ -192,7 +205,6 @@ const FunnelEditContextProvider = ({ children, store, funnel_id }) => {
     tabActive, setTabActive,
     questions, setQuestions,
     editItem, setEditItem,
-    funnelConnectors, setFunnelConnectors,
     isSave, setIsSave,
     fn: {
       onAddQuestion,
@@ -207,7 +219,7 @@ const FunnelEditContextProvider = ({ children, store, funnel_id }) => {
       edges, setEdges, onEdgesChange, 
       onAddQuestion__Flow,
       onAddRedirectNode_Flow,
-      onUpdateNodeData_Flow, 
+      onUpdateNodeData_Flow,  
     }
   }
 

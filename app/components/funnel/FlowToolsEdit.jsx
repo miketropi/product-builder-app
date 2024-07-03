@@ -5,7 +5,7 @@ import ButtonAddRedirectNode from './ButtonAddRedirectNode';
 
 export default function FlowToolEdit () {
   const { questions, flowDesign } = useFunnelEditContext();
-  const { onAddQuestion__Flow, onAddRedirectNode_Flow } = flowDesign;
+  const { onAddQuestion__Flow, onAddRedirectNode_Flow } = flowDesign; 
 
   return <fieldset className="flow-tool-edit-comp">
     <legend>Toolbar</legend>
