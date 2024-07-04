@@ -3,7 +3,7 @@
 client_id = "a31790a79c946c76cf232419a0ea906e"
 name = "BM Insanity Dev"
 handle = "bm-insanity-dev"
-application_url = "https://citizens-sap-slideshow-impressive.trycloudflare.com"
+application_url = "https://charged-mainstream-connecting-well.trycloudflare.com"
 embedded = true
 
 [build]
@@ -20,9 +20,9 @@ scopes = "read_files,read_metaobjects,read_products,write_files,write_metaobject
 
 [auth]
 redirect_urls = [
-  "https://citizens-sap-slideshow-impressive.trycloudflare.com/auth/callback",
-  "https://citizens-sap-slideshow-impressive.trycloudflare.com/auth/shopify/callback",
-  "https://citizens-sap-slideshow-impressive.trycloudflare.com/api/auth/callback"
+  "https://charged-mainstream-connecting-well.trycloudflare.com/auth/callback",
+  "https://charged-mainstream-connecting-well.trycloudflare.com/auth/shopify/callback",
+  "https://charged-mainstream-connecting-well.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

@@ -1157,6 +1157,7 @@ li.__menu-item_type____BLOCK_MENU_IMAGE__ > a .__menu-item-name .dropdown-icon {
 }
 .flow-node .choice-list .choice-item .__number {
   width: 18px;
+  min-width: 18px;
   height: 18px;
   border-radius: 30px;
   background: black;

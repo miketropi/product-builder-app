@@ -109,6 +109,17 @@ export default class ApiForApp {
       return false
     }
   }
+
+  async getFunnelList(paged = 1, limit = 20) {
+    let skip = (paged - 1) * limit;
+    const res = await this.__request(`/content/items/funnel?limit=${ limit }&skip=${ skip }&filter={"store_id": "${ this.__STORE_ID }"}`);
+    return res;
+  }
+
+  async deleteFunnel(funnelID) {
+    const res = await this.__request(`/content/item/funnel/${ funnelID }`, {}, 'DELETE');
+    return res;
+  }
   /**
    * End Funnel
    */

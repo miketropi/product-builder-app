@@ -20,6 +20,7 @@ const __inputStyle = {
     highlighter: {
       padding: 9,
       border: '1px solid transparent',
+      lineHeight: 'normal',
     },
     input: {
       padding: 9,
