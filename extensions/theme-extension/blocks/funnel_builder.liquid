@@ -1,0 +1,23 @@
+<div 
+  id="__FUNNEL_BUILDER_APP__" 
+  data-store-id="{{ shop.id }}" 
+  data-funnel-id="{{ block.settings.funnel_id }}" >
+</div>
+{{ block.settings.funnel_id }}
+
+{% schema %} 
+{
+  "name": "Funnel Builder",
+  "target": "section",
+  "javascript": "funnel-builder.bundle.js", 
+  "stylesheet": "funnel-builder.bundle.css", 
+  "settings": [ 
+    {
+      "type": "text", 
+      "id": "funnel_id",
+      "label": "Funnel ID", 
+      "default": "123"
+    } 
+  ]
+}
+{% endschema %}

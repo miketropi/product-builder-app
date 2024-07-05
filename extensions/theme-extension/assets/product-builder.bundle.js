@@ -2279,8 +2279,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var ENDPOINT = 'https://buildmat-app-api.fly.dev/api/';
-var API_KEY = 'API-ceab35274bec67420ab7f572d7288daa81a4e455';
+var ENDPOINT = "https://buildmat-app-api.fly.dev/api/";
+var API_KEY = "API-ceab35274bec67420ab7f572d7288daa81a4e455";
 (function (w) {
   'use strict';
 
@@ -3205,6 +3205,19 @@ module.exports = debounce;
 /*!****************************!*\
   !*** ./src/scss/main.scss ***!
   \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./src/scss/funnel.scss":
+/*!******************************!*\
+  !*** ./src/scss/funnel.scss ***!
+  \******************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -46216,7 +46229,8 @@ var animated = host.animated;
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
 /******/ 			"/product-builder.bundle": 0,
-/******/ 			"product-builder.bundle": 0
+/******/ 			"product-builder.bundle": 0,
+/******/ 			"funnel-builder.bundle": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -46266,8 +46280,9 @@ var animated = host.animated;
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["product-builder.bundle"], () => (__webpack_require__("./src/main.js")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["product-builder.bundle"], () => (__webpack_require__("./src/scss/main.scss")))
+/******/ 	__webpack_require__.O(undefined, ["product-builder.bundle","funnel-builder.bundle"], () => (__webpack_require__("./src/main.js")))
+/******/ 	__webpack_require__.O(undefined, ["product-builder.bundle","funnel-builder.bundle"], () => (__webpack_require__("./src/scss/main.scss")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["product-builder.bundle","funnel-builder.bundle"], () => (__webpack_require__("./src/scss/funnel.scss")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
