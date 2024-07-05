@@ -3,7 +3,7 @@
 client_id = "a31790a79c946c76cf232419a0ea906e"
 name = "BM Insanity Dev"
 handle = "bm-insanity-dev"
-application_url = "https://fifteen-particularly-advisor-zoom.trycloudflare.com"
+application_url = "https://discussed-outstanding-proper-developers.trycloudflare.com"
 embedded = true
 
 [build]
@@ -20,9 +20,9 @@ scopes = "read_files,read_metaobjects,read_products,write_files,write_metaobject
 
 [auth]
 redirect_urls = [
-  "https://fifteen-particularly-advisor-zoom.trycloudflare.com/auth/callback",
-  "https://fifteen-particularly-advisor-zoom.trycloudflare.com/auth/shopify/callback",
-  "https://fifteen-particularly-advisor-zoom.trycloudflare.com/api/auth/callback"
+  "https://discussed-outstanding-proper-developers.trycloudflare.com/auth/callback",
+  "https://discussed-outstanding-proper-developers.trycloudflare.com/auth/shopify/callback",
+  "https://discussed-outstanding-proper-developers.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
