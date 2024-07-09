@@ -20,7 +20,9 @@ function CheckboxUI(_ref) {
     onChange = _ref.onChange;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
     className: ['checkbox-ui checkbox-ui-component', checked ? '__checked' : ''].join(' '),
-    onClick: onChange,
+    onClick: function onClick(e) {
+      return onChange(!checked);
+    },
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
       className: ['checkbox-ui__fake-handle'].join(' ')
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
@@ -51,7 +53,8 @@ __webpack_require__.r(__webpack_exports__);
 function FunnelApp() {
   var _useFunnelBuilderCont = (0,_context_FunnelBuilderContext__WEBPACK_IMPORTED_MODULE_0__.useFunnelBuilderContext)(),
     initLoading = _useFunnelBuilderCont.initLoading,
-    funnelData = _useFunnelBuilderCont.funnelData;
+    funnelData = _useFunnelBuilderCont.funnelData,
+    funnelFieldData = _useFunnelBuilderCont.funnelFieldData;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
     className: "funnel-app-container",
     children: function () {
@@ -62,14 +65,14 @@ function FunnelApp() {
         });
       }
       var questions = funnelData.questions;
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
         className: "question-container",
-        children: questions.map(function (q) {
+        children: [JSON.stringify(funnelFieldData), questions.map(function (q) {
           var __key = q.__key;
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Question__WEBPACK_IMPORTED_MODULE_1__["default"], {
             q: q
           }, __key);
-        })
+        })]
       });
     }()
   });
@@ -120,8 +123,59 @@ function Question(_ref) {
       }
     }), field && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
       className: "question-field",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_fields_DynamicField__WEBPACK_IMPORTED_MODULE_1__["default"], _objectSpread({}, field))
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_fields_DynamicField__WEBPACK_IMPORTED_MODULE_1__["default"], _objectSpread(_objectSpread({}, field), {}, {
+        onChange: function onChange(v) {
+          console.log(v);
+        }
+      }))
     })]
+  });
+}
+
+/***/ }),
+
+/***/ "./src/components/funnel-builder/SelectBox.jsx":
+/*!*****************************************************!*\
+  !*** ./src/components/funnel-builder/SelectBox.jsx ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ SelectBox)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _CheckboxUI__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CheckboxUI */ "./src/components/funnel-builder/CheckboxUI.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+function SelectBox(_ref) {
+  var options = _ref.options,
+    multiple = _ref.multiple,
+    value = _ref.value,
+    onChange = _ref.onChange,
+    template = _ref.template;
+  var isSelected_Fn = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(function (oValue) {
+    var _v = Array.isArray(value) ? value : [value];
+    return _v.includes(oValue);
+  }, [value]);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    className: "select-box-component",
+    children: options.map(function (o) {
+      var __key = o.__key,
+        label = o.label;
+      var selected = isSelected_Fn(o.value);
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
+        className: "__o-item",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_CheckboxUI__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          label: label,
+          checked: selected,
+          onChange: onChange
+        })
+      }, __key);
+    })
   });
 }
 
@@ -164,7 +218,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ QSingleChoice)
 /* harmony export */ });
 /* harmony import */ var _CheckboxUI__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../CheckboxUI */ "./src/components/funnel-builder/CheckboxUI.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _SelectBox__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../SelectBox */ "./src/components/funnel-builder/SelectBox.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
 
 
 function QSingleChoice(_ref) {
@@ -174,32 +230,27 @@ function QSingleChoice(_ref) {
     value = field.value,
     option_ui = field.option_ui,
     options = field.options,
-    require = field.require;
+    require = field.require,
+    onChange = field.onChange;
   var optionTemplate = {
     "default": function _default() {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
         className: ['__options', "__o_ui-".concat(option_ui)].join(' '),
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("ul", {
-          className: "__o-list",
-          children: options.map(function (o) {
-            console.log(o);
-            var __key = o.__key,
-              label = o.label,
-              value = o.value;
-            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
-              className: "__o-item",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_CheckboxUI__WEBPACK_IMPORTED_MODULE_0__["default"], {
-                label: label,
-                checked: false,
-                onChange: function onChange(e) {}
-              })
-            }, __key);
-          })
-        })
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_SelectBox__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          options: options,
+          multiple: false,
+          value: value,
+          onChange: onChange,
+          template: option_ui
+        }), help_text ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("small", {
+          dangerouslySetInnerHTML: {
+            __html: help_text
+          }
+        }) : '']
       });
     }
   };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
     className: ['q-field q-field__single-choice', "__ui-".concat(option_ui)].join(' '),
     children: optionTemplate[option_ui]()
   });
@@ -251,6 +302,10 @@ var FunnelBuilderContextProvider = function FunnelBuilderContextProvider(props) 
     _useState4 = _slicedToArray(_useState3, 2),
     funnelData = _useState4[0],
     setFunnelData = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+    _useState6 = _slicedToArray(_useState5, 2),
+    funnelFieldData = _useState6[0],
+    setFunnelFieldData = _useState6[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     API.current = new _libs_FunnelApi__WEBPACK_IMPORTED_MODULE_1__["default"](storeId);
     init();
@@ -274,6 +329,19 @@ var FunnelBuilderContextProvider = function FunnelBuilderContextProvider(props) 
       return _ref.apply(this, arguments);
     };
   }();
+  var buildFieldDataInit = function buildFieldDataInit(questions) {
+    return questions.map(function (q) {
+      var _field$value;
+      var __key = q.__key,
+        question = q.question,
+        field = q.field;
+      return {
+        __key: __key,
+        question: question,
+        value: (_field$value = field === null || field === void 0 ? void 0 : field.value) !== null && _field$value !== void 0 ? _field$value : ''
+      };
+    });
+  };
   var getFunnel = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(fid) {
       var res;
@@ -285,7 +353,8 @@ var FunnelBuilderContextProvider = function FunnelBuilderContextProvider(props) 
           case 2:
             res = _context2.sent;
             setFunnelData(res);
-          case 4:
+            setFunnelFieldData(buildFieldDataInit(res.questions));
+          case 5:
           case "end":
             return _context2.stop();
         }
@@ -299,7 +368,9 @@ var FunnelBuilderContextProvider = function FunnelBuilderContextProvider(props) 
     initLoading: initLoading,
     setInitLoading: setInitLoading,
     funnelData: funnelData,
-    setFunnelData: setFunnelData
+    setFunnelData: setFunnelData,
+    funnelFieldData: funnelFieldData,
+    setFunnelFieldData: setFunnelFieldData
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(FunnelBuilderContext.Provider, {
     value: value,

@@ -1,1 +1,59 @@
+.question-container {
+  width: 930px;
+  margin: 2em auto;
+  max-width: 100%;
+}
 
+.question-frame {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.question-frame .question-text {
+  font-size: 24px;
+  color: #006875;
+  font-weight: normal;
+  margin: 1em 0;
+}
+.question-frame .question-content {
+  margin: 0 0 1.5em;
+}
+
+.select-box-component {
+  margin: 0;
+  padding: 0;
+}
+.select-box-component li.__o-item {
+  list-style: none;
+  margin-bottom: 0.6em;
+}
+
+.checkbox-ui-component {
+  display: flex;
+  gap: 10px;
+  line-height: normal;
+  cursor: pointer;
+}
+.checkbox-ui-component .checkbox-ui__fake-handle {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  border-radius: 100%;
+  background: white;
+  display: inline-block;
+  position: relative;
+  border: solid 1px #006875;
+}
+.checkbox-ui-component.__checked .checkbox-ui__fake-handle:after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  left: 50%;
+  top: 50%;
+  border-radius: 100%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  z-index: 1;
+  background: #006875;
+}
