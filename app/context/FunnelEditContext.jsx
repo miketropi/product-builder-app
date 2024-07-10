@@ -69,7 +69,7 @@ const FunnelEditContextProvider = ({ children, store, funnel_id }) => {
           type: c,
           placeholder: '',
           value: '',
-          required: false,
+          required: false, 
         }
         break;
       
@@ -84,7 +84,7 @@ const FunnelEditContextProvider = ({ children, store, funnel_id }) => {
             { __key: uuidv4(), label: 'Option 2', value: 'option_2' },
             { __key: uuidv4(), label: 'Option 3', value: 'option_3' }
           ],
-          require: false,
+          required: false,
         }
         break;
 
@@ -100,7 +100,7 @@ const FunnelEditContextProvider = ({ children, store, funnel_id }) => {
             { __key: uuidv4(), label: 'Option 2', value: 'option_2' },
             { __key: uuidv4(), label: 'Option 3', value: 'option_3' }
           ],
-          require: false,
+          required: false,
         }
         break;
     }
