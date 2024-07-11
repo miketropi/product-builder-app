@@ -97,8 +97,9 @@ export default function QMultipleChoice(props) {
           <ChoiceList
             choices={[
               {label: 'Default', value: 'default'},
-              {label: 'Card', value: 'card'},
+              {label: 'Card', value: 'card'}, 
               {label: 'Block (Image & Text)', value: 'block'},
+              {label: 'Image', value: 'image'},
               {label: 'Custom HTML', value: 'custom_html'},
             ]}
             selected={ props.option_ui }

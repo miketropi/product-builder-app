@@ -55,10 +55,11 @@ function FunnelApp() {
   var _useFunnelBuilderCont = (0,_context_FunnelBuilderContext__WEBPACK_IMPORTED_MODULE_0__.useFunnelBuilderContext)(),
     initLoading = _useFunnelBuilderCont.initLoading,
     funnelData = _useFunnelBuilderCont.funnelData,
-    funnelFieldData = _useFunnelBuilderCont.funnelFieldData;
+    funnelFieldData = _useFunnelBuilderCont.funnelFieldData,
+    historyPassedSteps = _useFunnelBuilderCont.historyPassedSteps;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
     className: "funnel-app-container",
-    children: function (_funnelData$funnel_co, _funnelData$funnel_co2) {
+    children: function () {
       if (initLoading == true) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
           className: "__loading",
@@ -66,23 +67,9 @@ function FunnelApp() {
         });
       }
       var questions = funnelData.questions;
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         className: "question-container",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-          children: "Edges"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("pre", {
-          dangerouslySetInnerHTML: {
-            __html: JSON.stringify(funnelData === null || funnelData === void 0 || (_funnelData$funnel_co = funnelData.funnel_connectors) === null || _funnelData$funnel_co === void 0 ? void 0 : _funnelData$funnel_co.edges, null, "\t")
-          }
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("pre", {
-          dangerouslySetInnerHTML: {
-            __html: JSON.stringify(funnelData === null || funnelData === void 0 || (_funnelData$funnel_co2 = funnelData.funnel_connectors) === null || _funnelData$funnel_co2 === void 0 ? void 0 : _funnelData$funnel_co2.nodes, null, "\t")
-          }
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("pre", {
-          dangerouslySetInnerHTML: {
-            __html: JSON.stringify(funnelFieldData, null, "\t")
-          }
-        }), questions.map(function (q) {
+        children: questions.map(function (q) {
           var _funnelFieldData$find;
           var __key = q.__key;
           q.value = (_funnelFieldData$find = funnelFieldData.find(function (f) {
@@ -91,7 +78,7 @@ function FunnelApp() {
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Question__WEBPACK_IMPORTED_MODULE_1__["default"], {
             q: q
           }, __key);
-        })]
+        })
       });
     }()
   });
@@ -145,7 +132,9 @@ function Question(_ref) {
     fn = _useFunnelBuilderCont.fn;
   var onUpdateFunnelField = fn.onUpdateFunnelField,
     canNextStep = fn.canNextStep,
-    onNextStep = fn.onNextStep;
+    onNextStep = fn.onNextStep,
+    canPrevStep = fn.canPrevStep,
+    onPrevStep = fn.onPrevStep;
   var _useMeasure = (0,react_use_measure__WEBPACK_IMPORTED_MODULE_5__["default"])(),
     _useMeasure2 = _slicedToArray(_useMeasure, 2),
     ref = _useMeasure2[0],
@@ -168,8 +157,6 @@ function Question(_ref) {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
             className: "question-text",
             children: question
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
-            children: __key
           }), content && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
             className: "question-content",
             dangerouslySetInnerHTML: {
@@ -185,7 +172,8 @@ function Question(_ref) {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
             className: "action-buttons",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-              className: "__prev __action __disable",
+              onClick: onPrevStep,
+              className: ['__prev __action', canPrevStep() ? '' : '__disable'].join(' '),
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
                 className: "__icon",
                 dangerouslySetInnerHTML: {
@@ -239,12 +227,52 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function SelectBox(_ref) {
-  var options = _ref.options,
-    multiple = _ref.multiple,
-    value = _ref.value,
-    onChange = _ref.onChange,
-    template = _ref.template;
+var CardItem = function CardItem(_ref) {
+  var title = _ref.title,
+    desc = _ref.desc,
+    image = _ref.image,
+    onClick = _ref.onClick,
+    selected = _ref.selected;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    className: ['card-item-comp', selected ? '__selected' : ''].join(' '),
+    onClick: onClick,
+    children: [selected ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+      className: "__tag-selected",
+      children: "Selected"
+    }) : '', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+      src: image,
+      alt: title
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h4", {
+      children: title
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+      dangerouslySetInnerHTML: {
+        __html: desc
+      }
+    })]
+  });
+};
+var BlockItem = function BlockItem(_ref2) {
+  var title = _ref2.title,
+    image = _ref2.image,
+    onClick = _ref2.onClick,
+    selected = _ref2.selected;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    className: ['block-item-comp', selected ? '__selected' : ''].join(' '),
+    onClick: onClick,
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+      src: image,
+      alt: title
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h4", {
+      children: title
+    })]
+  });
+};
+function SelectBox(_ref3) {
+  var options = _ref3.options,
+    multiple = _ref3.multiple,
+    value = _ref3.value,
+    onChange = _ref3.onChange,
+    template = _ref3.template;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState2 = _slicedToArray(_useState, 2),
     __value = _useState2[0],
@@ -271,23 +299,78 @@ function SelectBox(_ref) {
     set__Value(__newValue);
     onChange(multiple ? __newValue : __newValue.join(','));
   };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-    className: "select-box-component",
-    children: options.map(function (o) {
-      var __key = o.__key,
-        label = o.label;
-      var selected = isSelected_Fn(o.value);
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
-        className: "__o-item",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_CheckboxUI__WEBPACK_IMPORTED_MODULE_1__["default"], {
-          label: label,
-          checked: selected,
-          onChange: function onChange(v) {
-            onChange_Fn(v, o.value);
-          }
+  var __templates = {
+    "default": function _default() {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
+        children: options.map(function (o) {
+          var __key = o.__key,
+            label = o.label;
+          var selected = isSelected_Fn(o.value);
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
+            className: "__o-item",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_CheckboxUI__WEBPACK_IMPORTED_MODULE_1__["default"], {
+              label: label,
+              checked: selected,
+              onChange: function onChange(v) {
+                onChange_Fn(v, o.value);
+              }
+            })
+          }, __key);
         })
-      }, __key);
-    })
+      });
+    },
+    card: function card() {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
+        children: options.map(function (o) {
+          var __key = o.__key,
+            label = o.label,
+            extra__cart_title = o.extra__cart_title,
+            extra__cart_desc = o.extra__cart_desc,
+            extra__cart_image = o.extra__cart_image;
+          var selected = isSelected_Fn(o.value);
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
+            className: "__card-item",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(CardItem, {
+              title: extra__cart_title,
+              desc: extra__cart_desc,
+              image: extra__cart_image,
+              selected: selected,
+              onClick: function onClick(e) {
+                // console.log(!selected, o.value)
+                onChange_Fn(!selected, o.value);
+              }
+            })
+          }, __key);
+        })
+      });
+    },
+    block: function block() {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
+        children: options.map(function (o) {
+          var __key = o.__key,
+            label = o.label,
+            extra__block_text = o.extra__block_text,
+            extra__block_image = o.extra__block_image;
+          var selected = isSelected_Fn(o.value);
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
+            className: "__block-item",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(BlockItem, {
+              title: extra__block_text,
+              image: extra__block_image,
+              selected: selected,
+              onClick: function onClick(e) {
+                // console.log(!selected, o.value)
+                onChange_Fn(!selected, o.value);
+              }
+            })
+          }, __key);
+        })
+      });
+    }
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("ul", {
+    className: ['select-box-component', "__temp__".concat(template)].join(' '),
+    children: __templates[template]()
   });
 }
 
@@ -344,27 +427,40 @@ function QSingleChoice(_ref) {
     options = field.options,
     require = field.require,
     onChange = field.onChange;
-  var optionTemplate = {
-    "default": function _default() {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-        className: ['__options', "__o_ui-".concat(option_ui)].join(' '),
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_SelectBox__WEBPACK_IMPORTED_MODULE_0__["default"], {
-          options: options,
-          multiple: false,
-          value: value,
-          onChange: onChange,
-          template: option_ui
-        }), help_text ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("small", {
-          dangerouslySetInnerHTML: {
-            __html: help_text
-          }
-        }) : '']
-      });
-    }
-  };
+
+  // const optionTemplate = {
+  //   default: () => {
+  //     return <div className={ ['__options', `__o_ui-${ option_ui }`].join(' ') }>
+  //       <SelectBox 
+  //         options={ options } 
+  //         multiple={ false }
+  //         value={ value }
+  //         onChange={ onChange }
+  //         template={ option_ui }
+  //       />
+  //       {
+  //         help_text ? <small dangerouslySetInnerHTML={{ __html: help_text }}></small> : ''
+  //       }
+  //     </div>
+  //   } 
+  // }
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
     className: ['q-field q-field__single-choice', "__ui-".concat(option_ui)].join(' '),
-    children: optionTemplate[option_ui]()
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+      className: ['__options', "__o_ui-".concat(option_ui)].join(' '),
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_SelectBox__WEBPACK_IMPORTED_MODULE_0__["default"], {
+        options: options,
+        multiple: false,
+        value: value,
+        onChange: onChange,
+        template: option_ui
+      }), help_text ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("small", {
+        dangerouslySetInnerHTML: {
+          __html: help_text
+        }
+      }) : '']
+    })
   });
 }
 
@@ -508,6 +604,14 @@ var FunnelBuilderContextProvider = function FunnelBuilderContextProvider(props) 
     });
     return found === null || found === void 0 ? void 0 : found.type;
   };
+  var getNodeItem = function getNodeItem(nodeID) {
+    var _funnelData$funnel_co2;
+    var nodes = funnelData === null || funnelData === void 0 || (_funnelData$funnel_co2 = funnelData.funnel_connectors) === null || _funnelData$funnel_co2 === void 0 ? void 0 : _funnelData$funnel_co2.nodes;
+    var node = nodes.find(function (n) {
+      return n.id == nodeID;
+    });
+    return node;
+  };
   var onUpdateFunnelField = function onUpdateFunnelField(qKey, value) {
     var __funnelFieldData = _toConsumableArray(funnelFieldData);
     var __found = __funnelFieldData.findIndex(function (f) {
@@ -519,8 +623,8 @@ var FunnelBuilderContextProvider = function FunnelBuilderContextProvider(props) 
     setFunnelFieldData(__funnelFieldData);
   };
   var findNextStep = function findNextStep(qKey, handle) {
-    var _funnelData$funnel_co2;
-    var Edges = funnelData === null || funnelData === void 0 || (_funnelData$funnel_co2 = funnelData.funnel_connectors) === null || _funnelData$funnel_co2 === void 0 ? void 0 : _funnelData$funnel_co2.edges;
+    var _funnelData$funnel_co3;
+    var Edges = funnelData === null || funnelData === void 0 || (_funnelData$funnel_co3 = funnelData.funnel_connectors) === null || _funnelData$funnel_co3 === void 0 ? void 0 : _funnelData$funnel_co3.edges;
     var found = Edges.find(function (e) {
       return e.source == qKey && e.sourceHandle == handle;
     });
@@ -528,37 +632,61 @@ var FunnelBuilderContextProvider = function FunnelBuilderContextProvider(props) 
     return found;
   };
   var onNextStep = function onNextStep() {
-    var found = funnelFieldData.find(function (f) {
-      return f.__key == questionCurrentViewID;
-    });
-    var type = onCheckTypeFunnel(found === null || found === void 0 ? void 0 : found.__key);
-    var actionByType = {
-      QuestionNode: function QuestionNode() {
+    nodeActionController(questionCurrentViewID, {
+      QuestionNode: function QuestionNode(node) {
+        var found = funnelFieldData.find(function (f) {
+          return f.__key == questionCurrentViewID;
+        });
         var __key = found.__key,
           value = found.value,
           required = found.required;
         var edge = findNextStep(__key, value);
         setQuestionCurrentViewID(edge === null || edge === void 0 ? void 0 : edge.target);
+        setHistoryPassedSteps([].concat(_toConsumableArray(historyPassedSteps), [questionCurrentViewID]));
       },
-      RedirectNode: function RedirectNode() {
-        console.log(found);
+      RedirectNode: function RedirectNode(node) {
+        // ???
       }
-    };
-    actionByType[type]();
-  };
-  var onPrevStep = function onPrevStep() {};
-  var canNextStep = function canNextStep() {
-    // funnelData?.funnel_connectors?.nodes
-    var found = funnelFieldData.find(function (f) {
-      return f.__key == questionCurrentViewID;
     });
-    var type = onCheckTypeFunnel(found === null || found === void 0 ? void 0 : found.__key);
-    if (type != 'QuestionNode') return false;
-    if (found.required == true && found.value == '') {
-      return false;
+  };
+  var onPrevStep = function onPrevStep() {
+    var __historyPassedSteps = _toConsumableArray(historyPassedSteps);
+    var lastID = __historyPassedSteps.pop();
+    setQuestionCurrentViewID(lastID);
+    setHistoryPassedSteps(__historyPassedSteps);
+  };
+  var nodeActionController = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(function (nodeID, handleType) {
+    var node = getNodeItem(nodeID); // node type
+    if (handleType[node.type]) {
+      return handleType[node.type](node);
     } else {
+      console.error("Type: ".concat(node.type, " not support!!!"));
+    }
+  });
+  var canNextStep = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(function () {
+    return nodeActionController(questionCurrentViewID, {
+      QuestionNode: function QuestionNode(node) {
+        var id = node.id;
+        var found = funnelFieldData.find(function (f) {
+          return f.__key == id;
+        });
+        if (found.required == true && found.value == '') {
+          return false;
+        } else {
+          return true;
+        }
+      },
+      RedirectNode: function RedirectNode(node) {
+        console.log(node === null || node === void 0 ? void 0 : node.data);
+        return false;
+      }
+    });
+  });
+  var canPrevStep = function canPrevStep() {
+    if (historyPassedSteps.length > 0) {
       return true;
     }
+    return false;
   };
   var value = {
     initLoading: initLoading,
@@ -575,7 +703,8 @@ var FunnelBuilderContextProvider = function FunnelBuilderContextProvider(props) 
       onUpdateFunnelField: onUpdateFunnelField,
       onNextStep: onNextStep,
       onPrevStep: onPrevStep,
-      canNextStep: canNextStep
+      canNextStep: canNextStep,
+      canPrevStep: canPrevStep
     }
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(FunnelBuilderContext.Provider, {

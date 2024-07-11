@@ -72,6 +72,21 @@ export default function OptionsRepeater(props) {
         </fieldset>
       </>
     },
+    image: (o, __o_index) => {
+      return <>
+        <fieldset className="__q-fieldset">
+          <legend>Extra fields ({ optionsStyle })</legend>
+          <div className="__q-field-config-container">
+            <TextField
+              label="Image Url: "
+              value={ o?.extra__image_url ?? '' }
+              onChange={ v => { onChange(v, 'extra__image_url', __o_index) } }
+              autoComplete="off"
+            />
+          </div>
+        </fieldset>
+      </>
+    },
     custom_html: (o, __o_index) => {
       return <>
         <fieldset className="__q-fieldset">
