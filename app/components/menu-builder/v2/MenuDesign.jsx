@@ -93,7 +93,7 @@ export default function MenuDesign() {
                 <span className="__menu-item-name">
                   { name }
                   { children && children.length > 0 ? <MenuIcon className={ 'dropdown-icon' } source={ 'arrow_down' } /> : '' } 
-                  { ['__BLOCK_BRAND__'].includes(type) ? <u>Brand Element (⚠️ Not showing on front-end)</u> : '' }
+                  {/* { ['__BLOCK_BRAND__'].includes(type) ? <u>Brand Element (⚠️ Not showing on front-end)</u> : '' } */}
                   { edit ? <Badge tone="warning">Edit</Badge> : '' }
                 </span>
               </a>

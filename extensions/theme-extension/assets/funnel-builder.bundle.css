@@ -56,6 +56,7 @@
   display: flex;
   gap: 1em;
   flex-wrap: wrap;
+  justify-content: center;
 }
 .select-box-component.__temp__card li.__card-item, .select-box-component.__temp__block li.__card-item {
   width: 240px;
@@ -64,6 +65,33 @@
 .select-box-component.__temp__card li.__block-item, .select-box-component.__temp__block li.__block-item {
   width: 210px;
   list-style: none;
+}
+.select-box-component.__temp__image {
+  display: flex;
+  gap: 1em;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 600px;
+  max-width: 100%;
+}
+.select-box-component.__temp__image li {
+  list-style: none;
+  cursor: pointer;
+  position: relative;
+}
+.select-box-component.__temp__image li .__tag-selected {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  background: #006875;
+  color: white;
+  line-height: normal;
+  padding: 3px 7px;
+  font-size: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .question-field {
@@ -127,6 +155,9 @@
 
 .block-item-comp {
   padding: 2em;
+}
+.block-item-comp h4 {
+  font-size: 1em;
 }
 .block-item-comp.__selected {
   background: #006875;

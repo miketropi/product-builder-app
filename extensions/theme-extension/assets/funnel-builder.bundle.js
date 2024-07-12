@@ -46,8 +46,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ FunnelApp)
 /* harmony export */ });
 /* harmony import */ var _context_FunnelBuilderContext__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../context/FunnelBuilderContext */ "./src/context/FunnelBuilderContext.jsx");
-/* harmony import */ var _Question__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Question */ "./src/components/funnel-builder/Question.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _NodePanel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NodePanel */ "./src/components/funnel-builder/NodePanel.jsx");
+/* harmony import */ var _Question__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Question */ "./src/components/funnel-builder/Question.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
 
 
 
@@ -57,30 +59,98 @@ function FunnelApp() {
     funnelData = _useFunnelBuilderCont.funnelData,
     funnelFieldData = _useFunnelBuilderCont.funnelFieldData,
     historyPassedSteps = _useFunnelBuilderCont.historyPassedSteps;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
     className: "funnel-app-container",
-    children: function () {
+    children: function (_funnelData$funnel_co) {
       if (initLoading == true) {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
           className: "__loading",
           children: "Loading...!"
         });
       }
+      var nodes = funnelData === null || funnelData === void 0 || (_funnelData$funnel_co = funnelData.funnel_connectors) === null || _funnelData$funnel_co === void 0 ? void 0 : _funnelData$funnel_co.nodes;
       var questions = funnelData.questions;
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
         className: "question-container",
-        children: questions.map(function (q) {
-          var _funnelFieldData$find;
-          var __key = q.__key;
-          q.value = (_funnelFieldData$find = funnelFieldData.find(function (f) {
-            return f.__key === __key;
-          })) === null || _funnelFieldData$find === void 0 ? void 0 : _funnelFieldData$find.value;
-          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Question__WEBPACK_IMPORTED_MODULE_1__["default"], {
-            q: q
-          }, __key);
+        children: nodes.map(function (n) {
+          var id = n.id,
+            data = n.data,
+            type = n.type;
+          var __childrenByType = {
+            StartNode: function StartNode() {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+                children: "Start...!"
+              });
+            },
+            QuestionNode: function QuestionNode() {
+              var question_key = data.question_key;
+              var q = questions.find(function (_q) {
+                return _q.__key === question_key;
+              });
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Question__WEBPACK_IMPORTED_MODULE_2__["default"], {
+                q: q
+              }, q.__key);
+            },
+            RedirectNode: function RedirectNode() {}
+          };
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_NodePanel__WEBPACK_IMPORTED_MODULE_1__["default"], {
+            node: n,
+            children: __childrenByType[type](n)
+          }, id);
         })
       });
     }()
+  });
+}
+
+/***/ }),
+
+/***/ "./src/components/funnel-builder/NodePanel.jsx":
+/*!*****************************************************!*\
+  !*** ./src/components/funnel-builder/NodePanel.jsx ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ NodePanel)
+/* harmony export */ });
+/* harmony import */ var _context_FunnelBuilderContext__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../context/FunnelBuilderContext */ "./src/context/FunnelBuilderContext.jsx");
+/* harmony import */ var react_use_measure__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-use-measure */ "./node_modules/react-use-measure/dist/web.js");
+/* harmony import */ var _react_spring_web__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @react-spring/web */ "./node_modules/@react-spring/web/dist/react-spring_web.modern.mjs");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+function NodePanel(_ref) {
+  var node = _ref.node,
+    children = _ref.children;
+  var id = node.id,
+    type = node.type;
+  var _useFunnelBuilderCont = (0,_context_FunnelBuilderContext__WEBPACK_IMPORTED_MODULE_0__.useFunnelBuilderContext)(),
+    questionCurrentViewID = _useFunnelBuilderCont.questionCurrentViewID;
+  var _useMeasure = (0,react_use_measure__WEBPACK_IMPORTED_MODULE_3__["default"])(),
+    _useMeasure2 = _slicedToArray(_useMeasure, 2),
+    ref = _useMeasure2[0],
+    width = _useMeasure2[1].width;
+  var props = (0,_react_spring_web__WEBPACK_IMPORTED_MODULE_1__.useSpring)({
+    opacity: questionCurrentViewID == id ? 1 : 0
+  });
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    ref: ref,
+    className: ['node-panel-comp', "__node-id-".concat(id), "__type-".concat(type)].join(' '),
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_react_spring_web__WEBPACK_IMPORTED_MODULE_1__.animated.div, {
+      style: props,
+      children: children
+    })
   });
 }
 
@@ -101,23 +171,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _context_FunnelBuilderContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../context/FunnelBuilderContext */ "./src/context/FunnelBuilderContext.jsx");
 /* harmony import */ var _fields_DynamicField__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./fields/DynamicField */ "./src/components/funnel-builder/fields/DynamicField.jsx");
-/* harmony import */ var react_use_measure__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-use-measure */ "./node_modules/react-use-measure/dist/web.js");
-/* harmony import */ var _react_spring_web__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @react-spring/web */ "./node_modules/@react-spring/web/dist/react-spring_web.modern.mjs");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
 function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
-function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
 
 
 
@@ -135,64 +195,51 @@ function Question(_ref) {
     onNextStep = fn.onNextStep,
     canPrevStep = fn.canPrevStep,
     onPrevStep = fn.onPrevStep;
-  var _useMeasure = (0,react_use_measure__WEBPACK_IMPORTED_MODULE_5__["default"])(),
-    _useMeasure2 = _slicedToArray(_useMeasure, 2),
-    ref = _useMeasure2[0],
-    width = _useMeasure2[1].width;
   var __key = q.__key,
     question = q.question,
     content = q.content,
     field = q.field;
   var required = field.required;
-  var props = (0,_react_spring_web__WEBPACK_IMPORTED_MODULE_3__.useSpring)({
-    opacity: questionCurrentViewID == __key ? 1 : 0
-  });
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-      ref: ref,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_react_spring_web__WEBPACK_IMPORTED_MODULE_3__.animated.div, {
-        style: props,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-          className: "question-frame",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
-            className: "question-text",
-            children: question
-          }), content && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-            className: "question-content",
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      className: "question-frame",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h4", {
+        className: "question-text",
+        children: question
+      }), content && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        className: "question-content",
+        dangerouslySetInnerHTML: {
+          __html: content
+        }
+      }), field && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        className: "question-field",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_fields_DynamicField__WEBPACK_IMPORTED_MODULE_2__["default"], _objectSpread(_objectSpread({}, field), {}, {
+          onChange: function onChange(v) {
+            onUpdateFunnelField(__key, v);
+          }
+        }))
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        className: "action-buttons",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+          onClick: onPrevStep,
+          className: ['__prev __action', canPrevStep() ? '' : '__disable'].join(' '),
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+            className: "__icon",
             dangerouslySetInnerHTML: {
-              __html: content
+              __html: __PREV_ICON
             }
-          }), field && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-            className: "question-field",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_fields_DynamicField__WEBPACK_IMPORTED_MODULE_2__["default"], _objectSpread(_objectSpread({}, field), {}, {
-              onChange: function onChange(v) {
-                onUpdateFunnelField(__key, v);
-              }
-            }))
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-            className: "action-buttons",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-              onClick: onPrevStep,
-              className: ['__prev __action', canPrevStep() ? '' : '__disable'].join(' '),
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
-                className: "__icon",
-                dangerouslySetInnerHTML: {
-                  __html: __PREV_ICON
-                }
-              }), "Previous"]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-              onClick: onNextStep,
-              className: ['__next __action', canNextStep() ? '' : '__disable'].join(' '),
-              children: ["Next", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
-                className: "__icon",
-                dangerouslySetInnerHTML: {
-                  __html: __NEXT_ICON
-                }
-              })]
-            })]
+          }), "Previous"]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+          onClick: onNextStep,
+          className: ['__next __action', canNextStep() ? '' : '__disable'].join(' '),
+          children: ["Next", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+            className: "__icon",
+            dangerouslySetInnerHTML: {
+              __html: __NEXT_ICON
+            }
           })]
-        })
-      })
+        })]
+      })]
     })
   });
 }
@@ -267,12 +314,29 @@ var BlockItem = function BlockItem(_ref2) {
     })]
   });
 };
-function SelectBox(_ref3) {
-  var options = _ref3.options,
-    multiple = _ref3.multiple,
-    value = _ref3.value,
-    onChange = _ref3.onChange,
-    template = _ref3.template;
+var ImageItem = function ImageItem(_ref3) {
+  var title = _ref3.title,
+    image = _ref3.image,
+    onClick = _ref3.onClick,
+    selected = _ref3.selected;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    className: ['image-item-comp', selected ? '__selected' : ''].join(' '),
+    onClick: onClick,
+    children: [selected ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+      className: "__tag-selected",
+      children: "Selected"
+    }) : '', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+      src: image,
+      alt: title
+    })]
+  });
+};
+function SelectBox(_ref4) {
+  var options = _ref4.options,
+    multiple = _ref4.multiple,
+    value = _ref4.value,
+    onChange = _ref4.onChange,
+    template = _ref4.template;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState2 = _slicedToArray(_useState, 2),
     __value = _useState2[0],
@@ -361,6 +425,27 @@ function SelectBox(_ref3) {
               onClick: function onClick(e) {
                 // console.log(!selected, o.value)
                 onChange_Fn(!selected, o.value);
+              }
+            })
+          }, __key);
+        })
+      });
+    },
+    image: function image() {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
+        children: options.map(function (o) {
+          var __key = o.__key,
+            label = o.label,
+            extra__image_url = o.extra__image_url;
+          var selected = isSelected_Fn(o.value);
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
+            className: "__image-item",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(ImageItem, {
+              title: label,
+              image: extra__image_url,
+              selected: selected,
+              onClick: function onClick(e) {
+                return onChange_Fn(!selected, o.value);
               }
             })
           }, __key);
