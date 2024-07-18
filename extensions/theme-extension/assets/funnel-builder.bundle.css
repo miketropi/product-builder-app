@@ -182,6 +182,7 @@
   display: inline-block;
   position: relative;
   border: solid 1px #006875;
+  line-height: 0;
 }
 .checkbox-ui-component .checkbox-ui__fake-handle:after {
   content: "";
@@ -203,4 +204,18 @@
   transform: translate(-50%, -50%) scale(1);
   -webkit-transform: translate(-50%, -50%) scale(1);
   opacity: 1;
+}
+
+.transition-nodes {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  transition: 0.1s ease;
+  -webkit-transition: 0.1s ease;
+}
+.transition-nodes .transition-node-item {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
 }

@@ -45,59 +45,128 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ FunnelApp)
 /* harmony export */ });
-/* harmony import */ var _context_FunnelBuilderContext__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../context/FunnelBuilderContext */ "./src/context/FunnelBuilderContext.jsx");
-/* harmony import */ var _NodePanel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NodePanel */ "./src/components/funnel-builder/NodePanel.jsx");
-/* harmony import */ var _Question__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Question */ "./src/components/funnel-builder/Question.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _context_FunnelBuilderContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../context/FunnelBuilderContext */ "./src/context/FunnelBuilderContext.jsx");
+/* harmony import */ var _NodePanel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./NodePanel */ "./src/components/funnel-builder/NodePanel.jsx");
+/* harmony import */ var _Question__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Question */ "./src/components/funnel-builder/Question.jsx");
+/* harmony import */ var _react_spring_web__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @react-spring/web */ "./node_modules/@react-spring/web/dist/react-spring_web.modern.mjs");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
 
-function FunnelApp() {
-  var _useFunnelBuilderCont = (0,_context_FunnelBuilderContext__WEBPACK_IMPORTED_MODULE_0__.useFunnelBuilderContext)(),
-    initLoading = _useFunnelBuilderCont.initLoading,
+
+
+var TransitionNodes = function TransitionNodes(props) {
+  var _useFunnelBuilderCont = (0,_context_FunnelBuilderContext__WEBPACK_IMPORTED_MODULE_1__.useFunnelBuilderContext)(),
     funnelData = _useFunnelBuilderCont.funnelData,
     funnelFieldData = _useFunnelBuilderCont.funnelFieldData,
-    historyPassedSteps = _useFunnelBuilderCont.historyPassedSteps;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+    questionCurrentViewID = _useFunnelBuilderCont.questionCurrentViewID,
+    historyPassedSteps = _useFunnelBuilderCont.historyPassedSteps,
+    sectionHeight = _useFunnelBuilderCont.sectionHeight;
+  var nodes = props.nodes;
+  var questions = funnelData.questions;
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+    _useState2 = _slicedToArray(_useState, 2),
+    currentViewIndex = _useState2[0],
+    setCurrentViewIndex = _useState2[1];
+  var transRef = (0,_react_spring_web__WEBPACK_IMPORTED_MODULE_4__.useSpringRef)();
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var __index = nodes.findIndex(function (n) {
+      return n.id == questionCurrentViewID;
+    });
+    setCurrentViewIndex(__index);
+  }, [questionCurrentViewID]);
+  var transitions = (0,_react_spring_web__WEBPACK_IMPORTED_MODULE_4__.useTransition)(currentViewIndex, {
+    // ref: transRef,
+    from: {
+      opacity: 0,
+      transform: 'translate3d(100%,0,0)'
+    },
+    enter: {
+      opacity: 1,
+      transform: 'translate3d(0%,0,0)'
+    },
+    leave: {
+      opacity: 0,
+      transform: 'translate3d(-50%,0,0)'
+    }
+  });
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+    className: "transition-nodes",
+    style: {
+      minHeight: "".concat(sectionHeight, "px")
+    },
+    children: transitions(function (style, i) {
+      var n = nodes[i];
+      var id = n.id,
+        data = n.data,
+        type = n.type;
+      var __childrenByType = {
+        StartNode: function StartNode() {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+            children: "Start...!"
+          });
+        },
+        QuestionNode: function QuestionNode() {
+          var question_key = data.question_key;
+          var q = questions.find(function (_q) {
+            return _q.__key === question_key;
+          });
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Question__WEBPACK_IMPORTED_MODULE_3__["default"], {
+            q: q
+          }, q.__key);
+        },
+        RedirectNode: function RedirectNode() {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+            children: JSON.stringify(data)
+          });
+        }
+      };
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+        className: "transition-node-item",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_NodePanel__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          node: n,
+          style: style,
+          children: __childrenByType[type](n)
+        }, id)
+      });
+    })
+  });
+};
+function FunnelApp() {
+  var _useFunnelBuilderCont2 = (0,_context_FunnelBuilderContext__WEBPACK_IMPORTED_MODULE_1__.useFunnelBuilderContext)(),
+    initLoading = _useFunnelBuilderCont2.initLoading,
+    funnelData = _useFunnelBuilderCont2.funnelData,
+    funnelFieldData = _useFunnelBuilderCont2.funnelFieldData,
+    historyPassedSteps = _useFunnelBuilderCont2.historyPassedSteps;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
     className: "funnel-app-container",
     children: function (_funnelData$funnel_co) {
       if (initLoading == true) {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
           className: "__loading",
           children: "Loading...!"
         });
       }
       var nodes = funnelData === null || funnelData === void 0 || (_funnelData$funnel_co = funnelData.funnel_connectors) === null || _funnelData$funnel_co === void 0 ? void 0 : _funnelData$funnel_co.nodes;
       var questions = funnelData.questions;
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
         className: "question-container",
-        children: nodes.map(function (n) {
-          var id = n.id,
-            data = n.data,
-            type = n.type;
-          var __childrenByType = {
-            StartNode: function StartNode() {
-              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
-                children: "Start...!"
-              });
-            },
-            QuestionNode: function QuestionNode() {
-              var question_key = data.question_key;
-              var q = questions.find(function (_q) {
-                return _q.__key === question_key;
-              });
-              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Question__WEBPACK_IMPORTED_MODULE_2__["default"], {
-                q: q
-              }, q.__key);
-            },
-            RedirectNode: function RedirectNode() {}
-          };
-          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_NodePanel__WEBPACK_IMPORTED_MODULE_1__["default"], {
-            node: n,
-            children: __childrenByType[type](n)
-          }, id);
-        })
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("pre", {
+          dangerouslySetInnerHTML: {
+            __html: JSON.stringify(funnelFieldData, null, "\t")
+          }
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(TransitionNodes, {
+          nodes: nodes
+        })]
       });
     }()
   });
@@ -117,9 +186,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ NodePanel)
 /* harmony export */ });
 /* harmony import */ var _context_FunnelBuilderContext__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../context/FunnelBuilderContext */ "./src/context/FunnelBuilderContext.jsx");
-/* harmony import */ var react_use_measure__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-use-measure */ "./node_modules/react-use-measure/dist/web.js");
+/* harmony import */ var react_use_measure__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-use-measure */ "./node_modules/react-use-measure/dist/web.js");
 /* harmony import */ var _react_spring_web__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @react-spring/web */ "./node_modules/@react-spring/web/dist/react-spring_web.modern.mjs");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -130,25 +201,34 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 function NodePanel(_ref) {
   var node = _ref.node,
-    children = _ref.children;
+    children = _ref.children,
+    style = _ref.style;
   var id = node.id,
     type = node.type;
   var _useFunnelBuilderCont = (0,_context_FunnelBuilderContext__WEBPACK_IMPORTED_MODULE_0__.useFunnelBuilderContext)(),
-    questionCurrentViewID = _useFunnelBuilderCont.questionCurrentViewID;
-  var _useMeasure = (0,react_use_measure__WEBPACK_IMPORTED_MODULE_3__["default"])(),
+    questionCurrentViewID = _useFunnelBuilderCont.questionCurrentViewID,
+    setSectionHeight = _useFunnelBuilderCont.setSectionHeight;
+  var _useMeasure = (0,react_use_measure__WEBPACK_IMPORTED_MODULE_4__["default"])(),
     _useMeasure2 = _slicedToArray(_useMeasure, 2),
     ref = _useMeasure2[0],
-    width = _useMeasure2[1].width;
-  var props = (0,_react_spring_web__WEBPACK_IMPORTED_MODULE_1__.useSpring)({
-    opacity: questionCurrentViewID == id ? 1 : 0
-  });
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    _useMeasure2$ = _useMeasure2[1],
+    width = _useMeasure2$.width,
+    height = _useMeasure2$.height;
+  // const props = useSpring({ opacity: (questionCurrentViewID == id ? 1 : 0) })
+
+  (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
+    if (id == questionCurrentViewID) {
+      setSectionHeight(height);
+    }
+  }, [ref]);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
     ref: ref,
     className: ['node-panel-comp', "__node-id-".concat(id), "__type-".concat(type)].join(' '),
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_react_spring_web__WEBPACK_IMPORTED_MODULE_1__.animated.div, {
-      style: props,
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_react_spring_web__WEBPACK_IMPORTED_MODULE_1__.animated.div, {
+      style: style,
       children: children
     })
   });
@@ -185,8 +265,10 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
 var __PREV_ICON = "<svg viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M20 12H4M4 12L10 6M4 12L10 18\" stroke=\"black\" stroke-width=\"1\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> </svg>";
 var __NEXT_ICON = "<svg viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M4 12H20M20 12L14 6M20 12L14 18\" stroke=\"black\" stroke-width=\"1\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> </svg>";
 function Question(_ref) {
+  var _funnelFieldData$find;
   var q = _ref.q;
   var _useFunnelBuilderCont = (0,_context_FunnelBuilderContext__WEBPACK_IMPORTED_MODULE_1__.useFunnelBuilderContext)(),
+    funnelFieldData = _useFunnelBuilderCont.funnelFieldData,
     historyPassedSteps = _useFunnelBuilderCont.historyPassedSteps,
     questionCurrentViewID = _useFunnelBuilderCont.questionCurrentViewID,
     fn = _useFunnelBuilderCont.fn;
@@ -211,13 +293,21 @@ function Question(_ref) {
         dangerouslySetInnerHTML: {
           __html: content
         }
-      }), field && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      }), field && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
         className: "question-field",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_fields_DynamicField__WEBPACK_IMPORTED_MODULE_2__["default"], _objectSpread(_objectSpread({}, field), {}, {
+        children: [(_funnelFieldData$find = funnelFieldData.find(function (f) {
+          return f.__key == __key;
+        })) === null || _funnelFieldData$find === void 0 ? void 0 : _funnelFieldData$find.value, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_fields_DynamicField__WEBPACK_IMPORTED_MODULE_2__["default"], _objectSpread(_objectSpread({}, function (_funnelFieldData$find2) {
+          return _objectSpread(_objectSpread({}, field), {}, {
+            value: (_funnelFieldData$find2 = funnelFieldData.find(function (f) {
+              return f.__key == __key;
+            })) === null || _funnelFieldData$find2 === void 0 ? void 0 : _funnelFieldData$find2.value
+          });
+        }()), {}, {
           onChange: function onChange(v) {
             onUpdateFunnelField(__key, v);
           }
-        }))
+        }))]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
         className: "action-buttons",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
@@ -617,6 +707,10 @@ var FunnelBuilderContextProvider = function FunnelBuilderContextProvider(props) 
     _useState10 = _slicedToArray(_useState9, 2),
     historyPassedSteps = _useState10[0],
     setHistoryPassedSteps = _useState10[1];
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+    _useState12 = _slicedToArray(_useState11, 2),
+    sectionHeight = _useState12[0],
+    setSectionHeight = _useState12[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     API.current = new _libs_FunnelApi__WEBPACK_IMPORTED_MODULE_1__["default"](storeId);
     init();
@@ -713,7 +807,7 @@ var FunnelBuilderContextProvider = function FunnelBuilderContextProvider(props) 
     var found = Edges.find(function (e) {
       return e.source == qKey && e.sourceHandle == handle;
     });
-    console.log(found);
+    // console.log(found);
     return found;
   };
   var onNextStep = function onNextStep() {
@@ -784,6 +878,8 @@ var FunnelBuilderContextProvider = function FunnelBuilderContextProvider(props) 
     setQuestionCurrentViewID: setQuestionCurrentViewID,
     historyPassedSteps: historyPassedSteps,
     setHistoryPassedSteps: setHistoryPassedSteps,
+    sectionHeight: sectionHeight,
+    setSectionHeight: setSectionHeight,
     fn: {
       onUpdateFunnelField: onUpdateFunnelField,
       onNextStep: onNextStep,
