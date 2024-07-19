@@ -70,6 +70,15 @@ export default function MenuEditItem() {
       />
     </div>
 
+    <div style={{ marginBottom: `1em` }}> 
+      <TextField
+        label="Custom Class"
+        value={ currentItemEdit?.custom_class }
+        onChange={ value => onUpdate(value, 'custom_class') }
+        autoComplete="off"
+      />
+    </div>
+
     {
       ['__BLOCK_BRAND_ITEM__', '__BLOCK_MENU_IMAGE_ITEM__'].includes(currentItemEdit?.type) == true &&
       <>

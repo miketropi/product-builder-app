@@ -43,11 +43,16 @@
   });
 </script>
 
+<script>
+{{ block.settings.custom_js_script }}
+</script>
+
 <section class="__menu-builder-container">
   <div id="__MENU_BUILDER_APP__" data-store-id="{{ shop.id }}" data-menu-id="{{ block.settings.menu_id }}" >
     {{ block.settings.prerender_html }} 
   </div>
 </section>
+
 {% schema %}
 {
   "name": "Menu Builder", 
@@ -65,6 +70,11 @@
       "type": "html", 
       "id": "prerender_html",
       "label": "Pre-render HTML"
+    },
+    {
+      "type": "html", 
+      "id": "custom_js_script",
+      "label": "Custom JS Script"
     }
   ]
 } 

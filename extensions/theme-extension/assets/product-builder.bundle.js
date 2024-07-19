@@ -1079,7 +1079,7 @@ function DynamicMenuItem(props) {
     name = menu.name,
     url = menu.url,
     type = menu.type;
-  var liClasses = ['menu-item', "__level-".concat(level), "__item-key-".concat(__key), "__item-type-".concat(type), __WITHOUT_ARROW_TYPES.includes(type) ? "__flat-child" : '', open ? '__open' : ''];
+  var liClasses = ['menu-item', "__level-".concat(level), "__item-key-".concat(__key), "__item-type-".concat(type), __WITHOUT_ARROW_TYPES.includes(type) ? "__flat-child" : '', open ? '__open' : '', menu === null || menu === void 0 ? void 0 : menu.custom_class];
   var arrow = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
     children: function () {
       if (__WITHOUT_ARROW_TYPES.includes(type)) return '';
@@ -1147,7 +1147,7 @@ function MenuBuilderApp() {
     version = _useMenuBuilderContex.version,
     menuData = _useMenuBuilderContex.menuData;
   var renderMenu = function renderMenu(menu) {
-    var _parent_item$config, _parent_item$config3, _parent_item$config4, _parent_item$config5;
+    var _parent_item$config, _parent_item$config3, _parent_item$config4, _parent_item$config5, _window;
     var lv = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
     var __parent_item = arguments.length > 2 ? arguments[2] : undefined;
     lv = lv === null ? 0 : lv += 1;
@@ -1182,7 +1182,7 @@ function MenuBuilderApp() {
           type = item.type,
           icon = item.icon;
         var size = item !== null && item !== void 0 && (_item$config = item.config) !== null && _item$config !== void 0 && _item$config.containerSize ? "__size-".concat(item.config.containerSize) : '';
-        var liClasses = ['__menu-item', "__item-lv-".concat(lv), size, children && children.length > 0 ? "__has-children" : '', item.type ? "__menu-item_type__".concat(type) : ''];
+        var liClasses = ['__menu-item', "__item-lv-".concat(lv), size, children && children.length > 0 ? "__has-children" : '', item.type ? "__menu-item_type__".concat(type) : '', item === null || item === void 0 ? void 0 : item.custom_class];
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("li", {
           className: liClasses.join(' '),
           "data-id": __key,
@@ -1234,8 +1234,10 @@ function MenuBuilderApp() {
             })]
           })
         })]
-      }) : __li, (__parent_item === null || __parent_item === void 0 ? void 0 : __parent_item.type) && __parent_item.type == '__MEGASHOP__' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("li", {
-        className: "__menu-item __menu-item-type__custom-html"
+      }) : __li, (__parent_item === null || __parent_item === void 0 ? void 0 : __parent_item.type) && __parent_item.type == '__MEGASHOP__' && ((_window = window) === null || _window === void 0 ? void 0 : _window.__MENU_BUILDER_MOBI_CUSTOM_HTML_END) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        dangerouslySetInnerHTML: {
+          __html: window.__MENU_BUILDER_MOBI_CUSTOM_HTML_END
+        }
       })]
     });
     return __ul;
@@ -1346,6 +1348,7 @@ var BannerMenuItem = function BannerMenuItem(props) {
   });
 };
 function MenuMobi() {
+  var _window;
   var _useMenuBuilderContex = (0,_context_MenuBuilderContext__WEBPACK_IMPORTED_MODULE_2__.useMenuBuilderContext)(),
     mobiMenuData = _useMenuBuilderContex.mobiMenuData,
     mobiItemsCurrent = _useMenuBuilderContex.mobiItemsCurrent,
@@ -1602,6 +1605,10 @@ function MenuMobi() {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
             className: "menu-builder-mobi__nav",
             children: renderMenuMobiV2(mobiMenuData, 0, null)
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+            dangerouslySetInnerHTML: {
+              __html: (_window = window) === null || _window === void 0 ? void 0 : _window.__MENU_BUILDER_MOBI_CUSTOM_HTML_END
+            }
           })]
         })
       })
