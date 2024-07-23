@@ -51,7 +51,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _NodePanel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./NodePanel */ "./src/components/funnel-builder/NodePanel.jsx");
 /* harmony import */ var _Question__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Question */ "./src/components/funnel-builder/Question.jsx");
 /* harmony import */ var _react_spring_web__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @react-spring/web */ "./node_modules/@react-spring/web/dist/react-spring_web.modern.mjs");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _RedirectNode__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./RedirectNode */ "./src/components/funnel-builder/RedirectNode.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -64,13 +65,15 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var TransitionNodes = function TransitionNodes(props) {
   var _useFunnelBuilderCont = (0,_context_FunnelBuilderContext__WEBPACK_IMPORTED_MODULE_1__.useFunnelBuilderContext)(),
     funnelData = _useFunnelBuilderCont.funnelData,
     funnelFieldData = _useFunnelBuilderCont.funnelFieldData,
     questionCurrentViewID = _useFunnelBuilderCont.questionCurrentViewID,
     historyPassedSteps = _useFunnelBuilderCont.historyPassedSteps,
-    sectionHeight = _useFunnelBuilderCont.sectionHeight;
+    sectionHeight = _useFunnelBuilderCont.sectionHeight,
+    effectDirection = _useFunnelBuilderCont.effectDirection;
   var nodes = props.nodes;
   var questions = funnelData.questions;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
@@ -84,22 +87,34 @@ var TransitionNodes = function TransitionNodes(props) {
     });
     setCurrentViewIndex(__index);
   }, [questionCurrentViewID]);
+  var from = effectDirection == '__NEXT__' ? {
+    opacity: 0,
+    transform: 'translate3d(50%,0,0)'
+  } : {
+    opacity: 0,
+    transform: 'translate3d(-50%,0,0)'
+  };
+  var enter = effectDirection == '__NEXT__' ? {
+    opacity: 1,
+    transform: 'translate3d(0%,0,0)'
+  } : {
+    opacity: 1,
+    transform: 'translate3d(0%,0,0)'
+  };
+  var leave = effectDirection == '__NEXT__' ? {
+    opacity: 0,
+    transform: 'translate3d(-50%,0,0)'
+  } : {
+    opacity: 0,
+    transform: 'translate3d(50%,0,0)'
+  };
   var transitions = (0,_react_spring_web__WEBPACK_IMPORTED_MODULE_4__.useTransition)(currentViewIndex, {
     // ref: transRef,
-    from: {
-      opacity: 0,
-      transform: 'translate3d(100%,0,0)'
-    },
-    enter: {
-      opacity: 1,
-      transform: 'translate3d(0%,0,0)'
-    },
-    leave: {
-      opacity: 0,
-      transform: 'translate3d(-50%,0,0)'
-    }
+    from: from,
+    enter: enter,
+    leave: leave
   });
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
     className: "transition-nodes",
     style: {
       minHeight: "".concat(sectionHeight, "px")
@@ -111,7 +126,7 @@ var TransitionNodes = function TransitionNodes(props) {
         type = n.type;
       var __childrenByType = {
         StartNode: function StartNode() {
-          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
             children: "Start...!"
           });
         },
@@ -120,19 +135,21 @@ var TransitionNodes = function TransitionNodes(props) {
           var q = questions.find(function (_q) {
             return _q.__key === question_key;
           });
-          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Question__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Question__WEBPACK_IMPORTED_MODULE_3__["default"], {
             q: q
           }, q.__key);
         },
         RedirectNode: function RedirectNode() {
-          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
-            children: JSON.stringify(data)
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_RedirectNode__WEBPACK_IMPORTED_MODULE_5__["default"], {
+              nodeData: data
+            })
           });
         }
       };
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
         className: "transition-node-item",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_NodePanel__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_NodePanel__WEBPACK_IMPORTED_MODULE_2__["default"], {
           node: n,
           style: style,
           children: __childrenByType[type](n)
@@ -147,26 +164,22 @@ function FunnelApp() {
     funnelData = _useFunnelBuilderCont2.funnelData,
     funnelFieldData = _useFunnelBuilderCont2.funnelFieldData,
     historyPassedSteps = _useFunnelBuilderCont2.historyPassedSteps;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
     className: "funnel-app-container",
     children: function (_funnelData$funnel_co) {
       if (initLoading == true) {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
           className: "__loading",
           children: "Loading...!"
         });
       }
       var nodes = funnelData === null || funnelData === void 0 || (_funnelData$funnel_co = funnelData.funnel_connectors) === null || _funnelData$funnel_co === void 0 ? void 0 : _funnelData$funnel_co.nodes;
       var questions = funnelData.questions;
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
         className: "question-container",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("pre", {
-          dangerouslySetInnerHTML: {
-            __html: JSON.stringify(funnelFieldData, null, "\t")
-          }
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(TransitionNodes, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(TransitionNodes, {
           nodes: nodes
-        })]
+        })
       });
     }()
   });
@@ -265,7 +278,6 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
 var __PREV_ICON = "<svg viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M20 12H4M4 12L10 6M4 12L10 18\" stroke=\"black\" stroke-width=\"1\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> </svg>";
 var __NEXT_ICON = "<svg viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M4 12H20M20 12L14 6M20 12L14 18\" stroke=\"black\" stroke-width=\"1\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> </svg>";
 function Question(_ref) {
-  var _funnelFieldData$find;
   var q = _ref.q;
   var _useFunnelBuilderCont = (0,_context_FunnelBuilderContext__WEBPACK_IMPORTED_MODULE_1__.useFunnelBuilderContext)(),
     funnelFieldData = _useFunnelBuilderCont.funnelFieldData,
@@ -293,21 +305,19 @@ function Question(_ref) {
         dangerouslySetInnerHTML: {
           __html: content
         }
-      }), field && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      }), field && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
         className: "question-field",
-        children: [(_funnelFieldData$find = funnelFieldData.find(function (f) {
-          return f.__key == __key;
-        })) === null || _funnelFieldData$find === void 0 ? void 0 : _funnelFieldData$find.value, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_fields_DynamicField__WEBPACK_IMPORTED_MODULE_2__["default"], _objectSpread(_objectSpread({}, function (_funnelFieldData$find2) {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_fields_DynamicField__WEBPACK_IMPORTED_MODULE_2__["default"], _objectSpread(_objectSpread({}, function (_funnelFieldData$find) {
           return _objectSpread(_objectSpread({}, field), {}, {
-            value: (_funnelFieldData$find2 = funnelFieldData.find(function (f) {
+            value: (_funnelFieldData$find = funnelFieldData.find(function (f) {
               return f.__key == __key;
-            })) === null || _funnelFieldData$find2 === void 0 ? void 0 : _funnelFieldData$find2.value
+            })) === null || _funnelFieldData$find === void 0 ? void 0 : _funnelFieldData$find.value
           });
         }()), {}, {
           onChange: function onChange(v) {
             onUpdateFunnelField(__key, v);
           }
-        }))]
+        }))
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
         className: "action-buttons",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
@@ -331,6 +341,68 @@ function Question(_ref) {
         })]
       })]
     })
+  });
+}
+
+/***/ }),
+
+/***/ "./src/components/funnel-builder/RedirectNode.jsx":
+/*!********************************************************!*\
+  !*** ./src/components/funnel-builder/RedirectNode.jsx ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ RedirectNode)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _context_FunnelBuilderContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../context/FunnelBuilderContext */ "./src/context/FunnelBuilderContext.jsx");
+/* harmony import */ var _libs_useHooks_useCountdown__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../libs/useHooks/useCountdown */ "./src/libs/useHooks/useCountdown.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+function RedirectNode(_ref) {
+  var nodeData = _ref.nodeData;
+  var counter = (0,_libs_useHooks_useCountdown__WEBPACK_IMPORTED_MODULE_2__["default"])(5);
+  var redirect_url = nodeData.redirect_url;
+  var _useFunnelBuilderCont = (0,_context_FunnelBuilderContext__WEBPACK_IMPORTED_MODULE_1__.useFunnelBuilderContext)(),
+    funnelFieldData = _useFunnelBuilderCont.funnelFieldData;
+  var makeRedirectUrl = function makeRedirectUrl() {
+    var __redirect_url = redirect_url;
+    funnelFieldData.forEach(function (f) {
+      var __v = Array.isArray(f.value) ? f.value.join(',') : f.value;
+      __redirect_url = __redirect_url.replaceAll("[value]".concat(f.__key, "[/value]"), __v);
+    });
+    return __redirect_url;
+  };
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (counter <= 0) {
+      // alert(makeRedirectUrl())
+      window.location.href = makeRedirectUrl();
+    }
+  }, [counter]);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+    className: "redirect-node-comp",
+    style: {
+      padding: "3em 0"
+    },
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h2", {
+      children: "Thank You!"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
+      children: ["Redirected after ", counter, "s..."]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+      className: "button-redirect-now",
+      onClick: function onClick(e) {
+        e.preventDefault();
+        window.location.href = makeRedirectUrl();
+      },
+      children: "Redirect Now"
+    })]
   });
 }
 
@@ -563,16 +635,67 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ DynamicField)
 /* harmony export */ });
 /* harmony import */ var _QSingleChoice__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./QSingleChoice */ "./src/components/funnel-builder/fields/QSingleChoice.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _QMultipleChoice__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./QMultipleChoice */ "./src/components/funnel-builder/fields/QMultipleChoice.jsx");
+/* harmony import */ var _QTextField__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./QTextField */ "./src/components/funnel-builder/fields/QTextField.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
 
 
 var __FIELDS__ = {
-  QSingleChoice: _QSingleChoice__WEBPACK_IMPORTED_MODULE_0__["default"]
+  QSingleChoice: _QSingleChoice__WEBPACK_IMPORTED_MODULE_0__["default"],
+  QTextField: _QTextField__WEBPACK_IMPORTED_MODULE_2__["default"],
+  QMultipleChoice: _QMultipleChoice__WEBPACK_IMPORTED_MODULE_1__["default"]
 };
 function DynamicField(props) {
   var Component = __FIELDS__[props.type];
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(Component, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Component, {
     field: props
+  });
+}
+
+/***/ }),
+
+/***/ "./src/components/funnel-builder/fields/QMultipleChoice.jsx":
+/*!******************************************************************!*\
+  !*** ./src/components/funnel-builder/fields/QMultipleChoice.jsx ***!
+  \******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ QMultipleChoice)
+/* harmony export */ });
+/* harmony import */ var _SelectBox__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../SelectBox */ "./src/components/funnel-builder/SelectBox.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+function QMultipleChoice(_ref) {
+  var field = _ref.field;
+  var __key = field.__key,
+    help_text = field.help_text,
+    value = field.value,
+    option_ui = field.option_ui,
+    options = field.options,
+    require = field.require,
+    onChange = field.onChange;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+    className: ['q-field q-field__multiple-choice', "__ui-".concat(option_ui)].join(' '),
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+      className: ['__options', "__o_ui-".concat(option_ui)].join(' '),
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_SelectBox__WEBPACK_IMPORTED_MODULE_0__["default"], {
+        options: options,
+        multiple: true,
+        value: value,
+        onChange: onChange,
+        template: option_ui
+      }), help_text ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("small", {
+        dangerouslySetInnerHTML: {
+          __html: help_text
+        }
+      }) : '']
+    })
   });
 }
 
@@ -602,24 +725,6 @@ function QSingleChoice(_ref) {
     options = field.options,
     require = field.require,
     onChange = field.onChange;
-
-  // const optionTemplate = {
-  //   default: () => {
-  //     return <div className={ ['__options', `__o_ui-${ option_ui }`].join(' ') }>
-  //       <SelectBox 
-  //         options={ options } 
-  //         multiple={ false }
-  //         value={ value }
-  //         onChange={ onChange }
-  //         template={ option_ui }
-  //       />
-  //       {
-  //         help_text ? <small dangerouslySetInnerHTML={{ __html: help_text }}></small> : ''
-  //       }
-  //     </div>
-  //   } 
-  // }
-
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
     className: ['q-field q-field__single-choice', "__ui-".concat(option_ui)].join(' '),
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
@@ -636,6 +741,49 @@ function QSingleChoice(_ref) {
         }
       }) : '']
     })
+  });
+}
+
+/***/ }),
+
+/***/ "./src/components/funnel-builder/fields/QTextField.jsx":
+/*!*************************************************************!*\
+  !*** ./src/components/funnel-builder/fields/QTextField.jsx ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ QTextField)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+function QTextField(_ref) {
+  var field = _ref.field;
+  var __key = field.__key,
+    help_text = field.help_text,
+    value = field.value,
+    require = field.require,
+    _onChange = field.onChange,
+    placeholder = field.placeholder;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+    className: ['q-field q-field__textfield'].join(' '),
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+        className: "__textfield-handle",
+        type: "text",
+        value: value,
+        placeholder: placeholder,
+        onChange: function onChange(e) {
+          _onChange(e.target.value);
+        }
+      })
+    }), help_text ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("small", {
+      dangerouslySetInnerHTML: {
+        __html: help_text
+      }
+    }) : '']
   });
 }
 
@@ -711,6 +859,10 @@ var FunnelBuilderContextProvider = function FunnelBuilderContextProvider(props) 
     _useState12 = _slicedToArray(_useState11, 2),
     sectionHeight = _useState12[0],
     setSectionHeight = _useState12[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('__NEXT__'),
+    _useState14 = _slicedToArray(_useState13, 2),
+    effectDirection = _useState14[0],
+    setEffectDirection = _useState14[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     API.current = new _libs_FunnelApi__WEBPACK_IMPORTED_MODULE_1__["default"](storeId);
     init();
@@ -803,14 +955,22 @@ var FunnelBuilderContextProvider = function FunnelBuilderContextProvider(props) 
   };
   var findNextStep = function findNextStep(qKey, handle) {
     var _funnelData$funnel_co3;
+    // console.log(qKey, handle); return;
     var Edges = funnelData === null || funnelData === void 0 || (_funnelData$funnel_co3 = funnelData.funnel_connectors) === null || _funnelData$funnel_co3 === void 0 ? void 0 : _funnelData$funnel_co3.edges;
     var found = Edges.find(function (e) {
       return e.source == qKey && e.sourceHandle == handle;
     });
+    var foundOnlySource = Edges.find(function (e) {
+      return e.source == qKey;
+    });
     // console.log(found);
-    return found;
+    return found ? found : foundOnlySource;
   };
   var onNextStep = function onNextStep() {
+    setEffectDirection('__NEXT__');
+    // console.log(questionCurrentViewID); return;
+    // console.log(questionCurrentViewID); return;
+
     nodeActionController(questionCurrentViewID, {
       QuestionNode: function QuestionNode(node) {
         var found = funnelFieldData.find(function (f) {
@@ -820,6 +980,7 @@ var FunnelBuilderContextProvider = function FunnelBuilderContextProvider(props) 
           value = found.value,
           required = found.required;
         var edge = findNextStep(__key, value);
+        // console.log(edge); return;
         setQuestionCurrentViewID(edge === null || edge === void 0 ? void 0 : edge.target);
         setHistoryPassedSteps([].concat(_toConsumableArray(historyPassedSteps), [questionCurrentViewID]));
       },
@@ -829,20 +990,23 @@ var FunnelBuilderContextProvider = function FunnelBuilderContextProvider(props) 
     });
   };
   var onPrevStep = function onPrevStep() {
+    setEffectDirection('__PRIV__');
     var __historyPassedSteps = _toConsumableArray(historyPassedSteps);
     var lastID = __historyPassedSteps.pop();
     setQuestionCurrentViewID(lastID);
     setHistoryPassedSteps(__historyPassedSteps);
   };
-  var nodeActionController = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(function (nodeID, handleType) {
+  var nodeActionController = function nodeActionController(nodeID, handleType) {
+    // console.log(nodeID, handleType)
     var node = getNodeItem(nodeID); // node type
-    if (handleType[node.type]) {
-      return handleType[node.type](node);
+
+    if (handleType[node === null || node === void 0 ? void 0 : node.type]) {
+      return handleType[node === null || node === void 0 ? void 0 : node.type](node);
     } else {
-      console.error("Type: ".concat(node.type, " not support!!!"));
+      console.error("Type: ".concat(node === null || node === void 0 ? void 0 : node.type, " not support!!!"));
     }
-  });
-  var canNextStep = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(function () {
+  };
+  var canNextStep = function canNextStep() {
     return nodeActionController(questionCurrentViewID, {
       QuestionNode: function QuestionNode(node) {
         var id = node.id;
@@ -856,11 +1020,11 @@ var FunnelBuilderContextProvider = function FunnelBuilderContextProvider(props) 
         }
       },
       RedirectNode: function RedirectNode(node) {
-        console.log(node === null || node === void 0 ? void 0 : node.data);
+        // console.log(node?.data);
         return false;
       }
     });
-  });
+  };
   var canPrevStep = function canPrevStep() {
     if (historyPassedSteps.length > 0) {
       return true;
@@ -880,6 +1044,8 @@ var FunnelBuilderContextProvider = function FunnelBuilderContextProvider(props) 
     setHistoryPassedSteps: setHistoryPassedSteps,
     sectionHeight: sectionHeight,
     setSectionHeight: setSectionHeight,
+    effectDirection: effectDirection,
+    setEffectDirection: setEffectDirection,
     fn: {
       onUpdateFunnelField: onUpdateFunnelField,
       onNextStep: onNextStep,
@@ -1039,6 +1205,49 @@ var FunnelApi = /*#__PURE__*/function (_BuildmatApi) {
   return _createClass(FunnelApi);
 }(_BuildmatApi__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
+
+/***/ }),
+
+/***/ "./src/libs/useHooks/useCountdown.jsx":
+/*!********************************************!*\
+  !*** ./src/libs/useHooks/useCountdown.jsx ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ useCountdown)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function useCountdown(start) {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(start),
+    _useState2 = _slicedToArray(_useState, 2),
+    counter = _useState2[0],
+    setCounter = _useState2[1];
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (counter <= 0) {
+      return;
+    }
+    var intervalId = setInterval(function () {
+      setCounter(function (c) {
+        return c - 1;
+      });
+    }, 1000);
+    return function () {
+      return clearInterval(intervalId);
+    };
+  }, [counter]);
+  return counter;
+}
 
 /***/ }),
 
