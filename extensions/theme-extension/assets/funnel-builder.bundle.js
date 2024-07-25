@@ -294,6 +294,13 @@ function Question(_ref) {
     content = q.content,
     field = q.field;
   var required = field.required;
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    // if(questionCurrentViewID != __key) return;
+
+    // if(['QSingleChoice'].includes(field?.type)) {
+    //   if(canNextStep()) { onNextStep() }
+    // } 
+  }, [funnelFieldData]);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
       className: "question-frame",
@@ -315,30 +322,13 @@ function Question(_ref) {
           });
         }()), {}, {
           onChange: function onChange(v) {
-            onUpdateFunnelField(__key, v);
+            onUpdateFunnelField(__key, v, function (__k, __v) {
+              if (__v && ['QSingleChoice'].includes(field === null || field === void 0 ? void 0 : field.type)) {
+                onNextStep();
+              }
+            });
           }
         }))
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-        className: "action-buttons",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-          onClick: onPrevStep,
-          className: ['__prev __action', canPrevStep() ? '' : '__disable'].join(' '),
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-            className: "__icon",
-            dangerouslySetInnerHTML: {
-              __html: __PREV_ICON
-            }
-          }), "Previous"]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-          onClick: onNextStep,
-          className: ['__next __action', canNextStep() ? '' : '__disable'].join(' '),
-          children: ["Next", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-            className: "__icon",
-            dangerouslySetInnerHTML: {
-              __html: __NEXT_ICON
-            }
-          })]
-        })]
       })]
     })
   });
@@ -943,7 +933,7 @@ var FunnelBuilderContextProvider = function FunnelBuilderContextProvider(props) 
     });
     return node;
   };
-  var onUpdateFunnelField = function onUpdateFunnelField(qKey, value) {
+  var onUpdateFunnelField = function onUpdateFunnelField(qKey, value, cb) {
     var __funnelFieldData = _toConsumableArray(funnelFieldData);
     var __found = __funnelFieldData.findIndex(function (f) {
       return f.__key == qKey;
@@ -952,6 +942,7 @@ var FunnelBuilderContextProvider = function FunnelBuilderContextProvider(props) 
       value: value
     });
     setFunnelFieldData(__funnelFieldData);
+    if (cb) cb.call(qKey, value, __funnelFieldData);
   };
   var findNextStep = function findNextStep(qKey, handle) {
     var _funnelData$funnel_co3;
