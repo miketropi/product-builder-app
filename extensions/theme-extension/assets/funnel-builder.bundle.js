@@ -166,7 +166,7 @@ function FunnelApp() {
     historyPassedSteps = _useFunnelBuilderCont2.historyPassedSteps;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
     className: "funnel-app-container",
-    children: function (_funnelData$funnel_co) {
+    children: function (_funnelData$funnel_co, _funnelData$funnel_co2) {
       if (initLoading == true) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
           className: "__loading",
@@ -175,11 +175,19 @@ function FunnelApp() {
       }
       var nodes = funnelData === null || funnelData === void 0 || (_funnelData$funnel_co = funnelData.funnel_connectors) === null || _funnelData$funnel_co === void 0 ? void 0 : _funnelData$funnel_co.nodes;
       var questions = funnelData.questions;
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
         className: "question-container",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(TransitionNodes, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("pre", {
+          dangerouslySetInnerHTML: {
+            __html: JSON.stringify(funnelData === null || funnelData === void 0 || (_funnelData$funnel_co2 = funnelData.funnel_connectors) === null || _funnelData$funnel_co2 === void 0 ? void 0 : _funnelData$funnel_co2.edges, null, "\t")
+          }
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("pre", {
+          dangerouslySetInnerHTML: {
+            __html: JSON.stringify(funnelFieldData, null, "\t")
+          }
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(TransitionNodes, {
           nodes: nodes
-        })
+        })]
       });
     }()
   });
@@ -271,6 +279,12 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
 function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
 function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
@@ -294,6 +308,15 @@ function Question(_ref) {
     content = q.content,
     field = q.field;
   var required = field.required;
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState2 = _slicedToArray(_useState, 2),
+    __value = _useState2[0],
+    set__Value = _useState2[1];
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (__value && ['QSingleChoice'].includes(field === null || field === void 0 ? void 0 : field.type)) {
+      onNextStep();
+    }
+  }, [__value]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     // if(questionCurrentViewID != __key) return;
 
@@ -322,13 +345,31 @@ function Question(_ref) {
           });
         }()), {}, {
           onChange: function onChange(v) {
-            onUpdateFunnelField(__key, v, function (__k, __v) {
-              if (__v && ['QSingleChoice'].includes(field === null || field === void 0 ? void 0 : field.type)) {
-                onNextStep();
-              }
-            });
+            onUpdateFunnelField(__key, v);
+            set__Value(v);
           }
         }))
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        className: "action-buttons",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+          onClick: onPrevStep,
+          className: ['__prev __action', canPrevStep() ? '' : '__disable'].join(' '),
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+            className: "__icon",
+            dangerouslySetInnerHTML: {
+              __html: __PREV_ICON
+            }
+          }), "Previous"]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+          onClick: onNextStep,
+          className: ['__next __action', canNextStep() ? '' : '__disable'].join(' '),
+          children: ["Next", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+            className: "__icon",
+            dangerouslySetInnerHTML: {
+              __html: __NEXT_ICON
+            }
+          })]
+        })]
       })]
     })
   });
@@ -942,7 +983,7 @@ var FunnelBuilderContextProvider = function FunnelBuilderContextProvider(props) 
       value: value
     });
     setFunnelFieldData(__funnelFieldData);
-    if (cb) cb.call(qKey, value, __funnelFieldData);
+    if (cb) cb.call('', qKey, value, __funnelFieldData);
   };
   var findNextStep = function findNextStep(qKey, handle) {
     var _funnelData$funnel_co3;
@@ -951,9 +992,14 @@ var FunnelBuilderContextProvider = function FunnelBuilderContextProvider(props) 
     var found = Edges.find(function (e) {
       return e.source == qKey && e.sourceHandle == handle;
     });
-    var foundOnlySource = Edges.find(function (e) {
-      return e.source == qKey;
-    });
+    var foundOnlySource = null;
+    if (Array.isArray(handle)) {
+      foundOnlySource = Edges.find(function (e) {
+        return e.source == qKey;
+      });
+    }
+
+    // console.log([qKey, handle, found, foundOnlySource]) 
     // console.log(found);
     return found ? found : foundOnlySource;
   };
