@@ -166,7 +166,7 @@ function FunnelApp() {
     historyPassedSteps = _useFunnelBuilderCont2.historyPassedSteps;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
     className: "funnel-app-container",
-    children: function (_funnelData$funnel_co, _funnelData$funnel_co2) {
+    children: function (_funnelData$funnel_co) {
       if (initLoading == true) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
           className: "__loading",
@@ -175,19 +175,11 @@ function FunnelApp() {
       }
       var nodes = funnelData === null || funnelData === void 0 || (_funnelData$funnel_co = funnelData.funnel_connectors) === null || _funnelData$funnel_co === void 0 ? void 0 : _funnelData$funnel_co.nodes;
       var questions = funnelData.questions;
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
         className: "question-container",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("pre", {
-          dangerouslySetInnerHTML: {
-            __html: JSON.stringify(funnelData === null || funnelData === void 0 || (_funnelData$funnel_co2 = funnelData.funnel_connectors) === null || _funnelData$funnel_co2 === void 0 ? void 0 : _funnelData$funnel_co2.edges, null, "\t")
-          }
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("pre", {
-          dangerouslySetInnerHTML: {
-            __html: JSON.stringify(funnelFieldData, null, "\t")
-          }
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(TransitionNodes, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(TransitionNodes, {
           nodes: nodes
-        })]
+        })
       });
     }()
   });
@@ -349,27 +341,6 @@ function Question(_ref) {
             set__Value(v);
           }
         }))
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-        className: "action-buttons",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-          onClick: onPrevStep,
-          className: ['__prev __action', canPrevStep() ? '' : '__disable'].join(' '),
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-            className: "__icon",
-            dangerouslySetInnerHTML: {
-              __html: __PREV_ICON
-            }
-          }), "Previous"]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-          onClick: onNextStep,
-          className: ['__next __action', canNextStep() ? '' : '__disable'].join(' '),
-          children: ["Next", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-            className: "__icon",
-            dangerouslySetInnerHTML: {
-              __html: __NEXT_ICON
-            }
-          })]
-        })]
       })]
     })
   });
