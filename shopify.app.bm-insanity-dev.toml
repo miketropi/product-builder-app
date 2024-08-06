@@ -3,7 +3,7 @@
 client_id = "a31790a79c946c76cf232419a0ea906e"
 name = "BM Insanity Dev"
 handle = "bm-insanity-dev"
-application_url = "https://ages-motivation-ambien-sitemap.trycloudflare.com"
+application_url = "https://treated-verified-raises-feat.trycloudflare.com"
 embedded = true
 
 [build]
@@ -20,9 +20,9 @@ scopes = "read_files,read_metaobjects,read_products,write_files,write_metaobject
 
 [auth]
 redirect_urls = [
-  "https://ages-motivation-ambien-sitemap.trycloudflare.com/auth/callback",
-  "https://ages-motivation-ambien-sitemap.trycloudflare.com/auth/shopify/callback",
-  "https://ages-motivation-ambien-sitemap.trycloudflare.com/api/auth/callback"
+  "https://treated-verified-raises-feat.trycloudflare.com/auth/callback",
+  "https://treated-verified-raises-feat.trycloudflare.com/auth/shopify/callback",
+  "https://treated-verified-raises-feat.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

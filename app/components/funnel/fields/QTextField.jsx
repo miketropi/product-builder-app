@@ -12,7 +12,7 @@ export default function QTextField(config) {
   return <fieldset className="q-text-field __q-fieldset">
     <legend>Text Field Configs</legend>
 
-    <fieldset className="__q-fieldset">
+    <fieldset className="__q-fieldset"> 
       <legend>Preview</legend>
       <QTextFieldPreview />
     </fieldset>

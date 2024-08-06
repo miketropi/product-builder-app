@@ -1119,11 +1119,13 @@ function DynamicMenuItem(props) {
       setOpen(!open);
     };
   }
+  var linkAttributes = {};
+  if (url) {
+    linkAttributes.href = url;
+  }
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("li", {
     className: liClasses.join(' '),
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("a", _objectSpread(_objectSpread({
-      href: url
-    }, customEventClick), {}, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("a", _objectSpread(_objectSpread(_objectSpread({}, linkAttributes), customEventClick), {}, {
       children: [image, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
         className: "__name-item",
         children: name
@@ -1151,6 +1153,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _MenuIcon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./MenuIcon */ "./src/components/menu-builder/MenuIcon.jsx");
 /* harmony import */ var _MenuMobi__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./MenuMobi */ "./src/components/menu-builder/MenuMobi.jsx");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 
 
 
@@ -1197,11 +1205,14 @@ function MenuBuilderApp() {
           icon = item.icon;
         var size = item !== null && item !== void 0 && (_item$config = item.config) !== null && _item$config !== void 0 && _item$config.containerSize ? "__size-".concat(item.config.containerSize) : '';
         var liClasses = ['__menu-item', "__item-lv-".concat(lv), size, children && children.length > 0 ? "__has-children" : '', item.type ? "__menu-item_type__".concat(type) : '', item === null || item === void 0 ? void 0 : item.custom_class];
+        var linkAttributes = {};
+        if (url) {
+          linkAttributes.href = url;
+        }
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("li", {
           className: liClasses.join(' '),
           "data-id": __key,
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("a", {
-            href: url,
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("a", _objectSpread(_objectSpread({}, linkAttributes), {}, {
             children: [icon ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_MenuIcon__WEBPACK_IMPORTED_MODULE_2__["default"], {
               source: icon
             }) : '', ['__BLOCK_BRAND_ITEM__', '__BLOCK_MENU_IMAGE_ITEM__'].includes(type) && (item === null || item === void 0 ? void 0 : item.image) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
@@ -1222,7 +1233,7 @@ function MenuBuilderApp() {
                 source: 'arrow_down'
               }) : '']
             })]
-          }), children && children.length > 0 && renderMenu(children, lv, item)]
+          })), children && children.length > 0 && renderMenu(children, lv, item)]
         }, __key);
       })]
     });
