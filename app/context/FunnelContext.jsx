@@ -40,6 +40,20 @@ const FunnelContextProvider = ({ children, store }) => {
     setCurrentPage(num);
   }
 
+  const onDuplicateItem = async (funnelItem) => {
+    const { title, questions, funnel_connectors } = funnelItem;
+    const data = {
+      title: `${ title } (Duplicate)`,
+      status: true,
+      questions: questions,
+      funnel_connectors: funnel_connectors,
+    }
+
+    const res = await API_FA.current.saveFunnel(data);
+    console.log(res);
+    await onLoadFunnels(currentPage);
+  }
+
   const value = {
     funnelItems, setFunnelItems,
     funnelMeta, setFunnelMeta, 
@@ -47,6 +61,7 @@ const FunnelContextProvider = ({ children, store }) => {
     fn: {
       onDeleteItem,
       onUpdatePaged,
+      onDuplicateItem, 
     }
   }
 

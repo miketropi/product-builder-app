@@ -1040,6 +1040,10 @@ li.__menu-item_type____BLOCK_MENU_IMAGE__ > a .__menu-item-name .dropdown-icon {
   border-width: 1px;
   border-radius: 8px;
 }
+.question-design-comp__right {
+  display: flex;
+  gap: 1em;
+}
 
 .__q-field-config-container > * {
   margin-bottom: 1em;

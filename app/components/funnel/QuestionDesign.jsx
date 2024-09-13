@@ -3,6 +3,7 @@ import { TextField, Button } from '@shopify/polaris';
 import AddField from './AddField';
 import DynamicComponent from '../DynamicComponent';
 import { DeleteIcon } from '@shopify/polaris-icons';
+import QuestionEditTool from "./QuestionEditTool";
 
 export default function QuestionDesign() {
   const { editItem, fn } = useFunnelEditContext();
@@ -13,12 +14,15 @@ export default function QuestionDesign() {
   return <div className="question-design-comp">
     <div className="question-design-comp__heading">
       <span>{ editItem.__key }</span>
-      <Button icon={ DeleteIcon } onClick={ e => {
-        let c = confirm('Are you sure you want to delete this question?');
-        if(!c) return;
+      <div className="question-design-comp__right">
+        <Button icon={ DeleteIcon } onClick={ e => {
+          let c = confirm('Are you sure you want to delete this question?');
+          if(!c) return;
 
-        onDeleteQuestion(editItem.__key)
-      } } >Delete Question</Button>
+          onDeleteQuestion(editItem.__key)
+        } } >Delete Question</Button>
+        <QuestionEditTool />
+      </div>
     </div>
 
     <fieldset className="__q-fieldset">

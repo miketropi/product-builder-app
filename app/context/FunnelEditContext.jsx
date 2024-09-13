@@ -198,6 +198,22 @@ const FunnelEditContextProvider = ({ children, store, funnel_id }) => {
     setNodes(__nodes);
   }
 
+  const onCloneEditItem = () => {
+    let __cloneEditItem = JSON.parse(JSON.stringify(editItem));
+    __cloneEditItem.question = `${ __cloneEditItem.question } (Duplicate)`;
+    __cloneEditItem.__key = uuidv4();
+    if(__cloneEditItem?.field?.options) {
+      __cloneEditItem.field.options = [...__cloneEditItem.field.options].map((o) => {
+        let __o = { ...o, __key: uuidv4() };
+        return __o;
+      })
+    }
+
+    // console.log(__cloneEditItem);
+    setQuestions([...questions, __cloneEditItem]);
+    setEditItem(__cloneEditItem);
+  }
+
   const value = {
     title, setTitle,
     storeID, setStoreID,
@@ -213,6 +229,7 @@ const FunnelEditContextProvider = ({ children, store, funnel_id }) => {
       onDeleteField,
       onDeleteQuestion,
       onSave,
+      onCloneEditItem,
     },
     flowDesign: {
       nodes, setNodes, onNodesChange,

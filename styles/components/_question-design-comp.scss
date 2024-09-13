@@ -10,4 +10,9 @@
     border-width: 1px;
     border-radius: $border-radius;
   }
+
+  &__right {
+    display: flex;
+    gap: 1em;
+  }
 }

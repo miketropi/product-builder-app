@@ -94,7 +94,7 @@ export default function QuestionNode({ data, isConnectable }) {
   const { questions } = useFunnelEditContext();
   const { question_key } = data;
   return <div className="flow-node node-type__question">
-    { ((q) => {
+    { ((q, __index) => {
 
       if(!q) {
         return <div>not available!</div>
@@ -116,7 +116,7 @@ export default function QuestionNode({ data, isConnectable }) {
             isConnectable={ isConnectable } />
           <Text variant="headingXs" as="h6">
             <span title={ question }>
-              { question }
+              { __index + 1 }. { question }
             </span>
           </Text>
         </div>
@@ -125,6 +125,6 @@ export default function QuestionNode({ data, isConnectable }) {
           <QuestionNodeHandle handleData={ field } isConnectable={ isConnectable } />
         </div>
       </>
-    })(questions.find(q => q.__key == question_key)) }
+    })( questions.find(q => q.__key == question_key), questions.findIndex(q => q.__key == question_key) ) }
   </div>
 }
