@@ -6,12 +6,14 @@ import { Handle, Position, NodeToolbar } from 'reactflow';
 
 const OptionNode = (props) => {
   const { option, __index, isConnectable } = props;
-  const { __key, label, value } = option;
+  const { __key, label, value, disable } = option;
+
+  let __label = disable && disable == true ? <s>{ label }</s> : label;
 
   return <li className="choice-item">
     <div className="__entry">
       <span className="__number">{ __index + 1 }</span> 
-      <span title={ label }>{ label }</span>
+      <span title={ label }>{ __label }</span>
     </div>
     <Handle 
       type="source" 

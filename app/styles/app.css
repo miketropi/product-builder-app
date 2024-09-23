@@ -1072,7 +1072,7 @@ li.__menu-item_type____BLOCK_MENU_IMAGE__ > a .__menu-item-name .dropdown-icon {
 }
 .options-repeater-comp .option-list .option-item__default {
   display: grid;
-  grid-template-columns: 20px 20px 1fr 1fr 20px;
+  grid-template-columns: 20px 20px 1fr 1fr 35px 20px;
   gap: 1em;
   align-items: center;
   padding: 4px;
@@ -1105,6 +1105,40 @@ li.__menu-item_type____BLOCK_MENU_IMAGE__ > a .__menu-item-name .dropdown-icon {
 }
 .options-repeater-comp .option-list .option-item .__remote-item {
   cursor: pointer;
+}
+
+.toggle-field-comp {
+  max-width: 100%;
+  line-height: 0;
+}
+.toggle-field-comp__inner {
+  display: inline-block;
+  width: 35px;
+  height: 20px;
+  position: relative;
+  border-radius: 30px;
+  border: solid 1px gray;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.toggle-field-comp__inner .__ball {
+  position: absolute;
+  left: 1px;
+  top: 1px;
+  width: 16px;
+  height: 16px;
+  background: gray;
+  border-radius: 30px;
+  transition: 0.3s ease;
+  -webkit-transition: 0.3s ease;
+}
+.toggle-field-comp.__active .toggle-field-comp__inner {
+  border-color: #673AB7;
+  background: #f7f2ff;
+}
+.toggle-field-comp.__active .__ball {
+  left: calc(100% - 17px);
+  background-color: #673AB7;
 }
 
 .flow-tool-edit-comp {
@@ -1153,6 +1187,7 @@ li.__menu-item_type____BLOCK_MENU_IMAGE__ > a .__menu-item-name .dropdown-icon {
   font-size: 10px;
   font-weight: bold;
   position: relative;
+  line-height: 1.5em;
 }
 .flow-node .choice-list .choice-item .__entry {
   display: flex;

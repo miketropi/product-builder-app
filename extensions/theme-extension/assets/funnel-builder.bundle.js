@@ -532,10 +532,11 @@ function SelectBox(_ref4) {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
         children: options.map(function (o) {
           var __key = o.__key,
-            label = o.label;
+            label = o.label,
+            disable = o.disable;
           var selected = isSelected_Fn(o.value);
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
-            className: "__o-item",
+            className: ['__o-item', disable == true ? '__disable' : ''].join(' '),
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_CheckboxUI__WEBPACK_IMPORTED_MODULE_1__["default"], {
               label: label,
               checked: selected,
@@ -552,12 +553,13 @@ function SelectBox(_ref4) {
         children: options.map(function (o) {
           var __key = o.__key,
             label = o.label,
+            disable = o.disable,
             extra__cart_title = o.extra__cart_title,
             extra__cart_desc = o.extra__cart_desc,
             extra__cart_image = o.extra__cart_image;
           var selected = isSelected_Fn(o.value);
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
-            className: "__card-item",
+            className: ['__card-item', disable == true ? '__disable' : ''].join(' '),
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(CardItem, {
               title: extra__cart_title,
               desc: extra__cart_desc,
@@ -577,11 +579,12 @@ function SelectBox(_ref4) {
         children: options.map(function (o) {
           var __key = o.__key,
             label = o.label,
+            disable = o.disable,
             extra__block_text = o.extra__block_text,
             extra__block_image = o.extra__block_image;
           var selected = isSelected_Fn(o.value);
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
-            className: "__block-item",
+            className: ['__block-item', disable == true ? '__disable' : ''].join(' '),
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(BlockItem, {
               title: extra__block_text,
               image: extra__block_image,
@@ -600,10 +603,11 @@ function SelectBox(_ref4) {
         children: options.map(function (o) {
           var __key = o.__key,
             label = o.label,
+            disable = o.disable,
             extra__image_url = o.extra__image_url;
           var selected = isSelected_Fn(o.value);
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
-            className: "__image-item",
+            className: ['__image-item', disable == true ? '__disable' : ''].join(' '),
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(ImageItem, {
               title: label,
               image: extra__image_url,

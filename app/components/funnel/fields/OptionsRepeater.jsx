@@ -3,6 +3,7 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { TextField, Text, Icon, Button } from '@shopify/polaris';
 import { DragHandleIcon, DeleteIcon, PlusIcon } from '@shopify/polaris-icons';
 import StrictModeDroppable from "../../menu-builder/StrictModeDroppable";
+import ToggleField from "./ToggleField";
 
 const getListStyle = isDraggingOver => ({
   // background: isDraggingOver ? "lightblue" : "white",
@@ -120,7 +121,7 @@ export default function OptionsRepeater(props) {
               {
                 options && options.length > 0 &&
                 options.map((o, __o_index) => {
-                  const { __key, value, label } = o;
+                  const { __key, value, label, disable } = o;
                   return (
                     <Draggable key={ __key } draggableId={ __key } index={ __o_index }>
                       {(provided, snapshot) => (
@@ -154,6 +155,14 @@ export default function OptionsRepeater(props) {
                               } }
                               prefix="Label: "
                               autoComplete="off"
+                            />
+
+                            <ToggleField 
+                              checked={ disable }
+                              onChange={ () => {
+                                onChange(!disable, 'disable', __o_index)
+                              } } 
+                              tooltipText={ <small>Disable this option</small> } 
                             />
               
                             <span className="__remote-item" onClick={ e => { onDelete(__o_index) } }>
