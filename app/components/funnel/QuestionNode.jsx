@@ -86,6 +86,64 @@ const QuestionNodeHandle = ({ handleData, isConnectable }) => {
               </div>
             </>
             break;
+
+          case 'QCollectionChoice':
+            return <>
+              <div>
+                <Handle 
+                  type="source" 
+                  position={Position.Right}  
+                  style={ { position: 'absolute', top: `30px` } }
+                  // id={ '__NEXT_STEP__' } 
+                  isConnectable={ isConnectable } />
+              </div>
+              <Badge tone="attention">Collection Select</Badge>
+              <div style={{ marginBottom: `.5em` }}></div>
+              <ul className="choice-list">
+                {
+                  options.map((o, __o_index) => {
+                    const { __key, label, value } = o;
+
+                    return <li key={ __key } className="choice-item">
+                      <div className="__entry">
+                        <span className="__number">{ __o_index + 1 }</span> 
+                        <span title={ label }>{ label }</span>
+                      </div>
+                    </li>
+                  })
+                }
+              </ul>
+            </>
+            break;
+          
+          case 'QTagChoice':
+            return <>
+              <div>
+                <Handle 
+                  type="source" 
+                  position={Position.Right}  
+                  style={ { position: 'absolute', top: `30px` } }
+                  // id={ '__NEXT_STEP__' } 
+                  isConnectable={ isConnectable } />
+              </div>
+              <Badge tone="attention">Tag Select</Badge>
+              <div style={{ marginBottom: `.5em` }}></div>
+              <ul className="choice-list">
+                {
+                  options.map((o, __o_index) => {
+                    const { __key, label, value } = o;
+
+                    return <li key={ __key } className="choice-item">
+                      <div className="__entry">
+                        <span className="__number">{ __o_index + 1 }</span> 
+                        <span title={ label }>{ label }</span>
+                      </div>
+                    </li>
+                  })
+                }
+              </ul>
+            </>
+            break;
         }
       })()
     }

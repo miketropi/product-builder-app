@@ -67,3 +67,55 @@ body {
 .heading-bar {
   margin-bottom: 3em;
 }
+
+.bm__text-center {
+  text-align: center !important;
+}
+
+.bm-table {
+  // border-collapse: collapse;
+  border-radius: 6px;
+  border-spacing: 0;
+  border: solid 1px #ddd;
+  background: white;
+  width: 100%;
+  font-size: .9em;
+  margin-bottom: 1.5em;
+
+  th, td {
+    padding: .5em;
+    border-bottom: 1px solid #ddd;
+  }
+
+  tr:last-child {
+    td {
+      border-bottom: none;
+    }
+  }
+
+  thead { 
+    
+    th {
+      text-align: left;
+    }
+  }
+
+  tbody {
+
+    td {
+      text-align: left;
+    }
+  }
+}
+
+.bm__order-number {
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  background: black;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+}

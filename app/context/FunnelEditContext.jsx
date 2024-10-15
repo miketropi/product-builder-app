@@ -103,6 +103,29 @@ const FunnelEditContextProvider = ({ children, store, funnel_id }) => {
           required: false,
         }
         break;
+
+      case 'QCollectionChoice':
+        return {
+          help_text: '',
+          type: c,
+          placeholder: '',
+          tag_name: '',
+          options: [],
+          value: [],
+          required: false, 
+        }
+        break;
+
+      case 'QTagChoice':
+        return {
+          help_text: '',
+          type: c,
+          placeholder: '',
+          options: [],
+          value: [],
+          required: false, 
+        }
+        break;
     }
   }
 

@@ -11,7 +11,8 @@ import {useState, useCallback} from 'react';
 import {
   FormsIcon,
   CursorOptionIcon,
-  MetafieldsIcon
+  MetafieldsIcon,
+  CollectionListIcon
 } from '@shopify/polaris-icons';
 
 const __FIELDS = [
@@ -32,7 +33,19 @@ const __FIELDS = [
     icon: CursorOptionIcon,
     name: 'Multiple Choice',
     c: 'QMultipleChoice',
-  }
+  },
+  {
+    __key: 'colelction_choice_cd9014aa-45ce-4c85-aa90-faa8f4bd25cd',
+    icon: CollectionListIcon,
+    name: 'Collection Choice',
+    c: 'QCollectionChoice',
+  },
+  {
+    __key: 'tag_choice_cd9014aa-45ce-4c85-aa90-faa8f4bd25cd',
+    icon: CollectionListIcon,
+    name: 'Tag Choice',
+    c: 'QTagChoice',
+  },
 ]
 
 export default function AddField() {
