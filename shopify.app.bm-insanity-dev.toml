@@ -3,7 +3,7 @@
 client_id = "a31790a79c946c76cf232419a0ea906e"
 name = "BM Insanity Dev"
 handle = "bm-insanity-dev"
-application_url = "https://fill-hanging-musical-conferences.trycloudflare.com"
+application_url = "https://cast-continuously-quick-configured.trycloudflare.com"
 embedded = true
 
 [build]
@@ -21,16 +21,16 @@ scopes = "read_content,read_customers,read_files,read_metaobjects,read_orders,re
 
 [auth]
 redirect_urls = [
-  "https://fill-hanging-musical-conferences.trycloudflare.com/auth/callback",
-  "https://fill-hanging-musical-conferences.trycloudflare.com/auth/shopify/callback",
-  "https://fill-hanging-musical-conferences.trycloudflare.com/api/auth/callback"
+  "https://cast-continuously-quick-configured.trycloudflare.com/auth/callback",
+  "https://cast-continuously-quick-configured.trycloudflare.com/auth/shopify/callback",
+  "https://cast-continuously-quick-configured.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
 api_version = "2024-04"
 
 [app_proxy]
-url = "https://fill-hanging-musical-conferences.trycloudflare.com/app/proxy"
+url = "https://cast-continuously-quick-configured.trycloudflare.com/app/proxy"
 subpath = "bmapp"
 prefix = "apps"
 
