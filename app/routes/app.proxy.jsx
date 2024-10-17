@@ -58,8 +58,8 @@ export async function action({ request }) {
   console.log(`------------- Hit app proxy 1 ----------------`);
   // const data = await request.formData()
   const { admin, session, storefront } = await authenticate.public.appProxy(request);
-  const data = await request.json();
-  const { proccess, args } = data;
+  const formData = await request.json();
+  const { proccess, args } = formData;
   
   switch(proccess) {
     case 'funnel':
@@ -69,8 +69,34 @@ export async function action({ request }) {
       return res; 
       break;
 
+    case 'test_query':
+      const __res = await storefront.graphql(`query ProductFilterFunnel($collectionHandle: String!) {
+          collection(handle: $collectionHandle) {
+            handle
+            id
+            products(first:10) {
+              edges {
+                node {
+                  handle 
+                  title 
+                  productType
+                  vendor
+                  tags
+                }
+              }
+            }
+          }  
+        }`, {
+          variables: {
+            collectionHandle: args?.data?.collectionHandle,
+          }
+        }
+      );
+      return json(await __res.json());
+      break;
+
     default: 
-      return `Proccess not defined...!`;
+      return [`Proccess not defined...!`, formData];
       break
   }
 

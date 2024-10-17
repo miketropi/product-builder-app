@@ -3,7 +3,7 @@
 client_id = "a31790a79c946c76cf232419a0ea906e"
 name = "BM Insanity Dev"
 handle = "bm-insanity-dev"
-application_url = "https://cast-continuously-quick-configured.trycloudflare.com"
+application_url = "https://redeem-intervals-magic-returning.trycloudflare.com"
 embedded = true
 
 [build]
@@ -21,16 +21,16 @@ scopes = "read_content,read_customers,read_files,read_metaobjects,read_orders,re
 
 [auth]
 redirect_urls = [
-  "https://cast-continuously-quick-configured.trycloudflare.com/auth/callback",
-  "https://cast-continuously-quick-configured.trycloudflare.com/auth/shopify/callback",
-  "https://cast-continuously-quick-configured.trycloudflare.com/api/auth/callback"
+  "https://redeem-intervals-magic-returning.trycloudflare.com/auth/callback",
+  "https://redeem-intervals-magic-returning.trycloudflare.com/auth/shopify/callback",
+  "https://redeem-intervals-magic-returning.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
 api_version = "2024-04"
 
 [app_proxy]
-url = "https://cast-continuously-quick-configured.trycloudflare.com/app/proxy"
+url = "https://redeem-intervals-magic-returning.trycloudflare.com/app/proxy"
 subpath = "bmapp"
 prefix = "apps"
 
