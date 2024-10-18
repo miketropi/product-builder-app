@@ -45,7 +45,7 @@ export default function QTagChoice(props) {
   return <fieldset className="q-tag-choice __q-fieldset">
     <legend>Tag Config</legend>
 
-    <fieldset className="__q-fieldset">
+    {/* <fieldset className="__q-fieldset">
       <legend>Tag Name</legend>
       <TextField
         value={ props?.tag_name }
@@ -54,7 +54,7 @@ export default function QTagChoice(props) {
         } }
         autoComplete="off"
       />
-    </fieldset>
+    </fieldset> */}
 
     <fieldset className="__q-fieldset">
       <legend>Tag Options</legend>

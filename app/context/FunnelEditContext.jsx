@@ -22,6 +22,7 @@ const FunnelEditContextProvider = ({ children, store, funnel_id }) => {
   const [ storeID, setStoreID ] = useState(null);
   const [ tabActive, setTabActive ] = useState(0);
   const [ questions, setQuestions ] = useState(q);
+  const [ collectionDefault, setCollectionDefault ] = useState(null);
   const [ editItem, setEditItem ] = useState(null);
 
   const [nodes, setNodes, onNodesChange] = useNodesState([ 
@@ -172,6 +173,7 @@ const FunnelEditContextProvider = ({ children, store, funnel_id }) => {
       title: title,
       status: true,
       questions: questions,
+      collection_object_default: collectionDefault,
       funnel_connectors: {
         nodes,
         edges
@@ -245,6 +247,7 @@ const FunnelEditContextProvider = ({ children, store, funnel_id }) => {
     questions, setQuestions,
     editItem, setEditItem,
     isSave, setIsSave,
+    collectionDefault, setCollectionDefault,
     fn: {
       onAddQuestion,
       onAddField,

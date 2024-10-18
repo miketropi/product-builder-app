@@ -3,11 +3,14 @@ import { useFunnelEditContext } from "../../context/FunnelEditContext";
 import Tab, { TabItem } from "../Tab";
 import BuildQuestions from "./BuildQuestions";
 import { ClientOnly } from "remix-utils/client-only";
-import { TextField } from '@shopify/polaris';
+import { TextField, Button } from '@shopify/polaris';
 import BuildFunnelConnectors from "./BuildFunnelConnectors";
+import { useAppBridge, } from '@shopify/app-bridge-react';
+import { DeleteIcon } from '@shopify/polaris-icons';
 
 export default function Edit() { 
-  const { tabActive, setTabActive, title, setTitle } = useFunnelEditContext(); 
+  const shopify = useAppBridge();
+  const { tabActive, setTabActive, title, setTitle, collectionDefault, setCollectionDefault } = useFunnelEditContext(); 
   return <ClientOnly>
     {
       () => {
@@ -21,6 +24,36 @@ export default function Edit() {
               helpText={ 'Enter your funnel name.' }
             />
           </div>
+          <br />
+          <fieldset className="__filter-by-collection __q-fieldset" style={{background: 'white'}}>
+            <legend>Select Collection Default</legend>
+            {
+              ((__c) => {
+                if(__c?.id) {
+                  return <>
+                    Collection selected: <u style={{fontWeight: 'bold'}}>{ collectionDefault?.title } ({ collectionDefault?.productsCount })</u> | <span style={{ color: 'red', cursor: 'pointer' }} onClick={ e => {
+                      let r = confirm('Are you sure you want to delete?');
+                      if(r) {
+                        setCollectionDefault(null)
+                      }
+                    } }>Delete</span>
+                  </>
+                } else {
+                  return <Button onClick={ async e => {
+                    const selected = await shopify.resourcePicker({
+                      type: 'collection', 
+                      multiple: false,
+                      // selectionIds: ids, // __o.map(o => ({ id: o.__c_id })),
+                    });
+                    if(!selected) return;
+      
+                    const { handle, title, id, productsCount } = selected[0];
+                    setCollectionDefault({ handle, title, id, productsCount });
+                  } }>Select Collection</Button>
+                }
+              })(collectionDefault)
+            }
+          </fieldset>
           <br />
           <Tab  
             activeTabIndex={ tabActive } 
