@@ -1182,7 +1182,7 @@ var FunnelBuilderContextProvider = function FunnelBuilderContextProvider(props) 
   var getFunnel = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(fid) {
       var _res$funnel_connector;
-      var res, firstQuestionID;
+      var res, _res$collection_objec, _res$collection_objec2, firstQuestionID;
       return _regeneratorRuntime().wrap(function _callee2$(_context2) {
         while (1) switch (_context2.prev = _context2.next) {
           case 0:
@@ -1192,11 +1192,20 @@ var FunnelBuilderContextProvider = function FunnelBuilderContextProvider(props) 
             res = _context2.sent;
             setFunnelData(res);
             setFunnelFieldData(buildFieldDataInit(res.questions));
+            if (res !== null && res !== void 0 && res.collection_object_default) {
+              if (res !== null && res !== void 0 && (_res$collection_objec = res.collection_object_default) !== null && _res$collection_objec !== void 0 && _res$collection_objec.handle) {
+                onAddFilterData({
+                  __key: 'init_key__collection_default',
+                  type: 'collection',
+                  value: res === null || res === void 0 || (_res$collection_objec2 = res.collection_object_default) === null || _res$collection_objec2 === void 0 ? void 0 : _res$collection_objec2.handle
+                });
+              }
+            }
             firstQuestionID = res === null || res === void 0 || (_res$funnel_connector = res.funnel_connectors) === null || _res$funnel_connector === void 0 || (_res$funnel_connector = _res$funnel_connector.edges.find(function (i) {
               return i.source == '__START__';
             })) === null || _res$funnel_connector === void 0 ? void 0 : _res$funnel_connector.target;
             setQuestionCurrentViewID(firstQuestionID);
-          case 7:
+          case 8:
           case "end":
             return _context2.stop();
         }

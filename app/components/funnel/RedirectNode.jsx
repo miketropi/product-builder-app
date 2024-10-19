@@ -117,7 +117,7 @@ const InputFlow = ({ value, onChange }) => {
             trigger="@"
             markup={ `[value]__id__[/value]` } 
             style={ __mentionStyle } 
-            data={ questions.map((q, __q_index) => {
+            data={ [{ __key: '__collection_default_handle', question: 'Collection Default Handle' }, ...questions].map((q, __q_index) => {
               const { __key, question } = q;
               return {
                 id: `${ __key }`,

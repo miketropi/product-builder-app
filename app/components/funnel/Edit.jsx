@@ -31,12 +31,12 @@ export default function Edit() {
               ((__c) => {
                 if(__c?.id) {
                   return <>
-                    Collection selected: <u style={{fontWeight: 'bold'}}>{ collectionDefault?.title } ({ collectionDefault?.productsCount })</u> | <span style={{ color: 'red', cursor: 'pointer' }} onClick={ e => {
+                    Collection selected: <strong>{ collectionDefault?.title } ({ collectionDefault?.id })</strong> | <span style={{ color: 'red', cursor: 'pointer' }} onClick={ e => {
                       let r = confirm('Are you sure you want to delete?');
                       if(r) {
                         setCollectionDefault(null)
                       }
-                    } }>Delete</span>
+                    } }>✕ Delete</span>
                   </>
                 } else {
                   return <Button onClick={ async e => {

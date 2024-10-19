@@ -37,6 +37,7 @@ const FunnelEditContextProvider = ({ children, store, funnel_id }) => {
     // console.log(res);
     setTitle(res?.title);
     setQuestions(res?.questions);
+    setCollectionDefault(res?.collection_object_default);
 
     // setFunnelConnectors(res?.funnel_connectors);
     if(res?.funnel_connectors) {
