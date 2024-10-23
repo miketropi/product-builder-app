@@ -65,7 +65,7 @@ export default class FunnelProxyApiHelper {
       },
     ]
    */
-  async findProductByFilter(oldFilter, moreFilter) {
+  async findProductByFilter(oldFilter, moreFilter = null) {
     const self = this;
     const foundCollection =  oldFilter.find(oF => oF.type == 'collection');
     const foundNotCollection = oldFilter.filter(oF => oF.type != 'collection'); 
@@ -74,7 +74,9 @@ export default class FunnelProxyApiHelper {
       // build query with collection filter 
 
       let filters = foundNotCollection.map(oF => ({[oF.type]: oF.value }));
-      filters = [...filters, { [moreFilter.type]: moreFilter.value }];
+      if(moreFilter) {
+        filters = [...filters, { [moreFilter.type]: moreFilter.value }];
+      }
       
       const res = await self.__graphql(`query($handle: String!, $filters: [ProductFilter!]) {
         collection(handle: $handle) {
@@ -86,6 +88,7 @@ export default class FunnelProxyApiHelper {
                 title
                 id
                 tags
+                handle
               }
             }
           }
@@ -102,7 +105,7 @@ export default class FunnelProxyApiHelper {
     } else {
       // build query only filter products (tag, metafield, etc.)
 
-      let __moreFilter = `${ moreFilter.type }:${ moreFilter.value }`;
+      let __moreFilter = (moreFilter ? `${ moreFilter.type }:${ moreFilter.value }` : '');
       let __oldQueryFilter = `${ foundNotCollection.map(item => (`${item.type}:${item.value}`)) }`;
 
       const res = await self.__graphql(`query($query: String!){
@@ -112,6 +115,7 @@ export default class FunnelProxyApiHelper {
               ... on Product {
                 title
                 id
+                tags
                 handle
               }
             }
@@ -149,6 +153,10 @@ export default class FunnelProxyApiHelper {
     }));
   }
 
+  async GetProducts__ByFilter(filters) {
+    return await this.findProductByFilter(filters);
+  }
+
   async funnelOptionsFilter(args) {
     const { collectionHandle, field, filters } = args
     const { type, options } = field;
@@ -162,6 +170,9 @@ export default class FunnelProxyApiHelper {
 
       case 'QTagChoice':
         return this.QTagChoice__OptionsFilter(options, filters);
+
+      case 'GetProductsByFilter': 
+        return this.GetProducts__ByFilter(filters);
 
       default:
         return `Type "${ type }" Not support...!`

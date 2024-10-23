@@ -1212,6 +1212,14 @@ function MenuBuilderApp() {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("li", {
           className: liClasses.join(' '),
           "data-id": __key,
+          "data-nav-level": lv,
+          "data-nav-item": function (__u, __name) {
+            // console.log(__name);
+            var segment = __u.split('/');
+            var newName = __name.split(' ').join('-').toLowerCase();
+            // console.log(segment.at(-1))
+            return segment.at(-1) == '' ? newName : segment.at(-1);
+          }(url, name),
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("a", _objectSpread(_objectSpread({}, linkAttributes), {}, {
             children: [icon ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_MenuIcon__WEBPACK_IMPORTED_MODULE_2__["default"], {
               source: icon
