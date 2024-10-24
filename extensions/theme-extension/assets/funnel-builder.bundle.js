@@ -462,7 +462,7 @@ function RedirectNode(_ref) {
           case 2:
             res = _context.sent;
             if (res && res.length == 1) {
-              setRedirectUrl("/products/".concat((_res$ = res[0]) === null || _res$ === void 0 || (_res$ = _res$.node) === null || _res$ === void 0 ? void 0 : _res$.handle));
+              setRedirectUrl("/products/".concat((_res$ = res[0]) === null || _res$ === void 0 || (_res$ = _res$.node) === null || _res$ === void 0 ? void 0 : _res$.handle, "?fs=1"));
             }
           case 4:
           case "end":

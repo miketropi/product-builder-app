@@ -240,6 +240,36 @@ const FunnelEditContextProvider = ({ children, store, funnel_id }) => {
     setEditItem(__cloneEditItem);
   }
 
+  const onAutoLoadQuestionByCollection = async (collection_handle) => {
+    const res = await fetch(`https://buildmat-scraping.fly.dev/${ collection_handle }`)
+      .then(async r => {
+        return await r.json()
+      })
+      .catch(err => { 
+        alert(err.message); 
+      })
+    
+    if(!res) return;
+    let newOpts = res.filter(i => ['Product Type', 'Colour', 'Range', 'Features', 'Shape'].includes(i.label)).map(({label, options}) => {
+      return {
+        __key: uuidv4(),
+        question: `Select ${ label }`,
+        field: {
+          help_text: '',
+          type: 'QTagChoice',
+          placeholder: '',
+          options: options.map(__o => {
+            return  { __key: uuidv4(), label: __o.label, value: __o.value }
+          }),
+          value: [],
+          required: false, 
+        }
+      }
+    })
+
+    setQuestions(newOpts);
+  }
+
   const value = {
     title, setTitle,
     storeID, setStoreID,
@@ -257,6 +287,7 @@ const FunnelEditContextProvider = ({ children, store, funnel_id }) => {
       onDeleteQuestion,
       onSave,
       onCloneEditItem,
+      onAutoLoadQuestionByCollection,
     },
     flowDesign: {
       nodes, setNodes, onNodesChange,

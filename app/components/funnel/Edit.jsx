@@ -1,16 +1,19 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import { useFunnelEditContext } from "../../context/FunnelEditContext";
 import Tab, { TabItem } from "../Tab";
 import BuildQuestions from "./BuildQuestions";
 import { ClientOnly } from "remix-utils/client-only";
-import { TextField, Button } from '@shopify/polaris';
+import { TextField, Button, Spinner } from '@shopify/polaris';
 import BuildFunnelConnectors from "./BuildFunnelConnectors";
 import { useAppBridge, } from '@shopify/app-bridge-react';
 import { DeleteIcon } from '@shopify/polaris-icons';
 
 export default function Edit() { 
   const shopify = useAppBridge();
-  const { tabActive, setTabActive, title, setTitle, collectionDefault, setCollectionDefault } = useFunnelEditContext(); 
+  const [ questionAutoLoading, setQuestionAutoLoading ] = useState(false);
+  const { tabActive, setTabActive, title, setTitle, collectionDefault, setCollectionDefault, fn } = useFunnelEditContext(); 
+  const { onAutoLoadQuestionByCollection } = fn;
+  
   return <ClientOnly>
     {
       () => {
@@ -31,12 +34,16 @@ export default function Edit() {
               ((__c) => {
                 if(__c?.id) {
                   return <>
-                    Collection selected: <strong>{ collectionDefault?.title } ({ collectionDefault?.id })</strong> | <span style={{ color: 'red', cursor: 'pointer' }} onClick={ e => {
+                    Collection selected: <strong>{ collectionDefault?.title } ({ collectionDefault?.id })</strong> | 
+                    <span style={{ color: 'red', cursor: 'pointer' }} onClick={ e => {
                       let r = confirm('Are you sure you want to delete?');
                       if(r) {
                         setCollectionDefault(null)
                       }
-                    } }>✕ Delete</span>
+                    } }>✕ Delete</span> 
+                    {
+                      questionAutoLoading && <Spinner size="small" />
+                    }
                   </>
                 } else {
                   return <Button onClick={ async e => {
@@ -49,6 +56,14 @@ export default function Edit() {
       
                     const { handle, title, id, productsCount } = selected[0];
                     setCollectionDefault({ handle, title, id, productsCount });
+
+                    let r = confirm('Do you want auto-load filter questions?');
+                    if(r) {
+                      // console.log('loading...!')
+                      setQuestionAutoLoading(true);
+                      await onAutoLoadQuestionByCollection(handle);
+                      setQuestionAutoLoading(false);
+                    }
                   } }>Select Collection</Button>
                 }
               })(collectionDefault)
