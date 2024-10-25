@@ -241,7 +241,9 @@ const FunnelEditContextProvider = ({ children, store, funnel_id }) => {
   }
 
   const onAutoLoadQuestionByCollection = async (collection_handle) => {
-    const res = await fetch(`https://buildmat-scraping.fly.dev/${ collection_handle }`)
+    // const fetchUrl = `https://buildmat-scraping.fly.dev/${ collection_handle }`;
+    const fetchUrl = `https://buildmat-scraping.fly.dev/kitchen-sinks`;
+    const res = await fetch(fetchUrl)
       .then(async r => {
         return await r.json()
       })
@@ -250,7 +252,9 @@ const FunnelEditContextProvider = ({ children, store, funnel_id }) => {
       })
     
     if(!res) return;
-    let newOpts = res.filter(i => ['Product Type', 'Colour', 'Range', 'Features', 'Shape'].includes(i.label)).map(({label, options}) => {
+    let newOpts = res.filter(i => ['Brand', 'Product Type', 'Colour', 'Range', 'Features', 'Shape'].includes(i.label)).map(({label, options}) => {
+      
+      
       return {
         __key: uuidv4(),
         question: `Select ${ label }`,
@@ -259,7 +263,11 @@ const FunnelEditContextProvider = ({ children, store, funnel_id }) => {
           type: 'QTagChoice',
           placeholder: '',
           options: options.map(__o => {
-            return  { __key: uuidv4(), label: __o.label, value: __o.value }
+            let __value = __o.value;
+            if(label == 'Brand') {
+              __value = `Brand_${ __value }`
+            }
+            return  { __key: uuidv4(), label: __o.label, value: __value }
           }),
           value: [],
           required: false, 

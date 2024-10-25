@@ -28,22 +28,37 @@ export default function Edit() {
             />
           </div>
           <br />
-          <fieldset className="__filter-by-collection __q-fieldset" style={{background: 'white'}}>
-            <legend>Select Collection Default</legend>
+          <fieldset className="__filter-by-collection __q-fieldset" style={{
+            background: 'white', 
+            display: 'flex',
+            alignItems: 'center',
+            gap: '10px',
+            flexWrap: 'wrap'
+          }}>
+            <legend>Select Collection Default</legend> 
             {
               ((__c) => {
                 if(__c?.id) {
                   return <>
                     Collection selected: <strong>{ collectionDefault?.title } ({ collectionDefault?.id })</strong> | 
-                    <span style={{ color: 'red', cursor: 'pointer' }} onClick={ e => {
+                    {/* <span style={{ color: 'red', cursor: 'pointer' }} onClick={ e => {
                       let r = confirm('Are you sure you want to delete?');
                       if(r) {
                         setCollectionDefault(null)
                       }
-                    } }>✕ Delete</span> 
-                    {
-                      questionAutoLoading && <Spinner size="small" />
-                    }
+                    } }>✕ Delete</span>  */}
+                    <Button 
+                      variant="primary" 
+                      tone="critical" 
+                      icon={ DeleteIcon }
+                      loading={ questionAutoLoading }
+                      onClick={ e => {
+                        let r = confirm('Are you sure you want to delete?');
+                        if(r) {
+                          setCollectionDefault(null)
+                        }
+                      } }
+                    >Remove</Button>
                   </>
                 } else {
                   return <Button onClick={ async e => {
