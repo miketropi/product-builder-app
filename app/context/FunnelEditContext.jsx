@@ -241,8 +241,8 @@ const FunnelEditContextProvider = ({ children, store, funnel_id }) => {
   }
 
   const onAutoLoadQuestionByCollection = async (collection_handle) => {
-    // const fetchUrl = `https://buildmat-scraping.fly.dev/${ collection_handle }`;
-    const fetchUrl = `https://buildmat-scraping.fly.dev/kitchen-sinks`;
+    const fetchUrl = `https://buildmat-scraping.fly.dev/${ collection_handle }`;
+    // const fetchUrl = `https://buildmat-scraping.fly.dev/kitchen-sinks`;
     const res = await fetch(fetchUrl)
       .then(async r => {
         return await r.json()
