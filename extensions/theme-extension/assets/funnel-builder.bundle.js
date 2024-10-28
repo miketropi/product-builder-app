@@ -440,7 +440,7 @@ function RedirectNode(_ref) {
       value: collection_default === null || collection_default === void 0 ? void 0 : collection_default.value
     }]).forEach(function (f) {
       var __v = Array.isArray(f.value) ? f.value.join(',') : f.value;
-      __redirect_url = __redirect_url.replaceAll("[value]".concat(f.__key, "[/value]"), __v);
+      __redirect_url = __redirect_url.replaceAll("[value]".concat(f.__key, "[/value]"), __v.replaceAll('Brand_', ''));
     });
     return __redirect_url;
   };

@@ -240,7 +240,7 @@ const FunnelEditContextProvider = ({ children, store, funnel_id }) => {
     setEditItem(__cloneEditItem);
   }
 
-  const onBuildDataFunnelAutoConnect = (q) => {
+  const onBuildDataFunnelAutoConnect = (q, collection_handle) => {
     let funnelConnect = {
       nodes: [
         {
@@ -286,7 +286,22 @@ const FunnelEditContextProvider = ({ children, store, funnel_id }) => {
             y: -6,
           },
           data: {
-            redirect_url: '#',
+            redirect_url: ((_q) => {
+              // https://www.buildmat.com.au/collections/kitchen-mixers?pf_t_product_typ=[value]6f4a6bd7-edd0-47dc-a796-e2d3b5af64b0[/value]&pf_t_colour=[value]e46f2143-a7a9-46b9-b635-843c7fcd5d9d[/value]?pf_t_range=[value]b3b7de2e-27ce-4e92-8db8-0708091e6fb7[/value]&pf_t_features=[value]d960f61a-faf7-4734-ae90-0cd85051ab6d[/value]
+              let mapArgs = {
+                'Select Brand': 'pf_v_brand',
+                'Select Product Type': 'pf_t_product_type',
+                'Select Colour': 'pf_t_colour',
+                'Select Range': 'pf_t_range',
+                'Select Features': 'pf_t_features',
+                'Select Shape': 'pf_t_shape',
+              };
+              let urlParamFilterArr = _q.map(({ question, __key }) => {
+                return `${ mapArgs[question] }=[value]${ __key }[/value]`;
+              });
+              
+              return `https://www.buildmat.com.au/collections/${ collection_handle }?${ urlParamFilterArr.join('&') }`;
+            })(q),
           },
           width: 150,
           height: 74,
@@ -374,7 +389,7 @@ const FunnelEditContextProvider = ({ children, store, funnel_id }) => {
     
     setQuestions(newOpts);
 
-    const { nodes, edges } = onBuildDataFunnelAutoConnect(newOpts);
+    const { nodes, edges } = onBuildDataFunnelAutoConnect(newOpts, collection_handle);
     setNodes(nodes);
     setEdges(edges);
   }
