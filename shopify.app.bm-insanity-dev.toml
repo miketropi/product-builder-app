@@ -3,7 +3,7 @@
 client_id = "a31790a79c946c76cf232419a0ea906e"
 name = "BM Insanity Dev"
 handle = "bm-insanity-dev"
-application_url = "https://occurs-wisconsin-wallace-dreams.trycloudflare.com"
+application_url = "https://evanescence-growth-programmer-connected.trycloudflare.com"
 embedded = true
 
 [build]
@@ -21,16 +21,16 @@ scopes = "read_content,read_customers,read_files,read_metaobjects,read_orders,re
 
 [auth]
 redirect_urls = [
-  "https://occurs-wisconsin-wallace-dreams.trycloudflare.com/auth/callback",
-  "https://occurs-wisconsin-wallace-dreams.trycloudflare.com/auth/shopify/callback",
-  "https://occurs-wisconsin-wallace-dreams.trycloudflare.com/api/auth/callback"
+  "https://evanescence-growth-programmer-connected.trycloudflare.com/auth/callback",
+  "https://evanescence-growth-programmer-connected.trycloudflare.com/auth/shopify/callback",
+  "https://evanescence-growth-programmer-connected.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
 api_version = "2024-04"
 
 [app_proxy]
-url = "https://occurs-wisconsin-wallace-dreams.trycloudflare.com/app/proxy"
+url = "https://evanescence-growth-programmer-connected.trycloudflare.com/app/proxy"
 subpath = "bmapp"
 prefix = "apps"
 

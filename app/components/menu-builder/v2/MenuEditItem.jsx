@@ -1,4 +1,4 @@
-import { TextField, Button, Select } from '@shopify/polaris';
+import { TextField, Button, Select, Checkbox } from '@shopify/polaris';
 import { useMenuBuilderContextV2 } from "../../../context/MenuBuilderContextV2";
 import { produce } from 'immer';
 import { deepSearch } from '../../../libs/helpers';
@@ -55,6 +55,14 @@ export default function MenuEditItem() {
         onChange={ value => { onUpdate(value, 'url') } }
         autoComplete="off"
       />
+    </div>
+
+    <div style={{ marginBottom: `1em` }}>
+      <Checkbox
+        label="Open New Window"
+        checked={ currentItemEdit?.open_new_window }
+        onChange={ value => { onUpdate(value, 'open_new_window') } }
+      /> 
     </div>
 
     <div style={{ marginBottom: `1em` }}>

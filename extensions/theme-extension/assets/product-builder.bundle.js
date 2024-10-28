@@ -1202,19 +1202,23 @@ function MenuBuilderApp() {
           url = item.url,
           children = item.children,
           type = item.type,
-          icon = item.icon;
+          icon = item.icon,
+          open_new_window = item.open_new_window;
         var size = item !== null && item !== void 0 && (_item$config = item.config) !== null && _item$config !== void 0 && _item$config.containerSize ? "__size-".concat(item.config.containerSize) : '';
         var liClasses = ['__menu-item', "__item-lv-".concat(lv), size, children && children.length > 0 ? "__has-children" : '', item.type ? "__menu-item_type__".concat(type) : '', item === null || item === void 0 ? void 0 : item.custom_class];
         var linkAttributes = {};
         if (url) {
           linkAttributes.href = url;
         }
+        if (open_new_window == true) {
+          linkAttributes.target = "_blank";
+        }
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("li", {
           className: liClasses.join(' '),
           "data-id": __key,
           "data-nav-level": lv,
           "data-nav-item": function (__u, __name) {
-            // console.log(__name);
+            // console.log(__name); 
             var segment = __u.split('/');
             var newName = __name.split(' ').join('-').toLowerCase();
             // console.log(segment.at(-1))
