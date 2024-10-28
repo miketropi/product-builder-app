@@ -240,9 +240,106 @@ const FunnelEditContextProvider = ({ children, store, funnel_id }) => {
     setEditItem(__cloneEditItem);
   }
 
+  const onBuildDataFunnelAutoConnect = (q) => {
+    let funnelConnect = {
+      nodes: [
+        {
+          id: '__START__',
+          type: 'StartNode',
+          position: {
+            x: 0,
+            y: 0,
+          },
+          data: {
+            label: 'Start',
+          }
+        },
+        ...((_q) => {
+          return _q.map((i, __i_index) => {
+            // console.log(i)
+            let x = (__i_index + 1) * 178.46139340517004;
+
+            return {
+              id: i.__key,
+              type: 'QuestionNode',
+              position: {
+                x: x,
+                y: -6,
+              },
+              data: {
+                question_key: i.__key,
+              },
+              selected: false,
+              positionAbsolute: {
+                x: x,
+                y: -6,
+              },
+              dragging: false,
+            }
+          }) 
+        })(q),
+        {
+          id: '__redirect-node',
+          type: 'RedirectNode',
+          position: {
+            x: (q.length + 1) * 178.46139340517004,
+            y: -6,
+          },
+          data: {
+            redirect_url: '#',
+          },
+          width: 150,
+          height: 74,
+          selected: true,
+          positionAbsolute: {
+            x: 1548.2596075717672,
+            y: -6,
+          },
+          dragging: false,
+        },
+      ],
+      edges: [
+        {
+          source: '__START__',
+          sourceHandle: null,
+          target: q[0].__key,
+          targetHandle: null,
+          id: `reactflow__edge-__START__-${ q[0].__key }`,
+        },
+        ...(_q => {
+          return _q.map((i, __i_index) => {
+            let __next = '';
+            if(q[__i_index + 1]) {
+              __next = q[__i_index + 1].__key;
+            } else {
+              __next = '__redirect-node';
+            }
+            
+            return {
+              source: i.__key,
+              sourceHandle: null,
+              target: __next,
+              targetHandle: null,
+              id: `reactflow__edge-${ i.__key }-${ __next }`,
+            }
+          })
+        })(q)
+      ], 
+    }
+    console.log(funnelConnect);
+
+    return funnelConnect;
+  }
+
   const onAutoLoadQuestionByCollection = async (collection_handle) => {
-    const fetchUrl = `https://buildmat-scraping.fly.dev/${ collection_handle }`;
-    // const fetchUrl = `https://buildmat-scraping.fly.dev/kitchen-sinks`;
+    // let fetchUrl = `https://buildmat-scraping.fly.dev/${ collection_handle }`;
+    let fetchUrl = `https://buildmat-scraping.fly.dev/kitchen-sinks`;
+
+    const { id, myshopifyDomain } = store;
+    if(id == 'gid://shopify/Shop/2398814278') { // product site id
+      fetchUrl = `https://buildmat-scraping.fly.dev/${ collection_handle }`;
+    }  
+
     const res = await fetch(fetchUrl)
       .then(async r => {
         return await r.json()
@@ -274,8 +371,12 @@ const FunnelEditContextProvider = ({ children, store, funnel_id }) => {
         }
       }
     })
-
+    
     setQuestions(newOpts);
+
+    const { nodes, edges } = onBuildDataFunnelAutoConnect(newOpts);
+    setNodes(nodes);
+    setEdges(edges);
   }
 
   const value = {

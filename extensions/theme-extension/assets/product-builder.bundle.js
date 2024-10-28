@@ -1084,7 +1084,8 @@ function DynamicMenuItem(props) {
   var __key = menu.__key,
     name = menu.name,
     url = menu.url,
-    type = menu.type;
+    type = menu.type,
+    open_new_window = menu.open_new_window;
   var liClasses = ['menu-item', "__level-".concat(level), "__item-key-".concat(__key), "__item-type-".concat(type), __WITHOUT_ARROW_TYPES.includes(type) ? "__flat-child" : '', open ? '__open' : '', menu === null || menu === void 0 ? void 0 : menu.custom_class];
   var arrow = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
     children: function () {
@@ -1122,6 +1123,9 @@ function DynamicMenuItem(props) {
   var linkAttributes = {};
   if (url) {
     linkAttributes.href = url;
+  }
+  if (open_new_window == true) {
+    linkAttributes.target = "_blank";
   }
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("li", {
     className: liClasses.join(' '),
