@@ -3,7 +3,7 @@
 client_id = "a31790a79c946c76cf232419a0ea906e"
 name = "BM Insanity Dev"
 handle = "bm-insanity-dev"
-application_url = "https://bryant-wear-tested-portuguese.trycloudflare.com"
+application_url = "https://contamination-arrangement-wicked-establishment.trycloudflare.com"
 embedded = true
 
 [build]
@@ -21,16 +21,16 @@ scopes = "read_content,read_customers,read_files,read_metaobjects,read_orders,re
 
 [auth]
 redirect_urls = [
-  "https://bryant-wear-tested-portuguese.trycloudflare.com/auth/callback",
-  "https://bryant-wear-tested-portuguese.trycloudflare.com/auth/shopify/callback",
-  "https://bryant-wear-tested-portuguese.trycloudflare.com/api/auth/callback"
+  "https://contamination-arrangement-wicked-establishment.trycloudflare.com/auth/callback",
+  "https://contamination-arrangement-wicked-establishment.trycloudflare.com/auth/shopify/callback",
+  "https://contamination-arrangement-wicked-establishment.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
 api_version = "2024-04"
 
 [app_proxy]
-url = "https://bryant-wear-tested-portuguese.trycloudflare.com/app/proxy"
+url = "https://contamination-arrangement-wicked-establishment.trycloudflare.com/app/proxy"
 subpath = "bmapp"
 prefix = "apps"
 

@@ -61,7 +61,7 @@ export default function QTagChoice(props) {
       <legend>Options Style</legend>
       <ChoiceList
         choices={[
-          { label: '2 cols - Square 472x572', value: '2-cols-square-472_572' },
+          { label: '2 cols - Square 472x472', value: '2-cols-square-472_472' },
           { label: '2 cols - Portrait 472x630', value: '2-cols-portrait-472_630' },
           { label: '2 cols - Landscape 472x314', value: '2-cols-landscape-472_314' },
 
@@ -76,7 +76,7 @@ export default function QTagChoice(props) {
           { label: 'List - 1 column', value: 'list-1-column' },
           { label: 'List - 2 columns', value: 'list-2-columns' },
           { label: 'List - 3 columns', value: 'list-3-columns' },
-          { label: 'List - 4 columns', value: 'list-4-columns' },
+          { label: 'List - 4 columns', value: 'list-4-columns' }, 
         ]}
         selected={ props?.option_style ?? '' } 
         onChange={ value => {

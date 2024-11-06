@@ -126,6 +126,7 @@ const FunnelEditContextProvider = ({ children, store, funnel_id }) => {
           options: [],
           value: [],
           required: false, 
+          option_style: '2-cols-square-472_472',
         }
         break;
     }
@@ -374,7 +375,8 @@ const FunnelEditContextProvider = ({ children, store, funnel_id }) => {
           help_text: '',
           type: 'QTagChoice',
           placeholder: '',
-          options: options.map(__o => {
+          option_style: '2-cols-square-472_472', 
+          options: options.map(__o => { 
             let __value = __o.value;
             if(label == 'Brand') {
               __value = `Brand_${ __value }`
