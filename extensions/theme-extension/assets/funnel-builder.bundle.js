@@ -785,10 +785,23 @@ function SelectBox(_ref4) {
     'list-1-column': templateTags,
     'list-2-columns': templateTags,
     'list-3-columns': templateTags,
-    'list-4-columns': templateTags
+    'list-4-columns': templateTags,
+    'no-image': templateTags
   };
+  var optCount = options.length;
+  var col = function (num) {
+    if (num <= 9) {
+      return 1;
+    }
+    if (num <= 20) {
+      return 2;
+    }
+    return 3;
+  }(optCount);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("ul", {
-    className: ['select-box-component', "__temp__".concat(template)].join(' '),
+    className: ['select-box-component', function () {
+      return template[0] == 'no-image' ? "__col-".concat(col) : '';
+    }(), "__temp__".concat(template)].join(' '),
     children: __templates[template]()
   });
 }

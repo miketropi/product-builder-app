@@ -483,3 +483,52 @@ ul.select-box-component.__temp__list-4-columns .tag-template--list .__icon {
 ul.select-box-component.__temp__list-4-columns .tag-template--list:hover {
   background: #e5e5e5;
 }
+
+.select-box-component.__temp__no-image {
+  display: grid;
+  gap: 16px;
+}
+.select-box-component.__temp__no-image .tag-template--list {
+  background: #F2F2F2;
+  border-radius: 3px;
+  max-width: 100%;
+  list-style: none;
+  padding: 20px;
+  line-height: normal;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.3s ease;
+  -webkit-transition: 0.3s ease;
+}
+.select-box-component.__temp__no-image .tag-template--list .__icon {
+  line-height: 0;
+}
+.select-box-component.__temp__no-image .tag-template--list:hover {
+  background: #e5e5e5;
+}
+.select-box-component.__temp__no-image.__col-1 {
+  grid-template-columns: repeat(1, minmax(auto, 460px));
+}
+.select-box-component.__temp__no-image.__col-2 {
+  grid-template-columns: repeat(2, minmax(auto, 460px));
+}
+@media (max-width: 460px) {
+  .select-box-component.__temp__no-image.__col-2 {
+    grid-template-columns: repeat(1, minmax(auto, 309px));
+  }
+}
+.select-box-component.__temp__no-image.__col-3 {
+  grid-template-columns: repeat(3, minmax(auto, 309px));
+}
+@media (max-width: 760px) {
+  .select-box-component.__temp__no-image.__col-3 {
+    grid-template-columns: repeat(2, minmax(auto, 309px));
+  }
+}
+@media (max-width: 460px) {
+  .select-box-component.__temp__no-image.__col-3 {
+    grid-template-columns: repeat(1, minmax(auto, 309px));
+  }
+}
