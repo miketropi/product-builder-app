@@ -4,6 +4,8 @@ import { useFunnelEditContext } from '../../../context/FunnelEditContext';
 import { Button } from '@shopify/polaris';
 import { v4 as uuidv4 } from 'uuid';
 import { TextField, ChoiceList, Thumbnail, Popover } from '@shopify/polaris';
+// import PbSelectImage from '../../PbSelectImage';
+import SelectMedia from '../../GlobalCom/SelectMedia';
 
 import {
   ProductAddIcon, DeleteIcon
@@ -133,13 +135,24 @@ export default function QTagChoice(props) {
                     />
                   </td>
                   <td>
-                    <TextField
-                      value={ image }
-                      onChange={ value => {
-                        onChangeOptionField(value, 'image', __o_index); 
-                      } }
-                      autoComplete="off"
-                    />
+                    <div className="__select-image-wrap">
+                      <TextField
+                        value={ image }
+                        onChange={ value => {
+                          onChangeOptionField(value, 'image', __o_index); 
+                        } }
+                        autoComplete="off"
+                      />
+                      <SelectMedia 
+                        onSelect={ media => {
+                          // console.log(media);
+                          onChangeOptionField(media[0], 'image', __o_index); 
+                        } } 
+                        title={ 'Select Image' } />
+                    </div>
+                    {/* <PbSelectImage onSelect={ (media) => {
+                      onChangeOptionField(media.shift(), 'image', __o_index);
+                    } } /> */}
                   </td>
                   <td>
                   <Button icon={ DeleteIcon } accessibilityLabel="remove item" onClick={ e => onDeleteOptionItem(__o_index) } />

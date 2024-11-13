@@ -119,3 +119,17 @@ body {
   justify-content: center;
   line-height: 0;
 }
+
+.__select-image-wrap {
+  position: relative;
+
+  .select-media__comp {
+    position: absolute;
+    top: 50%; 
+    right: 2px;
+    transform: translate(0, -50%);
+    -webkit-transform: translate(0, -50%);
+    z-index: 99;
+    line-height: 0;
+  }
+}

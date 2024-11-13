@@ -310,18 +310,22 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var __PREV_ICON = "<svg viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M20 12H4M4 12L10 6M4 12L10 18\" stroke=\"black\" stroke-width=\"1\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> </svg>";
 var __NEXT_ICON = "<svg viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M4 12H20M20 12L14 6M20 12L14 18\" stroke=\"black\" stroke-width=\"1\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> </svg>";
+var __ARROW_BACK = "<svg width=\"6\" height=\"12\" viewBox=\"0 0 6 12\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M5.33962 -2.33402e-07L2.62268e-07 6L5.33962 12L6 11.2474L1.33019 6L6 0.75265L5.33962 -2.33402e-07Z\" fill=\"#747474\"/> </svg>";
 function Question(_ref) {
   var q = _ref.q;
   var _useFunnelBuilderCont = (0,_context_FunnelBuilderContext__WEBPACK_IMPORTED_MODULE_1__.useFunnelBuilderContext)(),
     funnelFieldData = _useFunnelBuilderCont.funnelFieldData,
     historyPassedSteps = _useFunnelBuilderCont.historyPassedSteps,
     questionCurrentViewID = _useFunnelBuilderCont.questionCurrentViewID,
-    fn = _useFunnelBuilderCont.fn;
+    fn = _useFunnelBuilderCont.fn,
+    newHistoryState = _useFunnelBuilderCont.newHistoryState;
   var onUpdateFunnelField = fn.onUpdateFunnelField,
     canNextStep = fn.canNextStep,
     onNextStep = fn.onNextStep,
     canPrevStep = fn.canPrevStep,
-    onPrevStep = fn.onPrevStep;
+    onPrevStep = fn.onPrevStep,
+    onPushHistory = fn.onPushHistory,
+    onBackHisttory = fn.onBackHisttory;
   var __key = q.__key,
     question = q.question,
     content = q.content,
@@ -346,9 +350,29 @@ function Question(_ref) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
       className: "question-frame",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h4", {
-        className: "question-text",
-        children: question
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        className: "q-heading",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+          className: "q-heading__back",
+          children: newHistoryState.length > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("a", {
+            className: "q-heading__back-action",
+            href: "#",
+            onClick: function onClick(e) {
+              e.preventDefault();
+              onBackHisttory();
+            },
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+              dangerouslySetInnerHTML: {
+                __html: __ARROW_BACK
+              }
+            }), "Back"]
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h4", {
+          className: "q-heading__question-text question-text",
+          children: question
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+          className: "q-heading__empty"
+        })]
       }), content && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
         className: "question-content",
         dangerouslySetInnerHTML: {
@@ -365,6 +389,7 @@ function Question(_ref) {
           });
         }()), {}, {
           onChange: function onChange(v) {
+            // console.log('-- update --', v);
             onUpdateFunnelField(__key, v);
             set__Value(v);
           }
@@ -487,19 +512,40 @@ function RedirectNode(_ref) {
       padding: "3em 0"
     },
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h2", {
-      children: "Thank You!"
+      children: "Thank you for sharing your preferences!"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+      children: "We're curating a special selection of products just for you."
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      className: "r__spacing"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Loading__WEBPACK_IMPORTED_MODULE_3__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      className: "r__spacing"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
-      children: ["Redirected after ", counter, "s..."]
+      children: ["You'll be redirected in ", counter, " seconds"]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
       className: "button-redirect-now",
       onClick: function onClick(e) {
         e.preventDefault();
         window.location.href = makeRedirectUrl();
       },
-      children: "Redirect Now"
+      children: "See Results"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("a", {
+      href: "#",
+      className: "r__start-again",
+      onClick: function onClick(e) {
+        e.preventDefault();
+        location.reload();
+      },
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(StartAgainIcon, {}), " Start again"]
     })]
   });
 }
+var StartAgainIcon = function StartAgainIcon() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+    dangerouslySetInnerHTML: {
+      __html: "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M8 16C5.76667 16 3.875 15.225 2.325 13.675C0.775 12.125 0 10.2333 0 8C0 5.76667 0.775 3.875 2.325 2.325C3.875 0.775 5.76667 0 8 0C9.15 0 10.25 0.237333 11.3 0.712C12.35 1.18667 13.25 1.866 14 2.75V0H16V7H9V5H13.2C12.6667 4.06667 11.9377 3.33333 11.013 2.8C10.0883 2.26667 9.084 2 8 2C6.33333 2 4.91667 2.58333 3.75 3.75C2.58333 4.91667 2 6.33333 2 8C2 9.66667 2.58333 11.0833 3.75 12.25C4.91667 13.4167 6.33333 14 8 14C9.28333 14 10.4417 13.6333 11.475 12.9C12.5083 12.1667 13.2333 11.2 13.65 10H15.75C15.2833 11.7667 14.3333 13.2083 12.9 14.325C11.4667 15.4417 9.83333 16 8 16Z\" fill=\"#666666\"/> </svg>"
+    }
+  });
+};
 
 /***/ }),
 
@@ -632,7 +678,7 @@ function SelectBox(_ref4) {
               disable = o.disable;
             var selected = isSelected_Fn(o.value);
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
-              className: ['o-item tag-template--col', disable == true ? '__disable' : ''].join(' '),
+              className: ['o-item tag-template--col', image ? '' : '__no-image', disable == true ? '__disable' : ''].join(' '),
               title: label,
               style: {
                 background: "url(".concat(image, ") no-repeat center center / contain, #ebebeb")
@@ -640,7 +686,11 @@ function SelectBox(_ref4) {
               selected: selected,
               onClick: function onClick(e) {
                 return onChange_Fn(!selected, o.value);
-              }
+              },
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+                className: "__label",
+                children: label
+              })
             }, __key);
           })
         }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
@@ -840,8 +890,10 @@ var __FIELDS__ = {
 };
 function DynamicField(props) {
   var Component = __FIELDS__[props.type];
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(Component, {
-    field: props
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(Component, {
+      field: props
+    })
   });
 }
 
@@ -1304,6 +1356,16 @@ var FunnelBuilderContextProvider = function FunnelBuilderContextProvider(props) 
     _useState16 = _slicedToArray(_useState15, 2),
     funnelFilterData = _useState16[0],
     setFunnelFilterData = _useState16[1];
+
+  /**
+   * From v2 use newHistoryState
+   * using for Back action
+   * 
+   */
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState18 = _slicedToArray(_useState17, 2),
+    newHistoryState = _useState18[0],
+    setNewHistoryState = _useState18[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     API.current = new _libs_FunnelApi__WEBPACK_IMPORTED_MODULE_1__["default"](storeId);
     ProxyApi.current = new _libs_FunnelProxyApi__WEBPACK_IMPORTED_MODULE_2__["default"]();
@@ -1399,12 +1461,23 @@ var FunnelBuilderContextProvider = function FunnelBuilderContextProvider(props) 
     var __found = __funnelFieldData.findIndex(function (f) {
       return f.__key == qKey;
     });
+    // console.log('onUpdateFunnelField', funnelFieldData, __funnelFieldData, __found, __funnelFieldData[__found]);
+    // console.log('onUpdateFunnelField - newHistoryState', newHistoryState); 
+
     __funnelFieldData[__found] = _objectSpread(_objectSpread({}, __funnelFieldData[__found]), {}, {
       value: value
     });
     // console.log('__found', __found, __funnelFieldData[__found], value)
     setFunnelFieldData(__funnelFieldData);
     if (cb) cb.call('', qKey, value, __funnelFieldData);
+
+    // push History
+    console.log('onUpdateFunnelField', value);
+    onPushHistory({
+      funnelFilterData: funnelFilterData,
+      funnelFieldData: __funnelFieldData,
+      questionCurrentViewID: questionCurrentViewID
+    });
   };
   var findNextStep = function findNextStep(qKey, handle) {
     var _funnelData$funnel_co3;
@@ -1565,6 +1638,38 @@ var FunnelBuilderContextProvider = function FunnelBuilderContextProvider(props) 
     __funnelFilterData.filters = __filters;
     setFunnelFilterData(__funnelFilterData);
   };
+  var onPushHistory = function onPushHistory(logData) {
+    var __newHistoryState = _toConsumableArray(newHistoryState);
+    __newHistoryState.push(JSON.parse(JSON.stringify(logData)));
+    setNewHistoryState(__newHistoryState);
+  };
+  var onBackHisttory = function onBackHisttory() {
+    var __newHistoryState = _toConsumableArray(newHistoryState);
+    var lastIndex = __newHistoryState.length - 1;
+    var __back = __newHistoryState.pop();
+    __back.funnelFieldData.map(function (__item) {
+      if (__item.__key == __back.questionCurrentViewID) {
+        var _fq$field;
+        var __fq = funnelData === null || funnelData === void 0 ? void 0 : funnelData.questions.find(function (__q) {
+          return __q.__key == __back.questionCurrentViewID;
+        });
+        // console.log('__fq', __fq);
+        __item.value = __fq === null || __fq === void 0 || (_fq$field = __fq.field) === null || _fq$field === void 0 ? void 0 : _fq$field.value;
+      }
+      return __item;
+    });
+
+    // console.log('onBackHisttory', __back.funnelFieldData)
+    // console.log('onBackHisttory - questionCurrentViewID', __back.questionCurrentViewID)
+
+    setFunnelFilterData(__back.funnelFilterData);
+    setFunnelFieldData(__back.funnelFieldData);
+    setQuestionCurrentViewID(__back.questionCurrentViewID);
+
+    // update newHistoryState
+    // delete __newHistoryState[lastIndex];
+    setNewHistoryState(__newHistoryState);
+  };
   var value = {
     initLoading: initLoading,
     setInitLoading: setInitLoading,
@@ -1582,6 +1687,8 @@ var FunnelBuilderContextProvider = function FunnelBuilderContextProvider(props) 
     setEffectDirection: setEffectDirection,
     funnelFilterData: funnelFilterData,
     setFunnelFilterData: setFunnelFilterData,
+    newHistoryState: newHistoryState,
+    setNewHistoryState: setNewHistoryState,
     fn: {
       onUpdateFunnelField: onUpdateFunnelField,
       onNextStep: onNextStep,
@@ -1590,7 +1697,9 @@ var FunnelBuilderContextProvider = function FunnelBuilderContextProvider(props) 
       canPrevStep: canPrevStep,
       onFunnelOptionsFilter: onFunnelOptionsFilter,
       onAddFilterData: onAddFilterData,
-      onRemoveFilterData: onRemoveFilterData
+      onRemoveFilterData: onRemoveFilterData,
+      onPushHistory: onPushHistory,
+      onBackHisttory: onBackHisttory
     }
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(FunnelBuilderContext.Provider, {

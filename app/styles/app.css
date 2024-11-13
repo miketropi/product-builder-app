@@ -100,6 +100,19 @@ body p, body h1, body h2, body h3, body h4, body h5, body h6, body input, body t
   line-height: 0;
 }
 
+.__select-image-wrap {
+  position: relative;
+}
+.__select-image-wrap .select-media__comp {
+  position: absolute;
+  top: 50%;
+  right: 2px;
+  transform: translate(0, -50%);
+  -webkit-transform: translate(0, -50%);
+  z-index: 99;
+  line-height: 0;
+}
+
 .list-products {
   margin: 2em 0;
 }
