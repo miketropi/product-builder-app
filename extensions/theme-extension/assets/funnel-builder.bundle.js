@@ -136,9 +136,9 @@ var TransitionNodes = function TransitionNodes(props) {
   };
   var transitions = (0,_react_spring_web__WEBPACK_IMPORTED_MODULE_4__.useTransition)(currentViewIndex, {
     // ref: transRef,
-    from: from,
-    enter: enter,
-    leave: leave
+    // from,
+    // enter,
+    // leave, 
   });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
     className: "transition-nodes",

@@ -3,7 +3,7 @@
 client_id = "a31790a79c946c76cf232419a0ea906e"
 name = "BM Insanity Dev"
 handle = "bm-insanity-dev"
-application_url = "https://word-noon-upset-liabilities.trycloudflare.com"
+application_url = "https://club-jewish-guarantee-producer.trycloudflare.com"
 embedded = true
 
 [build]
@@ -21,16 +21,16 @@ scopes = "read_content,read_customers,read_files,read_metaobjects,read_orders,re
 
 [auth]
 redirect_urls = [
-  "https://word-noon-upset-liabilities.trycloudflare.com/auth/callback",
-  "https://word-noon-upset-liabilities.trycloudflare.com/auth/shopify/callback",
-  "https://word-noon-upset-liabilities.trycloudflare.com/api/auth/callback"
+  "https://club-jewish-guarantee-producer.trycloudflare.com/auth/callback",
+  "https://club-jewish-guarantee-producer.trycloudflare.com/auth/shopify/callback",
+  "https://club-jewish-guarantee-producer.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
 api_version = "2024-04"
 
 [app_proxy]
-url = "https://word-noon-upset-liabilities.trycloudflare.com/app/proxy"
+url = "https://club-jewish-guarantee-producer.trycloudflare.com/app/proxy"
 subpath = "bmapp"
 prefix = "apps"
 

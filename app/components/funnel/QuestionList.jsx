@@ -14,7 +14,7 @@ const getItemStyle = (isDragging, isDraggingOver, draggableStyle) => ({
 }); 
 
 export default function QuestionList() {
-  const { questions, setQuestions, editItem, setEditItem, fn } = useFunnelEditContext();
+  const { questions, setQuestions, editItem, setEditItem, fn, lock, setLock } = useFunnelEditContext();
   const { onAddQuestion } = fn;
 
   const onReOrderQuestion = (result) => {
@@ -28,7 +28,7 @@ export default function QuestionList() {
     setQuestions(__questions);
   }
 
-  return <>
+  return <div className={ [''].join(' ') }>
     {
       questions.length > 0 && 
       <DragDropContext onDragEnd={ onReOrderQuestion }>
@@ -62,9 +62,11 @@ export default function QuestionList() {
                             provided.draggableProps.style
                           )}
                         >
-                          <span {...provided.dragHandleProps} >
-                            <Icon source={ DragHandleIcon } />
-                          </span>
+                          {
+                            lock != true 
+                              ? <span {...provided.dragHandleProps} ><Icon source={ DragHandleIcon } /></span> 
+                              : ''
+                          }
                           <span className="__q-name" title={ question }>
                             { __q_index + 1 }. { question }
                           </span>
@@ -82,10 +84,11 @@ export default function QuestionList() {
     }
     
     <Button 
+      disabled={ lock }
       icon={ PlusIcon } 
       variant="primary" 
       size="large" 
       fullWidth 
       onClick={ e => onAddQuestion() }>Add Question</Button>
-  </>
+  </div>
 }

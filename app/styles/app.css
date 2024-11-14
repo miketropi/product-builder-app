@@ -113,6 +113,26 @@ body p, body h1, body h2, body h3, body h4, body h5, body h6, body input, body t
   line-height: 0;
 }
 
+.__lock-area {
+  position: relative;
+  pointer-events: none;
+}
+.__lock-area:after {
+  content: "Lock area";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  background: black;
+  color: white;
+  padding: 0.5em 1em;
+  border-radius: 10px;
+}
+.__lock-area > * {
+  opacity: 0.3;
+}
+
 .list-products {
   margin: 2em 0;
 }

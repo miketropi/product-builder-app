@@ -28,11 +28,18 @@ const FunnelEditContextProvider = ({ children, store, funnel_id }) => {
   const [nodes, setNodes, onNodesChange] = useNodesState([ 
     { id: '__START__', type: 'StartNode', position: { x: 0, y: 0 }, data: { label: 'Start' } },
   ]);
-  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
-
+  const [ edges, setEdges, onEdgesChange ] = useEdgesState([]);
   const [ isSave, setIsSave ] = useState(false);
+  const [ lock, setLock ] = useState(false);
 
-  const loadFunnel = async (fID) => {
+  /**
+   * Set lock when collectionDefault exists data
+   */
+  useEffect(() => {
+    setLock((collectionDefault ? true : false));
+  }, [collectionDefault])
+
+  const loadFunnel = async (fID) => { 
     const res = await API_FA.current.getFunnelById(fID);
     // console.log(res);
     setTitle(res?.title);
@@ -405,6 +412,7 @@ const FunnelEditContextProvider = ({ children, store, funnel_id }) => {
     editItem, setEditItem,
     isSave, setIsSave,
     collectionDefault, setCollectionDefault,
+    lock, setLock,
     fn: {
       onAddQuestion,
       onAddField,

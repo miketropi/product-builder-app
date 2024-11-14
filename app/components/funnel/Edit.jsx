@@ -72,13 +72,17 @@ export default function Edit() {
                     const { handle, title, id, productsCount } = selected[0];
                     setCollectionDefault({ handle, title, id, productsCount });
 
-                    let r = confirm('Do you want auto-load filter questions?');
-                    if(r) {
-                      // console.log('loading...!')
-                      setQuestionAutoLoading(true);
-                      await onAutoLoadQuestionByCollection(handle);
-                      setQuestionAutoLoading(false);
-                    }
+                    // let r = confirm('Do you want auto-load filter questions?');
+                    // if(r) {
+                    //   // console.log('loading...!')
+                    //   setQuestionAutoLoading(true);
+                    //   await onAutoLoadQuestionByCollection(handle);
+                    //   setQuestionAutoLoading(false);
+                    // }
+
+                    setQuestionAutoLoading(true);
+                    await onAutoLoadQuestionByCollection(handle); 
+                    setQuestionAutoLoading(false);
                   } }>Select Collection</Button>
                 }
               })(collectionDefault)
