@@ -24,7 +24,7 @@ const FunnelEditContextProvider = ({ children, store, funnel_id, fc_mode }) => {
   const [ questions, setQuestions ] = useState([]);
   const [ collectionDefault, setCollectionDefault ] = useState(null); 
   const [ editItem, setEditItem ] = useState(null);
-  const [ hiddenFunnelConnectors, setHiddenFunnelConnectors ] = useState((fc_mode == true ? true : false));
+  const [ hiddenFunnelConnectors, setHiddenFunnelConnectors ] = useState((fc_mode == 'true' ? true : false));
   
   const [nodes, setNodes, onNodesChange] = useNodesState([ 
     { id: '__START__', type: 'StartNode', position: { x: 0, y: 0 }, data: { label: 'Start' } },

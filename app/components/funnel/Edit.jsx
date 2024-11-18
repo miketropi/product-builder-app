@@ -95,12 +95,13 @@ export default function Edit() {
             <TabItem name={ 'Build Questions' }>
               <BuildQuestions />
             </TabItem> 
+            {/* { console.log(hiddenFunnelConnectors, typeof hiddenFunnelConnectors) } */}
             {
-              hiddenFunnelConnectors 
-                ? '' 
-                : <TabItem name={ 'Build Funnel Connectors' }>
-                  <BuildFunnelConnectors />
-                </TabItem> 
+              (hiddenFunnelConnectors == true 
+              ? <TabItem name={ 'Build Funnel Connectors' }>
+                <BuildFunnelConnectors />
+              </TabItem> 
+              : '') 
             }
             
           </Tab>
