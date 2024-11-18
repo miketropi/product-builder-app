@@ -6,7 +6,7 @@ import { DeleteIcon } from '@shopify/polaris-icons';
 import QuestionEditTool from "./QuestionEditTool";
 
 export default function QuestionDesign() {
-  const { editItem, fn } = useFunnelEditContext();
+  const { editItem, fn, lock, setLock } = useFunnelEditContext();
   const { onUpdateQuestionField, onDeleteQuestion } = fn;
 
   if(!editItem) return <div></div>
@@ -21,7 +21,11 @@ export default function QuestionDesign() {
 
           onDeleteQuestion(editItem.__key)
         } } >Delete Question</Button>
-        <QuestionEditTool />
+
+        {
+          lock != true && <QuestionEditTool />
+        }
+        
       </div>
     </div>
 

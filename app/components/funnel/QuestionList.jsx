@@ -62,11 +62,12 @@ export default function QuestionList() {
                             provided.draggableProps.style
                           )}
                         >
-                          {
+                          {/* {
                             lock != true 
-                              ? <span {...provided.dragHandleProps} ><Icon source={ DragHandleIcon } /></span> 
+                              ?  
                               : ''
-                          }
+                          } */}
+                          <span className={ [(lock ? '__disable' : '')].join(' ') }  {...provided.dragHandleProps} ><Icon source={ DragHandleIcon } /></span>
                           <span className="__q-name" title={ question }>
                             { __q_index + 1 }. { question }
                           </span>

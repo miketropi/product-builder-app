@@ -13,7 +13,7 @@ const { set } = _;
 
 const FunnelEditContext = createContext(null);
 
-const FunnelEditContextProvider = ({ children, store, funnel_id }) => {
+const FunnelEditContextProvider = ({ children, store, funnel_id, fc_mode }) => {
   const { APP_API_KEY, APP_API_ENDPOINT } = useOutletContext();
   const API_FA = useRef(null);
 
@@ -24,7 +24,8 @@ const FunnelEditContextProvider = ({ children, store, funnel_id }) => {
   const [ questions, setQuestions ] = useState([]);
   const [ collectionDefault, setCollectionDefault ] = useState(null); 
   const [ editItem, setEditItem ] = useState(null);
-
+  const [ hiddenFunnelConnectors, setHiddenFunnelConnectors ] = useState((fc_mode == true ? true : false));
+  
   const [nodes, setNodes, onNodesChange] = useNodesState([ 
     { id: '__START__', type: 'StartNode', position: { x: 0, y: 0 }, data: { label: 'Start' } },
   ]);
@@ -174,6 +175,14 @@ const FunnelEditContextProvider = ({ children, store, funnel_id }) => {
     __questions.splice(__index, 1);
 
     setQuestions(__questions);
+
+    if(lock == true) {
+      // console.log('onDeleteQuestion', collectionDefault?.handle, __questions, lock);
+      const { nodes, edges } = onBuildDataFunnelAutoConnect(__questions, collectionDefault?.handle);
+      setNodes(nodes);
+      setEdges(edges);
+    }
+    
   }
 
   const onSave = async () => {
@@ -413,6 +422,7 @@ const FunnelEditContextProvider = ({ children, store, funnel_id }) => {
     isSave, setIsSave,
     collectionDefault, setCollectionDefault,
     lock, setLock,
+    hiddenFunnelConnectors, setHiddenFunnelConnectors,
     fn: {
       onAddQuestion,
       onAddField,

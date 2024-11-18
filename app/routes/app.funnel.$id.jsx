@@ -8,6 +8,7 @@ import { getStore } from "../libs/shopifyApi";
 import Edit from '../components/funnel/Edit';
 import ButtonSaveFunnel from '../components/funnel/ButtonSaveFunnel';
 
+
 import appStyles from "../styles/app.css?url";
 export const links = () => [
   { rel: "stylesheet", href: appStyles },
@@ -16,14 +17,19 @@ export const links = () => [
 export const loader = async ({ params, request }) => {
   const { admin } = await authenticate.admin(request);
   const store = await getStore(admin.graphql);
-  return { ...params, store }
+
+  const url = new URL(request.url);
+  const fcMode = url.searchParams.get("fc");
+
+  console.log(fcMode);
+  return { ...params, store, fcMode }
 } 
 
 export default function() {
   const navigate = useNavigate();
-  const { store, id } = useLoaderData();
+  const { store, id, fcMode } = useLoaderData();
   
-  return <FunnelEditContextProvider store={ store } funnel_id={ id }>
+  return <FunnelEditContextProvider store={ store } funnel_id={ id } fc_mode={ fcMode }>
     <Page>
       <Heading 
         backButtonEnable={ true } 

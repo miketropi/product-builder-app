@@ -1090,6 +1090,10 @@ li.__menu-item_type____BLOCK_MENU_IMAGE__ > a .__menu-item-name .dropdown-icon {
   background: #673AB7;
   color: white;
 }
+.build-questions-comp__list-items ul.__q-list .__q-item .__disable {
+  pointer-events: none;
+  opacity: 0.2;
+}
 .__q-fieldset {
   background: #f2f2f2;
   border-radius: 8px;

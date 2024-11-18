@@ -11,7 +11,7 @@ import { DeleteIcon } from '@shopify/polaris-icons';
 export default function Edit() { 
   const shopify = useAppBridge();
   const [ questionAutoLoading, setQuestionAutoLoading ] = useState(false);
-  const { tabActive, setTabActive, title, setTitle, collectionDefault, setCollectionDefault, fn } = useFunnelEditContext(); 
+  const { tabActive, setTabActive, title, setTitle, collectionDefault, setCollectionDefault, fn, hiddenFunnelConnectors } = useFunnelEditContext(); 
   const { onAutoLoadQuestionByCollection } = fn;
   
   return <ClientOnly>
@@ -95,9 +95,14 @@ export default function Edit() {
             <TabItem name={ 'Build Questions' }>
               <BuildQuestions />
             </TabItem> 
-            <TabItem name={ 'Build Funnel Connectors' }>
-              <BuildFunnelConnectors />
-            </TabItem> 
+            {
+              hiddenFunnelConnectors 
+                ? '' 
+                : <TabItem name={ 'Build Funnel Connectors' }>
+                  <BuildFunnelConnectors />
+                </TabItem> 
+            }
+            
           </Tab>
         </>
       }

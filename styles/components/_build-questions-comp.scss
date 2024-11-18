@@ -53,6 +53,11 @@
           background: #673AB7;
           color: white;
         }
+
+        .__disable {
+          pointer-events: none;
+          opacity: .2;
+        }
       }
     }
   }
