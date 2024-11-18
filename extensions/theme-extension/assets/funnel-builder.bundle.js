@@ -644,6 +644,7 @@ function SelectBox(_ref4) {
     _useState2 = _slicedToArray(_useState, 2),
     __value = _useState2[0],
     set__Value = _useState2[1];
+  var t = typeof template == 'string' ? template : template[0];
   var isSelected_Fn = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(function (oValue) {
     return __value.includes(oValue);
   }, [__value]);
@@ -667,7 +668,7 @@ function SelectBox(_ref4) {
     onChange(multiple ? __newValue : __newValue.join(','));
   };
   var templateTags = function templateTags() {
-    var isCol = ['2-cols-square-472_472', '2-cols-portrait-472_630', '2-cols-landscape-472_314', '3-cols-square-309_309', '3-cols-portrait-309_463', '3-cols-landscape-309_206', '4-cols-square-228_228', '4-cols-portrait-228_342', '4-cols-landscape-228_152'].includes(template[0]);
+    var isCol = ['2-cols-square-472_472', '2-cols-portrait-472_630', '2-cols-landscape-472_314', '3-cols-square-309_309', '3-cols-portrait-309_463', '3-cols-landscape-309_206', '4-cols-square-228_228', '4-cols-portrait-228_342', '4-cols-landscape-228_152'].includes(t);
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
       children: function (__isCol) {
         return __isCol ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
@@ -863,9 +864,10 @@ function SelectBox(_ref4) {
   }(optCount);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("ul", {
     className: ['select-box-component', function () {
-      return template[0] == 'no-image' ? "__col-".concat(col) : '';
-    }(), "__temp__".concat(template)].join(' '),
-    children: __templates[template]()
+      // console.log();
+      return t == 'no-image' ? "__col-".concat(col) : '';
+    }(), "__temp__".concat(t)].join(' '),
+    children: __templates[t]()
   });
 }
 

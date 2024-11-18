@@ -3,7 +3,7 @@
 client_id = "a31790a79c946c76cf232419a0ea906e"
 name = "BM Insanity Dev"
 handle = "bm-insanity-dev"
-application_url = "https://eligibility-commissioner-basically-households.trycloudflare.com"
+application_url = "https://m-ones-sku-beats.trycloudflare.com"
 embedded = true
 
 [build]
@@ -21,16 +21,16 @@ scopes = "read_content,read_customers,read_files,read_metaobjects,read_orders,re
 
 [auth]
 redirect_urls = [
-  "https://eligibility-commissioner-basically-households.trycloudflare.com/auth/callback",
-  "https://eligibility-commissioner-basically-households.trycloudflare.com/auth/shopify/callback",
-  "https://eligibility-commissioner-basically-households.trycloudflare.com/api/auth/callback"
+  "https://m-ones-sku-beats.trycloudflare.com/auth/callback",
+  "https://m-ones-sku-beats.trycloudflare.com/auth/shopify/callback",
+  "https://m-ones-sku-beats.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
 api_version = "2024-04"
 
 [app_proxy]
-url = "https://eligibility-commissioner-basically-households.trycloudflare.com/app/proxy"
+url = "https://m-ones-sku-beats.trycloudflare.com/app/proxy"
 subpath = "bmapp"
 prefix = "apps"
 
