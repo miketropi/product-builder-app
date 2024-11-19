@@ -528,14 +528,6 @@ function RedirectNode(_ref) {
         window.location.href = makeRedirectUrl();
       },
       children: "See Results"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("a", {
-      href: "#",
-      className: "r__start-again",
-      onClick: function onClick(e) {
-        e.preventDefault();
-        location.reload();
-      },
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(StartAgainIcon, {}), " Start again"]
     })]
   });
 }

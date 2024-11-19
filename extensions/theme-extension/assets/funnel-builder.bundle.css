@@ -35,9 +35,10 @@
 }
 .question-frame .question-text {
   font-size: 24px;
-  color: #006875;
-  font-weight: normal;
+  color: #004F59;
+  font-weight: 600;
   margin: 1em 0 0.5em;
+  letter-spacing: 0;
 }
 .question-frame .question-content {
   margin: 0 0 1.5em;
@@ -797,6 +798,7 @@ ul.select-box-component .tag-template--col .__label {
 ul.select-box-component .tag-template--col.__no-image .__label {
   display: block;
   letter-spacing: 0;
+  text-align: center;
 }
 ul.select-box-component.__temp__list-1-column {
   display: grid;
@@ -969,6 +971,8 @@ ul.select-box-component.__temp__list-4-columns .tag-template--list:hover {
   grid-template-columns: minmax(auto, 130px) 1fr minmax(auto, 130px);
   width: 100%;
   align-items: center;
+  width: 960px;
+  max-width: 100%;
 }
 @media (max-width: 768px) {
   .q-heading {
@@ -988,6 +992,7 @@ ul.select-box-component.__temp__list-4-columns .tag-template--list:hover {
   color: #747474;
   font-size: 16px;
   display: flex;
+  font-weight: 600;
   gap: 6px;
   align-items: center;
 }
