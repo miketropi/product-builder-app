@@ -368,7 +368,7 @@ ul.select-box-component.__temp__2-cols-square-472_472 .tag-template--col .__icon
     display: block;
   }
 }
-ul.select-box-component.__temp__2-cols-portrait-472_630 {
+ul.select-box-component.__temp__2-cols-portrait-472_708 {
   display: grid;
   grid-template-columns: repeat(2, minmax(auto, 472px));
   gap: 16px;
@@ -376,26 +376,26 @@ ul.select-box-component.__temp__2-cols-portrait-472_630 {
   justify-content: center;
 }
 @media (max-width: 768px) {
-  ul.select-box-component.__temp__2-cols-portrait-472_630 {
+  ul.select-box-component.__temp__2-cols-portrait-472_708 {
     grid-template-columns: repeat(2, minmax(auto, 472px));
   }
 }
 @media (max-width: 425px) {
-  ul.select-box-component.__temp__2-cols-portrait-472_630 {
+  ul.select-box-component.__temp__2-cols-portrait-472_708 {
     grid-template-columns: repeat(1, minmax(auto, 460px));
   }
 }
-ul.select-box-component.__temp__2-cols-portrait-472_630 .tag-template--col {
-  height: 630px;
+ul.select-box-component.__temp__2-cols-portrait-472_708 .tag-template--col {
+  height: 708px;
   max-width: 100%;
   border-radius: 4px;
   border: solid 1px #eeeeee;
 }
-ul.select-box-component.__temp__2-cols-portrait-472_630 .tag-template--col .__icon {
+ul.select-box-component.__temp__2-cols-portrait-472_708 .tag-template--col .__icon {
   display: none;
 }
 @media (max-width: 425px) {
-  ul.select-box-component.__temp__2-cols-portrait-472_630 .tag-template--col {
+  ul.select-box-component.__temp__2-cols-portrait-472_708 .tag-template--col {
     height: auto !important;
     background: #FAFAFA !important;
     display: flex;
@@ -407,14 +407,14 @@ ul.select-box-component.__temp__2-cols-portrait-472_630 .tag-template--col .__ic
     justify-content: space-between;
     margin: 0;
   }
-  ul.select-box-component.__temp__2-cols-portrait-472_630 .tag-template--col .__label {
+  ul.select-box-component.__temp__2-cols-portrait-472_708 .tag-template--col .__label {
     display: block;
     position: initial;
     transform: none;
     -webkit-transform: none;
     color: #19242D;
   }
-  ul.select-box-component.__temp__2-cols-portrait-472_630 .tag-template--col .__icon {
+  ul.select-box-component.__temp__2-cols-portrait-472_708 .tag-template--col .__icon {
     display: block;
   }
 }

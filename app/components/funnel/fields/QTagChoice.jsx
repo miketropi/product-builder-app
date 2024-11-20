@@ -66,7 +66,8 @@ export default function QTagChoice(props) {
           { label: 'No image', value: 'no-image' },
 
           { label: '2 cols - Square 472x472', value: '2-cols-square-472_472' },
-          { label: '2 cols - Portrait 472x630', value: '2-cols-portrait-472_630' },
+          // { label: '2 cols - Portrait 472x630', value: '2-cols-portrait-472_630' },
+          { label: '2 cols - Portrait 472x708', value: '2-cols-portrait-472_708' },
           { label: '2 cols - Landscape 472x314', value: '2-cols-landscape-472_314' },
 
           { label: '3 cols - Square 309x309', value: '3-cols-square-309_309' },

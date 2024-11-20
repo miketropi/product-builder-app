@@ -16,3 +16,4 @@ package-lock.json
 yarn.lock
 fly.toml
 extensions/theme-extension/assets/manifest.js
+.DS_Store
