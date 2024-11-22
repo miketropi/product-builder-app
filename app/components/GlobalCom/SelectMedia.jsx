@@ -56,10 +56,10 @@ export default function SelectMedia({ title, onSelect }) {
             setSearchText(value);
           } }
           loading={ loading }
-          images={ images.map(i => {
+          images={ images.filter(i => i?.node?.id).map(i => {
             i.node.id = i.node.image.originalSrc; 
-            return i.node;
-          }) } 
+            return i.node; 
+          }) }   
           selectedItems={ selectedItems } 
           onSelectionChange={ (e) => {
             return setSelectedItems(e)
