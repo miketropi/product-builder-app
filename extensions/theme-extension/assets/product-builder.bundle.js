@@ -2352,6 +2352,8 @@ var toPrice = function toPrice(price) {
   var money_format = window.__MONEY_FORMAT;
   var __price = new Intl.NumberFormat('en-US', {}).format(price);
   var replaceMap = {
+    '{{ amount }}': __price,
+    '{{amount}}': __price,
     '{{ amount_no_decimals }}': __price,
     '{{amount_no_decimals}}': __price,
     '{{ amount_no_decimals_with_comma_separator }}': __price,
