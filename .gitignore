@@ -16,4 +16,6 @@ package-lock.json
 yarn.lock
 fly.toml
 extensions/theme-extension/assets/manifest.js
+extensions/theme-extension/assets/funnel-builder.bundle.js.LICENSE.txt
+extensions/theme-extension/assets/product-builder.bundle.js.LICENSE.txt
 .DS_Store
