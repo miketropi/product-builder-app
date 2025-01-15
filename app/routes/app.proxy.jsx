@@ -1,6 +1,7 @@
 import { json } from "@remix-run/node";
 import { authenticate } from "../shopify.server";
 import FunnelProxyApiHelper from "../libs/FunnelProxyApiHelper";
+import ProductBuilderProxyApiHelper from '../libs/ProductBuilderProxyApiHelper';
 
 const __QUERY_WITH_COLLECTION = `query ProductFilterFunnel($collectionHandle: String!, $filters: [ProductFilter!]) {
   collection(handle: $collectionHandle) {
@@ -60,13 +61,24 @@ export async function action({ request }) {
   const { admin, session, storefront } = await authenticate.public.appProxy(request);
   const formData = await request.json();
   const { proccess, args } = formData;
-  
+  // console.log(formData);
   switch(proccess) {
     case 'funnel':
-      const F = new FunnelProxyApiHelper(storefront.graphql);
-      const { task, data } = args;
-      const res = F[task](data); 
-      return res; 
+      {
+        const F = new FunnelProxyApiHelper(storefront.graphql);
+        const { task, data } = args;
+        const res = F[task](data); 
+        return res; 
+      }
+      break;
+
+    case 'productBuilder':
+      {
+        const PB = new ProductBuilderProxyApiHelper(storefront.graphql);
+        const { task, data } = args;
+        const res = PB[task](data); 
+        return res; 
+      }
       break;
 
     case 'test_query':

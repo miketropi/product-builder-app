@@ -3,7 +3,7 @@
 client_id = "a31790a79c946c76cf232419a0ea906e"
 name = "BM Insanity Dev"
 handle = "bm-insanity-dev"
-application_url = "https://fuel-late-claire-highest.trycloudflare.com"
+application_url = "https://1271-2001-ee0-4b4e-bb0-742d-d64d-a040-c409.ngrok-free.app"
 embedded = true
 
 [build]
@@ -21,16 +21,16 @@ scopes = "read_content,read_customers,read_files,read_metaobjects,read_orders,re
 
 [auth]
 redirect_urls = [
-  "https://fuel-late-claire-highest.trycloudflare.com/auth/callback",
-  "https://fuel-late-claire-highest.trycloudflare.com/auth/shopify/callback",
-  "https://fuel-late-claire-highest.trycloudflare.com/api/auth/callback"
+  "https://1271-2001-ee0-4b4e-bb0-742d-d64d-a040-c409.ngrok-free.app/auth/callback",
+  "https://1271-2001-ee0-4b4e-bb0-742d-d64d-a040-c409.ngrok-free.app/auth/shopify/callback",
+  "https://1271-2001-ee0-4b4e-bb0-742d-d64d-a040-c409.ngrok-free.app/api/auth/callback"
 ]
 
 [webhooks]
 api_version = "2024-04"
 
 [app_proxy]
-url = "https://fuel-late-claire-highest.trycloudflare.com/app/proxy"
+url = "https://1271-2001-ee0-4b4e-bb0-742d-d64d-a040-c409.ngrok-free.app/app/proxy"
 subpath = "bmapp"
 prefix = "apps"
 
