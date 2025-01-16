@@ -1,0 +1,28 @@
+# fly.toml app configuration file generated for bm-insanity on 2024-05-25T10:53:23+07:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'bm-insanity'
+primary_region = 'sin'
+
+[build]
+
+[http_service]
+  internal_port = 8081
+  force_https = true
+  auto_stop_machines = "off"
+  auto_start_machines = true
+  min_machines_running = 1
+  processes = ['app']
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
+
+[env]
+  PORT = "8081"
+  SHOPIFY_APP_URL = "https://my-app.fly.dev"
+  SHOPIFY_API_KEY = "cd5f35517b5f119a3f2166110eda635a"
+  SCOPES = "read_files,read_metaobjects,read_products,write_files,write_metaobjects,write_products"  
