@@ -57,40 +57,6 @@ export default class ApiForApp {
   }
 
   /**
-   * Menu Builder API
-   */
-  async saveMenuBuilder(data) {
-    data.store_id = this.__STORE_ID; // push store id 
-    const res = await this.__request('/content/item/menubuilder', {
-      data
-    }, 'POST');
-    return res;
-  }
-
-  async loadMenuBuilderById(menuID) {
-    try {
-      const res = await this.__request(`/content/item/menubuilder/${ menuID }`);
-      return res;
-    } catch(err) {
-      return false
-    }
-  }
-
-  async getMenuBuilderList(paged = 1, limit = 20) {
-    let skip = (paged - 1) * limit;
-    const res = await this.__request(`/content/items/menubuilder?limit=${ limit }&skip=${ skip }&filter={"store_id": "${ this.__STORE_ID }"}`);
-    return res;
-  }
-
-  async deleteMenuItem(menuID) {
-    const res = await this.__request(`/content/item/menubuilder/${ menuID }`, {}, 'DELETE');
-    return res;
-  }
-  /**
-   * End Menu Builder API
-   */
-
-  /**
    * Funnel
    */
   async saveFunnel(data) {

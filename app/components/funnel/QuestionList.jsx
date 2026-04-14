@@ -3,7 +3,7 @@ import { useFunnelEditContext } from '../../context/FunnelEditContext';
 import { Icon, Button } from '@shopify/polaris';
 import { DragHandleIcon, PlusIcon } from '@shopify/polaris-icons';
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import StrictModeDroppable from '../menu-builder/StrictModeDroppable';
+import StrictModeDroppable from '../StrictModeDroppable';
 
 const getListStyle = isDraggingOver => ({
   // background: isDraggingOver ? "lightblue" : "white",

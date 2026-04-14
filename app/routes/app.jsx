@@ -29,7 +29,6 @@ export default function App() {
         </Link>
         {/* <Link to="/app/additional">Additional page</Link> */}
         <Link to="/app/product-builder">Product Builder</Link>
-        <Link to="/app/menu-builder">Menu Builder</Link>
         <Link to="/app/funnel">Funnel</Link>
       </ui-nav-menu>
       <Outlet context={ { apiKey, APP_API_KEY, APP_API_ENDPOINT } } />

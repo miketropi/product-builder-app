@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { TextField, Text, Icon, Button } from '@shopify/polaris';
 import { DragHandleIcon, DeleteIcon, PlusIcon } from '@shopify/polaris-icons';
-import StrictModeDroppable from "../../menu-builder/StrictModeDroppable";
+import StrictModeDroppable from "../../StrictModeDroppable";
 import ToggleField from "./ToggleField";
 
 const getListStyle = isDraggingOver => ({

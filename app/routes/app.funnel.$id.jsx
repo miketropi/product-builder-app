@@ -1,6 +1,6 @@
 import { FunnelEditContextProvider } from '../context/FunnelEditContext';
 import { Page, Button, BlockStack, Layout } from "@shopify/polaris";
-import Heading from '../components/menu-builder/Heading';
+import Heading from '../components/Heading';
 import { useLoaderData, useActionData } from "@remix-run/react";
 import { authenticate } from "../shopify.server";
 import { useNavigate } from "@remix-run/react";
