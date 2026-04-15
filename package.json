@@ -4,9 +4,11 @@
   "scripts": {
     "build": "vite build && vite build --ssr",
     "dev": "shopify app dev",
+    "test-dev": "shopify app dev --config shopify.app.bm-insanity-dev.toml",
     "config:link": "shopify app config link",
     "generate": "shopify app generate",
     "deploy": "shopify app deploy",
+    "test-deploy": "shopify app deploy --config shopify.app.bm-insanity-dev.toml",
     "config:use": "shopify app config use",
     "env": "shopify app env",
     "start": "remix-serve ./build/server/index.js",

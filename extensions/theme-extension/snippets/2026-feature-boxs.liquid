@@ -1,0 +1,40 @@
+{% if section.settings.icon_1 != blank or section.settings.icon_2 != blank or section.settings.icon_3 != blank %}
+<div class="margin-top margin-medium feature-boxs">
+  <div class="w-layout-grid contact18_grid-list">
+      {% if section.settings.icon_1 != blank %}
+        <div class="contact18_item">
+          <div class="contact18_icon-wrapper">
+            <div class="icon-embed-xsmall w-embed">
+               <img src={{ section.settings.icon_1 | image_url: width: 42 }} alt="{{ section.settings.description_1 }}" width="21" height="20" loading="lazyload">
+            </div>
+          </div>
+          <div class="f-text-description">{{ section.settings.description_1 }}</div>
+        </div>
+      {% endif %}
+
+    {% if section.settings.icon_2 != blank %}
+      <div class="divider-vertical"></div>
+      <div class="contact18_item">
+        <div class="contact18_icon-wrapper">
+            <div class="icon-embed-xsmall w-embed">
+               <img src={{ section.settings.icon_2 | image_url: width: 42 }} alt="{{ section.settings.description_2 }}" width="21" height="20" loading="lazyload">
+            </div>
+          </div>
+         <div class="f-text-description">{{ section.settings.description_2 }}</div>
+      </div>
+      {% endif %}
+      
+      {% if section.settings.icon_3 != blank %}
+        <div class="divider-vertical"></div>
+        <div class="contact18_item">
+          <div class="contact18_icon-wrapper">
+            <div class="icon-embed-xsmall w-embed">
+               <img src={{ section.settings.icon_3 | image_url: width: 42 }} alt="{{ section.settings.description_3 }}" width="21" height="20" loading="lazyload">
+            </div>
+          </div>
+           <div class="f-text-description">{{ section.settings.description_3 }}</div>
+        </div>
+      {% endif %}
+  </div>
+</div>
+{% endif %}

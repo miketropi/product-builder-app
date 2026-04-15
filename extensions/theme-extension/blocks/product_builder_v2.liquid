@@ -1,0 +1,304 @@
+{%- assign _moniker = block.settings.moniker | default: _moniker -%}
+
+<div
+  id="__PRODUCT_BUILDER_V2_APP__"
+  data-store-id="{{ shop.id }}"
+  data-product-id="{{ product.id }}"
+  data-product-url="{{ product.url }}">
+  <div class="pb2-app">
+    <div class="pb2-container">
+      <div class="pb2__image-col">
+        <div class="__product-images-v2">
+          <div class="__main-image __p-feature-image">
+            {{ product.featured_image | image_url: width: 600 | image_tag: alt: product.featured_image.alt, loading: 'eager' }}
+          </div>
+        </div>
+      </div>
+      <div class="pb2__meta-col">
+        <div class="pb2__heading">
+          <div class="pb2__vendor">{{ product.vendor }}</div>
+          <div class="pb2__moniker">{{ _moniker }}</div>
+          {% assign prod_title = product.title | split: " " | first %}
+          <div class="margin-bottom margin-medium b-border-bottom">
+             <div class="p-fullname-combo {% unless _moniker %}p-fullname-heading{% endunless %}">
+                {% if _moniker != blank %}
+                  <h1 class="p-fullname">
+                    {% if _moniker %}
+                      {{ product.title | remove_first: prod_title }}
+                    {% else %}
+                      {{ product.title }}
+                    {% endif %}
+                  </h1>
+                {% else %}
+                    <h1 class="p-fullname">
+                    {% if _moniker %}
+                      {{ product.title | remove_first: prod_title }}
+                    {% else %}
+                      {{ product.title }}
+                    {% endif %}
+                  </h1>
+                {% endif %}
+              </div>
+              <div class="pb2__sku">SKU {{ product.selected_or_first_available_variant.sku}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{%- comment -%} ── Feature boxes – rendered between ATC and accordions ── {%- endcomment -%}
+{%- if block.settings.icon_1 != blank or block.settings.icon_2 != blank or block.settings.icon_3 != blank -%}
+<div id="pb2-feature-boxes-{{ block.id }}" class="pb2-feature-boxes" style="display:none">
+  <div class="pb2-feature-boxes__grid">
+
+    {%- if block.settings.icon_1 != blank -%}
+    <div class="pb2-feature-boxes__item">
+      <div class="pb2-feature-boxes__icon">
+        <img src="{{ block.settings.icon_1 | image_url: width: 48 }}" alt="{{ block.settings.description_1 }}" width="24" height="24" loading="lazy">
+      </div>
+      <p class="pb2-feature-boxes__label">{{ block.settings.description_1 }}</p>
+    </div>
+    {%- endif -%}
+
+    {%- if block.settings.icon_2 != blank -%}
+    <div class="pb2-feature-boxes__item">
+      <div class="pb2-feature-boxes__icon">
+        <img src="{{ block.settings.icon_2 | image_url: width: 48 }}" alt="{{ block.settings.description_2 }}" width="24" height="24" loading="lazy">
+      </div>
+      <p class="pb2-feature-boxes__label">{{ block.settings.description_2 }}</p>
+    </div>
+    {%- endif -%}
+
+    {%- if block.settings.icon_3 != blank -%}
+    <div class="pb2-feature-boxes__item">
+      <div class="pb2-feature-boxes__icon">
+        <img src="{{ block.settings.icon_3 | image_url: width: 48 }}" alt="{{ block.settings.description_3 }}" width="24" height="24" loading="lazy">
+      </div>
+      <p class="pb2-feature-boxes__label">{{ block.settings.description_3 }}</p>
+    </div>
+    {%- endif -%}
+
+  </div>
+</div>
+{%- endif -%}
+
+{%- comment -%} ── Product tabs accordion – rendered below the Add to Cart button ── {%- endcomment -%}
+
+{%- comment -%} Build Shipping tab content (richtext + page) {%- endcomment -%}
+{%- capture tab_shipping_content -%}
+  {{ block.settings.shipping_content }}
+  {{ block.settings.shipping_page.content }}
+{%- endcapture -%}
+
+<div class="pb2-tabs" id="pb2-tabs-{{ block.id }}" style="display:none">
+
+  {%- comment -%} Overview – always shown, content = product description {%- endcomment -%}
+  <div class="pb2-tab">
+    <button type="button" class="pb2-tab__btn" aria-expanded="false">
+      <span>Overview</span>
+      <svg class="pb2-tab__chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M3 5.5L8 10.5L13 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <div class="pb2-tab__body">
+      <div class="pb2-tab__content">{{ product.content }}</div>
+    </div>
+  </div>
+
+  {%- comment -%} Specifications – shown when checkbox is enabled (default: true) {%- endcomment -%}
+  {%- if block.settings.show_specifications -%}
+  <div class="pb2-tab">
+    <button type="button" class="pb2-tab__btn" aria-expanded="false">
+      <span>Specifications</span>
+      <svg class="pb2-tab__chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M3 5.5L8 10.5L13 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <div class="pb2-tab__body">
+      <div class="pb2-tab__content">
+        {%- render '2025-sinks-specifications' -%}
+      </div>
+    </div>
+  </div>
+  {%- endif -%}
+
+  {%- comment -%} Shipping Information – shown when richtext content or a page is selected {%- endcomment -%}
+  {%- if tab_shipping_content != blank -%}
+  <div class="pb2-tab">
+    <button type="button" class="pb2-tab__btn" aria-expanded="false">
+      <span>Shipping Information</span>
+      <svg class="pb2-tab__chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M3 5.5L8 10.5L13 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <div class="pb2-tab__body">
+      <div class="pb2-tab__content">{{ tab_shipping_content }}</div>
+    </div>
+  </div>
+  {%- endif -%}
+
+</div>
+
+{%- capture PRODUCT_BUILDER_V2__JS_META_DATA -%}
+{
+  {% for variant in product.variants %}
+  "gid://shopify/ProductVariant/{{ variant.id }}": "{{ variant.price | money }}",
+  {% endfor %}
+}
+{%- endcapture %}
+
+{%- assign _vendor_handle = product.vendor | handle -%}
+{%- assign _vendor_collection = collections[_vendor_handle] -%}
+<script>
+  window.__P_{{ product.id }} = {{ PRODUCT_BUILDER_V2__JS_META_DATA }};
+  window.__MONEY_FORMAT = "{{ shop.money_format }}";
+  window.__P_title = `{{ product.title }}`;
+  window.__P_moniker = `{{ _moniker }}`;
+  window.__P_vendor = `{{ product.vendor }}`;
+  window.__P_vendor_url = `{% if _vendor_collection.products.size > 0 %}{{ _vendor_collection.url }}{% endif %}`;
+  window.__P_sku = `{{ product.selected_or_first_available_variant.sku }}`;
+  window.__P_content = `{{ product.content }}`;
+  window.__P_fimage = `{{ product.featured_image | image_url: width: 600 }}`;
+</script>
+
+<script>
+  (function () {
+    var FEATURE_ID      = 'pb2-feature-boxes-{{ block.id }}';
+    var FEATURE_MOUNT   = 'pb2-feature-boxes-mount';
+    var TABS_ID         = 'pb2-tabs-{{ block.id }}';
+    var TABS_MOUNT      = 'pb2-accordion-mount';
+
+    function initAccordion(tabs) {
+      tabs.querySelectorAll('.pb2-tab__btn').forEach(function (btn) {
+        var body = btn.nextElementSibling;
+        body.style.maxHeight = '0'; // closed by default
+        btn.addEventListener('click', function () {
+          var isOpen = this.getAttribute('aria-expanded') === 'true';
+          this.setAttribute('aria-expanded', String(!isOpen));
+          body.style.maxHeight = isOpen ? '0' : body.scrollHeight + 'px';
+        });
+      });
+    }
+
+    /*
+     * Try to move both Liquid-rendered nodes into their React mount points.
+     * Returns true only when both mounts are found (feature boxes are optional).
+     */
+    function mountAll() {
+      var tabsMount    = document.getElementById(TABS_MOUNT);
+      var featureMount = document.getElementById(FEATURE_MOUNT);
+
+      // Both mount points must exist before we proceed
+      if (!tabsMount || !featureMount) return false;
+
+      // Move feature boxes (only if present in the DOM)
+      var featureBoxes = document.getElementById(FEATURE_ID);
+      if (featureBoxes && !featureMount.hasChildNodes()) {
+        featureBoxes.style.display = '';
+        featureMount.appendChild(featureBoxes);
+      }
+
+      // Move accordion tabs
+      var tabs = document.getElementById(TABS_ID);
+      if (tabs && !tabsMount.hasChildNodes()) {
+        tabs.style.display = '';
+        tabsMount.appendChild(tabs);
+        initAccordion(tabs);
+      }
+
+      return true;
+    }
+
+    // Try immediately; if React hasn't mounted yet, watch for it
+    if (!mountAll()) {
+      var root = document.getElementById('__PRODUCT_BUILDER_V2_APP__');
+      if (root) {
+        var observer = new MutationObserver(function () {
+          if (mountAll()) observer.disconnect();
+        });
+        observer.observe(root, { childList: true, subtree: true });
+      }
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Product Builder V2",
+  "target": "section",
+  "javascript": "product-builder-v2.bundle.js",
+  "stylesheet": "product-builder-v2.bundle.css",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Product"
+    },
+    {
+      "type": "text",
+      "id": "moniker",
+      "label": "Moniker",
+      "info": "Overrides the product metafield value. Leave blank to use the metafield."
+    },
+    {
+      "type": "header",
+      "content": "Feature Boxs"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_1",
+      "label": "Icon 1"
+    },
+    {
+      "type": "text",
+      "id": "description_1",
+      "label": "Description 1",
+      "default": "This is description"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_2",
+      "label": "Icon 2"
+    },
+    {
+      "type": "text",
+      "id": "description_2",
+      "label": "Description 2",
+      "default": "This is description"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_3",
+      "label": "Icon 3"
+    },
+    {
+      "type": "text",
+      "id": "description_3",
+      "label": "Description 3",
+      "default": "This is description"
+    },
+    {
+      "type": "header",
+      "content": "Tabs"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_specifications",
+      "label": "Show Specifications tab",
+      "default": true
+    },
+    {
+      "type": "richtext",
+      "id": "shipping_content",
+      "label": "Shipping Information Content",
+      "info": "Optional – combined with the page below"
+    },
+    {
+      "type": "page",
+      "id": "shipping_page",
+      "label": "Shipping Information Page",
+      "info": "Select a page whose content will appear in the Shipping Information tab"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,86 @@
+{% if widget_type == 'judgeme_preview_badge' %}
+
+  {% if product.metafields.reviews.rating_count != blank %}
+  <div class="product-header6_price-wrapper product-review-wrapper">
+      <div style='{{ jm_style }}' class='jdgm-widget jdgm-preview-badge product-header6_reviews-wrapper' data-id='{{ product.id }}'
+      data-template='{% if concierge_install == true or concierge_install == nil %}{{ template }}{% else %}manual-installation{% endif %}'
+      data-auto-install='{% if auto_install != nil %}{{ auto_install }}{% else %}false{% endif %}'>
+        {{ product.metafields.judgeme.badge }}
+      </div>
+  </div>
+  {% else %}
+    <style>
+      .product-header6_content-inner-wrapper .jdgm-write-rev-link.jdgm-write-rev-link{display:none  !important;}
+      .product-header6_content-inner-wrapper .jdgm-all-reviews__summary{display:flex;gap:5px;}
+      .product-header6_content-inner-wrapper .jdgm-star.jdgm--on:before{color:#009619!important;}
+      /* Wrapper */ .product-header6_content-inner-wrapper .custom-jdgm-summary { display: flex; align-items: center; gap: 8px; font-size: 16px; } 
+      /* Rating number */ .product-header6_content-inner-wrapper .custom-rating,.product-header6_content-inner-wrapper .custom-max { color: #000; font-size: 16px; font-style: normal; font-weight: 600; line-height: 100%; } 
+      /* Reviews link */ .product-header6_content-inner-wrapper .custom-count {  cursor: pointer; color: #006D7A; font-size: 16px; font-style: normal; font-weight: 500; line-height: 100%; text-decoration-line: underline; text-decoration-style: solid; text-decoration-skip-ink: auto; text-decoration-thickness: 8%; text-underline-offset: 23.5%; text-underline-position: from-font; } 
+      /* STAR RATING (PARTIAL FILL) */ .product-header6_content-inner-wrapper .star-rating { position: relative; display: inline-block; font-size: 16px; line-height: 1; } 
+      /* Empty stars */ .product-header6_content-inner-wrapper .star-rating::before { content: "★★★★★"; color: #d1d5db; font-size: 20px; /* gray */ } 
+      /* Filled stars */ .product-header6_content-inner-wrapper .star-rating::after { content: "★★★★★"; position: absolute; font-size: 20px; left: 0; top: 0; width: calc(var(--rating) / 5 * 100%); overflow: hidden; color: #009619; /* green */ }
+      /* Mobile */
+      @media(max-width: 768px){
+        .product-header6_content-inner-wrapper .custom-rating{font-size:14px;}
+        .product-header6_content-inner-wrapper .custom-count{font-size: 14px; font-weight:400;}
+      }
+    </style>
+    {{ shop.metafields.judgeme.all_reviews_header }}
+  {% endif %}
+
+   <script>
+      document.addEventListener('DOMContentLoaded', function () {
+
+        /* ========= PREVIEW BADGE (ROUND NUMBER) ========= */
+        const badge = document.querySelector('.jdgm-prev-badge');
+        if (badge && badge.dataset.averageRating) {
+          const raw = parseFloat(badge.dataset.averageRating);
+          if (!isNaN(raw) && raw > 0) {
+            const rounded = Math.round(raw * 10) / 10;
+            badge.dataset.averageRating = rounded.toFixed(1);
+          }
+        }
+
+        /* ========= ALL REVIEWS HEADER ========= */
+        const header = document.querySelector('.jdgm-all-reviews__header');
+        if (!header) return;
+
+        const avgRating = parseFloat(header.dataset.averageRating || 0);
+        const reviewCount = parseInt(header.dataset.numberOfReviews || 0);
+        if (!avgRating || !reviewCount) return;
+
+        // ROUND rating: 4.79 → 4.8
+        const rating = Math.round(avgRating * 10) / 10;
+        const reviews = reviewCount.toLocaleString();
+
+        const summary = header.querySelector('.jdgm-all-reviews__summary');
+        if (!summary) return;
+
+        summary.innerHTML = `
+          <div class="custom-jdgm-summary">
+            <span class="star-rating" data-rating="${rating}"></span>
+            <span class="custom-rating">${rating.toFixed(1)}</span>
+            <span class="custom-count">${reviews} reviews</span>
+          </div>
+        `;
+
+        /* ========= APPLY STAR FILL ========= */
+        document.querySelectorAll('.star-rating').forEach(el => {
+          const r = parseFloat(el.dataset.rating);
+          if (!isNaN(r)) {
+            el.style.setProperty('--rating', r);
+          }
+        });
+
+      });
+      document.addEventListener('click', function (e) {
+        const target = e.target.closest('.custom-count');
+        if (!target) return;
+
+        e.preventDefault();
+
+        // Redirect to Reviews page
+        window.location.href = '/pages/reviews';
+      });
+    </script>
+{% endif %}

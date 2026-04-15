@@ -1,33 +1,29 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
-client_id = "b32d95389dff1e07f175147fd41f1b93"
-name = "BM Insanity - Staging"
-handle = "product-builder-app-2"
-application_url = "https://product-builder-app.fly.dev/"
+client_id = "0bd251cd8e7525f9f35068927e545db3"
+name = "BM Insanity AU"
+application_url = "https://bm-insanity-au.fly.dev/"
 embedded = true
+handle = "bm-insanity-au"
 
-[build]
-automatically_update_urls_on_dev = false
-dev_store_url = "buildmatstaging.myshopify.com"
-include_config_on_deploy = true
-
-[access.admin]
-direct_api_mode = "online"
-embedded_app_direct_api_access = true
+[webhooks]
+api_version = "2024-04"
 
 [access_scopes]
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
-scopes = "read_files,read_metaobjects,read_products,write_files,write_metaobjects,write_products"
+scopes = "read_files,read_metaobjects,read_products,unauthenticated_read_product_listings,write_files,write_metaobjects,write_products"
 
 [auth]
 redirect_urls = [
-  "https://product-builder-app.fly.dev/auth/callback",
-  "https://product-builder-app.fly.dev/auth/shopify/callback",
-  "https://product-builder-app.fly.dev/api/auth/callback"
+  "https://bm-insanity-au.fly.dev/auth/callback",
+  "https://bm-insanity-au.fly.dev/auth/shopify/callback",
+  "https://bm-insanity-au.fly.dev/api/auth/callback"
 ]
 
-[webhooks]
-api_version = "2024-01"
+[app_proxy]
+url = "https://bm-insanity-au.fly.dev/app/proxy"
+subpath = "bmapp_au"
+prefix = "apps"
 
 [pos]
 embedded = false

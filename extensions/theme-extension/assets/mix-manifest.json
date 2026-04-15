@@ -1,6 +1,8 @@
 {
     "/product-builder.bundle.js": "/product-builder.bundle.js",
+    "/product-builder-v2.bundle.js": "/product-builder-v2.bundle.js",
     "/funnel-builder.bundle.js": "/funnel-builder.bundle.js",
+    "/product-builder-v2.bundle.css": "/product-builder-v2.bundle.css",
     "/product-builder.bundle.css": "/product-builder.bundle.css",
     "/funnel-builder.bundle.css": "/funnel-builder.bundle.css"
 }

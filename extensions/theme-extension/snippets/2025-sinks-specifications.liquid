@@ -1,0 +1,161 @@
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+
+<div class="specs-table">
+
+  {%- if product.vendor != blank -%}
+  <div class="specs-row">
+    <div class="specs-label">Brand:</div>
+    <div class="specs-value">{{ product.vendor }}</div>
+  </div>
+  {%- endif -%}
+
+  {%- comment -%} SKU — from variant, not metafields {%- endcomment -%}
+  {%- if current_variant.sku != blank -%}
+  <div class="specs-row">
+    <div class="specs-label">SKU</div>
+    <div class="specs-value">{{ current_variant.sku }}</div>
+  </div>
+  {%- endif -%}
+
+  {%- if product.metafields.my_fields.product_finish != blank -%}
+  <div class="specs-row">
+    <div class="specs-label">Product Finish:</div>
+    <div class="specs-value">{{ product.metafields.my_fields.product_finish }}</div>
+  </div>
+  {%- endif -%}
+
+  {%- if product.metafields.my_fields.product_configuration != blank -%}
+  <div class="specs-row">
+    <div class="specs-label">Configuration:</div>
+    <div class="specs-value">{{ product.metafields.my_fields.product_configuration }}</div>
+  </div>
+  {%- endif -%}
+
+  {%- if product.metafields.my_fields.installation_methods != blank -%}
+  <div class="specs-row">
+    <div class="specs-label">Installation Methods:</div>
+    <div class="specs-value">{{ product.metafields.my_fields.installation_methods }}</div>
+  </div>
+  {%- endif -%}
+
+  {%- if product.metafields.my_fields.internal_edges != blank -%}
+  <div class="specs-row">
+    <div class="specs-label">Internal Edges:</div>
+    <div class="specs-value">{{ product.metafields.my_fields.internal_edges }}</div>
+  </div>
+  {%- endif -%}
+
+  {%- if product.metafields.my_fields.product_thickness != blank -%}
+  <div class="specs-row">
+    <div class="specs-label">Thickness:</div>
+    <div class="specs-value">{{ product.metafields.my_fields.product_thickness }}</div>
+  </div>
+  {%- endif -%}
+
+  {%- if product.metafields.my_fields.litres != blank -%}
+  <div class="specs-row">
+    <div class="specs-label">Capacity in Litres:</div>
+    <div class="specs-value">{{ product.metafields.my_fields.litres.value }}</div>
+  </div>
+  {%- endif -%}
+
+  {%- if product.metafields.my_fields.cubic_size != blank -%}
+  <div class="specs-row">
+    <div class="specs-label">Internal Cubic Size:</div>
+    <div class="specs-value">{{ product.metafields.my_fields.cubic_size.value }}</div>
+  </div>
+  {%- endif -%}
+
+  {%- if product.metafields.my_fields.product_sink_size != blank -%}
+  <div class="specs-row">
+    <div class="specs-label">Sink Size:</div>
+    <div class="specs-value">{{ product.metafields.my_fields.product_sink_size }} (Including Lip)</div>
+  </div>
+  {%- endif -%}
+
+  {%- if product.metafields.my_fields.product_bowl_size != blank -%}
+  <div class="specs-row">
+    <div class="specs-label">Bowl Size:</div>
+    <div class="specs-value">{{ product.metafields.my_fields.product_bowl_size }} (Excluding Lip)</div>
+  </div>
+  {%- endif -%}
+
+  {%- if product.metafields.my_fields.product_depth != blank -%}
+  <div class="specs-row">
+    <div class="specs-label">Depth:</div>
+    <div class="specs-value">{{ product.metafields.my_fields.product_depth }}</div>
+  </div>
+  {%- endif -%}
+
+  {%- if product.metafields.my_fields.internal_corners != blank -%}
+  <div class="specs-row">
+    <div class="specs-label">Internal Corners:</div>
+    <div class="specs-value">{{ product.metafields.my_fields.internal_corners }}</div>
+  </div>
+  {%- endif -%}
+
+  {%- if product.metafields.my_fields.external_corners != blank -%}
+  <div class="specs-row">
+    <div class="specs-label">External Corners:</div>
+    <div class="specs-value">{{ product.metafields.my_fields.external_corners }}</div>
+  </div>
+  {%- endif -%}
+
+  {%- if product.metafields.my_fields.sound_pads != blank -%}
+  <div class="specs-row">
+    <div class="specs-label">Sound Pads:</div>
+    <div class="specs-value">{{ product.metafields.my_fields.sound_pads }}</div>
+  </div>
+  {%- endif -%}
+
+  {%- if product.metafields.my_fields.strainer != blank -%}
+  <div class="specs-row">
+    <div class="specs-label">Strainer:</div>
+    <div class="specs-value">{{ product.metafields.my_fields.strainer }}</div>
+  </div>
+  {%- endif -%}
+
+  {%- if product.metafields.my_fields.waste_location != blank -%}
+  <div class="specs-row">
+    <div class="specs-label">Waste Location:</div>
+    <div class="specs-value">{{ product.metafields.my_fields.waste_location }}</div>
+  </div>
+  {%- endif -%}
+
+  {%- if product.metafields.my_fields.strainer_waste_size != blank -%}
+  <div class="specs-row">
+    <div class="specs-label">Strainer Waste Size:</div>
+    <div class="specs-value">{{ product.metafields.my_fields.strainer_waste_size }}</div>
+  </div>
+  {%- endif -%}
+
+  {%- if product.metafields.my_fields.tolerances != blank -%}
+  <div class="specs-row">
+    <div class="specs-label">Product Tolerances:</div>
+    <div class="specs-value">{{ product.metafields.my_fields.tolerances }}</div>
+  </div>
+  {%- endif -%}
+
+  {%- if product.metafields.my_fields.warranty != blank -%}
+  <div class="specs-row">
+    <div class="specs-label">Warranty:</div>
+    <div class="specs-value">{{ product.metafields.my_fields.warranty }}</div>
+  </div>
+  {%- endif -%}
+
+  {%- if product.metafields.my_fields.box_size != blank -%}
+  <div class="specs-row">
+    <div class="specs-label">Box Dimensions:</div>
+    <div class="specs-value">{{ product.metafields.my_fields.box_size }}</div>
+  </div>
+  {%- endif -%}
+
+  {%- comment -%} Boxed weight — from variant, not metafields {%- endcomment -%}
+  {%- if product.variants.first.weight != blank -%}
+  <div class="specs-row">
+    <div class="specs-label">Boxed Weight:</div>
+    <div class="specs-value">{{ product.variants.first.weight | weight_with_unit }}</div>
+  </div>
+  {%- endif -%}
+
+</div>
