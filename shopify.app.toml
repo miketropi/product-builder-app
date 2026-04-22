@@ -6,6 +6,9 @@ application_url = "https://bm-insanity-au.fly.dev/"
 embedded = true
 handle = "bm-insanity-au"
 
+[build]
+automatically_update_urls_on_dev = true
+
 [webhooks]
 api_version = "2024-04"
 
