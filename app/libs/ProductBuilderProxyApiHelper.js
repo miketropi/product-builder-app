@@ -21,6 +21,7 @@ export default class ProductBuilderProxyApiHelper {
               id
               url
             }
+            availableForSale
           }
         } 
       }
